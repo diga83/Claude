@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Dinesh Deckker — Publishing, AI Research, Faith &amp; Writing</title>
+  <meta name="description" content="Articles by Dinesh Deckker on self-publishing and Amazon KDP, AI research, biblical scholarship, children's books, and the craft of writing.">
+  <link rel="canonical" href="https://dineshdeckker.com/blog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog | Dinesh Deckker">
+  <meta property="og:description" content="Articles on self-publishing, AI research, biblical scholarship, and writing.">
+  <meta property="og:url" content="https://dineshdeckker.com/blog.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .blog-layout { display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+    .post-card { background:var(--surface); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 1.5rem; display: flex; transition: box-shadow 0.2s; }
+    .post-card:hover { box-shadow: 0 4px 16px rgba(58,46,38,0.09); }
+    .post-card.hidden { display:none; }
+    .post-card-accent { width: 6px; flex-shrink: 0; }
+    .post-card-body { padding: 1.5rem; flex: 1; }
+    .post-tag { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .post-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 0.6rem; }
+    .post-title a:hover { color: var(--gold) !important; }
+    .post-excerpt { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+    .post-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:0.5rem; }
+    .post-meta { font-size: 0.72rem; color: var(--text-muted); }
+    .post-link { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
+    .post-link:hover { color: var(--gold); }
+    .post-featured { background:var(--ink); border-radius: 2px; padding: 2.5rem; margin-bottom: 2rem; transition: box-shadow 0.2s; }
+    .post-featured:hover { box-shadow: 0 10px 30px rgba(58,46,38,0.25); }
+    .post-featured-tag { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .post-featured-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--white); line-height: 1.3; margin-bottom: 0.75rem; }
+    .post-featured-excerpt { font-size: 0.9rem; color: rgba(255,255,255,0.62); line-height: 1.75; margin-bottom: 1.5rem; }
+    .category-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .cat-pill { padding: 0.35rem 0.85rem; font-size: 0.75rem; font-weight: 500; border: 1px solid var(--border); background:var(--surface); color: var(--text-muted); border-radius: 20px; cursor: pointer; transition: all 0.2s; font-family: var(--sans); }
+    .cat-pill.active, .cat-pill:hover { background:var(--ink); border-color: var(--navy); color: var(--white); }
+    .sidebar-widget { background:var(--surface); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 1.5rem; }
+    .sidebar-widget-header { background:var(--ink); padding: 0.85rem 1.1rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .sidebar-widget-body { padding: 1.1rem; }
+    .sidebar-topic { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--cream-dark); font-size: 0.82rem; color: var(--text-secondary); cursor: pointer; }
+    .sidebar-topic:last-child { border-bottom: none; }
+    .sidebar-topic:hover { color: var(--navy); }
+    .sidebar-topic-count { font-size: 0.7rem; background:var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.15rem 0.5rem; color: var(--text-muted); }
+    .subscribe-box { background:var(--surface-2); border: 1px solid var(--border); border-radius: 2px; padding: 1.5rem; text-align: center; }
+    .subscribe-box h3 { font-family: var(--serif); font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .subscribe-box p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .subscribe-input { width: 100%; padding: 0.6rem 0.85rem; border: 1px solid var(--border); border-radius: 2px; font-size: 0.85rem; font-family: var(--sans); margin-bottom: 0.6rem; background:var(--surface); color: var(--text-primary); outline: none; }
+    .subscribe-input:focus { border-color: var(--navy); }
+    @media (max-width: 960px) { .blog-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Blog</div>
+      <h1 class="page-title">Notes from the Desk</h1>
+      <p class="page-subtitle">Articles on self-publishing and Amazon KDP, AI research, biblical scholarship, children's books, and the craft of writing.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--bg);">
+    <div class="section-inner">
+      <div class="blog-layout">
+        <div>
+          <a href="how-to-publish-childrens-book-amazon-kdp.html" class="post-featured" style="display:block; text-decoration:none;">
+            <div class="post-featured-tag">Featured &middot; Publishing</div>
+            <h2 class="post-featured-title">How to Publish a Children's Book on Amazon KDP: A Step-by-Step Guide</h2>
+            <p class="post-featured-excerpt">Everything you need to publish your first children's book on Amazon KDP — manuscript, illustrations, formatting, keywords, pricing, and a launch checklist drawn from publishing 300+ titles.</p>
+            <span style="font-size:0.78rem;color:var(--gold);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Read Article &rarr;</span>
+          </a>
+
+          <div class="category-nav" id="cats" role="group" aria-label="Filter posts by category">
+            <button class="cat-pill active" data-cat="All Posts">All Posts</button><button class="cat-pill" data-cat="Publishing">Publishing</button><button class="cat-pill" data-cat="AI Research">AI Research</button><button class="cat-pill" data-cat="Writing">Writing</button><button class="cat-pill" data-cat="Biblical Studies">Biblical Studies</button><button class="cat-pill" data-cat="History">History</button>
+          </div>
+
+          <div id="postlist">
+          <article class="post-card" data-cat="Publishing">
+            <div class="post-card-accent" style="background:#d99a00;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">Publishing</div>
+              <h2 class="post-title"><a href="what-i-learned-publishing-300-books.html" style="text-decoration:none;color:inherit;">What I Learned Publishing 300+ Books on Amazon KDP</a></h2>
+              <p class="post-excerpt">Honest lessons from building a catalog of 300+ KDP titles — why a catalog beats a single bestseller, how organic discovery really works, and what most new authors get wrong.</p>
+              <div class="post-footer"><span class="post-meta">May 5, 2026 &middot; 8 min read</span><a href="what-i-learned-publishing-300-books.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="Biblical Studies">
+            <div class="post-card-accent" style="background:#9c7a1e;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">Biblical Studies</div>
+              <h2 class="post-title"><a href="best-bible-stories-for-kids.html" style="text-decoration:none;color:inherit;">The Best Bible Stories for Kids: Teaching Faith Through Picture Books</a></h2>
+              <p class="post-excerpt">Which Bible stories resonate most with children, and how do illustrated picture books teach faith and character? A guide drawn from co-authoring 80+ children's Bible books.</p>
+              <div class="post-footer"><span class="post-meta">Apr 28, 2026 &middot; 7 min read</span><a href="best-bible-stories-for-kids.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="AI Research">
+            <div class="post-card-accent" style="background:#c1666b;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">AI Research</div>
+              <h2 class="post-title"><a href="how-ai-is-changing-education.html" style="text-decoration:none;color:inherit;">How AI Is Changing Education: Insights from Peer-Reviewed Research</a></h2>
+              <p class="post-excerpt">Artificial intelligence is reshaping how we teach and learn. Drawing on peer-reviewed research, this post examines personalized learning, special education, and the real risks.</p>
+              <div class="post-footer"><span class="post-meta">Apr 20, 2026 &middot; 10 min read</span><a href="how-ai-is-changing-education.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="AI Research">
+            <div class="post-card-accent" style="background:#a8434a;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">AI Research</div>
+              <h2 class="post-title"><a href="ai-bias-and-cultural-representation.html" style="text-decoration:none;color:inherit;">AI Bias and Cultural Representation: Why It Matters</a></h2>
+              <p class="post-excerpt">AI systems learn from human data — and inherit human bias. This post examines how cultural bias appears in AI-generated imagery and why representation matters.</p>
+              <div class="post-footer"><span class="post-meta">Apr 12, 2026 &middot; 9 min read</span><a href="ai-bias-and-cultural-representation.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="Writing">
+            <div class="post-card-accent" style="background:#b85c2e;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">Writing</div>
+              <h2 class="post-title"><a href="how-to-write-biblical-fiction.html" style="text-decoration:none;color:inherit;">How to Write Biblical Fiction That Honors the Text</a></h2>
+              <p class="post-excerpt">Biblical fiction asks the writer to honor scripture while telling a gripping story. Here's how to balance research, historical detail, and imagination without distorting the source.</p>
+              <div class="post-footer"><span class="post-meta">Apr 4, 2026 &middot; 8 min read</span><a href="how-to-write-biblical-fiction.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="Publishing">
+            <div class="post-card-accent" style="background:#d99a00;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">Publishing</div>
+              <h2 class="post-title"><a href="self-publishing-vs-traditional-publishing.html" style="text-decoration:none;color:inherit;">Self-Publishing vs Traditional Publishing: Which Is Right for You?</a></h2>
+              <p class="post-excerpt">Control versus reach, royalties versus advances, speed versus prestige. A clear-eyed comparison of self-publishing and traditional publishing to help you decide.</p>
+              <div class="post-footer"><span class="post-meta">Mar 27, 2026 &middot; 9 min read</span><a href="self-publishing-vs-traditional-publishing.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="History">
+            <div class="post-card-accent" style="background:#c1666b;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">History</div>
+              <h2 class="post-title"><a href="history-of-halloween-origins.html" style="text-decoration:none;color:inherit;">The History of Halloween: From Ancient Origins to Modern Traditions</a></h2>
+              <p class="post-excerpt">Where did Halloween really come from? From the Celtic festival of Samhain to today's costumes and candy, a tour through the holiday's surprising history.</p>
+              <div class="post-footer"><span class="post-meta">Mar 19, 2026 &middot; 8 min read</span><a href="history-of-halloween-origins.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="Writing">
+            <div class="post-card-accent" style="background:#9c7a1e;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">Writing</div>
+              <h2 class="post-title"><a href="co-authoring-childrens-books.html" style="text-decoration:none;color:inherit;">Co-Authoring Children's Books: Lessons from a Husband-and-Wife Writing Team</a></h2>
+              <p class="post-excerpt">Writing books with your spouse sounds romantic and occasionally is. Here's what co-authoring dozens of children's books as a husband-and-wife team actually takes.</p>
+              <div class="post-footer"><span class="post-meta">Mar 11, 2026 &middot; 7 min read</span><a href="co-authoring-childrens-books.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          <article class="post-card" data-cat="AI Research">
+            <div class="post-card-accent" style="background:#c1666b;"></div>
+            <div class="post-card-body">
+              <div class="post-tag">AI Research</div>
+              <h2 class="post-title"><a href="using-ai-tools-to-write-and-publish-books.html" style="text-decoration:none;color:inherit;">How to Use AI Tools to Write and Publish Books Faster</a></h2>
+              <p class="post-excerpt">AI can accelerate parts of the publishing workflow — if you use it as a tool, not a replacement. A practical, honest look at where AI helps authors and where it hurts.</p>
+              <div class="post-footer"><span class="post-meta">Mar 3, 2026 &middot; 9 min read</span><a href="using-ai-tools-to-write-and-publish-books.html" class="post-link">Read More &rarr;</a></div>
+            </div>
+          </article>
+          </div>
+        </div>
+
+        <aside>
+          <div class="subscribe-box" style="margin-bottom:1.5rem;">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new articles go live — publishing insights, research, and reflections.</p>
+            <input class="subscribe-input" type="email" placeholder="your@email.com">
+            <button class="btn-dark" style="width:100%; text-align:center;">Subscribe</button>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="sidebar-widget-header">Topics</div>
+            <div class="sidebar-widget-body">
+              <div class="sidebar-topic" data-cat="Publishing">Publishing<span class="sidebar-topic-count">3</span></div><div class="sidebar-topic" data-cat="AI Research">AI Research<span class="sidebar-topic-count">3</span></div><div class="sidebar-topic" data-cat="Writing">Writing<span class="sidebar-topic-count">2</span></div><div class="sidebar-topic" data-cat="Biblical Studies">Biblical Studies<span class="sidebar-topic-count">1</span></div><div class="sidebar-topic" data-cat="History">History<span class="sidebar-topic-count">1</span></div>
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="sidebar-widget-header">Recent Posts</div>
+            <div class="sidebar-widget-body">
+              <a href="how-to-publish-childrens-book-amazon-kdp.html" style="display:block; padding:0.75rem 0; border-bottom:1px solid var(--cream-dark); text-decoration:none;">
+                <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:0.2rem;">Publishing</div>
+                <div style="font-size:0.85rem; color:var(--navy); font-weight:600; line-height:1.3;">How to Publish a Children's Book on Amazon KDP: A Step-by-Step Guide</div>
+              </a>              <a href="what-i-learned-publishing-300-books.html" style="display:block; padding:0.75rem 0; border-bottom:1px solid var(--cream-dark); text-decoration:none;">
+                <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:0.2rem;">Publishing</div>
+                <div style="font-size:0.85rem; color:var(--navy); font-weight:600; line-height:1.3;">What I Learned Publishing 300+ Books on Amazon KDP</div>
+              </a>              <a href="best-bible-stories-for-kids.html" style="display:block; padding:0.75rem 0; border-bottom:1px solid var(--cream-dark); text-decoration:none;">
+                <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:0.2rem;">Biblical Studies</div>
+                <div style="font-size:0.85rem; color:var(--navy); font-weight:600; line-height:1.3;">The Best Bible Stories for Kids: Teaching Faith Through Picture Books</div>
+              </a>
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="sidebar-widget-header">About the Author</div>
+            <div class="sidebar-widget-body">
+              <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.65; margin-bottom:1rem;">Dinesh Deckker is a bestselling KDP author of 300+ books, PhD researcher, and digital marketing strategist based in Muscat, Oman.</p>
+              <a href="about.html" class="btn-dark" style="display:block; text-align:center; font-size:0.78rem;">Full Biography &rarr;</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="nav-footer.js"></script>
+<script>
+  const pills = document.querySelectorAll('.cat-pill');
+  const cards = document.querySelectorAll('.post-card[data-cat]');
+  function filter(cat){
+    pills.forEach(p => p.classList.toggle('active', p.dataset.cat===cat));
+    cards.forEach(c => c.classList.toggle('hidden', cat!=='All Posts' && c.dataset.cat!==cat));
+  }
+  pills.forEach(p => p.addEventListener('click', () => filter(p.dataset.cat)));
+  document.querySelectorAll('.sidebar-topic').forEach(t => t.addEventListener('click', () => {
+    filter(t.dataset.cat); document.getElementById('cats').scrollIntoView({behavior:'smooth', block:'center'});
+  }));
+</script>
+</body>
+</html>

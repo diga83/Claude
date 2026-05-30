@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research | Dinesh Deckker — 51 Academic Publications, 200+ Citations</title>
+  <meta name="description" content="Academic research by Dinesh Deckker — 51 peer-reviewed publications and preprints on artificial intelligence, education, marketing, AI ethics, corpus linguistics, and digital culture. 200+ citations, h-index 8.">
+  <link rel="canonical" href="https://dineshdeckker.com/research.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .research-layout { display:grid; grid-template-columns:1fr 280px; gap:3rem; align-items:start; }
+
+    /* metrics strip */
+    .metrics { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-bottom:2.5rem; }
+    .metric { background:var(--ink); border-radius:3px; padding:1.4rem 1rem; text-align:center; }
+    .metric-num { font-family:var(--serif); font-size:2rem; font-weight:700; color:var(--gold); line-height:1; }
+    .metric-label { font-size:0.7rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:0.4rem; }
+
+    .toolbar { display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
+    .search-box { position:relative; flex:1; min-width:220px; max-width:380px; }
+    .search-box input { width:100%; padding:0.6rem 0.9rem 0.6rem 2.3rem; border:1px solid var(--border); border-radius:2px; font-family:var(--sans); font-size:0.88rem; background:var(--surface); color:var(--text-primary); outline:none; transition:border-color 0.2s; }
+    .search-box input:focus { border-color:var(--navy); }
+    .search-box svg { position:absolute; left:0.75rem; top:50%; transform:translateY(-50%); width:15px; height:15px; stroke:var(--text-muted); fill:none; stroke-width:2; }
+    .result-count { font-size:0.8rem; color:var(--text-muted); white-space:nowrap; }
+
+    .filter-bar { display:flex; gap:0.45rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .filter-btn { padding:0.38rem 0.85rem; font-size:0.74rem; font-weight:500; border:1px solid var(--border); background:var(--surface); color:var(--text-secondary); cursor:pointer; border-radius:2px; transition:all 0.2s; font-family:var(--sans); }
+    .filter-btn.active, .filter-btn:hover { background:var(--ink); border-color:var(--navy); color:var(--white); }
+    .filter-btn .c { opacity:0.55; margin-left:0.3rem; font-size:0.66rem; }
+
+    .pub-list { display:flex; flex-direction:column; gap:0; }
+    .pub {
+      display:flex; gap:1.1rem; padding:1.25rem 0; border-bottom:1px solid var(--border);
+    }
+    .pub:last-child { border-bottom:none; }
+    .pub-cite {
+      flex-shrink:0; width:58px; text-align:center;
+    }
+    .pub-cite-num { font-family:var(--serif); font-size:1.4rem; font-weight:700; color:var(--navy); line-height:1; }
+    .pub-cite-label { font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-top:0.2rem; }
+    .pub-cite.zero .pub-cite-num { color:var(--border); }
+    .pub-body { flex:1; }
+    .pub-title { font-family:var(--serif); font-size:0.98rem; font-weight:700; color:var(--navy); line-height:1.4; margin-bottom:0.35rem; }
+    .pub-title a { text-decoration:none; color:inherit; }
+    .pub-title a:hover { color:var(--gold); }
+    .pub-authors { font-size:0.8rem; color:var(--text-secondary); font-style:italic; margin-bottom:0.2rem; }
+    .pub-venue { font-size:0.78rem; color:var(--text-muted); }
+    .pub-tags { margin-top:0.5rem; display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center; }
+    .pub-theme { font-size:0.62rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold); }
+    .pub-year { font-size:0.68rem; color:var(--text-muted); background:var(--bg); border:1px solid var(--border); border-radius:2px; padding:0.1rem 0.45rem; }
+
+    .group-heading { display:flex; align-items:baseline; gap:1rem; margin:2rem 0 0.5rem; }
+    .group-heading:first-child { margin-top:0; }
+    .group-heading h2 { font-family:var(--serif); font-size:1.2rem; font-weight:700; color:var(--navy); white-space:nowrap; }
+    .group-heading .gh-line { flex:1; height:1px; background:var(--border); }
+    .group-heading .gh-count { font-size:0.72rem; color:var(--text-muted); }
+
+    .no-results { text-align:center; padding:2.5rem 1rem; color:var(--text-muted); }
+
+    .sidebar-section { margin-bottom:1.75rem; }
+    .sidebar-title { font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:0.5rem; margin-bottom:1rem; }
+    .profile-link-item { display:flex; align-items:center; gap:0.75rem; padding:0.8rem 1rem; border:1px solid var(--border); border-radius:2px; text-decoration:none; color:inherit; margin-bottom:0.6rem; background:var(--surface); transition:border-color 0.2s; }
+    .profile-link-item:hover { border-color:var(--navy); }
+    .pli-icon { width:32px; height:32px; background:var(--ink); border-radius:2px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.58rem; font-weight:700; color:var(--gold); letter-spacing:0.04em; }
+    .pli-name { font-size:0.84rem; font-weight:600; color:var(--navy); }
+    .pli-desc { font-size:0.7rem; color:var(--text-muted); }
+    .interest-tag { display:inline-block; margin:0.2rem 0.2rem 0 0; padding:0.28rem 0.7rem; background:var(--bg); border:1px solid var(--border); border-radius:2px; font-size:0.74rem; color:var(--text-secondary); }
+    .collaborator-item { padding:0.7rem 0; border-bottom:1px solid var(--border); }
+    .collaborator-item:last-child { border-bottom:none; }
+    .collaborator-name { font-size:0.84rem; font-weight:600; color:var(--navy); }
+    .collaborator-role { font-size:0.74rem; color:var(--text-muted); }
+
+    @media (max-width:960px){ .research-layout{ grid-template-columns:1fr; } .metrics{ grid-template-columns:repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Academic Research</div>
+      <h1 class="page-title">Publications &amp; Research</h1>
+      <p class="page-subtitle">Peer-reviewed papers, reviews, and preprints on artificial intelligence, education, marketing, AI ethics, and corpus linguistics. PhD candidate in Marketing at Wrexham University, working closely with collaborator Subhashini Sumanasekara.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--bg);">
+    <div class="section-inner">
+
+      <div class="metrics">
+        <div class="metric"><div class="metric-num">51</div><div class="metric-label">Publications</div></div>
+        <div class="metric"><div class="metric-num">204</div><div class="metric-label">Total Citations</div></div>
+        <div class="metric"><div class="metric-num">8</div><div class="metric-label">h-index</div></div>
+        <div class="metric"><div class="metric-num">19</div><div class="metric-label">Web of Science Reviews</div></div>
+        <div class="metric"><div class="metric-num">2025</div><div class="metric-label">Most Active Year</div></div>
+      </div>
+
+      <div class="research-layout">
+        <div>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="search" id="search" placeholder="Search publications&hellip;" aria-label="Search publications">
+            </div>
+            <div class="result-count" id="count"></div>
+          </div>
+          <div class="filter-bar" id="filters" role="group" aria-label="Filter by theme"></div>
+          <div class="pub-list" id="list"></div>
+        </div>
+
+        <aside>
+          <div class="sidebar-section">
+            <div class="sidebar-title">Academic Profiles</div>
+            <a href="https://scholar.google.com/citations?user=O1ClPTwAAAAJ" target="_blank" rel="noopener" class="profile-link-item">
+              <div class="pli-icon">GS</div><div><div class="pli-name">Google Scholar</div><div class="pli-desc">Full citation metrics</div></div>
+            </a>
+            <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener" class="profile-link-item">
+              <div class="pli-icon">RG</div><div><div class="pli-name">ResearchGate</div><div class="pli-desc">Publications &amp; reads</div></div>
+            </a>
+            <a href="https://tqg.academia.edu/DineshDeckker" target="_blank" rel="noopener" class="profile-link-item">
+              <div class="pli-icon">AC</div><div><div class="pli-name">Academia.edu</div><div class="pli-desc">Papers &amp; preprints</div></div>
+            </a>
+            <a href="https://www.authorea.com/users/908144-dinesh-deckker" target="_blank" rel="noopener" class="profile-link-item">
+              <div class="pli-icon">AU</div><div><div class="pli-name">Authorea</div><div class="pli-desc">Preprint archive</div></div>
+            </a>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-title">Peer Review</div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6; margin-bottom:0.5rem;">Dinesh is an active peer reviewer with <strong>19 Web of Science&ndash;verified reviews</strong>, contributing to the quality and integrity of academic publishing.</p>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-title">Research Interests</div>
+            <div>
+              <span class="interest-tag">Artificial Intelligence</span>
+              <span class="interest-tag">AI in Education</span>
+              <span class="interest-tag">AI Ethics &amp; Bias</span>
+              <span class="interest-tag">Digital Marketing</span>
+              <span class="interest-tag">Corpus Linguistics</span>
+              <span class="interest-tag">Generative AI</span>
+              <span class="interest-tag">AI &amp; Creativity</span>
+              <span class="interest-tag">Digital Culture</span>
+              <span class="interest-tag">Philosophy of AI</span>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-title">Key Collaborators</div>
+            <div class="collaborator-item"><div class="collaborator-name">Subhashini Sumanasekara</div><div class="collaborator-role">Primary co-author across AI &amp; education research</div></div>
+            <div class="collaborator-item"><div class="collaborator-name">Dr Sree Lakshmi Ammanamanchi</div><div class="collaborator-role">Co-author, corpus linguistics studies</div></div>
+            <div class="collaborator-item"><div class="collaborator-name">A. Fakhrou &middot; K. Uludag</div><div class="collaborator-role">Co-authors, AI &amp; education papers</div></div>
+          </div>
+
+          <div style="background:var(--ink); border-radius:3px; padding:1.5rem; text-align:center;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Research Collaboration</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:1rem;">Open to research collaborations and co-authorship.</p>
+            <a href="contact.html" class="btn-outline-gold" style="display:block; text-align:center;">Get in Touch</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="nav-footer.js"></script>
+<script>
+const PUBS = [{"title": "A systematic review of the impact of artificial intelligence, digital technology, and social media on cognitive functions", "cites": 26, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Research and Innovation in Social Science 9 (3 …", "theme": "AI in Education"}, {"title": "AI in vocational and technical education: Revolutionizing skill-based learning", "cites": 25, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "EPRA International Journal of Multidisciplinary Research (IJMR) 11 (3), 9-23", "theme": "AI in Education"}, {"title": "The role of artificial intelligence in education: Transforming learning and teaching", "cites": 19, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "EPRA International Journal of Research and Development (IJRD) 10 (3), 5", "theme": "AI in Education"}, {"title": "Systematic review on AI in emotional intelligence and psychological education", "cites": 16, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "EPRA International Journal of Research & Development (IJRD) 10 (4), 400-414", "theme": "AI in Education"}, {"title": "Systematic review on AI in special education: Enhancing learning for neurodiverse students", "cites": 15, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "EPRA Int. J. Multidiscip. Res.(IJMR) 11, 539-545", "theme": "AI in Education"}, {"title": "Emotional AI for Student Motivation and Retention: A Systematic Review and Future Directions", "cites": 13, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Global Economic Light (JGEL) 11 (3), 35-50", "theme": "AI in Education"}, {"title": "Dreams and data: Ghibli-style art, copyright, and the rise of viral AI imagery", "cites": 11, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Global Economic Light 11 (5), 54-65", "theme": "AI & Creativity"}, {"title": "The Rise of AI in Digital Advertising: Trends, Challenges, and Future Directions", "cites": 9, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Research Publication and Reviews 6 (3), 1788-1799", "theme": "AI & Marketing"}, {"title": "A review of AI-powered creativity: The intersection of AI and the arts", "cites": 7, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Global Economic Light 11 (4), 10-24", "theme": "AI & Creativity"}, {"title": "Leveraging Artificial Intelligence for simulation and visualisation in STEM education: A theory-informed narrative synthesis", "cites": 7, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Science and Research Archive 16 (2), 901-913", "theme": "AI in Education"}, {"title": "AI-Powered Personalised Learning: Promise and Pitfalls", "cites": 7, "year": "2025", "authors": "D Deckker, S Sumanasekara, A Fakhrou", "venue": "World Journal of Advanced Research and Reviews 26 (3), 2081-2095", "theme": "AI in Education"}, {"title": "Parental attitudes toward ai in early childhood: A three-pillar framework", "cites": 5, "year": "2025", "authors": "D Deckker", "venue": "World Journal of Advanced Research and Reviews", "theme": "Other Research"}, {"title": "Bias in AI Models: Origins, Impact, and Mitigation Strategies", "cites": 4, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "Preprints", "theme": "AI Ethics & Society"}, {"title": "Artificial intelligence and the Future of Job Security: A narrative review of risks, resilience, and policy responses", "cites": 4, "year": "2025", "authors": "D Deckker", "venue": "International Journal of Research and Innovation in Social Science", "theme": "AI Ethics & Society"}, {"title": "AI and Neuromarketing-Understanding Consumer Decision Making with Artificial Intelligence-Systematic Review", "cites": 4, "year": "2025", "authors": "D Deckker", "venue": "Indonesian Journal of Business Analytics", "theme": "AI in Education"}, {"title": "Artificial intelligence and pornography: A comprehensive research review", "cites": 4, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "World Journal of Advanced Research and Reviews 26 (2), 618-637", "theme": "AI Ethics & Society"}, {"title": "Systematic Review on AI in Gender Bias Detection and Mitigation in Education and Workplaces", "cites": 3, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Research in Computing (IJRC) 4 (II), 1-11", "theme": "AI in Education"}, {"title": "Systematic Review: AI for Wildlife Conservation - Preventing Elephant Deaths from Train Collisions using Artificial Intelligence", "cites": 3, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "EPRA International Journal of Environmental Economics, Commerce and …", "theme": "AI in Education"}, {"title": "Systematic Review: AI in Indigenous and Cultural Education—Bridging Knowledge Gaps", "cites": 3, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Engineering and Science Invention (IJESI) 14 (3), 62-67", "theme": "AI in Education"}, {"title": "Student-centric ethical frameworks for AI-driven education: Participatory consent and data ownership in a global perspective", "cites": 3, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal of Science and Research Archive 15 (3), 1491-1503", "theme": "AI in Education"}, {"title": "ChatGPT and the Evolution of AI-Powered Tutoring Systems", "cites": 3, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "EPRA International Journal of Environmental Economics, Commerce and …", "theme": "AI in Education"}, {"title": "From stethoscopes to supercomputers: The AI revolution in medicine: A review", "cites": 3, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "World Journal of Advanced Research and Reviews 1 (26), 1114-31", "theme": "AI in Science & Medicine"}, {"title": "Profanity through time: a corpus-based and sociolinguistic study of the evolution, usage, and perception of English curse words", "cites": 2, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "International Journal 13 (5)", "theme": "Linguistics & Corpus Studies"}, {"title": "Artificial Intelligence and the Apocalypse: A Review of Risks, Speculations, and Realities", "cites": 2, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "Asian Economic Light (JAEL) 13 (3), 12-36", "theme": "AI, Philosophy & Futures"}, {"title": "Safeguarding human dignity: A narrative review of prohibited AI practices under the EU AI Act", "cites": 2, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "World Journal of Advanced Research and Reviews 26 (3), 243-260", "theme": "AI Ethics & Society"}, {"title": "The impact of digital marketing on consumer behavior in Oman", "cites": 1, "year": "2025", "authors": "A Deckker, P Sumanasekara", "venue": "International Journal for Multidisciplinary Research 7 (2)", "theme": "AI & Marketing"}, {"title": "Positive vs. negative collocates of Indian-origin words in Western media: A corpus-based critical discourse analysis", "cites": 1, "year": "2025", "authors": "D Deckker, S Sumanasekara, S Ammanamanchi", "venue": "International Journal of Research and Innovation in Social Science 9, 0398", "theme": "Linguistics & Corpus Studies"}, {"title": "AI as a bridge: How technology facilitates educational and workforce transitions in a digital era", "cites": 1, "year": "2025", "authors": "D Deckker, S Sumanasekara, K Uludag", "venue": "World Journal of Advanced Research and Reviews 26 (3), 2491-2504", "theme": "AI in Education"}, {"title": "THE ORIGIN OF THE ENGLISH LANGUAGE: A HISTORICAL AND LINGUISTIC REVIEW", "cites": 1, "year": "", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "Linguistics & Corpus Studies"}, {"title": "Scaling Laws, Foundation Models, and the AI Singularity: A Critical Appraisal of 2023–2025 Evidence", "cites": 0, "year": "2026", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI, Philosophy & Futures"}, {"title": "Echoes of the Fall: Interpreting AI, Eschatology, and the Singularity in Minimalist Human-Machine Dialogue", "cites": 0, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "Authorea Preprints", "theme": "AI, Philosophy & Futures"}, {"title": "Unlucky 13: A Narrative Inquiry into the Origins of Numeric Taboo Across Civilisations", "cites": 0, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "SocArXiv", "theme": "Culture & Society"}, {"title": "Decoding Sri Lankan Cultural Identity in AI-Generated Imagery: A Content Analysis Using Prompt-Based Evaluation", "cites": 0, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "Authorea Preprints", "theme": "AI & Creativity"}, {"title": "The Role of ChatGPT in Software Development and Code Generation: A Review of Opportunities, Challenges, and Future Directions", "cites": 0, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "Authorea Preprints", "theme": "AI Tools & Systems"}, {"title": "Review Paper on the Surname\" Perera\"–The Most Used Surname in Sri Lanka", "cites": 0, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "Preprints", "theme": "Linguistics & Corpus Studies"}, {"title": "Moral Scaffolding Theory (MST): A Developmental Framework for Artificial Moral Cognition through Human Co-Learning", "cites": 0, "year": "2025", "authors": "D Deckker", "venue": "Available at SSRN 5206030", "theme": "AI in Education"}, {"title": "The Legality of AI-Generated Art: Copyright Ownership and Current Developments", "cites": 0, "year": "2025", "authors": "D Deckker, S Sumanasekara", "venue": "The Lahore Journal of Business 13 (1), 83-104", "theme": "AI & Creativity"}, {"title": "Digital Gender Violence in Sri Lanka: A review of emerging trends, legal frameworks and policy gaps", "cites": 0, "year": "2025", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI Ethics & Society"}, {"title": "Skibidi in the Cambridge Dictionary: When does slang become legit?", "cites": 0, "year": "2025", "authors": "", "venue": "D Deckker, S Sumanasekara, SL Ammanamanchi", "theme": "Linguistics & Corpus Studies"}, {"title": "Aliens Among Us? A Sociocultural Investigation of Extraterrestrial Belief Narratives", "cites": 0, "year": "2025", "authors": "", "venue": "D Deckker", "theme": "AI, Philosophy & Futures"}, {"title": "The semiotic ecology of gender: A critical narrative review of the pink–blue binary across discourses and domains", "cites": 0, "year": "2025", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI Ethics & Society"}, {"title": "From dharma to drama: A Corpus-based exploration of the word Karma in contemporary English", "cites": 0, "year": "2025", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "Linguistics & Corpus Studies"}, {"title": "Are We Living in a Simulation? A Deep Dive into the Simulation Hypothesis", "cites": 0, "year": "2025", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI, Philosophy & Futures"}, {"title": "NPCs, Side Quests, and the Meaning of Life: A Simulation Theory Guide to Letting Go", "cites": 0, "year": "2024", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI, Philosophy & Futures"}, {"title": "Behind the Algorithm: Unveiling the Privacy Paradox of Artificial Intelligence", "cites": 0, "year": "2024", "authors": "", "venue": "D Dinesh, S Sumanasekara", "theme": "AI Ethics & Society"}, {"title": "Intelligent Playgrounds - Revolutionizing Learning Through AI", "cites": 0, "year": "2024", "authors": "", "venue": "D Dinesh, S Sumanasekara", "theme": "AI in Education"}, {"title": "Collocational Patterns of Guru in American Business vs. Spiritual Discourse", "cites": 0, "year": "", "authors": "", "venue": "D Deckker, SL Ammanamanchi, S Sumanasekara", "theme": "AI & Marketing"}, {"title": "From Armageddon to AI Takeover: Evolution of Doomsday in Faith and Techno-Science Discourse", "cites": 0, "year": "", "authors": "", "venue": "D Deckker", "theme": "AI, Philosophy & Futures"}, {"title": "ChatGPT in Neurosurgical Practice and Education: Benefits, Risks, and Challenges", "cites": 0, "year": "", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI in Education"}, {"title": "CHATGPT FOR SCIENTIFIC DISCOVERY: ENHANCING OR UNDERMINING INNOVATION?", "cites": 0, "year": "", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI in Science & Medicine"}, {"title": "A Review of Origins and Evolution of the Caste System in Sri Lanka", "cites": 0, "year": "", "authors": "", "venue": "D Deckker, S Sumanasekara", "theme": "AI in Education"}];
+const ORDER = ["AI in Education", "AI & Marketing", "AI Ethics & Society", "AI & Creativity", "AI, Philosophy & Futures", "Linguistics & Corpus Studies", "AI in Science & Medicine", "AI Tools & Systems", "Culture & Society", "Other Research"];
+const SCHOLAR = "https://scholar.google.com/citations?user=O1ClPTwAAAAJ";
+
+const listEl = document.getElementById('list');
+const filtersEl = document.getElementById('filters');
+const countEl = document.getElementById('count');
+const searchEl = document.getElementById('search');
+let activeTheme = 'All';
+let query = '';
+
+const counts = {};
+PUBS.forEach(p => counts[p.theme] = (counts[p.theme]||0)+1);
+const themes = ['All', ...ORDER.filter(t => counts[t])];
+themes.forEach(t => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (t==='All'?' active':'');
+  const n = t==='All' ? PUBS.length : counts[t];
+  btn.innerHTML = t + '<span class="c">'+n+'</span>';
+  btn.onclick = () => { activeTheme=t; [...filtersEl.children].forEach(c=>c.classList.remove('active')); btn.classList.add('active'); render(); };
+  filtersEl.appendChild(btn);
+});
+
+function pubRow(p){
+  const z = p.cites>0 ? '' : ' zero';
+  return '<div class="pub">'
+    + '<div class="pub-cite'+z+'"><div class="pub-cite-num">'+p.cites+'</div><div class="pub-cite-label">'+(p.cites===1?'citation':'citations')+'</div></div>'
+    + '<div class="pub-body">'
+    + '<div class="pub-title"><a href="'+SCHOLAR+'" target="_blank" rel="noopener">'+p.title+'</a></div>'
+    + (p.authors?'<div class="pub-authors">'+p.authors+'</div>':'')
+    + (p.venue?'<div class="pub-venue">'+p.venue+'</div>':'')
+    + '<div class="pub-tags"><span class="pub-theme">'+p.theme+'</span>'+(p.year?'<span class="pub-year">'+p.year+'</span>':'')+'</div>'
+    + '</div></div>';
+}
+
+function render(){
+  const q = query.trim().toLowerCase();
+  let list = PUBS.filter(p => {
+    const okT = activeTheme==='All' || p.theme===activeTheme;
+    const okQ = !q || p.title.toLowerCase().includes(q) || (p.venue&&p.venue.toLowerCase().includes(q));
+    return okT && okQ;
+  });
+  countEl.textContent = list.length + ' of ' + PUBS.length + ' publications';
+  if(!list.length){ listEl.innerHTML = '<div class="no-results">No publications match your search.</div>'; return; }
+  let html='';
+  if(activeTheme==='All' && !q){
+    ORDER.forEach(t => {
+      const tp = list.filter(p=>p.theme===t).sort((a,b)=>b.cites-a.cites);
+      if(!tp.length) return;
+      html += '<div class="group-heading"><h2>'+t+'</h2><div class="gh-line"></div><span class="gh-count">'+tp.length+'</span></div>';
+      html += tp.map(pubRow).join('');
+    });
+  } else {
+    html = list.sort((a,b)=>b.cites-a.cites).map(pubRow).join('');
+  }
+  listEl.innerHTML = html;
+}
+searchEl.addEventListener('input', e => { query=e.target.value; render(); });
+render();
+</script>
+</body>
+</html>
