@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Dinesh Deckker — Author, Researcher & Digital Strategist</title>
+  <meta name="description" content="Learn about Dinesh Deckker — bestselling KDP author, PhD candidate in Marketing, and digital marketing expert with 20+ years of experience. Sri Lankan author based in Muscat, Oman.">
+  <link rel="canonical" href="https://dineshdeckker.com/about.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .about-layout {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start;
+    }
+    .about-body p { font-size: 1rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.25rem; }
+    .about-body h3 { font-family: var(--serif); font-size: 1.2rem; color:var(--text-primary); margin: 2rem 0 0.75rem; }
+
+    .credentials-stack { display: flex; flex-direction: column; }
+    .cred-item { display: flex; gap: 1rem; padding: 1.1rem 0; border-top: 1px solid var(--border); align-items: flex-start; }
+    .cred-badge {
+      width: 40px; height: 40px; background: var(--navy); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; color: var(--gold); flex-shrink: 0;
+    }
+    .cred-text strong { display: block; font-size: 0.88rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.2rem; }
+    .cred-text span { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+
+    .sidebar-card {
+      background:var(--surface); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .sidebar-card-header {
+      background: var(--navy); padding: 1rem 1.25rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+    }
+    .sidebar-card-body { padding: 1.25rem; }
+    .sidebar-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px solid var(--cream-dark); text-decoration: none; }
+    .sidebar-link:last-child { border-bottom: none; }
+    .sidebar-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .sidebar-link span { font-size: 0.82rem; color: var(--text-secondary); transition: color 0.2s; }
+    .sidebar-link:hover span { color:var(--text-primary); }
+
+    .quals-table-wrap { margin-top: 1.25rem; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+    table.quals { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.quals caption { text-align: left; }
+    table.quals thead th { background: var(--navy); color: var(--gold); text-align: left; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1rem; }
+    table.quals tbody td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); color: var(--text-secondary); line-height: 1.4; vertical-align: top; }
+    table.quals tbody tr:nth-child(even) { background: var(--cream); }
+    table.quals tbody td:first-child { font-weight: 600; color:var(--text-primary); }
+    table.quals tbody td.inst { white-space: nowrap; color: var(--text-muted); font-size: 0.8rem; }
+    .quals-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5; }
+    @media (max-width: 600px) {
+      table.quals { font-size: 0.78rem; }
+      table.quals tbody td.inst { white-space: normal; }
+      table.quals thead th, table.quals tbody td { padding: 0.55rem 0.65rem; }
+    }
+    .expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .exp-card { background: var(--cream); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1rem 1.1rem; border-radius: 2px; }
+    .exp-card h4 { font-size: 0.85rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.3rem; }
+    .exp-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+    .timeline { margin-top: 1rem; }
+    .tl-item { display: flex; gap: 1.25rem; padding-bottom: 1.5rem; position: relative; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; }
+    .tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 4px; }
+    .tl-line { width: 1px; background: var(--border); flex: 1; margin-top: 4px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-year { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.2rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
+    .tl-desc strong { color:var(--text-primary); font-weight: 600; }
+
+    @media (max-width: 960px) {
+      .about-layout { grid-template-columns: 1fr; }
+      .expertise-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">About</div>
+      <h1 class="page-title">Dinesh Deckker</h1>
+      <p class="page-subtitle">Author, academic researcher, and digital marketing strategist. Sri Lankan-born, based in Muscat, Oman. Two decades of publishing, digital strategy, and scholarly inquiry.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--surface);">
+    <div class="section-inner">
+      <div class="about-layout">
+        <div>
+          <div class="section-label">Biography</div>
+          <h2 class="section-title">Author, Academic &amp; Digital Strategist</h2>
+          <div class="divider"></div>
+          <div class="about-body">
+            <p>I am Dinesh Deckker — a bestselling KDP author, researcher, and digital marketing strategist with over twenty years of professional experience. Born in Sri Lanka and based in Muscat, Sultanate of Oman, my work spans children's literature, biblical fiction, academic research, and digital platform development.</p>
+            <p>As a publisher on Amazon KDP, I have built a catalog of more than 300 titles, placing me in the top 3–5% of KDP authors globally by organic royalties. My most recognised work is the <strong>Bible Adventure Series</strong> — 80+ children's Bible picture books co-authored with Subhashini Sumanasekara — with multiple titles ranking in Amazon's top 100 for Children's Picture Bibles.</p>
+            <p>In parallel, I pursue doctoral research in Marketing at Wrexham University, co-authoring peer-reviewed work on artificial intelligence, digital culture, and bias in AI systems. My academic collaborators include Dr. Sree Lakshmi Ammanamanchi and Subhashini Sumanasekara.</p>
+            <h3>As a Digital Marketing Strategist</h3>
+            <p>With more than two decades in the field, I have developed expertise spanning SEO, content marketing, digital publishing strategy, and platform development. My publishing business is built on organic discovery — understanding how algorithms, keywords, and cover design combine to surface books to the right readers without paid advertising.</p>
+            <p>Much of my children’s publishing is a partnership: the Bible Adventure Series is co-authored with my wife, <a href="subhashini.html" style="color:var(--gold);text-decoration:none;font-weight:600;">Subhashini Sumanasekara</a>, an ICT educator and children’s author who shares my passion for storytelling and learning.</p>
+            <h3>Areas of Scholarly Interest</h3>
+            <p>My research interests sit at the intersection of digital culture, artificial intelligence, and biblical scholarship. I have published on AI bias and representation, corpus linguistics, and early Christian texts — including a graduate-level paper on the Aramaic word "Rabboni" in John 20:16, and a book chapter on algorithmic aesthetics and caste-coded beauty in India.</p>
+          </div>
+
+          <h3 style="font-family:var(--serif);font-size:1.1rem;color:var(--text-primary);margin:2.5rem 0 1rem;">Areas of Expertise</h3>
+          <div class="expertise-grid">
+            <div class="exp-card"><h4>KDP Self-Publishing</h4><p>300+ titles; top 3–5% of KDP authors globally by organic royalties.</p></div>
+            <div class="exp-card"><h4>Children's Literature</h4><p>Bible Adventure Series, Sasha series, My Pet Guide — faith and educational titles.</p></div>
+            <div class="exp-card"><h4>AI &amp; Digital Culture</h4><p>Peer-reviewed research on AI bias, generative aesthetics, and machine cognition.</p></div>
+            <div class="exp-card"><h4>Digital Marketing</h4><p>20+ years of SEO, content strategy, and digital platform development.</p></div>
+            <div class="exp-card"><h4>Biblical Scholarship</h4><p>Biblical fiction, devotionals, and early Christian textual research.</p></div>
+            <div class="exp-card"><h4>Academic Research &amp; Peer Review</h4><p>51 publications, 200+ citations, h-index 8, and 19 Web of Science&ndash;verified peer reviews.</p></div>
+          </div>
+
+          <div style="background:var(--navy); border-radius:3px; padding:1.5rem 1.75rem; margin-top:2rem; display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-family:var(--serif); font-size:1.05rem; font-weight:700; color:var(--white); margin-bottom:0.3rem;">Active Researcher &amp; Peer Reviewer</div>
+              <p style="font-size:0.85rem; color:rgba(255,255,255,0.62); line-height:1.6; margin:0; max-width:420px;">Author of 51 peer-reviewed papers with 200+ citations, and a Web of Science&ndash;verified reviewer with 19 completed peer reviews.</p>
+            </div>
+            <div style="display:flex; gap:1.75rem;">
+              <div style="text-align:center;"><div style="font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--gold); line-height:1;">19</div><div style="font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:0.3rem;">Verified Reviews</div></div>
+              <div style="text-align:center;"><div style="font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--gold); line-height:1;">200+</div><div style="font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:0.3rem;">Citations</div></div>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--serif);font-size:1.1rem;color:var(--text-primary);margin:2.5rem 0 0.5rem;">Professional Development &amp; Certifications</h3>
+          <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6; margin-bottom:0.5rem;">A commitment to lifelong learning underpins my writing. These specialized courses span creative writing, education, psychology, and editorial craft from leading institutions.</p>
+          <div class="quals-table-wrap">
+            <table class="quals">
+              <caption class="sr-only" style="position:absolute;left:-9999px;">Professional development certifications by course and institution</caption>
+              <thead>
+                <tr><th scope="col">Course / Certification</th><th scope="col">Institution</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Children Acquiring Literacy Naturally</td><td class="inst">UC Santa Cruz, USA</td></tr>
+                <tr><td>Creative Writing Specialization</td><td class="inst">Wesleyan University, USA</td></tr>
+                <tr><td>Creative Writing: The Craft of Character</td><td class="inst">Wesleyan University, USA</td></tr>
+                <tr><td>Creative Writing: The Craft of Setting</td><td class="inst">Wesleyan University, USA</td></tr>
+                <tr><td>Creative Writing: The Craft of Plot</td><td class="inst">Wesleyan University, USA</td></tr>
+                <tr><td>Creative Writing: The Craft of Style</td><td class="inst">Wesleyan University, USA</td></tr>
+                <tr><td>Writing for Young Readers</td><td class="inst">Commonwealth Education Trust</td></tr>
+                <tr><td>Introduction to Early Childhood</td><td class="inst">State University of New York</td></tr>
+                <tr><td>Introduction to Psychology</td><td class="inst">Yale University, USA</td></tr>
+                <tr><td>Academic English: Writing Specialization</td><td class="inst">UC Irvine, USA</td></tr>
+                <tr><td>Advanced Writing</td><td class="inst">UC Irvine, USA</td></tr>
+                <tr><td>Grammar and Punctuation</td><td class="inst">UC Irvine, USA</td></tr>
+                <tr><td>Writing and Editing Specialization</td><td class="inst">University of Michigan, USA</td></tr>
+                <tr><td>Writing and Editing: Word Choice</td><td class="inst">University of Michigan, USA</td></tr>
+                <tr><td>Teaching Writing Specialization</td><td class="inst">Johns Hopkins University, USA</td></tr>
+                <tr><td>Sharpened Visions: A Poetry Workshop</td><td class="inst">CalArts, USA</td></tr>
+                <tr><td>English for Journalism</td><td class="inst">University of Pennsylvania, USA</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="quals-note">17 certifications across creative writing, literacy, early-childhood education, psychology, and editorial craft.</p>
+
+        </div>
+
+        <div>
+          <div class="sidebar-card">
+            <div class="sidebar-card-header">Academic Credentials</div>
+            <div class="sidebar-card-body">
+              <div class="credentials-stack">
+                <div class="cred-item">
+                  <div class="cred-badge">PhD</div>
+                  <div class="cred-text"><strong>PhD Candidate — Marketing</strong><span>Wrexham University, UK (Ongoing)</span></div>
+                </div>
+                <div class="cred-item">
+                  <div class="cred-badge">MBA</div>
+                  <div class="cred-text"><strong>MBA</strong><span>University of Gloucestershire, UK</span></div>
+                </div>
+                <div class="cred-item">
+                  <div class="cred-badge">MSc</div>
+                  <div class="cred-text"><strong>MSc Computing</strong><span>Wrexham University, UK</span></div>
+                </div>
+                <div class="cred-item">
+                  <div class="cred-badge">BA</div>
+                  <div class="cred-text"><strong>BA Business Management</strong><span>Wrexham University, UK</span></div>
+                </div>
+                <div class="cred-item">
+                  <div class="cred-badge">BSc</div>
+                  <div class="cred-text"><strong>BSc Computer Science</strong><span>IIC University of Technology, Cambodia</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-header">Professional Profiles</div>
+            <div class="sidebar-card-body">
+              <a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener" class="sidebar-link"><span class="sidebar-link-dot"></span><span>Amazon Author Page</span></a>
+              <a href="https://www.goodreads.com/author/list/30418038.Dinesh_Deckker" target="_blank" rel="noopener" class="sidebar-link"><span class="sidebar-link-dot"></span><span>Goodreads (373 books)</span></a>
+              <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener" class="sidebar-link"><span class="sidebar-link-dot"></span><span>ResearchGate</span></a>
+              <a href="https://tqg.academia.edu/DineshDeckker" target="_blank" rel="noopener" class="sidebar-link"><span class="sidebar-link-dot"></span><span>Academia.edu</span></a>
+              <a href="https://www.authorea.com/users/908144-dinesh-deckker" target="_blank" rel="noopener" class="sidebar-link"><span class="sidebar-link-dot"></span><span>Authorea</span></a>
+              <a href="mailto:info@dineshdeckker.com" class="sidebar-link"><span class="sidebar-link-dot"></span><span>info@dineshdeckker.com</span></a>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-card-header">Career Timeline</div>
+            <div class="sidebar-card-body">
+              <div class="timeline">
+                <div class="tl-item">
+                  <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+                  <div><div class="tl-year">2024–Present</div><div class="tl-desc"><strong>PhD Candidate</strong> in Marketing, Wrexham University. Research focus: digital marketing, AI, and consumer behaviour.</div></div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+                  <div><div class="tl-year">2023–Present</div><div class="tl-desc"><strong>Children’s publishing partnership</strong> with Subhashini Sumanasekara — co-authoring the Bible Adventure Series and Sasha’s Adventures.</div></div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+                  <div><div class="tl-year">2020–Present</div><div class="tl-desc"><strong>Bible Adventure Series</strong> co-authored with Subhashini Sumanasekara. 80+ titles, multiple Amazon top 100.</div></div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+                  <div><div class="tl-year">2000–Present</div><div class="tl-desc"><strong>Digital Marketing</strong> strategist. SEO, content, and digital platform development across 20+ years.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align:center; margin-top:1rem;">
+            <a href="contact.html" class="btn-primary" style="display:block; text-align:center;">Get in Touch</a>
+            <a href="press.html" style="display:block; margin-top:0.75rem; font-size:0.8rem; color:var(--text-muted); text-decoration:none;">Press &amp; Media enquiries &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="nav-footer.js"></script>
+</body>
+</html>

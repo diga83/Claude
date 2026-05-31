@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Dinesh Deckker — Get in Touch</title>
+  <meta name="description" content="Contact Dinesh Deckker — for book enquiries, academic collaboration, digital marketing consultancy, press requests, or general correspondence.">
+  <link rel="canonical" href="https://dineshdeckker.com/contact.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+    .contact-method {
+      display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem;
+      background:var(--surface); border: 1px solid var(--border); border-radius: 2px;
+      margin-bottom: 1rem; transition: border-color 0.2s;
+    }
+    .contact-method:hover { border-color:var(--gold); }
+    .cm-icon {
+      width: 44px; height: 44px; background: var(--navy); border-radius: 2px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cm-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .cm-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .cm-value { font-size: 0.92rem; color: var(--text-primary); font-weight: 500; }
+    .cm-value a { color: var(--gold); text-decoration: none; }
+    .cm-value a:hover { text-decoration: underline; }
+    .cm-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+    .form-card {
+      background:var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 2rem;
+    }
+    .form-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; color:var(--text-primary); margin-bottom: 0.4rem; }
+    .form-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.5; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border); border-radius: 2px;
+      font-size: 0.9rem; color: var(--text-primary); font-family: var(--sans);
+      background: var(--cream); outline: none; transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--gold); background:var(--surface-2); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-textarea { min-height: 130px; resize: vertical; }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
+    .form-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5; }
+
+    .enquiry-types {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 2rem;
+    }
+    .enquiry-type {
+      padding: 1rem; border: 1px solid var(--border); border-radius: 2px;
+      background: var(--cream); text-align: center;
+    }
+    .enquiry-type-icon { font-size: 1.2rem; margin-bottom: 0.4rem; color: var(--gold); }
+    .enquiry-type h4 { font-size: 0.82rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.2rem; }
+    .enquiry-type p { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; }
+
+    .success-msg { display: none; background: rgba(74,165,118,0.12); border: 1px solid rgba(110,200,150,0.45); border-radius: 2px; padding: 1rem 1.25rem; color: #8fe0b0; font-size: 0.88rem; margin-top: 1rem; }
+
+    @media (max-width: 960px) { .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; } .form-row { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .enquiry-types { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Contact</div>
+      <h1 class="page-title">Get in Touch</h1>
+      <p class="page-subtitle">Whether you're interested in books, academic collaboration, digital marketing consultancy, or press enquiries — I'd be glad to hear from you.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="contact-layout">
+
+        <!-- LEFT: Contact Info -->
+        <div>
+          <div class="section-label">Contact Information</div>
+          <h2 class="section-title">Reach Dinesh</h2>
+          <div class="divider"></div>
+
+          <a href="mailto:info@dineshdeckker.com" class="contact-method" style="text-decoration:none;">
+            <div class="cm-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="cm-label">Email</div><div class="cm-value"><a href="mailto:info@dineshdeckker.com">info@dineshdeckker.com</a></div><div class="cm-sub">Typically responds within 48 hours</div></div>
+          </a>
+
+          <div class="contact-method">
+            <div class="cm-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="cm-label">Location</div><div class="cm-value">Muscat, Sultanate of Oman</div><div class="cm-sub">Sri Lankan-born; based in Oman since —</div></div>
+          </div>
+
+          <a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener" class="contact-method" style="text-decoration:none;">
+            <div class="cm-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div><div class="cm-label">Amazon Author Page</div><div class="cm-value"><a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener">Browse 300+ Books</a></div><div class="cm-sub">KDP catalog — worldwide</div></div>
+          </a>
+
+          <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener" class="contact-method" style="text-decoration:none;">
+            <div class="cm-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <div><div class="cm-label">Research &amp; Academic</div><div class="cm-value"><a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener">ResearchGate Profile</a></div><div class="cm-sub">Open to research collaborations</div></div>
+          </a>
+
+          <div style="margin-top:2rem;">
+            <div class="section-label">What Can I Help With?</div>
+            <div class="enquiry-types">
+              <div class="enquiry-type">
+                <div class="enquiry-type-icon">&#128218;</div>
+                <h4>Book Enquiries</h4>
+                <p>Review copies, bulk orders, rights and permissions</p>
+              </div>
+              <div class="enquiry-type">
+                <div class="enquiry-type-icon">&#128202;</div>
+                <h4>Research Collaboration</h4>
+                <p>Academic partnerships, co-authorship, peer review</p>
+              </div>
+              <div class="enquiry-type">
+                <div class="enquiry-type-icon">&#127908;</div>
+                <h4>Press &amp; Media</h4>
+                <p>Interview requests, media assets, speaking invitations</p>
+              </div>
+              <div class="enquiry-type">
+                <div class="enquiry-type-icon">&#128736;</div>
+                <h4>Digital Marketing</h4>
+                <p>Consultancy, strategy, KDP publishing guidance</p>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.65;">For press and media assets, visit the <a href="press.html" style="color:var(--gold); text-decoration:none; font-weight:600;">Press page</a>.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="form-card">
+          <div class="form-title">Send a Message</div>
+          <div class="form-subtitle">Fill in the form below and I'll get back to you as soon as possible.</div>
+          <form id="contact-form" action="mailto:info@dineshdeckker.com" method="post" enctype="text/plain" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="first-name">First Name</label>
+                <input class="form-input" type="text" id="first-name" name="first-name" placeholder="Jane" autocomplete="given-name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="last-name">Last Name</label>
+                <input class="form-input" type="text" id="last-name" name="last-name" placeholder="Smith" autocomplete="family-name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="enquiry-type">Type of Enquiry</label>
+              <select class="form-select" id="enquiry-type" name="enquiry-type">
+                <option value="">Select a topic…</option>
+                <option value="books">Book Enquiry / Review Copy</option>
+                <option value="research">Research Collaboration</option>
+                <option value="press">Press / Media / Interview</option>
+                <option value="speaking">Speaking / Events</option>
+                <option value="marketing">Digital Marketing Consultancy</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input class="form-input" type="text" id="subject" name="subject" placeholder="Brief subject line">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Tell me what you have in mind — the more detail the better." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%; text-align:center; font-size:0.88rem; padding:0.9rem;">Send Message &rarr;</button>
+            <p class="form-note">Your message will open in your email client addressed to info@dineshdeckker.com. Alternatively, email directly at any time.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILES ROW -->
+  <section style="background:var(--navy); padding:56px 2rem;">
+    <div class="section-inner" style="text-align:center;">
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Find Me Online</div>
+      <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:0.6rem 1.25rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.6)'">Amazon KDP</a>
+        <a href="https://www.goodreads.com/author/list/30418038.Dinesh_Deckker" target="_blank" rel="noopener" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:0.6rem 1.25rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.6)'">Goodreads</a>
+        <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:0.6rem 1.25rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.6)'">ResearchGate</a>
+        <a href="https://tqg.academia.edu/DineshDeckker" target="_blank" rel="noopener" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:0.6rem 1.25rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.6)'">Academia.edu</a>
+        <a href="https://www.authorea.com/users/908144-dinesh-deckker" target="_blank" rel="noopener" style="font-size:0.82rem;color:rgba(255,255,255,0.6);text-decoration:none;padding:0.6rem 1.25rem;border:1px solid rgba(255,255,255,0.12);border-radius:2px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='rgba(255,255,255,0.6)'">Authorea</a>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="nav-footer.js"></script>
+</body>
+</html>

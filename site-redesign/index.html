@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinesh Deckker | Author, Researcher & Digital Marketing Expert</title>
+  <meta name="description" content="Dinesh Deckker — bestselling KDP author of 300+ books, AI researcher, and digital marketing expert. Co-author of the Bible Adventure Series with Subhashini Sumanasekara. Based in Muscat, Oman.">
+  <meta name="author" content="Dinesh Deckker">
+  <link rel="canonical" href="https://dineshdeckker.com/">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Dinesh Deckker | Author, Researcher & Digital Marketing Expert">
+  <meta property="og:description" content="Bestselling author of 300+ books, AI researcher, and digital marketing expert. Co-author of the Bible Adventure Series with Subhashini Sumanasekara.">
+  <meta property="og:url" content="https://dineshdeckker.com/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dinesh Deckker","url":"https://dineshdeckker.com","email":"info@dineshdeckker.com","jobTitle":"Author, Researcher & Digital Marketing Expert","description":"Bestselling author of 300+ books, AI researcher, and digital marketing expert with over 20 years of experience.","knowsAbout":["Digital Marketing","Artificial Intelligence","Children's Literature","Biblical Fiction","Academic Research"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"University of Gloucestershire"},{"@type":"CollegeOrUniversity","name":"Wrexham University"}],"sameAs":["https://www.amazon.com/stores/author/B0CQK7LXR2","https://www.goodreads.com/author/list/30418038.Dinesh_Deckker","https://www.researchgate.net/profile/Dinesh-Deckker","https://tqg.academia.edu/DineshDeckker"]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 140px 2rem 88px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(201,168,76,0.04) 40px, rgba(201,168,76,0.04) 41px);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px; gap: 3.5rem; align-items: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.28rem 0.8rem; border-radius: 2px; margin-bottom: 1.4rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700; color: var(--white); line-height: 1.08; margin-bottom: 1.25rem;
+    }
+    .hero-desc {
+      font-size: 1.05rem; font-weight: 300;
+      color: rgba(255,255,255,0.68); line-height: 1.75; margin-bottom: 2.5rem; max-width: 560px;
+    }
+    .hero-desc strong { color: rgba(255,255,255,0.92); font-weight: 500; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 1.5rem 2rem; margin-bottom: 2.5rem; }
+    .hero-stat-num {
+      font-family: var(--serif); font-size: 2rem; font-weight: 700;
+      color: var(--gold); display: block; line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.76rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-hero-outline {
+      display: inline-block; padding: 0.72rem 1.6rem;
+      border: 1px solid rgba(255,255,255,0.28); color: rgba(255,255,255,0.82);
+      font-weight: 500; font-size: 0.82rem; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s;
+    }
+    .btn-hero-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-portrait {
+      border-radius: 6px; overflow: hidden; border: 1px solid rgba(201,168,76,0.3);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45); margin-bottom: 1.5rem; position: relative;
+    }
+    .hero-portrait img { width: 100%; height: auto; display: block; }
+    .hero-portrait::after {
+      content: ''; position: absolute; inset: 0;
+      box-shadow: inset 0 0 60px rgba(0,0,0,0.25); pointer-events: none;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(201,168,76,0.22); border-radius: 4px; padding: 2rem;
+    }
+    .hero-card-initial {
+      width: 76px; height: 76px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 1.7rem; font-weight: 700;
+      color: #1b1305; margin: 0 auto 1.4rem;
+    }
+    .hero-card-bio {
+      font-size: 0.86rem; color: rgba(255,255,255,0.6); line-height: 1.75; text-align: center; margin-bottom: 1.5rem;
+    }
+    .hero-card-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.55);
+      text-decoration: none; padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;
+    }
+    .hero-card-link:last-child { border-bottom: none; }
+    .hero-card-link:hover { color: var(--gold); }
+    .hero-card-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ── FEATURE STRIP ── */
+    .feature-strip { background: var(--cream-dark); padding: 0; }
+    .feature-strip-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .feature-item {
+      padding: 2rem 1.75rem;
+      border-right: 1px solid var(--border);
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item-icon {
+      font-size: 1.4rem; margin-bottom: 0.6rem; display: block;
+      color: var(--gold); font-family: var(--serif); font-weight: 700;
+    }
+    .feature-item h3 { font-size: 0.88rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.3rem; }
+    .feature-item p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+    .feature-item a { font-size: 0.72rem; color: var(--gold); text-decoration: none; font-weight: 600; display: inline-block; margin-top: 0.4rem; }
+
+    /* ── BOOKS PREVIEW ── */
+    .books-preview { background:var(--surface); }
+    .books-grid-home { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; align-items: start; }
+    .book-card-home {
+      display: block; background:var(--surface); border: 1px solid var(--border);
+      border-radius: 3px; overflow: hidden; text-decoration: none; color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .book-card-home:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.13); transform: translateY(-3px); }
+    .book-card-home-cover { position: relative; width: 100%; background: var(--cream-dark); line-height: 0; }
+    .book-card-home-cover img { width: 100%; height: auto; display: block; }
+    .book-card-home-rating {
+      position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(0,0,0,0.92);
+      color: var(--gold); font-size: 0.66rem; font-weight: 700; padding: 0.18rem 0.45rem;
+      border-radius: 2px; line-height: 1;
+    }
+    .book-card-home-info { padding: 0.75rem 0.8rem; }
+    .book-card-home-cat { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; line-height: 1.3; }
+    .book-card-home-title { font-family: var(--serif); font-size: 0.8rem; font-weight: 700; color:var(--text-primary); line-height: 1.3; }
+    .book-card-home-desc { font-size: 0.74rem; color: var(--text-muted); line-height: 1.5; margin-top: 0.35rem; }
+
+    /* ── RESEARCH PREVIEW ── */
+    .research-preview { background: var(--cream); }
+    .papers-home { display: flex; flex-direction: column; gap: 1rem; }
+    .paper-home {
+      padding: 1.25rem 1.5rem;
+      background:var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+      border-radius: 2px; text-decoration: none; color: inherit; display: block; transition: border-left-color 0.2s;
+    }
+    .paper-home:hover { border-left-color: var(--gold-light); background: var(--surface-2); }
+    .paper-home-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .paper-home-title { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color:var(--text-primary); line-height: 1.35; margin-bottom: 0.3rem; }
+    .paper-home-authors { font-size: 0.78rem; color: var(--text-muted); font-style: italic; }
+
+
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .hero-portrait { max-width: 360px; margin: 0 auto 1.5rem; }
+      .feature-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .feature-item:nth-child(2) { border-right: none; }
+      .feature-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .feature-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 110px 1.25rem 64px; }
+      .feature-strip-inner { grid-template-columns: 1fr; }
+      .feature-item { border-right: none; border-top: 1px solid var(--border); }
+      .feature-item:first-child { border-top: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">Author &middot; Researcher &middot; Digital Marketing Expert</div>
+        <h1 class="hero-name">Dinesh Deckker</h1>
+        <p class="hero-desc">Bestselling KDP author of <strong>300+ books</strong> and a published researcher with <strong>50+ peer-reviewed papers</strong> and <strong>200+ citations</strong> in artificial intelligence, education, and marketing. PhD researcher and digital strategist with over two decades of experience.</p>
+        <div class="hero-stats">
+          <div><span class="hero-stat-num">300+</span><span class="hero-stat-label">Books Published</span></div>
+          <div><span class="hero-stat-num">200+</span><span class="hero-stat-label">Citations</span></div>
+          <div><span class="hero-stat-num">19</span><span class="hero-stat-label">Web of Science Reviews</span></div>
+          <div><span class="hero-stat-num">20+</span><span class="hero-stat-label">Years Experience</span></div>
+        </div>
+        <div class="hero-cta">
+          <a href="books.html" class="btn-primary">Explore My Books</a>
+          <a href="contact.html" class="btn-hero-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-portrait">
+          <img src="assets/img/dinesh-portrait.jpg" width="1672" height="941" alt="Dinesh Deckker, author and researcher, at his writing desk">
+        </div>
+      <div class="hero-card" aria-hidden="true">
+        <p class="hero-card-bio">Sri Lankan-born author and researcher based in Muscat, Oman. Co-author of the Bible Adventure Series with Subhashini Sumanasekara.</p>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener" class="hero-card-link"><span class="hero-card-dot"></span>Amazon Author Page</a>
+        <a href="https://www.goodreads.com/author/list/30418038.Dinesh_Deckker" target="_blank" rel="noopener" class="hero-card-link"><span class="hero-card-dot"></span>Goodreads Profile</a>
+        <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener" class="hero-card-link"><span class="hero-card-dot"></span>ResearchGate</a>
+        <a href="subhashini.html" class="hero-card-link"><span class="hero-card-dot"></span>Subhashini Sumanasekara</a>
+        <a href="mailto:info@dineshdeckker.com" class="hero-card-link"><span class="hero-card-dot"></span>info@dineshdeckker.com</a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <div class="feature-strip">
+    <div class="feature-strip-inner">
+      <div class="feature-item">
+        <span class="feature-item-icon">300+</span>
+        <h3>Published Books</h3>
+        <p>KDP catalog spanning children's Bible, biblical fiction, devotionals, and educational titles.</p>
+        <a href="books.html">Browse all books &rarr;</a>
+      </div>
+      <div class="feature-item">
+        <span class="feature-item-icon">PhD</span>
+        <h3>Academic Research</h3>
+        <p>Peer-reviewed papers on AI, digital culture, and corpus linguistics. Doctoral candidate in Marketing.</p>
+        <a href="research.html">View publications &rarr;</a>
+      </div>
+      <div class="feature-item">
+        <span class="feature-item-icon">&amp;</span>
+        <h3>Writing Partnership</h3>
+        <p>Most of the Bible Adventure Series is co-authored with Subhashini Sumanasekara, an ICT educator and children's author.</p>
+        <a href="subhashini.html">Meet Subhashini &rarr;</a>
+      </div>
+      <div class="feature-item">
+        <span class="feature-item-icon">20+</span>
+        <h3>Years in Digital</h3>
+        <p>Digital marketing strategist, SEO expert, and creative writing coach with a global portfolio.</p>
+        <a href="about.html">About me &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKS PREVIEW -->
+  <section class="books-preview">
+    <div class="section-inner">
+      <div class="section-label">Published Works</div>
+      <h2 class="section-title">Featured Books</h2>
+      <div class="divider"></div>
+      <div class="books-grid-home">
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book029.jpeg" alt="Sasha Celebrates Sinhala & Tamil New Year book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sasha's Adventures</div>
+            <div class="book-card-home-title">Sasha Celebrates Sinhala & Tamil New Year</div>
+            <div class="book-card-home-desc">A child's journey through Sri Lanka's New Year traditions.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book037.jpeg" alt="Sasha Learns About Sri Lankan Cinnamon book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sasha's Adventures</div>
+            <div class="book-card-home-title">Sasha Learns About Sri Lankan Cinnamon</div>
+            <div class="book-card-home-desc">Discover the story of Sri Lanka's world-famous cinnamon.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book045.jpeg" alt="Sasha Travels to Bhutan book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sasha's Adventures</div>
+            <div class="book-card-home-title">Sasha Travels to Bhutan</div>
+            <div class="book-card-home-desc">A children's travel adventure through the kingdom of Bhutan.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book058.jpeg" alt="Sasha Learns About Laaksha book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sasha's Adventures</div>
+            <div class="book-card-home-title">Sasha Learns About Laaksha</div>
+            <div class="book-card-home-desc">A travel story through the art of Sri Lankan lacquerwork.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book059.jpeg" alt="Sasha Travels to Kashmir book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sasha's Adventures</div>
+            <div class="book-card-home-title">Sasha Travels to Kashmir</div>
+            <div class="book-card-home-desc">A young explorer's scenic adventure through Kashmir.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book061.jpeg" alt="Sasha Learns About Frankincense book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sasha's Adventures</div>
+            <div class="book-card-home-title">Sasha Learns About Frankincense</div>
+            <div class="book-card-home-desc">A travel story through the Dhofar region of Oman.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book001.jpeg" alt="The Book of Revelation book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Illustrated Bible Guide</div>
+            <div class="book-card-home-title">The Book of Revelation</div>
+            <div class="book-card-home-desc">An illustrated guide to Revelation for teens and adults.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book002.jpeg" alt="100 Days, 100 Saints book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Devotional</div>
+            <div class="book-card-home-title">100 Days, 100 Saints</div>
+            <div class="book-card-home-desc">A journey through the lives of the most famous saints.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book032.jpeg" alt="The Story of Vijaya and Kuweni book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sri Lankan Legend</div>
+            <div class="book-card-home-title">The Story of Vijaya and Kuweni</div>
+            <div class="book-card-home-desc">A child-friendly retelling of the legend of Vijaya and Kuweni.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book035.jpeg" alt="The Tale of Kannagi book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">Sri Lankan Legend</div>
+            <div class="book-card-home-title">The Tale of Kannagi</div>
+            <div class="book-card-home-desc">The legend of Paththini, retold for young readers.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book015.jpeg" alt="38 Stories Jesus Told book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">The Bible Adventure Series</div>
+            <div class="book-card-home-title">38 Stories Jesus Told</div>
+            <div class="book-card-home-desc">38 of Jesus' parables retold for kids ages 6-12.</div>
+          </div>
+        </a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="book-card-home">
+          <div class="book-card-home-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book026.jpeg" alt="Lot’s Great Escape book cover"><div class="book-card-home-rating">&#9733; 5.0</div></div>
+          <div class="book-card-home-info">
+            <div class="book-card-home-cat">The Bible Adventure Series</div>
+            <div class="book-card-home-title">Lot’s Great Escape</div>
+            <div class="book-card-home-desc">The story of choices, obedience, and God's mercy.</div>
+          </div>
+        </a>
+      </div>
+      <div style="text-align:center;"><a href="books.html" class="btn-dark">View All 325 Books</a></div>
+    </div>
+  </section>
+
+  <!-- RESEARCH PREVIEW -->
+  <section class="research-preview">
+    <div class="section-inner">
+      <div class="section-label">Academic Research</div>
+      <h2 class="section-title">Recent Publications</h2>
+      <div class="divider"></div>
+      <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.75rem; max-width:680px;">Beyond publishing, Dinesh is an active researcher with <strong>51 peer-reviewed papers and preprints</strong>, <strong>200+ citations</strong>, an <strong>h-index of 8</strong>, and <strong>19 Web of Science&ndash;verified peer reviews</strong> &mdash; focused on artificial intelligence, education, marketing, and corpus linguistics.</p>
+      <div class="papers-home">
+        <a href="research.html" class="paper-home">
+          <div class="paper-home-type">Journal Article &middot; IJRISS, 2025</div>
+          <div class="paper-home-title">Positive vs. Negative Collocates of Indian-Origin Words in Western Media: A Corpus-Based Critical Discourse Analysis</div>
+          <div class="paper-home-authors">Dinesh Deckker &amp; Dr Sree Lakshmi Ammanamanchi</div>
+        </a>
+        <a href="research.html" class="paper-home">
+          <div class="paper-home-type">Preprint &middot; Authorea</div>
+          <div class="paper-home-title">Decoding Sri Lankan Cultural Identity in AI-Generated Imagery: A Content Analysis</div>
+          <div class="paper-home-authors">Dinesh Deckker</div>
+        </a>
+        <a href="research.html" class="paper-home">
+          <div class="paper-home-type">Preprint &middot; AI Ethics</div>
+          <div class="paper-home-title">Moral Scaffolding Theory (MST): A Developmental Framework for Artificial Moral Cognition</div>
+          <div class="paper-home-authors">Dinesh Deckker</div>
+        </a>
+      </div>
+      <div style="margin-top:2rem;"><a href="research.html" class="btn-outline-dark">All Publications &rarr;</a></div>
+    </div>
+  </section>
+
+</main>
+<script src="nav-footer.js"></script>
+</body>
+</html>

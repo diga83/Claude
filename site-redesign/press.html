@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press & Media | Dinesh Deckker — Author & Researcher</title>
+  <meta name="description" content="Press and media information for Dinesh Deckker — biography, high-resolution assets, media coverage, speaking topics, and press enquiry contact details.">
+  <link rel="canonical" href="https://dineshdeckker.com/press.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .press-layout { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start; }
+
+    .bio-box {
+      background:var(--surface); border: 1px solid var(--border); border-radius: 2px;
+      padding: 2rem; margin-bottom: 2rem;
+    }
+    .bio-box-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .bio-box p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .bio-box p:last-child { margin-bottom: 0; }
+    .bio-copy-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color:var(--text-primary); border: 1px solid var(--border); background: var(--cream);
+      padding: 0.4rem 0.9rem; border-radius: 2px; cursor: pointer;
+      margin-top: 1rem; transition: all 0.2s; font-family: var(--sans);
+    }
+    .bio-copy-btn:hover { background: var(--navy); color: var(--white); border-color:var(--text-primary); }
+
+    .clippings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1rem; }
+    .clip-card { background:var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; cursor: pointer; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+    .clip-card:hover { box-shadow: 0 10px 26px rgba(0,0,0,0.16); transform: translateY(-3px); }
+    .clip-thumb { position: relative; background: var(--cream-dark); line-height: 0; border-bottom: 1px solid var(--border); overflow: hidden; height: 200px; }
+    .clip-thumb img { width: 100%; height: auto; display: block; }
+    .clip-thumb::after { content: 'View clipping'; position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.92)); color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 1.5rem 0.85rem 0.6rem; }
+    .clip-info { padding: 1rem 1.1rem 1.15rem; flex: 1; display: flex; flex-direction: column; }
+    .clip-pub { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .clip-headline { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color:var(--text-primary); line-height: 1.3; margin-bottom: 0.4rem; }
+    .clip-desc { font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
+
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(28,20,15,0.92); padding: 2rem; overflow-y: auto; }
+    .lightbox.open { display: block; }
+    .lightbox-inner { max-width: 900px; margin: 0 auto; position: relative; }
+    .lightbox-inner img { width: 100%; height: auto; border-radius: 3px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .lightbox-close { position: sticky; top: 0; float: right; background: var(--gold); color:#1b1305; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.3rem; font-weight: 700; cursor: pointer; line-height: 1; margin-bottom: 1rem; z-index: 2; }
+    .lightbox-caption { text-align: center; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 1rem; }
+    .lightbox-caption a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 760px) { .clippings-grid { grid-template-columns: 1fr; } .clip-thumb { height: auto; } }
+    .coverage-item {
+      display: flex; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); align-items: flex-start;
+    }
+    .coverage-item:last-child { border-bottom: none; }
+    .coverage-source {
+      width: 56px; height: 56px; background: var(--navy); border-radius: 2px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; text-align: center; padding: 4px;
+    }
+    .coverage-pub { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+    .coverage-title { font-family: var(--serif); font-size: 0.92rem; font-weight: 700; color:var(--text-primary); line-height: 1.3; margin-bottom: 0.3rem; }
+    .coverage-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+    .coverage-link { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color:var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 1px; margin-top: 0.4rem; display: inline-block; }
+    .coverage-link:hover { color: var(--gold); }
+
+    .retailer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 0.5rem; }
+    .retailer-card { display: flex; flex-direction: column; padding: 0.95rem 1rem; border: 1px solid var(--border); border-radius: 2px; background: var(--cream); text-decoration: none; color: inherit; transition: all 0.2s; }
+    .retailer-card:hover { border-color:var(--text-primary); background:var(--surface); box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+    .retailer-name { font-size: 0.88rem; font-weight: 700; color:var(--text-primary); margin-bottom: 0.15rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .retailer-name .arr { color: var(--gold); font-weight: 700; }
+    .retailer-found { font-size: 0.74rem; color: var(--text-muted); line-height: 1.4; }
+    @media (max-width: 760px) { .retailer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .retailer-grid { grid-template-columns: 1fr; } }
+    .speaking-card {
+      background: var(--cream); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+      padding: 1.1rem 1.25rem; border-radius: 2px; margin-bottom: 0.75rem;
+    }
+    .speaking-topic { font-size: 0.88rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.25rem; }
+    .speaking-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+    .quick-facts { background:var(--surface); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 1.5rem; }
+    .qf-header { background: var(--navy); padding: 0.85rem 1.1rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .qf-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.1rem; border-bottom: 1px solid var(--cream-dark); }
+    .qf-item:last-child { border-bottom: none; }
+    .qf-label { font-size: 0.78rem; color: var(--text-muted); }
+    .qf-value { font-size: 0.82rem; font-weight: 600; color:var(--text-primary); text-align: right; }
+
+    .asset-card {
+      background: var(--cream); border: 1px solid var(--border); border-radius: 2px;
+      padding: 1.25rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .asset-icon { width: 40px; height: 40px; background: var(--navy); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; font-weight: 700; color: var(--gold); }
+    .asset-name { font-size: 0.85rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.15rem; }
+    .asset-desc { font-size: 0.72rem; color: var(--text-muted); }
+    .asset-dl { margin-left: auto; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color:var(--text-primary); text-decoration: none; border: 1px solid var(--border); padding: 0.3rem 0.7rem; border-radius: 2px; transition: all 0.2s; }
+    .asset-dl:hover { background: var(--navy); color: var(--white); border-color:var(--text-primary); }
+
+    @media (max-width: 960px) { .press-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Press &amp; Media</div>
+      <h1 class="page-title">Media Kit &amp; Press</h1>
+      <p class="page-subtitle">Biographical information, press assets, media coverage, and speaking topics for journalists, publishers, event organisers, and academic partners.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--cream);">
+    <div class="section-inner">
+      <div class="press-layout">
+        <div>
+          <!-- OFFICIAL BIOS -->
+          <div class="section-label">Official Biography</div>
+          <h2 class="section-title">Press Biographies</h2>
+          <div class="divider"></div>
+
+          <div class="bio-box">
+            <div class="bio-label">Short Bio (50 words)</div>
+            <p id="bio-short">Dinesh Deckker is a bestselling KDP author of 300+ books, PhD candidate in Marketing, and digital marketing strategist with over 20 years of experience. Sri Lankan-born and based in Muscat, Oman, he is best known for the Bible Adventure Series — 80+ children's Bible picture books co-authored with Subhashini Sumanasekara.</p>
+            <button class="bio-copy-btn" onclick="copyBio('bio-short', this)">&#9776; Copy Short Bio</button>
+          </div>
+
+          <div class="bio-box">
+            <div class="bio-label">Full Bio (150 words)</div>
+            <p id="bio-long">Dinesh Deckker is a bestselling KDP author, researcher, and digital marketing strategist with over twenty years of professional experience. Born in Sri Lanka and based in Muscat, Sultanate of Oman, his work spans children's literature, biblical fiction, academic research, and digital platform development.</p>
+            <p id="bio-long-2">As a publisher on Amazon KDP, Dinesh has built a catalog of more than 300 titles, placing him in the top 3–5% of KDP authors globally by organic royalties. His most recognised work is the Bible Adventure Series — 80+ children's Bible picture books co-authored with Subhashini Sumanasekara — with multiple titles ranking in Amazon's top 100 for Children's Picture Bibles.</p>
+            <p id="bio-long-3">Alongside publishing, Dinesh pursues doctoral research in Marketing at Wrexham University, co-authoring peer-reviewed work on artificial intelligence, digital culture, and corpus linguistics. Much of his children’s catalogue is co-authored with his wife, Subhashini Sumanasekara.</p>
+            <button class="bio-copy-btn" onclick="copyBios(['bio-long','bio-long-2','bio-long-3'], this)">&#9776; Copy Full Bio</button>
+          </div>
+
+          <!-- MEDIA COVERAGE -->
+          <div class="section-label" style="margin-top:2.5rem;">Media Coverage</div>
+          <h2 class="section-title">In the Press</h2>
+          <div class="divider"></div>
+
+          <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem;">Dinesh Deckker and Subhashini Sumanasekara have been featured multiple times in Oman's national newspaper, the <strong>Oman Daily Observer</strong> &mdash; spanning Dinesh's early photography career through to their children's books and poetry. Click any clipping to read the full feature.</p>
+
+          <div class="clippings-grid">
+            <div class="clip-card" onclick="openClip('crafting-tales')">
+              <div class="clip-thumb"><img loading="lazy" src="assets/press/crafting-tales.jpg" alt="Oman Daily Observer feature: Crafting Tales of Empathy and Adventure"></div>
+              <div class="clip-info">
+                <div class="clip-pub">Oman Daily Observer &middot; 23 Mar 2024</div>
+                <div class="clip-headline">Crafting Tales of Empathy and Adventure</div>
+                <div class="clip-desc">A Weekend Books feature on Dinesh and Subhashini's journey into children's literature, the Building Bridges series, and writing values-driven stories for young readers.</div>
+              </div>
+            </div>
+
+            <div class="clip-card" onclick="openClip('sasha-sands-oman')">
+              <div class="clip-thumb"><img loading="lazy" src="assets/press/sasha-sands-oman.jpg" alt="Oman Daily Observer feature: Sasha's Journey Bridges Cultures Through Storytelling"></div>
+              <div class="clip-info">
+                <div class="clip-pub">Oman Daily Observer &middot; 26 Apr 2025</div>
+                <div class="clip-headline">Sasha's Journey Bridges Cultures Through Storytelling</div>
+                <div class="clip-desc">A Book Talk feature on <em>Sasha and the Sands of Oman</em>, exploring how the couple wove Omani culture and landscapes into a heartfelt children's story.</div>
+              </div>
+            </div>
+
+            <div class="clip-card" onclick="openClip('whispers-desert')">
+              <div class="clip-thumb"><img loading="lazy" src="assets/press/whispers-desert.jpg" alt="Oman Daily Observer feature: Whispers of the Desert"></div>
+              <div class="clip-info">
+                <div class="clip-pub">Oman Daily Observer &middot; 10 Dec 2025</div>
+                <div class="clip-headline">Whispers of the Desert</div>
+                <div class="clip-desc">A Features cover story on <em>A Poetic Journey Through Oman's Nature: Landscapes in Verse</em>, Dinesh's poetry collection celebrating Oman's mountains, wadis and wildlife.</div>
+              </div>
+            </div>
+
+            <div class="clip-card" onclick="openClip('picturesque-oman')">
+              <div class="clip-thumb"><img loading="lazy" src="assets/press/picturesque-oman.jpg" alt="Oman Daily Observer feature: Picturesque Oman, a photographer's passion"></div>
+              <div class="clip-info">
+                <div class="clip-pub">Oman Daily Observer &middot; Oct 2016</div>
+                <div class="clip-headline">Picturesque Oman: A Photographer's Passion</div>
+                <div class="clip-desc">A Weekend Special multi-page feature on Dinesh's landscape and wildlife photography, his "Picturesque" exhibition, and his conservation work as President of the Nade Gura Travel &amp; Conservation Society.</div>
+              </div>
+            </div>
+
+            <div class="clip-card" onclick="openClip('string-of-stills')">
+              <div class="clip-thumb"><img loading="lazy" src="assets/press/string-of-stills.jpg" alt="Oman Daily Observer feature: Not Just a String of Stills"></div>
+              <div class="clip-info">
+                <div class="clip-pub">Oman Daily Observer &middot; 8 Apr 2017</div>
+                <div class="clip-headline">Not Just a String of Stills</div>
+                <div class="clip-desc">An Observer Weekend Photography feature on <em>Beauty of Oman</em>, Dinesh's short film built from 48 photographs using Photo Motion technology, inspired by his wife Subhashini.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="coverage-item">
+            <div class="coverage-source">Goodreads</div>
+            <div>
+              <div class="coverage-pub">Goodreads &mdash; Ongoing</div>
+              <div class="coverage-title">373 Books Listed &middot; 943 Ratings &middot; 4.17 Average</div>
+              <div class="coverage-desc">Dinesh Deckker's most popular title on Goodreads is Silent Night: A Christmas Horror. Over 468 ratings with 35 reviews across the catalog.</div>
+              <a href="https://www.goodreads.com/author/list/30418038.Dinesh_Deckker" target="_blank" rel="noopener" class="coverage-link">View Profile &rarr;</a>
+            </div>
+          </div>
+
+          <div class="coverage-item">
+            <div class="coverage-source">Amazon KDP Top 100</div>
+            <div>
+              <div class="coverage-pub">Amazon KDP &mdash; Ongoing</div>
+              <div class="coverage-title">Multiple Titles Ranked: Children's Picture Bibles Top 100</div>
+              <div class="coverage-desc">Multiple titles from the Bible Adventure Series have ranked in Amazon's Top 100 for Children's Picture Bibles — driven entirely by organic discovery and SEO without paid advertising.</div>
+              <a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener" class="coverage-link">Amazon Author Page &rarr;</a>
+            </div>
+          </div>
+
+          <div class="coverage-item">
+            <div class="coverage-source">ThriftBooks</div>
+            <div>
+              <div class="coverage-pub">ThriftBooks &mdash; Listed</div>
+              <div class="coverage-title">Sodom Burns &amp; A Test of Faith: Biblical Fiction Listed</div>
+              <div class="coverage-desc">Dinesh Deckker's biblical fiction titles are stocked and listed on ThriftBooks, with secondary market availability across multiple titles.</div>
+              <a href="https://www.thriftbooks.com/a/dinesh-deckker/10797860/" target="_blank" rel="noopener" class="coverage-link">View on ThriftBooks &rarr;</a>
+            </div>
+          </div>
+
+          <!-- SPEAKING -->
+          <div class="section-label" style="margin-top:2.5rem;">Speaking &amp; Events</div>
+          <h2 class="section-title">Speaking Topics</h2>
+          <div class="divider"></div>
+
+          <div class="speaking-card"><div class="speaking-topic">Self-Publishing at Scale: Building a 300-Book KDP Catalog</div><div class="speaking-desc">The strategy, systems, and mindset behind publishing 300+ books organically on Amazon KDP — from cover design to keyword research to royalty optimisation.</div></div>
+          <div class="speaking-card"><div class="speaking-topic">AI, Bias, and Cultural Representation in Generative Imagery</div><div class="speaking-desc">Academic talk drawing on peer-reviewed research into how AI image generation systems encode and amplify cultural biases — with a focus on South Asian representation.</div></div>
+          <div class="speaking-card"><div class="speaking-topic">Faith, Fiction, and the Art of Biblical Storytelling</div><div class="speaking-desc">How to write theologically grounded fiction that respects the text while bringing it to life — drawing on experience writing the Bible Adventure Series and The Temptation.</div></div>
+          <div class="speaking-card"><div class="speaking-topic">Co-Authoring at Scale: Building a Children’s Book Catalogue Together</div><div class="speaking-desc">How a husband-and-wife writing partnership produces a large, cohesive catalogue of children’s books — dividing roles across writing, illustration direction, and education.</div></div>
+          <div class="speaking-card"><div class="speaking-topic">The Aramaic Dimension: Mary Magdalene and Early Christian Texts</div><div class="speaking-desc">Academic seminar drawing on graduate-level research into early Christian scholarship, the word "Rabboni," and what textual analysis reveals about women in the resurrection narrative.</div></div>
+
+          <div class="section-label" style="margin-top:2.5rem;">Where to Find the Books</div>
+          <h2 class="section-title">Available at These Retailers</h2>
+          <div class="divider"></div>
+          <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.7; margin-bottom:0.5rem;">Beyond Amazon, Dinesh Deckker&rsquo;s books are listed across major international bookstores and catalogues. Below is one representative link per retailer &mdash; some point to author pages, others to individual titles.</p>
+          <div class="retailer-grid">
+            <a href="https://www.goodreads.com/author/list/30418038.Dinesh_Deckker" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Goodreads <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Author profile &amp; full book list</span>
+            </a>
+            <a href="https://www.waterstones.com/author/dinesh-deckker/8079564/page/4" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Waterstones <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Author page</span>
+            </a>
+            <a href="https://www.thriftbooks.com/a/dinesh-deckker/10797860/" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">ThriftBooks <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Author page</span>
+            </a>
+            <a href="https://bookhype.com/author/show/9b0af094-ffb3-4011-8bb7-7cec1ef26e21/dinesh-deckker?page=5" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">BookHype <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Author page</span>
+            </a>
+            <a href="https://www.booksamillion.com/search2?filters%5Bauthors%5D=Dinesh+Deckker&query=Dinesh+Deckker" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Books-A-Million <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Author search</span>
+            </a>
+            <a href="https://www.alibris.co.uk/search/books/author/Dinesh-Deckker" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Alibris UK <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Author page</span>
+            </a>
+            <a href="https://books.google.com/books/about/The_Ebony_Horse.html?id=hfCY0QEACAAJ" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Google Books <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">The Ebony Horse</span>
+            </a>
+            <a href="https://bookshop.org/p/books/by-his-wounds-dinesh-deckker/924340c624bef1d2" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Bookshop.org <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">By His Wounds</span>
+            </a>
+            <a href="https://www.foyles.co.uk/book/the-templars-bone-map/dinesh-deckker/9798288337222" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Foyles <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">The Templar&rsquo;s Bone Map</span>
+            </a>
+            <a href="https://blackwells.co.uk/bookshop/US/product/Crossed-Paths-by-Dinesh-Deckker/9798297544437" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Blackwell&rsquo;s <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Crossed Paths</span>
+            </a>
+            <a href="https://www.abebooks.com/9798300988906/Paradox-Emma-Time-travel-science-fiction/plp" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">AbeBooks <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">The Paradox of Emma</span>
+            </a>
+            <a href="https://www.bol.com/nl/nl/p/the-cuneiform-clock/9300000235108942/" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">bol.com <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">The Cuneiform Clock</span>
+            </a>
+            <a href="https://www.worten.pt/produtos/livro-the-heart-of-lankapura-de-dinesh-deckker-ingles-mrkean-9798337999807" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Worten <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">The Heart of Lankapura</span>
+            </a>
+            <a href="https://www.mightyape.com.au/ma/buy/mighty-ape-false-offering-40288962/" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">Mighty Ape <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">False Offering</span>
+            </a>
+            <a href="https://www.ebay.com/itm/365941217284" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">eBay <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">Echoes of Ash and Stone</span>
+            </a>
+            <a href="https://www.justbooks.co.uk/search/?isbn=9798336223941" target="_blank" rel="noopener" class="retailer-card">
+              <span class="retailer-name">JustBooks <span class="arr">&rarr;</span></span>
+              <span class="retailer-found">The Frozen Hour</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside>
+          <div class="quick-facts">
+            <div class="qf-header">Quick Facts</div>
+            <div class="qf-item"><span class="qf-label">Full Name</span><span class="qf-value">Dinesh Deckker</span></div>
+            <div class="qf-item"><span class="qf-label">Location</span><span class="qf-value">Muscat, Oman</span></div>
+            <div class="qf-item"><span class="qf-label">Nationality</span><span class="qf-value">Sri Lankan</span></div>
+            <div class="qf-item"><span class="qf-label">Books Published</span><span class="qf-value">300+</span></div>
+            <div class="qf-item"><span class="qf-label">Bible Picture Books</span><span class="qf-value">80+</span></div>
+            <div class="qf-item"><span class="qf-label">Goodreads Rating</span><span class="qf-value">4.17 / 5</span></div>
+            <div class="qf-item"><span class="qf-label">Academic Status</span><span class="qf-value">PhD Candidate</span></div>
+            <div class="qf-item"><span class="qf-label">Co-Author</span><span class="qf-value">Subhashini Sumanasekara</span></div>
+            <div class="qf-item"><span class="qf-label">Press Features</span><span class="qf-value">5 × Oman Daily Observer</span></div>
+            <div class="qf-item"><span class="qf-label">Press Contact</span><span class="qf-value"><a href="mailto:info@dineshdeckker.com" style="color:var(--gold);text-decoration:none;">Email</a></span></div>
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-primary);border-bottom:2px solid var(--gold);padding-bottom:0.5rem;margin-bottom:1rem;">Press Assets</div>
+            <div class="asset-card">
+              <div class="asset-icon">BIO</div>
+              <div><div class="asset-name">Short Biography</div><div class="asset-desc">50-word press bio</div></div>
+              <a href="contact.html" class="asset-dl">Request</a>
+            </div>
+            <div class="asset-card">
+              <div class="asset-icon">IMG</div>
+              <div><div class="asset-name">Author Photo</div><div class="asset-desc">High resolution</div></div>
+              <a href="contact.html" class="asset-dl">Request</a>
+            </div>
+            <div class="asset-card">
+              <div class="asset-icon">KIT</div>
+              <div><div class="asset-name">Full Media Kit</div><div class="asset-desc">PDF press pack</div></div>
+              <a href="contact.html" class="asset-dl">Request</a>
+            </div>
+          </div>
+
+          <div style="background:var(--navy); border-radius:2px; padding:1.75rem; text-align:center;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Press Enquiries</div>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.25rem;">For interview requests, review copies, event invitations, or media assets — please get in touch.</p>
+            <a href="contact.html" class="btn-primary" style="display:block; text-align:center;">Contact Dinesh</a>
+            <a href="mailto:info@dineshdeckker.com" style="display:block; margin-top:0.75rem; font-size:0.75rem; color:rgba(255,255,255,0.4); text-decoration:none;">info@dineshdeckker.com</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeClip()">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeClip()" aria-label="Close">&times;</button>
+      <img id="lightbox-img" src="" alt="Oman Daily Observer full press clipping">
+      <div class="lightbox-caption" id="lightbox-cap"></div>
+    </div>
+  </div>
+</main>
+<script>
+  const CLIPS = {
+    'crafting-tales': {full:'assets/press/crafting-tales-full.jpg', cap:'Oman Daily Observer — 23 March 2024 — "Crafting Tales of Empathy and Adventure"'},
+    'sasha-sands-oman': {full:'assets/press/sasha-sands-oman-full.jpg', cap:'Oman Daily Observer — 26 April 2025 — "Sasha\'s Journey Bridges Cultures Through Storytelling"'},
+    'whispers-desert': {full:'assets/press/whispers-desert-full.jpg', cap:'Oman Daily Observer — 10 December 2025 — "Whispers of the Desert"'},
+    'picturesque-oman': {full:'assets/press/picturesque-oman-full.jpg', cap:'Oman Daily Observer, Weekend Special — October 2016 — "Picturesque Oman: A Photographer\'s Passion"'},
+    'string-of-stills': {full:'assets/press/string-of-stills-full.jpg', cap:'Oman Daily Observer, Weekend Photography — 8 April 2017 — "Not Just a String of Stills"'}
+  };
+  function openClip(id){
+    const c = CLIPS[id]; if(!c) return;
+    document.getElementById('lightbox-img').src = c.full;
+    document.getElementById('lightbox-cap').textContent = c.cap;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeClip(){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeClip(); });
+</script>
+<script src="nav-footer.js"></script>
+<script>
+  function copyBio(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => { btn.textContent = '✓ Copied!'; setTimeout(() => btn.innerHTML = '&#9776; Copy Short Bio', 2000); });
+  }
+  function copyBios(ids, btn) {
+    const text = ids.map(id => document.getElementById(id).innerText).join('\n\n');
+    navigator.clipboard.writeText(text).then(() => { btn.textContent = '✓ Copied!'; setTimeout(() => btn.innerHTML = '&#9776; Copy Full Bio', 2000); });
+  }
+</script>
+</body>
+</html>
