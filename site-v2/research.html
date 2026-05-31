@@ -40,6 +40,44 @@
     .side-cta .e{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#93b4fb;margin-bottom:.5rem}
     .side-cta p{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:1rem}
     @media (max-width:960px){.metric-grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* Research reach (ResearchGate + Academia.edu) */
+    .reach-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem}
+    .reach-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);padding:1.5rem}
+    .reach-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+    .reach-head .nm{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.55rem}
+    .reach-head .badge{width:28px;height:28px;border-radius:7px;background:var(--tint);border:1px solid var(--tint-2);display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:var(--blue)}
+    .reach-head a{font-size:.74rem;font-weight:600;color:var(--blue)}
+    .rg-tiles{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.4rem}
+    .rg-tile{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem}
+    .rg-tile .n{font-family:var(--serif);font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1}
+    .rg-tile .l{font-size:.72rem;color:var(--muted);margin-top:.25rem}
+    .rg-tile .d{font-size:.66rem;color:#16a34a;font-weight:700;margin-top:.35rem}
+    html[data-theme=dark] .rg-tile .d{color:#4ade80}
+    .rg-split{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center}
+    .donut{width:140px;height:140px;border-radius:50%;position:relative;flex-shrink:0;background:conic-gradient(var(--blue) 0 59.2%,#60a5fa 59.2% 83.21%,#93c5fd 83.21% 95.54%,#cfe0fd 95.54% 100%)}
+    .donut::after{content:"";position:absolute;inset:24px;border-radius:50%;background:var(--surface)}
+    .donut-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .donut-c .n{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--ink);line-height:1}
+    .donut-c .l{font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+    .legend{display:flex;flex-direction:column;gap:.5rem}
+    .legend div{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--body)}
+    .legend i{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+    .legend b{margin-left:auto;color:var(--ink);font-weight:600}
+    .pcts{margin-top:1.4rem;display:flex;flex-direction:column;gap:.95rem}
+    .pct .row{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:.32rem}
+    .pct .row b{color:var(--blue);font-weight:700}
+    .pct-track{height:8px;background:var(--bg-3);border-radius:999px;overflow:hidden}
+    .pct-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-700));border-radius:999px}
+    .ac-hero{text-align:center;padding:.3rem 0 1.1rem;border-bottom:1px solid var(--line);margin-bottom:.6rem}
+    .ac-hero .n{font-family:var(--serif);font-size:2.5rem;font-weight:600;color:var(--ink);line-height:1}
+    .ac-hero .l{font-size:.74rem;color:var(--muted);margin-top:.35rem}
+    .ac-hero .top{display:inline-block;margin-top:.6rem;font-size:.64rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--tint);border:1px solid var(--tint-2);padding:.22rem .65rem;border-radius:999px}
+    .ac-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.85rem}
+    .ac-row:last-of-type{border-bottom:none}
+    .ac-row .k{color:var(--muted)}.ac-row .v{color:var(--ink);font-weight:600}
+    .reach-note{font-size:.72rem;color:var(--faint);margin-top:1rem}
+    @media (max-width:860px){.reach-grid{grid-template-columns:1fr}.rg-split{grid-template-columns:1fr;justify-items:center;text-align:center}}
   </style>
 </head>
 <body>
@@ -60,6 +98,62 @@
         <div class="metric"><div class="n">8</div><div class="l">h-index</div></div>
         <div class="metric"><div class="n">19</div><div class="l">WoS Reviews</div></div>
         <div class="metric"><div class="n">2025</div><div class="l">Most Active Year</div></div>
+      </div>
+
+      <div style="margin-bottom:3rem">
+        <span class="eyebrow sec-eyebrow">Reach &amp; Impact</span>
+        <h2 class="sec-title">Research reach across platforms</h2>
+        <div class="rule"></div>
+        <div class="reach-grid">
+
+          <div class="reach-card">
+            <div class="reach-head">
+              <div class="nm"><span class="badge">RG</span>ResearchGate</div>
+              <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener">View profile →</a>
+            </div>
+            <div class="rg-tiles">
+              <div class="rg-tile"><div class="n">1,501</div><div class="l">Research Interest Score</div><div class="d">▲ +7.4 last week</div></div>
+              <div class="rg-tile"><div class="n">52,382</div><div class="l">Reads</div><div class="d">▲ +663 last week</div></div>
+              <div class="rg-tile"><div class="n">144</div><div class="l">Citations</div><div class="d">▲ +6 last week</div></div>
+              <div class="rg-tile"><div class="n">3,936</div><div class="l">Recommendations</div><div class="d">▲ +4 last week</div></div>
+            </div>
+            <div class="rg-split">
+              <div class="donut" role="img" aria-label="Research interest score breakdown">
+                <div class="donut-c"><div class="n">1,501</div><div class="l">Interest</div></div>
+              </div>
+              <div class="legend">
+                <div><i style="background:var(--blue)"></i>Recommendations <b>59.20%</b></div>
+                <div><i style="background:#60a5fa"></i>Full-text reads <b>24.01%</b></div>
+                <div><i style="background:#93c5fd"></i>Other reads <b>12.33%</b></div>
+                <div><i style="background:#cfe0fd"></i>Citations <b>4.47%</b></div>
+              </div>
+            </div>
+            <div class="pcts">
+              <div class="pct"><div class="row"><span>Higher than all ResearchGate members</span><b>94%</b></div><div class="pct-track"><div class="pct-fill" style="width:94%"></div></div></div>
+              <div class="pct"><div class="row"><span>Among those who first published in 2023</span><b>99%</b></div><div class="pct-track"><div class="pct-fill" style="width:99%"></div></div></div>
+              <div class="pct"><div class="row"><span>Among researchers in Artificial Intelligence</span><b>96%</b></div><div class="pct-track"><div class="pct-fill" style="width:96%"></div></div></div>
+            </div>
+          </div>
+
+          <div class="reach-card">
+            <div class="reach-head">
+              <div class="nm"><span class="badge">A</span>Academia.edu</div>
+              <a href="https://tqg.academia.edu/DineshDeckker" target="_blank" rel="noopener">View profile →</a>
+            </div>
+            <div class="ac-hero">
+              <div class="n">17,366</div>
+              <div class="l">Public profile views</div>
+              <span class="top">Top 0.5% of authors</span>
+            </div>
+            <div class="ac-row"><span class="k">Followers</span><span class="v">183</span></div>
+            <div class="ac-row"><span class="k">Following</span><span class="v">155</span></div>
+            <div class="ac-row"><span class="k">Mentions</span><span class="v">26</span></div>
+            <div class="ac-row"><span class="k">Co-authors</span><span class="v">1</span></div>
+            <p class="reach-note">Glyndŵr (Wrexham) University — Faculty of Arts, Science &amp; Technology.</p>
+          </div>
+
+        </div>
+        <p class="reach-note">Figures self-reported by ResearchGate and Academia.edu and updated periodically.</p>
       </div>
 
       <div class="grid-side">
