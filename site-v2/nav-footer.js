@@ -141,6 +141,17 @@
       '.sec-title,.sec-lead,.rule,.related-card,.subscribe';
     const els = [].slice.call(document.querySelectorAll(sel));
     const counter = new Map();
+    // content-aware reveal variant
+    const ZOOM = '.bk,.card,.metric,.clip-card,.retailer-card,.related-card,.post-card,.pillar,.enq,.pc,.exp,.cmethod';
+    const CLIP = '.sec-title';
+    const LEFT = '.panel,.side-cta,.press-cta,.subscribe';
+    function variant(el) {
+      if (el.classList.contains('rule')) return null;        // rule has its own draw
+      if (el.matches(CLIP)) return 'clip';
+      if (el.matches(ZOOM)) return 'zoom';
+      if (el.matches(LEFT)) return 'left';
+      return 'rise';
+    }
     let io = null;
     if ('IntersectionObserver' in window) {
       io = new IntersectionObserver((ents) => {
@@ -150,6 +161,8 @@
       }, { rootMargin: '0px 0px -7% 0px', threshold: 0.08 });
     }
     els.forEach((el) => {
+      const v = variant(el);
+      if (v) el.setAttribute('data-rv', v);
       el.classList.add('reveal');
       const p = el.parentElement;
       const i = counter.get(p) || 0; counter.set(p, i + 1);
@@ -158,7 +171,7 @@
       if (inView || !io) {
         el.classList.add('in'); // already visible → no flash, no animation
       } else {
-        el.style.transitionDelay = Math.min(i * 65, 320) + 'ms';
+        el.style.setProperty('--d', Math.min(i * 80, 360) + 'ms');
         io.observe(el);
       }
     });

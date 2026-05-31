@@ -32,7 +32,7 @@
   --navy-2:#111a2e;
 
   --serif:'Newsreader',Georgia,'Times New Roman',serif;
-  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --sans:  'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --wrap:1180px;
   --radius:12px;
@@ -79,7 +79,7 @@ nav{
 .nav-logo{display:flex;flex-direction:column;line-height:1;flex-shrink:0}
 .nav-logo .nm{font-family:var(--serif);font-size:1.32rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
 .nav-logo .nm b{color:var(--blue);font-weight:600}
-.nav-logo .rl{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-top:3px}
+.nav-logo .rl{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px}
 .nav-links{display:flex;gap:.15rem;list-style:none}
 .nav-links a{
   position:relative;display:block;padding:.5rem .85rem;border-radius:7px;
@@ -279,7 +279,10 @@ footer{background:var(--navy);color:#cbd5e1;padding:4rem 2rem 2.2rem;margin-top:
 .divider-row{display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
 .divider-row .ln{flex:1;height:1px;background:var(--line)}
 
-/* ───────────────── RESPONSIVE ───────────────── */
+/* ───────────────── RESPONSIVE ─────────────────
+   Mobile is treated as its own layout, not a squashed desktop:
+   metrics become a swipeable rail, stats a 2-col card block,
+   the nav sheds its sub-label, and tap targets grow. */
 @media (max-width:960px){
   .nav-links,.nav-cta{display:none}
   .nav-hamburger{display:flex}
@@ -288,14 +291,40 @@ footer{background:var(--navy);color:#cbd5e1;padding:4rem 2rem 2.2rem;margin-top:
   .grid-2,.grid-side,.grid-side-l{grid-template-columns:1fr;gap:2.2rem}
 }
 @media (max-width:600px){
-  section{padding:60px 1.25rem}
-  .phead{padding:118px 1.25rem 44px}
+  section{padding:56px 1.25rem}
+  .phead{padding:104px 1.25rem 40px}
   .wrap,.nav-inner{padding:0 1.25rem}
-  .ft-grid{grid-template-columns:1fr}
+  .nav-inner{height:60px}
+  .nav-logo .rl{display:none}            /* shed sub-label on phones */
+  .nav-logo .nm{font-size:1.2rem}
+  .sec-lead{font-size:1rem}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.4rem}
   .ft-bottom{flex-direction:column;align-items:flex-start}
-  .book-grid{grid-template-columns:repeat(2,1fr);gap:1rem}
-  .metric-grid{grid-template-columns:1fr 1fr}
-  .stat-row{gap:1.4rem 2rem}
+
+  /* book grid: 2-up, tighter, smaller titles tuned for phone */
+  .book-grid{grid-template-columns:repeat(2,1fr);gap:.9rem}
+  .bk-title{font-size:.84rem}
+  .bk-body{padding:.7rem .7rem}
+
+  /* metrics → horizontal swipe rail (a phone-native pattern) */
+  .metric-grid{display:flex;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin-left:-1.25rem;margin-right:-1.25rem;padding:.25rem 1.25rem .75rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .metric-grid::-webkit-scrollbar{display:none}
+  .metric{flex:0 0 42%;scroll-snap-align:start}
+
+  /* full-width primary CTAs on phone */
+  .hero-cta .btn,.cta-band .btn{flex:1 1 auto;justify-content:center}
+
+  /* bigger tap targets */
+  .nav-mobile a{padding:1rem 1.25rem}
+  .pill{padding:.5rem 1rem}
+  .alink{padding:.2rem 0}
+}
+@media (max-width:420px){
+  .book-grid{grid-template-columns:1fr 1fr;gap:.75rem}
+  .phead-title{font-size:2rem}
+  .metric{flex-basis:54%}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -370,23 +399,37 @@ nav.scrolled{box-shadow:0 8px 28px rgba(15,23,42,.08)}
 .to-top svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.2}
 
 @media (prefers-reduced-motion:no-preference){
-  /* on-load entrance for above-the-fold hero / headers (pure CSS = no flash) */
-  @keyframes ddRise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  /* On-load entrance for above-the-fold content. A calm "develop-in"
+     (rise + de-blur) rather than a hard fade — reads printed, not generic.
+     Pure CSS so there's no flash and no JS dependency. */
+  @keyframes ddIn{from{opacity:0;transform:translateY(16px);filter:blur(7px)}
+                  to{opacity:1;transform:none;filter:blur(0)}}
   .hero h1,.hero .eyebrow,.hero-lead,.hero .hero-cta,.hero-stats,.pcard,
   .phead .eyebrow,.phead-title,.phead-sub,
   .article-breadcrumb,.article-cat,.article-title,.article-meta{
-    animation:ddRise .7s cubic-bezier(.16,.84,.44,1) both}
-  .hero .eyebrow,.phead .eyebrow,.article-breadcrumb{animation-delay:.02s}
-  .hero h1,.phead-title,.article-cat{animation-delay:.10s}
-  .hero-lead,.phead-sub,.pcard,.article-title{animation-delay:.18s}
-  .hero .hero-cta,.article-meta{animation-delay:.26s}
-  .hero-stats{animation-delay:.34s}
+    animation:ddIn .8s cubic-bezier(.2,.7,.2,1) both}
+  .hero .eyebrow,.phead .eyebrow,.article-breadcrumb{animation-delay:.04s}
+  .hero h1,.phead-title,.article-cat{animation-delay:.12s}
+  .hero-lead,.phead-sub,.pcard,.article-title{animation-delay:.22s}
+  .hero .hero-cta,.article-meta{animation-delay:.32s}
+  .hero-stats{animation-delay:.42s}
 
-  /* scroll-reveal for everything below the fold (class added by JS) */
-  .reveal{opacity:0;transform:translateY(20px);
-    transition:opacity .6s cubic-bezier(.16,.84,.44,1),transform .6s cubic-bezier(.16,.84,.44,1)}
-  .reveal.in{opacity:1;transform:none}
+  /* Scroll-reveal system (class + data-rv added by JS). Variants so motion
+     is content-aware, not one uniform fade-up. --d = per-item stagger. */
+  .reveal{opacity:0;transition:opacity .7s cubic-bezier(.2,.7,.2,1),
+    transform .7s cubic-bezier(.2,.7,.2,1),filter .7s ease,clip-path .7s ease;
+    transition-delay:var(--d,0ms)}
+  .reveal[data-rv="rise"]{transform:translateY(26px);filter:blur(6px)}
+  .reveal[data-rv="zoom"]{transform:scale(.965) translateY(14px)}        /* cards, covers */
+  .reveal[data-rv="left"]{transform:translateX(-30px)}                   /* asides / alt rows */
+  .reveal[data-rv="clip"]{clip-path:inset(0 0 100% 0);transform:translateY(8px)} /* section titles wipe */
+  .reveal.in{opacity:1;transform:none;filter:none;clip-path:inset(0 0 0 0)}
+
+  /* the accent rule "draws" itself in */
+  .rule{transform-origin:left;transition:transform .6s cubic-bezier(.2,.7,.2,1) var(--d,0ms),opacity .4s}
+  .rule.reveal{opacity:1;transform:scaleX(0)}
+  .rule.reveal.in{transform:scaleX(1)}
 
   /* portrait tilt easing (transform set inline by JS) */
-  .pcard{transition:transform .35s cubic-bezier(.16,.84,.44,1),box-shadow .35s ease}
+  .pcard{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease}
 }
