@@ -51,7 +51,7 @@
         <div class="ft-grid">
           <div>
             <div class="ft-name">Dinesh Deckker</div>
-            <p class="ft-desc">Bestselling KDP author of 300+ books, PhD researcher in Marketing, and digital strategist. Co-creator of the Bible Adventure Series with Subhashini Sumanasekara.</p>
+            <p class="ft-desc">Bestselling KDP author of 300+ books, PhD researcher, and digital strategist. Co-creator of the Bible Adventure Series with Subhashini Sumanasekara.</p>
             <a class="ft-email" href="mailto:info@dineshdeckker.com">info@dineshdeckker.com</a>
           </div>
           <div>
