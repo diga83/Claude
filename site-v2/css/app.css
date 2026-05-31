@@ -350,3 +350,43 @@ footer{background:var(--navy);color:#cbd5e1;padding:4rem 2rem 2.2rem;margin-top:
 .related-card-cat{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
 .related-card-title{font-family:var(--serif);font-size:.98rem;font-weight:600;color:var(--ink);line-height:1.35}
 @media (max-width:760px){.related-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   MOTION / DYNAMIC EFFECTS  (all gated behind reduced-motion)
+   ============================================================ */
+/* scroll progress bar */
+.scrollbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--blue),var(--blue-700));box-shadow:0 0 8px rgba(37,99,235,.4)}
+/* nav reacts to scroll */
+nav{transition:box-shadow .25s ease,background .25s ease}
+nav.scrolled{box-shadow:0 8px 28px rgba(15,23,42,.08)}
+/* back-to-top button */
+.to-top{position:fixed;right:1.4rem;bottom:1.4rem;width:44px;height:44px;border-radius:50%;
+  background:var(--blue);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 22px rgba(37,99,235,.32);opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;
+  transition:opacity .25s,transform .25s,background .2s;z-index:120}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:var(--blue-dark)}
+.to-top svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.2}
+
+@media (prefers-reduced-motion:no-preference){
+  /* on-load entrance for above-the-fold hero / headers (pure CSS = no flash) */
+  @keyframes ddRise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .hero h1,.hero .eyebrow,.hero-lead,.hero .hero-cta,.hero-stats,.pcard,
+  .phead .eyebrow,.phead-title,.phead-sub,
+  .article-breadcrumb,.article-cat,.article-title,.article-meta{
+    animation:ddRise .7s cubic-bezier(.16,.84,.44,1) both}
+  .hero .eyebrow,.phead .eyebrow,.article-breadcrumb{animation-delay:.02s}
+  .hero h1,.phead-title,.article-cat{animation-delay:.10s}
+  .hero-lead,.phead-sub,.pcard,.article-title{animation-delay:.18s}
+  .hero .hero-cta,.article-meta{animation-delay:.26s}
+  .hero-stats{animation-delay:.34s}
+
+  /* scroll-reveal for everything below the fold (class added by JS) */
+  .reveal{opacity:0;transform:translateY(20px);
+    transition:opacity .6s cubic-bezier(.16,.84,.44,1),transform .6s cubic-bezier(.16,.84,.44,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* portrait tilt easing (transform set inline by JS) */
+  .pcard{transition:transform .35s cubic-bezier(.16,.84,.44,1),box-shadow .35s ease}
+}
