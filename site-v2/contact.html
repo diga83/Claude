@@ -102,11 +102,11 @@
         <div class="form-card">
           <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:.35rem">Send a Message</h2>
           <p style="font-size:.86rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5">Fill in the form below and I'll get back to you as soon as possible.</p>
-          <form id="contact-form" action="https://formsubmit.co/ajax/info@dineshdeckker.com" method="POST">
-            <input type="hidden" name="_subject" value="New enquiry from dineshdeckker.com">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="New enquiry from dineshdeckker.com">
+            <input type="hidden" name="from_name" value="dineshdeckker.com contact form">
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-row">
               <div class="field"><label class="label" for="first-name">First Name</label><input class="input" type="text" id="first-name" name="first-name" placeholder="Jane" autocomplete="given-name" required></div>
               <div class="field"><label class="label" for="last-name">Last Name</label><input class="input" type="text" id="last-name" name="last-name" placeholder="Smith" autocomplete="family-name"></div>
@@ -166,7 +166,6 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (form._honey && form._honey.value) return; // spam bot tripped honeypot
     if (btn) { btn.disabled = true; btn.style.opacity = '.7'; btn.textContent = 'Sending…'; }
     status.className = 'form-msg';
 

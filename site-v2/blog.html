@@ -131,10 +131,11 @@
           <div class="subscribe swidget">
             <h3>Stay Updated</h3>
             <p>Get notified when new articles go live — publishing insights, research, and reflections.</p>
-            <form id="subscribe-form" action="https://formsubmit.co/ajax/info@dineshdeckker.com" method="POST">
-              <input type="hidden" name="_subject" value="New newsletter subscriber">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <form id="subscribe-form" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+              <input type="hidden" name="subject" value="New newsletter subscriber — dineshdeckker.com">
+              <input type="hidden" name="from_name" value="dineshdeckker.com newsletter">
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
               <button type="submit" id="subscribe-btn" class="btn btn-primary btn-block">Subscribe</button>
               <div id="subscribe-status" role="status" aria-live="polite" style="font-size:.78rem;margin-top:.6rem;color:rgba(255,255,255,.85)"></div>
@@ -189,7 +190,6 @@
     var b=document.getElementById('subscribe-btn'), s=document.getElementById('subscribe-status');
     f.addEventListener('submit',function(e){
       e.preventDefault();
-      if(f._honey&&f._honey.value) return;
       if(b){b.disabled=true;b.style.opacity='.7';b.textContent='Subscribing…';}
       s.textContent='';
       fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
