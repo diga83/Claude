@@ -44,6 +44,12 @@
     .online-links a{font-size:.82rem;color:rgba(255,255,255,.75);padding:.55rem 1.15rem;border:1px solid rgba(255,255,255,.16);border-radius:8px;transition:all .18s}
     .online-links a:hover{border-color:#93b4fb;color:#fff;background:rgba(147,180,251,.1)}
     @media (max-width:600px){.form-row{grid-template-columns:1fr}.enq-grid{grid-template-columns:1fr}}
+    .form-msg{margin-top:1rem;padding:.85rem 1rem;border-radius:9px;font-size:.86rem;line-height:1.5;display:none}
+    .form-msg.show{display:block}
+    .form-msg.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.4);color:#15803d}
+    .form-msg.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.4);color:#b91c1c}
+    html[data-theme=dark] .form-msg.ok{color:#4ade80}
+    html[data-theme=dark] .form-msg.err{color:#fca5a5}
   </style>
 </head>
 <body>
@@ -96,11 +102,10 @@
         <div class="form-card">
           <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:.35rem">Send a Message</h2>
           <p style="font-size:.86rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5">Fill in the form below and I'll get back to you as soon as possible.</p>
-          <form id="contact-form" action="https://formsubmit.co/info@dineshdeckker.com" method="POST">
+          <form id="contact-form" action="https://formsubmit.co/ajax/info@dineshdeckker.com" method="POST">
             <input type="hidden" name="_subject" value="New enquiry from dineshdeckker.com">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://dineshdeckker.com/thank-you.html">
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-row">
               <div class="field"><label class="label" for="first-name">First Name</label><input class="input" type="text" id="first-name" name="first-name" placeholder="Jane" autocomplete="given-name" required></div>
@@ -120,8 +125,9 @@
             </div>
             <div class="field"><label class="label" for="subject">Subject</label><input class="input" type="text" id="subject" name="subject" placeholder="Brief subject line"></div>
             <div class="field"><label class="label" for="message">Message</label><textarea class="textarea" id="message" name="message" placeholder="Tell me what you have in mind — the more detail the better." required></textarea></div>
-            <button type="submit" class="btn btn-primary btn-block" style="padding:.9rem">Send Message →</button>
-            <p style="font-size:.75rem;color:var(--muted);margin-top:.75rem;line-height:1.5">Your message will open in your email client addressed to info@dineshdeckker.com. Alternatively, email directly at any time.</p>
+            <button type="submit" id="contact-submit" class="btn btn-primary btn-block" style="padding:.9rem">Send Message →</button>
+            <div id="form-status" role="status" aria-live="polite"></div>
+            <p style="font-size:.75rem;color:var(--muted);margin-top:.75rem;line-height:1.5">Your message goes straight to info@dineshdeckker.com. You can also email directly at any time.</p>
           </form>
         </div>
       </div>
@@ -145,5 +151,47 @@
   </section>
 </main>
 <script src="nav-footer.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var btn = document.getElementById('contact-submit');
+  var status = document.getElementById('form-status');
+  var origLabel = btn ? btn.textContent : 'Send Message →';
+
+  function show(type, msg) {
+    status.className = 'form-msg show ' + type;
+    status.textContent = msg;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form._honey && form._honey.value) return; // spam bot tripped honeypot
+    if (btn) { btn.disabled = true; btn.style.opacity = '.7'; btn.textContent = 'Sending…'; }
+    status.className = 'form-msg';
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        if (data && (data.success === 'true' || data.success === true)) {
+          form.reset();
+          show('ok', 'Thank you — your message has been sent. I’ll get back to you within 48 hours.');
+        } else {
+          show('err', (data && data.message) ? data.message : 'Something went wrong. Please email info@dineshdeckker.com directly.');
+        }
+      })
+      .catch(function () {
+        show('err', 'Network error. Please email info@dineshdeckker.com directly.');
+      })
+      .finally(function () {
+        if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.textContent = origLabel; }
+      });
+  });
+})();
+</script>
 </body>
 </html>
