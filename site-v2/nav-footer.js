@@ -78,6 +78,7 @@
               <li><a href="https://scholar.google.com/citations?user=O1ClPTwAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
               <li><a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener">ResearchGate</a></li>
               <li><a href="https://www.goodreads.com/author/list/30418038.Dinesh_Deckker" target="_blank" rel="noopener">Goodreads</a></li>
+              <li><a href="https://tqg.academia.edu/DineshDeckker" target="_blank" rel="noopener">Academia.edu</a></li>
             </ul>
           </div>
         </div>
