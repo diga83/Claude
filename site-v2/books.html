@@ -77,8 +77,9 @@ const counts={};BOOKS.forEach(b=>counts[b.g]=(counts[b.g]||0)+1);
 const groups=['All',...ORDER.filter(g=>counts[g])];
 groups.forEach(g=>{const b=document.createElement('button');b.className='pill'+(g==='All'?' active':'');const n=g==='All'?BOOKS.length:counts[g];b.innerHTML=g+' <span style="opacity:.6">'+n+'</span>';b.onclick=()=>{activeGroup=g;[...filtersEl.children].forEach(c=>c.classList.remove('active'));b.classList.add('active');render();};filtersEl.appendChild(b);});
 function stars(r){return r?'<span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>'+r+'</span>':'';}
+function bookLink(b){return b.u ? b.u : 'https://www.amazon.com/s?i=stripbooks&k='+encodeURIComponent(b.t+' Dinesh Deckker');}
 function card(b){const ar=(b.w&&b.h)?(b.w+' / '+b.h):'3 / 4';
-  return '<a class="bk" href="'+STORE+'" target="_blank" rel="noopener">'
+  return '<a class="bk" href="'+bookLink(b)+'" target="_blank" rel="noopener">'
     +'<div class="bk-cover bk-cover-wrap" style="aspect-ratio:'+ar+'"><img loading="lazy" width="'+b.w+'" height="'+b.h+'" src="'+b.i+'" alt="'+b.t.replace(/"/g,'&quot;')+' book cover">'+stars(b.r)+'</div>'
     +'<div class="bk-body">'
     +(b.s?'<div class="bk-series">'+b.s+'</div>':'<div class="bk-series" style="color:var(--muted)">Standalone</div>')
