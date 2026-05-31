@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+
   <title>Contact | Dinesh Deckker — Get in Touch</title>
   <meta name="description" content="Contact Dinesh Deckker — for book enquiries, academic collaboration, digital marketing consultancy, press requests, or general correspondence.">
   <link rel="canonical" href="https://dineshdeckker.com/contact.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#2563eb">
+  <meta property="og:image" content="https://dineshdeckker.com/assets/og/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://dineshdeckker.com/assets/og/og-default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/app.css">
   <style>
-    .cmethod{display:flex;gap:1rem;align-items:flex-start;padding:1.2rem;background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:1rem;box-shadow:var(--shadow-sm);transition:border-color .18s,box-shadow .18s}
+    .cmethod{display:flex;gap:1rem;align-items:flex-start;padding:1.2rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:1rem;box-shadow:var(--shadow-sm);transition:border-color .18s,box-shadow .18s}
     .cmethod:hover{border-color:var(--blue);box-shadow:var(--shadow)}
     .cm-ic{width:44px;height:44px;background:var(--tint);border:1px solid var(--tint-2);border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
     .cm-ic svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -20,11 +32,11 @@
     .cm-value a{color:var(--blue)}
     .cm-sub{font-size:.75rem;color:var(--muted);margin-top:.15rem}
     .enq-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
-    .enq{padding:1.1rem;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:center;box-shadow:var(--shadow-sm)}
+    .enq{padding:1.1rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);text-align:center;box-shadow:var(--shadow-sm)}
     .enq svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.6;margin-bottom:.45rem}
     .enq h4{font-size:.84rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;font-family:var(--sans)}
     .enq p{font-size:.72rem;color:var(--muted);line-height:1.4}
-    .form-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:2rem;box-shadow:var(--shadow)}
+    .form-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:2rem;box-shadow:var(--shadow)}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     .online-band{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:16px;padding:2.6rem 2rem;text-align:center}
     .online-band .e{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#93b4fb;margin-bottom:1.3rem}
@@ -84,7 +96,12 @@
         <div class="form-card">
           <h2 style="font-size:1.4rem;color:var(--ink);margin-bottom:.35rem">Send a Message</h2>
           <p style="font-size:.86rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5">Fill in the form below and I'll get back to you as soon as possible.</p>
-          <form id="contact-form" action="mailto:info@dineshdeckker.com" method="post" enctype="text/plain" novalidate>
+          <form id="contact-form" action="https://formsubmit.co/info@dineshdeckker.com" method="POST">
+            <input type="hidden" name="_subject" value="New enquiry from dineshdeckker.com">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://dineshdeckker.com/thank-you.html">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-row">
               <div class="field"><label class="label" for="first-name">First Name</label><input class="input" type="text" id="first-name" name="first-name" placeholder="Jane" autocomplete="given-name" required></div>
               <div class="field"><label class="label" for="last-name">Last Name</label><input class="input" type="text" id="last-name" name="last-name" placeholder="Smith" autocomplete="family-name"></div>

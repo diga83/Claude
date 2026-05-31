@@ -25,7 +25,17 @@
           <span class="rl">Author · Researcher</span>
         </a>
         <ul class="nav-links">${navLinks}</ul>
-        <a href="contact.html" class="btn btn-primary nav-cta">Contact</a>
+        <div class="nav-tools">
+          <button class="icon-btn search-btn" id="search-open" aria-label="Search (press Command or Control + K)">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span class="lbl">Search</span><span class="kbd">⌘K</span>
+          </button>
+          <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
+            <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+          </button>
+          <a href="contact.html" class="btn btn-primary nav-cta">Contact</a>
+        </div>
         <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
           <span></span><span></span><span></span>
         </button>
@@ -227,4 +237,92 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+})();
+
+/* ============================================================
+   Theme toggle + ⌘K command-palette search (runs after nav inject)
+   ============================================================ */
+(function () {
+  var root = document.documentElement;
+  var tBtn = document.getElementById('theme-toggle');
+  if (tBtn) tBtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  document.body.insertAdjacentHTML('beforeend',
+    '<div class="cmdk" id="cmdk" aria-hidden="true">' +
+      '<div class="cmdk-backdrop" data-close></div>' +
+      '<div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Site search">' +
+        '<input class="cmdk-input" id="cmdk-input" type="text" autocomplete="off" spellcheck="false" ' +
+          'placeholder="Search books, research, articles, pages…">' +
+        '<div class="cmdk-results" id="cmdk-results"></div>' +
+        '<div class="cmdk-foot"><span>↑ ↓ navigate</span><span>↵ open</span><span>esc close</span></div>' +
+      '</div></div>');
+
+  var modal = document.getElementById('cmdk');
+  var input = document.getElementById('cmdk-input');
+  var results = document.getElementById('cmdk-results');
+  var DATA = null, loading = false, sel = 0;
+  var ORDER = ['Page', 'Article', 'Publication', 'Book'];
+
+  function load() {
+    if (DATA || loading) return; loading = true;
+    fetch('search-index.json').then(function (r) { return r.json(); })
+      .then(function (d) { DATA = d; loading = false; if (modal.classList.contains('open')) render(input.value); })
+      .catch(function () { loading = false; results.innerHTML = '<div class="cmdk-empty">Search needs a local server (not file://).</div>'; });
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
+
+  function render(q) {
+    if (!DATA) { results.innerHTML = '<div class="cmdk-empty">Loading…</div>'; return; }
+    q = (q || '').trim().toLowerCase();
+    var list;
+    if (!q) list = DATA.filter(function (e) { return e.k === 'Page' || e.k === 'Article'; });
+    else list = DATA.filter(function (e) {
+      return e.t.toLowerCase().indexOf(q) > -1 || (e.s && e.s.toLowerCase().indexOf(q) > -1);
+    }).sort(function (a, b) {
+      return (a.t.toLowerCase().indexOf(q) === 0 ? 0 : 1) - (b.t.toLowerCase().indexOf(q) === 0 ? 0 : 1);
+    }).slice(0, 60);
+
+    if (!list.length) { results.innerHTML = '<div class="cmdk-empty">No results for “' + esc(q) + '”.</div>'; sel = 0; return; }
+    var groups = {}; list.forEach(function (e) { (groups[e.k] = groups[e.k] || []).push(e); });
+    var html = '';
+    ORDER.forEach(function (k) {
+      if (!groups[k]) return;
+      html += '<div class="cmdk-group">' + k + 's</div>';
+      groups[k].forEach(function (e) {
+        html += '<a class="cmdk-item" href="' + e.u + '"><div><div class="t">' + esc(e.t) + '</div>' +
+          (e.s ? '<div class="s">' + esc(e.s) + '</div>' : '') + '</div><span class="ty">' + e.k + '</span></a>';
+      });
+    });
+    results.innerHTML = html; sel = 0;
+    var first = results.querySelector('.cmdk-item'); if (first) first.classList.add('sel');
+  }
+  function move(d) {
+    var nodes = results.querySelectorAll('.cmdk-item'); if (!nodes.length) return;
+    if (nodes[sel]) nodes[sel].classList.remove('sel');
+    sel = (sel + d + nodes.length) % nodes.length;
+    nodes[sel].classList.add('sel'); nodes[sel].scrollIntoView({ block: 'nearest' });
+  }
+  function go() { var n = results.querySelectorAll('.cmdk-item'); if (n[sel]) window.location.href = n[sel].getAttribute('href'); }
+  function open() {
+    modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; load(); input.value = ''; render(''); setTimeout(function () { input.focus(); }, 30);
+  }
+  function close() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+
+  var sBtn = document.getElementById('search-open');
+  if (sBtn) sBtn.addEventListener('click', open);
+  if (input) input.addEventListener('input', function () { render(input.value); });
+  modal.addEventListener('click', function (e) { if (e.target.hasAttribute('data-close')) close(); });
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); modal.classList.contains('open') ? close() : open(); return; }
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+    else if (e.key === 'Enter') { e.preventDefault(); go(); }
+  });
 })();

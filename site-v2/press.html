@@ -3,21 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+
   <title>Press &amp; Media | Dinesh Deckker — Press Kit, Bios &amp; Coverage</title>
   <meta name="description" content="Press and media resources for Dinesh Deckker — official biographies, media coverage in the Oman Daily Observer, speaking topics, retailer listings, and press contact.">
   <link rel="canonical" href="https://dineshdeckker.com/press.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#2563eb">
+  <meta property="og:image" content="https://dineshdeckker.com/assets/og/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://dineshdeckker.com/assets/og/og-default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/app.css">
   <style>
-    .bio-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.6rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
+    .bio-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.6rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
     .bio-label{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
     .bio-box p{font-size:.94rem;color:var(--body);line-height:1.8;margin-bottom:.8rem}.bio-box p:last-of-type{margin-bottom:0}
-    .bio-copy-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:600;color:var(--blue);border:1px solid var(--line-2);background:#fff;padding:.45rem .9rem;border-radius:8px;cursor:pointer;margin-top:1rem;transition:all .18s;font-family:var(--sans)}
+    .bio-copy-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:600;color:var(--blue);border:1px solid var(--line-2);background:var(--surface);padding:.45rem .9rem;border-radius:8px;cursor:pointer;margin-top:1rem;transition:all .18s;font-family:var(--sans)}
     .bio-copy-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
     .clippings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem}
-    .clip-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
+    .clip-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s;display:flex;flex-direction:column}
     .clip-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
     .clip-thumb{position:relative;background:var(--bg-3);line-height:0;border-bottom:1px solid var(--line);overflow:hidden;height:200px}
     .clip-thumb img{width:100%;height:auto}
@@ -39,11 +51,11 @@
     .coverage-title{font-family:var(--serif);font-size:.98rem;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:.3rem}
     .coverage-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
     .coverage-link{font-size:.74rem;font-weight:600;color:var(--blue);margin-top:.45rem;display:inline-block}
-    .speaking-card{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);padding:1.1rem 1.25rem;border-radius:10px;margin-bottom:.75rem;box-shadow:var(--shadow-sm)}
+    .speaking-card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--blue);padding:1.1rem 1.25rem;border-radius:10px;margin-bottom:.75rem;box-shadow:var(--shadow-sm)}
     .speaking-topic{font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
     .speaking-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
     .retailer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-top:.5rem}
-    .retailer-card{display:flex;flex-direction:column;padding:.95rem 1rem;border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:var(--shadow-sm);transition:all .18s}
+    .retailer-card{display:flex;flex-direction:column;padding:.95rem 1rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow-sm);transition:all .18s}
     .retailer-card:hover{border-color:var(--blue);box-shadow:var(--shadow);transform:translateY(-2px)}
     .retailer-name{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.15rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
     .retailer-name .arr{color:var(--blue);font-weight:700}
@@ -52,7 +64,7 @@
     .qf-item:last-child{border-bottom:none}
     .qf-label{font-size:.78rem;color:var(--muted)}.qf-value{font-size:.82rem;font-weight:600;color:var(--ink);text-align:right}
     .qf-value a{color:var(--blue)}
-    .asset-card{display:flex;align-items:center;gap:.85rem;padding:.85rem;border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:.6rem;box-shadow:var(--shadow-sm)}
+    .asset-card{display:flex;align-items:center;gap:.85rem;padding:.85rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:.6rem;box-shadow:var(--shadow-sm)}
     .asset-icon{width:38px;height:38px;background:var(--tint);border:1px solid var(--tint-2);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;color:var(--blue)}
     .asset-name{font-size:.84rem;font-weight:600;color:var(--ink)}.asset-desc{font-size:.72rem;color:var(--muted)}
     .asset-dl{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--blue);border:1px solid var(--line-2);padding:.3rem .7rem;border-radius:7px;transition:all .18s}
@@ -174,7 +186,7 @@
 
           <div style="margin-bottom:1.5rem">
             <div class="panel-head" style="border:1px solid var(--line);border-bottom:none;border-radius:12px 12px 0 0">Press Assets</div>
-            <div style="border:1px solid var(--line);border-radius:0 0 12px 12px;padding:1rem;background:#fff">
+            <div style="border:1px solid var(--line);border-radius:0 0 12px 12px;padding:1rem;background:var(--surface)">
               <div class="asset-card"><div class="asset-icon">BIO</div><div><div class="asset-name">Short Biography</div><div class="asset-desc">50-word press bio</div></div><a href="contact.html" class="asset-dl">Request</a></div>
               <div class="asset-card"><div class="asset-icon">IMG</div><div><div class="asset-name">Author Photo</div><div class="asset-desc">High resolution</div></div><a href="contact.html" class="asset-dl">Request</a></div>
               <div class="asset-card" style="margin-bottom:0"><div class="asset-icon">KIT</div><div><div class="asset-name">Full Media Kit</div><div class="asset-desc">PDF press pack</div></div><a href="contact.html" class="asset-dl">Request</a></div>
