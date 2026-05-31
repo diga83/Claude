@@ -59,6 +59,16 @@
     .stat-band .n{font-family:var(--serif);font-size:1.7rem;font-weight:600;color:#93b4fb;line-height:1}
     .stat-band .nl{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:.3rem}
     @media (max-width:600px){.exp-grid{grid-template-columns:1fr}.quals td.inst{white-space:normal}}
+    /* About sidebar portrait card */
+    .pcard2{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:1.5rem}
+    .pcard2-img{position:relative;line-height:0;border-bottom:1px solid var(--line)}
+    .pcard2-img img{width:100%;height:auto;display:block}
+    .pcard2-badge{position:absolute;left:.9rem;bottom:.9rem;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;padding:.3rem .75rem;font-size:.68rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.4rem}
+    .pcard2-badge .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
+    .pcard2-body{padding:1rem 1.1rem 1.15rem;text-align:center}
+    .pcard2-name{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);line-height:1.1}
+    .pcard2-role{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-top:.4rem}
+    html[data-theme="dark"] .pcard2-badge{background:rgba(18,24,38,.9);color:var(--ink);border-color:var(--line-2)}
   </style>
 </head>
 <body>
@@ -139,6 +149,20 @@
         </div>
 
         <aside>
+          <div class="pcard2">
+            <div class="pcard2-img">
+              <picture>
+                <source type="image/webp" srcset="assets/img/dinesh-portrait-400.webp 400w, assets/img/dinesh-portrait-800.webp 800w" sizes="320px">
+                <img src="assets/img/dinesh-portrait-800.jpg" width="800" height="451" alt="Dinesh Deckker, author and researcher" decoding="async" loading="lazy">
+              </picture>
+              <span class="pcard2-badge"><span class="dot"></span>Muscat, Oman</span>
+            </div>
+            <div class="pcard2-body">
+              <div class="pcard2-name">Dinesh Deckker</div>
+              <div class="pcard2-role">Author · Researcher</div>
+            </div>
+          </div>
+
           <div class="panel" style="margin-bottom:1.5rem">
             <div class="panel-head">Academic Credentials</div>
             <div class="panel-body">
