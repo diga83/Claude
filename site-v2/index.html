@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinesh Deckker | Author, Researcher & Digital Marketing Expert</title>
+  <meta name="description" content="Dinesh Deckker — bestselling KDP author of 300+ books, AI researcher, and digital marketing expert. Co-author of the Bible Adventure Series with Subhashini Sumanasekara. Based in Muscat, Oman.">
+  <meta name="author" content="Dinesh Deckker">
+  <link rel="canonical" href="https://dineshdeckker.com/">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Dinesh Deckker | Author, Researcher & Digital Marketing Expert">
+  <meta property="og:description" content="Bestselling author of 300+ books, AI researcher, and digital marketing expert. Co-author of the Bible Adventure Series with Subhashini Sumanasekara.">
+  <meta property="og:url" content="https://dineshdeckker.com/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dinesh Deckker","url":"https://dineshdeckker.com","email":"info@dineshdeckker.com","jobTitle":"Author, Researcher & Digital Marketing Expert","description":"Bestselling author of 300+ books, AI researcher, and digital marketing expert with over 20 years of experience.","knowsAbout":["Digital Marketing","Artificial Intelligence","Children's Literature","Biblical Fiction","Academic Research"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"University of Gloucestershire"},{"@type":"CollegeOrUniversity","name":"Wrexham University"}],"sameAs":["https://www.amazon.com/stores/author/B0CQK7LXR2","https://www.goodreads.com/author/list/30418038.Dinesh_Deckker","https://www.researchgate.net/profile/Dinesh-Deckker","https://tqg.academia.edu/DineshDeckker"]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    /* ── HERO ── */
+    .hero{position:relative;overflow:hidden;padding:140px 2rem 72px;
+      background:radial-gradient(820px 460px at 85% -10%, var(--tint), transparent 70%),linear-gradient(180deg,#fff,var(--bg-2));
+      border-bottom:1px solid var(--line)}
+    .hero::before{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+      background-image:radial-gradient(var(--line-2) 1px,transparent 1px);background-size:24px 24px;
+      -webkit-mask-image:radial-gradient(700px 500px at 90% 0%,#000,transparent 75%);mask-image:radial-gradient(700px 500px at 90% 0%,#000,transparent 75%)}
+    .hero-inner{max-width:var(--wrap);margin:0 auto;position:relative;display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center}
+    .hero h1{font-size:clamp(2.6rem,5.4vw,4.1rem);color:var(--ink);line-height:1.02;margin:1.1rem 0 1.2rem;letter-spacing:-.02em}
+    .hero-lead{font-size:1.12rem;color:var(--body);line-height:1.72;max-width:560px;margin-bottom:2rem}
+    .hero-lead strong{color:var(--ink);font-weight:600}
+    .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.4rem}
+    .hero-stats{display:flex;flex-wrap:wrap;gap:1.6rem 2.6rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+    /* portrait card */
+    .pcard{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden}
+    .pcard-img{position:relative;line-height:0;border-bottom:1px solid var(--line)}
+    .pcard-img img{width:100%;height:auto}
+    .pcard-badge{position:absolute;left:1rem;bottom:1rem;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;padding:.32rem .8rem;font-size:.72rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.4rem}
+    .pcard-badge .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
+    .pcard-body{padding:1.2rem 1.3rem}
+    .pcard-bio{font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+    .pcard-links{display:flex;flex-direction:column;gap:0}
+    .pcard-link{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;border-top:1px solid var(--line);font-size:.82rem;color:var(--body);transition:color .18s}
+    .pcard-link:hover{color:var(--blue)}
+    .pcard-link svg{width:15px;height:15px;stroke:var(--blue);fill:none;stroke-width:1.8;flex-shrink:0}
+    .pcard-link .ext{margin-left:auto;color:var(--faint);font-size:.7rem}
+
+    /* ── PILLARS ── */
+    .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
+    .pillar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.6rem;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s,border-color .2s}
+    .pillar:hover{box-shadow:var(--shadow);transform:translateY(-3px);border-color:var(--line-2)}
+    .pillar-ic{width:44px;height:44px;border-radius:11px;background:var(--tint);border:1px solid var(--tint-2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+    .pillar-ic svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.7}
+    .pillar h3{font-size:1.08rem;color:var(--ink);margin-bottom:.4rem}
+    .pillar p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.8rem}
+
+    /* ── CLOSING CTA ── */
+    .cta-band{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:18px;padding:3.2rem;text-align:center;position:relative;overflow:hidden}
+    .cta-band::after{content:"";position:absolute;left:50%;top:-40%;width:520px;height:520px;transform:translateX(-50%);background:radial-gradient(circle,rgba(37,99,235,.35),transparent 65%);pointer-events:none}
+    .cta-band h2{color:#fff;font-size:clamp(1.7rem,3.2vw,2.4rem);margin-bottom:.8rem;position:relative}
+    .cta-band p{color:rgba(255,255,255,.72);font-size:1.02rem;max-width:560px;margin:0 auto 1.8rem;line-height:1.7;position:relative}
+    .cta-band .hero-cta{justify-content:center;position:relative}
+
+    @media (max-width:960px){
+      .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+      .pcard{max-width:380px}
+      .pillars{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:600px){ .pillars{grid-template-columns:1fr} .cta-band{padding:2.2rem 1.4rem} }
+  </style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">Author · Researcher · Digital Strategist</span>
+        <h1>Dinesh Deckker</h1>
+        <p class="hero-lead">Bestselling KDP author of <strong>300+ books</strong> and a published researcher with <strong>51 peer-reviewed papers</strong>, <strong>200+ citations</strong>, and an h-index of 8 in artificial intelligence, education, and marketing. PhD researcher and digital strategist with over two decades of experience.</p>
+        <div class="hero-cta">
+          <a href="books.html" class="btn btn-primary">Explore the Books</a>
+          <a href="research.html" class="btn btn-ghost">View Research</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="stat-num"><b>300+</b></span><span class="stat-label">Books Published</span></div>
+          <div><span class="stat-num">200+</span><span class="stat-label">Citations</span></div>
+          <div><span class="stat-num">8</span><span class="stat-label">h-index</span></div>
+          <div><span class="stat-num">20+</span><span class="stat-label">Years Experience</span></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img">
+          <img src="assets/img/dinesh-portrait.jpg" width="1672" height="941" alt="Dinesh Deckker, author and researcher, at his writing desk">
+          <span class="pcard-badge"><span class="dot"></span>Muscat, Oman</span>
+        </div>
+        <div class="pcard-body">
+          <p class="pcard-bio">Sri Lankan-born author and researcher. Co-author of the Bible Adventure Series with Subhashini Sumanasekara.</p>
+          <div class="pcard-links">
+            <a href="https://www.amazon.com/stores/author/B0CQK7LXR2" target="_blank" rel="noopener" class="pcard-link"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Amazon Author Page<span class="ext">↗</span></a>
+            <a href="https://scholar.google.com/citations?user=O1ClPTwAAAAJ" target="_blank" rel="noopener" class="pcard-link"><svg viewBox="0 0 24 24"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg>Google Scholar<span class="ext">↗</span></a>
+            <a href="https://www.researchgate.net/profile/Dinesh-Deckker" target="_blank" rel="noopener" class="pcard-link"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>ResearchGate<span class="ext">↗</span></a>
+            <a href="mailto:info@dineshdeckker.com" class="pcard-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@dineshdeckker.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section>
+    <div class="sec-inner">
+      <span class="eyebrow sec-eyebrow">What I Do</span>
+      <h2 class="sec-title">Four threads, one body of work</h2>
+      <div class="rule"></div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <h3>300+ Published Books</h3>
+          <p>A KDP catalog spanning children's Bible, biblical fiction, devotionals, and educational titles.</p>
+          <a href="books.html" class="alink">Browse all books →</a>
+        </div>
+        <div class="pillar">
+          <div class="pillar-ic"><svg viewBox="0 0 24 24"><path d="M9 3v7.6a2 2 0 0 1-.4 1.2L4 18a2 2 0 0 0 1.6 3.2h12.8A2 2 0 0 0 20 18l-4.6-6.2a2 2 0 0 1-.4-1.2V3"/><path d="M7 3h10"/><path d="M8.5 15h7"/></svg></div>
+          <h3>Academic Research</h3>
+          <p>51 peer-reviewed papers on AI, education, and digital culture. Doctoral candidate in Marketing.</p>
+          <a href="research.html" class="alink">View publications →</a>
+        </div>
+        <div class="pillar">
+          <div class="pillar-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Writing Partnership</h3>
+          <p>The Bible Adventure Series is co-authored with Subhashini Sumanasekara, an ICT educator and author.</p>
+          <a href="subhashini.html" class="alink">Meet Subhashini →</a>
+        </div>
+        <div class="pillar">
+          <div class="pillar-ic"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <h3>20+ Years in Digital</h3>
+          <p>Digital marketing strategist, SEO expert, and creative-writing coach with a global portfolio.</p>
+          <a href="about.html" class="alink">About me →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED BOOKS -->
+  <section class="sec-bg">
+    <div class="sec-inner">
+      <span class="eyebrow sec-eyebrow">Published Works</span>
+      <h2 class="sec-title">Featured Books</h2>
+      <div class="rule"></div>
+      <div class="book-grid" style="margin-bottom:2.4rem">
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book029.jpeg" alt="Sasha Celebrates Sinhala & Tamil New Year book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sasha's Adventures</div><div class="bk-title">Sasha Celebrates Sinhala &amp; Tamil New Year</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book037.jpeg" alt="Sasha Learns About Sri Lankan Cinnamon book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sasha's Adventures</div><div class="bk-title">Sasha Learns About Sri Lankan Cinnamon</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book045.jpeg" alt="Sasha Travels to Bhutan book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sasha's Adventures</div><div class="bk-title">Sasha Travels to Bhutan</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book058.jpeg" alt="Sasha Learns About Laaksha book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sasha's Adventures</div><div class="bk-title">Sasha Learns About Laaksha</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book059.jpeg" alt="Sasha Travels to Kashmir book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sasha's Adventures</div><div class="bk-title">Sasha Travels to Kashmir</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book061.jpeg" alt="Sasha Learns About Frankincense book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sasha's Adventures</div><div class="bk-title">Sasha Learns About Frankincense</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book001.jpeg" alt="The Book of Revelation book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Illustrated Bible Guide</div><div class="bk-title">The Book of Revelation</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book002.jpeg" alt="100 Days, 100 Saints book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Devotional</div><div class="bk-title">100 Days, 100 Saints</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book032.jpeg" alt="The Story of Vijaya and Kuweni book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sri Lankan Legend</div><div class="bk-title">The Story of Vijaya and Kuweni</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book035.jpeg" alt="The Tale of Kannagi book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">Sri Lankan Legend</div><div class="bk-title">The Tale of Kannagi</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book015.jpeg" alt="38 Stories Jesus Told book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">The Bible Adventure Series</div><div class="bk-title">38 Stories Jesus Told</div></div></a>
+        <a href="https://www.amazon.com/stores/author/B0CQK7LXR2/allbooks" target="_blank" rel="noopener" class="bk"><div class="bk-cover"><img loading="lazy" width="244" height="315" src="assets/covers/book026.jpeg" alt="Lot’s Great Escape book cover"><span class="bk-rate"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5.0</span></div><div class="bk-body"><div class="bk-series">The Bible Adventure Series</div><div class="bk-title">Lot’s Great Escape</div></div></a>
+      </div>
+      <div class="center"><a href="books.html" class="btn btn-dark">View All 325 Books</a></div>
+    </div>
+  </section>
+
+  <!-- RESEARCH PREVIEW -->
+  <section>
+    <div class="sec-inner">
+      <span class="eyebrow sec-eyebrow">Academic Research</span>
+      <h2 class="sec-title">Recent Publications</h2>
+      <div class="rule"></div>
+      <p class="sec-lead">Beyond publishing, Dinesh is an active researcher with <strong>51 peer-reviewed papers and preprints</strong>, <strong>200+ citations</strong>, an <strong>h-index of 8</strong>, and <strong>19 Web of Science–verified peer reviews</strong> — focused on artificial intelligence, education, marketing, and corpus linguistics.</p>
+
+      <div class="metric-grid" style="margin-bottom:2.4rem">
+        <div class="metric"><div class="n">51</div><div class="l">Publications</div></div>
+        <div class="metric"><div class="n">204</div><div class="l">Citations</div></div>
+        <div class="metric"><div class="n">8</div><div class="l">h-index</div></div>
+        <div class="metric"><div class="n">19</div><div class="l">WoS Reviews</div></div>
+        <div class="metric"><div class="n">2025</div><div class="l">Most Active</div></div>
+      </div>
+
+      <div class="grid-2" style="gap:1.3rem;grid-template-columns:1fr 1fr 1fr">
+        <a href="research.html" class="card card-pad card-hover" style="border-top:3px solid var(--blue)">
+          <div class="tag" style="margin-bottom:.5rem">Journal Article · IJRISS, 2025</div>
+          <div class="pub-title">Positive vs. Negative Collocates of Indian-Origin Words in Western Media</div>
+          <div class="pub-authors" style="margin-top:.5rem">Dinesh Deckker &amp; Dr Sree Lakshmi Ammanamanchi</div>
+        </a>
+        <a href="research.html" class="card card-pad card-hover" style="border-top:3px solid var(--blue)">
+          <div class="tag" style="margin-bottom:.5rem">Preprint · Authorea</div>
+          <div class="pub-title">Decoding Sri Lankan Cultural Identity in AI-Generated Imagery</div>
+          <div class="pub-authors" style="margin-top:.5rem">Dinesh Deckker</div>
+        </a>
+        <a href="research.html" class="card card-pad card-hover" style="border-top:3px solid var(--blue)">
+          <div class="tag" style="margin-bottom:.5rem">Preprint · AI Ethics</div>
+          <div class="pub-title">Moral Scaffolding Theory (MST): A Developmental Framework for Artificial Moral Cognition</div>
+          <div class="pub-authors" style="margin-top:.5rem">Dinesh Deckker</div>
+        </a>
+      </div>
+      <div class="mt-2"><a href="research.html" class="btn btn-ghost">All Publications →</a></div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="sec-bg">
+    <div class="sec-inner">
+      <div class="cta-band">
+        <h2>Let's work together</h2>
+        <p>Book enquiries, academic collaboration, digital-marketing consultancy, or press — I'd be glad to hear from you.</p>
+        <div class="hero-cta">
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          <a href="about.html" class="btn btn-light">About Dinesh</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="nav-footer.js"></script>
+</body>
+</html>
