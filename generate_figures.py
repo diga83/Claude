@@ -34,73 +34,89 @@ def save(fig, name):
 # FIGURE 1 — The Stance-Structure Continuum (2x2 framework)
 # =====================================================================
 def figure1():
-    fig, ax = plt.subplots(figsize=(8.4, 7.0))
-    ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(9.2, 8.0))
+    ax.set_xlim(-1.5, 10.4); ax.set_ylim(-1.6, 11.3); ax.axis("off")
 
-    # quadrant background fills (subtle, grayscale)
-    fills = {
-        (0,0):"#f2f2f2", (5,0):"#e3ebe3",  # bottom-left, bottom-right (right=desirable greenish-grey)
-        (0,5):"#f2f2f2", (5,5):"#e3ebe3",
-    }
-    for (x,y),c in fills.items():
-        ax.add_patch(Rectangle((x+0.6, y+0.6), 4.4, 4.4, facecolor=c, edgecolor="none", zorder=0))
+    GLO, GHI = 0.8, 10.0      # grid extent
+    MID = 5.4                 # divider position
+    GAP = 0.18                # gap at divider so fills don't touch
 
-    # axes lines
-    ax.add_patch(FancyArrowPatch((0.6,0.6),(10,0.6), arrowstyle="-|>",
+    # quadrant background fills (left = neutral grey, right = desirable greenish-grey)
+    fill_rects = [
+        (GLO, GLO, "#f2f2f2"),                 # bottom-left
+        (MID+GAP, GLO, "#e6efe6"),             # bottom-right
+        (GLO, MID+GAP, "#f2f2f2"),             # top-left
+        (MID+GAP, MID+GAP, "#e6efe6"),         # top-right
+    ]
+    for x0, y0, c in fill_rects:
+        w = (MID-GAP) - x0 if x0 < MID else GHI - x0
+        h = (MID-GAP) - y0 if y0 < MID else GHI - y0
+        ax.add_patch(Rectangle((x0, y0), w, h, facecolor=c, edgecolor="none", zorder=0))
+
+    # axes arrows
+    ax.add_patch(FancyArrowPatch((GLO,GLO),(GHI+0.3,GLO), arrowstyle="-|>",
                  mutation_scale=16, color=INK, lw=1.4, zorder=3))
-    ax.add_patch(FancyArrowPatch((0.6,0.6),(0.6,10), arrowstyle="-|>",
+    ax.add_patch(FancyArrowPatch((GLO,GLO),(GLO,GHI+0.3), arrowstyle="-|>",
                  mutation_scale=16, color=INK, lw=1.4, zorder=3))
 
-    # axis labels
-    ax.text(5.3, 0.05, "INSTRUCTIONAL STRUCTURE",
-            ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
-    ax.text(1.95, 0.30, "low: text-generative locus,\nno scaffolding, no documentation",
-            ha="center", va="center", fontsize=7.6, color=GREY, style="italic")
-    ax.text(8.0, 0.30, "high: ideation locus, evaluative\nscaffolding, visible documentation",
-            ha="center", va="center", fontsize=7.6, color=GREY, style="italic")
+    # divider dashed lines
+    ax.plot([MID,MID],[GLO,GHI+0.1], color=GREY, lw=0.7, ls=(0,(4,3)), zorder=2)
+    ax.plot([GLO,GHI+0.1],[MID,MID], color=GREY, lw=0.7, ls=(0,(4,3)), zorder=2)
 
-    ax.text(0.08, 5.3, "THEORETICAL STANCE", rotation=90,
-            ha="center", va="center", fontsize=11, fontweight="bold", color=INK)
-    ax.text(0.40, 2.6, "instrumental–\nmediational\n(AI as tool)", rotation=90,
-            ha="center", va="center", fontsize=7.6, color=GREY, style="italic")
-    ax.text(0.40, 7.7, "relational–\ndistributed\n(AI as co-actant)", rotation=90,
-            ha="center", va="center", fontsize=7.6, color=GREY, style="italic")
+    # x-axis labels (below the axis line, well separated)
+    ax.text(MID, -1.25, "INSTRUCTIONAL STRUCTURE",
+            ha="center", va="center", fontsize=11.5, fontweight="bold", color=INK)
+    ax.text(3.0, -0.35, "low: text-generative locus,\nno scaffolding / documentation",
+            ha="center", va="center", fontsize=7.8, color=GREY, style="italic")
+    ax.text(7.8, -0.35, "high: ideation locus, evaluative\nscaffolding, visible documentation",
+            ha="center", va="center", fontsize=7.8, color=GREY, style="italic")
+
+    # y-axis labels (left of the axis line)
+    ax.text(-1.25, MID, "THEORETICAL STANCE", rotation=90,
+            ha="center", va="center", fontsize=11.5, fontweight="bold", color=INK)
+    ax.text(-0.30, 3.0, "instrumental–mediational\n(AI as tool)", rotation=90,
+            ha="center", va="center", fontsize=7.8, color=GREY, style="italic")
+    ax.text(-0.30, 7.8, "relational–distributed\n(AI as co-actant)", rotation=90,
+            ha="center", va="center", fontsize=7.8, color=GREY, style="italic")
 
     # quadrant content: (cx, cy, title, body, tag)
     quads = [
-        (2.8, 2.8, "Substitution",
-         "AI delegated text/draft production;\nminimal student judgement.",
+        (3.0, 3.0, "Substitution",
+         "AI delegated text / draft\nproduction; minimal\nstudent judgement.",
          "Risk: ownership erosion,\n“metacognitive laziness”\n(Fan et al., 2025)"),
-        (7.8, 2.8, "Scaffolded tool use",
-         "AI at ideation/revision; evaluative\nscaffolding; prompt logs, “tech-off”\nreflection.",
-         "Builds voice + feedback literacy\n(Process Pedagogy 2.0, Elturki 2026;\nPAIRR, Sperber et al. 2025)"),
-        (2.8, 7.6, "Uncritical entanglement",
-         "Distributed authorship accepted\nwithout reflection.",
+        (7.8, 3.0, "Scaffolded tool use",
+         "AI at ideation / revision;\nevaluative scaffolding;\nprompt logs, reflection.",
+         "Builds voice + feedback literacy\n(Elturki, 2026;\nSperber et al., 2025)"),
+        (3.0, 7.8, "Uncritical entanglement",
+         "Distributed authorship\naccepted without\nreflection.",
          "Risk: diffuse agency,\ncognitive surrogacy"),
-        (7.8, 7.6, "Critical co-authorship",
-         "Distributed stance made an\nobject of reflection.",
-         "Builds critical AI / postdigital\nliteracy (Burriss & Leander 2024;\nJeon & Lee 2026)"),
+        (7.8, 7.8, "Critical co-authorship",
+         "Distributed stance made\nan object of reflection.",
+         "Builds critical AI / postdigital\nliteracy (Burriss & Leander, 2024;\nJeon & Lee, 2026)"),
     ]
     for cx, cy, title, body, tag in quads:
-        ax.text(cx, cy+1.15, title, ha="center", va="center",
+        ax.text(cx, cy+1.55, title, ha="center", va="center",
                 fontsize=11, fontweight="bold", color=INK)
-        ax.text(cx, cy+0.25, body, ha="center", va="center",
-                fontsize=8.1, color="#333333")
-        ax.text(cx, cy-0.95, tag, ha="center", va="center",
-                fontsize=7.2, color=GREY, style="italic")
+        ax.text(cx, cy+0.35, body, ha="center", va="center",
+                fontsize=8.0, color="#2b2b2b")
+        ax.text(cx, cy-1.05, tag, ha="center", va="center",
+                fontsize=7.0, color=GREY, style="italic")
 
-    # divider lines
-    ax.plot([5.3,5.3],[0.6,10.0], color=GREY, lw=0.7, ls=(0,(4,3)), zorder=2)
-    ax.plot([0.6,10.0],[5.3,5.3], color=GREY, lw=0.7, ls=(0,(4,3)), zorder=2)
-
-    # outcome arrow along bottom-right desirability
-    ax.add_patch(FancyArrowPatch((5.5,9.45),(9.9,9.45), arrowstyle="-|>",
-                 mutation_scale=14, color="#2f6b2f", lw=1.6, zorder=4))
-    ax.text(7.7, 9.75, "Outcome layer →  feedback literacy · authorial agency · knowledge transfer",
-            ha="center", va="center", fontsize=7.8, color="#2f6b2f", fontweight="bold")
+    # outcome banner ABOVE the grid (its own row, no overlap)
+    ax.add_patch(FancyBboxPatch((GLO, 10.30), GHI-GLO, 0.92,
+        boxstyle="round,pad=0.02,rounding_size=0.10",
+        facecolor="#cfe2cf", edgecolor="#2f6b2f", lw=1.3, zorder=4))
+    ax.text(MID-0.1, 10.90, "OUTCOME LAYER",
+            ha="center", va="center", fontsize=9.0, fontweight="bold", color="#163d16", zorder=6)
+    ax.text(MID-0.1, 10.55,
+            "feedback literacy  ·  authorial agency  ·  knowledge transfer",
+            ha="center", va="center", fontsize=8.4, color="#163d16", zorder=6)
+    # connector showing high-structure quadrants drive the outcome
+    ax.add_patch(FancyArrowPatch((7.8,10.05),(7.8,10.28), arrowstyle="-|>",
+                 mutation_scale=11, color="#2f6b2f", lw=1.2, zorder=4))
 
     fig.suptitle("Figure 1. The Stance–Structure Continuum for AI-aware writing instruction",
-                 y=0.025, fontsize=10.5, fontweight="bold")
+                 y=0.045, fontsize=10.5, fontweight="bold")
     save(fig, "figure1_stance_structure")
 
 # =====================================================================
