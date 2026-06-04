@@ -54,7 +54,7 @@ The developmental observation resonates with sociolinguist **Valerie Fridland's*
 
 ### 3.3 Phatic culture online
 
-The phatic frame has been extended to digital communication. **Vincent Miller's** "New Media, Networking and Phatic Culture" (2008) argues that network sociality has produced an online communicative culture "dominated by non-dialogic, non-informational" exchange, in which "the connection, not the content, is what matters" (Miller, 2008). Subsequent work analyzes practices such as Snapchat "streaks" — daily exchanges whose entire point is maintaining a connection counter, independent of any message content — as paradigmatically phatic (Bayer et al., 2018, as discussed in the literature). A meme that spreads as a shouted gesture, propagating connection rather than proposition, is the lexical-item-scale instance of exactly this phenomenon.
+The phatic frame has been extended to digital communication. **Vincent Miller's** "New Media, Networking and Phatic Culture" (2008) argues that network sociality has produced an online communicative culture "dominated by non-dialogic, non-informational" exchange, in which "the connection, not the content, is what matters" (Miller, 2008). Subsequent work analyzes practices such as Snapchat "streaks" — daily exchanges whose entire point is maintaining a connection counter, independent of any message content — as paradigmatically phatic (see Miller, 2008, and subsequent phatic-media research). A meme that spreads as a shouted gesture, propagating connection rather than proposition, is the lexical-item-scale instance of exactly this phenomenon.
 
 ---
 
