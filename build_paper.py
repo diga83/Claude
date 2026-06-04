@@ -57,6 +57,26 @@ def center(text, bold=False, italic=False, size=12, after=0, indent=False):
     r.bold = bold; r.italic = italic; r.font.size = Pt(size)
     return p
 
+def add_figure(path, caption):
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.first_line_indent = Inches(0)
+    p.paragraph_format.space_before = Pt(6)
+    p.paragraph_format.space_after = Pt(2)
+    run = p.add_run()
+    run.add_picture(path, width=Inches(5.6))
+    c = doc.add_paragraph()
+    c.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    c.paragraph_format.first_line_indent = Inches(0)
+    c.paragraph_format.space_after = Pt(10)
+    parts = caption.split(". ", 1)
+    rb = c.add_run(parts[0] + ". ")
+    rb.bold = True; rb.font.size = Pt(10)
+    if len(parts) > 1:
+        rn = c.add_run(parts[1])
+        rn.font.size = Pt(10)
+    return p
+
 def ref(text):
     p = doc.add_paragraph()
     p.paragraph_format.left_indent = Inches(0.5)
@@ -235,6 +255,10 @@ P("Read together, these reviews leave three openings unfilled. On the teaching d
   "among many, never as an instructional objective that drives design. And across all of them, an integrative "
   "theory is absent: the reviews are inventories, effect syntheses, or thematic maps. The remainder of this "
   "article addresses these openings and works toward the integrative account they lack.")
+add_figure("/home/user/Claude/figures/figure2_gap_map.png",
+           "Figure 2. The review landscape and the pedagogical lacuna. Existing reviews "
+           "consolidate student use, integrity, feedback effects, and general adoption; the "
+           "teaching-and-theory synthesis advanced here addresses three unfilled openings.")
 
 # ================= 4. FEEDBACK =================
 H("4. AI-Mediated Feedback as Pedagogy: A Feedback-Literacy Lens", level=1)
@@ -396,6 +420,10 @@ P("The fault line between these camps is not merely terminological; it is ontolo
   "actant in a sociomaterial network? No source we reviewed integrates the sociocultural and activity-theoretic "
   "tradition with the posthuman and actor-network tradition; the field offers parallel vocabularies for the same "
   "classroom phenomena. This is the fragmentation our framework is designed to address.")
+add_figure("/home/user/Claude/figures/figure3_synthesis.png",
+           "Figure 3. From three strands to one organising principle. Synthesis across the "
+           "feedback, agency, and process literatures converges on a single principle, which the "
+           "stance–structure framework operationalises.")
 
 # ================= 7. FRAMEWORK =================
 H("7. Toward an Integrative Framework: The Stance–Structure Continuum", level=1)
@@ -407,6 +435,12 @@ P("The preceding sections yield a single organising insight. Across feedback, ag
   "(Section 5); and offloading breeds metacognitive laziness unless the process is restructured into a designed "
   "cycle of generation, critique, and reflection (Section 6). We propose to formalise this insight as a "
   "two-axis framework for AI-aware writing instruction, with a third, outcome layer.")
+add_figure("/home/user/Claude/figures/figure1_stance_structure.png",
+           "Figure 1. The Stance–Structure Continuum for AI-aware writing instruction. The vertical "
+           "axis represents theoretical stance (instrumental–mediational to relational–distributed); "
+           "the horizontal axis represents instructional structure (locus, scaffolding, documentation). "
+           "Quadrants describe characteristic configurations; the outcome layer specifies the capacities "
+           "the framework is designed to cultivate.")
 H("7.1 Axis 1: theoretical stance (instrumental–mediational ↔ relational–distributed)", level=2)
 P("The first axis runs from an instrumental–mediational stance, in which AI is a tool wielded by an agentive "
   "human writer (the sociocultural and activity-theoretic pole), to a relational–distributed stance, in which "
