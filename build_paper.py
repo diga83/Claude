@@ -299,10 +299,10 @@ para("The first and largest bucket documents student use and its risks. Synthese
   "as a closing recommendation rather than a developed model—that such tools work best within "
   "“guided, reflective pedagogy” (Sanz-Tejeda et al., 2026). The second bucket centres academic "
   "integrity. Systematic reviews in this vein synthesise how GenAI influences academic honesty, find "
-  "that institutions lack consistent guidelines, and identify assessment redesign as the primary "
-  "institutional pressure point (Bittle & El-Gayar, 2025). Crucially, this bucket frames assessment "
-  "redesign through an integrity-policing lens: the problem to be solved is the detection and deterrence "
-  "of misconduct, not the cultivation of writing ability.")
+  "that institutions lack consistent guidelines, and discuss redesigned assessment methods, "
+  "detection tools, and ethical guidelines as the principal responses (Bittle & El-Gayar, 2025). "
+  "Crucially, this bucket frames those responses through an integrity-policing lens: the problem to be "
+  "solved is the detection and deterrence of misconduct, not the cultivation of writing ability.")
 H2("3.2 Feedback effects and writing-instruction reviews")
 para("A third bucket synthesises the effects of AI-mediated feedback. Meta-analyses report sizeable "
   "average effects of AWE on writing quality (Zhai & Ma, 2023), and a PRISMA-informed scoping review of "
@@ -325,8 +325,14 @@ para("Read together, these reviews leave three openings unfilled. On the teachin
   "being reworked. On feedback, the syntheses are effect-size and perception focused; the construct of "
   "feedback literacy (Carless & Boud, 2018), although directly applicable, is largely absent. On "
   "authorship, agency appears as a student concern or as one theme among many, never as an instructional "
-  "objective that drives design. And across all of them, an integrative theory is absent. The remainder "
-  "of this article addresses these openings.")
+  "objective that drives design. Frameworks have begun to appear—critical-AI-literacy and "
+  "academic-writing AI-literacy models that classify the functional, critical, and rhetorical "
+  "competencies learners need—but these are competency taxonomies rather than syntheses of how writing "
+  "instruction is redesigned, and none integrates the field's fragmented theoretical resources into a "
+  "single account. The contribution of this review is therefore specific: not the first framework for AI "
+  "in writing, but the first to consolidate the teaching literature across feedback, voice, and process "
+  "and to resolve its theoretical fragmentation into one design-and-theory framework. The remainder of "
+  "this article develops that synthesis.")
 
 # ================= 4. FEEDBACK =================
 H1("4. AI-Mediated Feedback as Pedagogy: A Feedback-Literacy Lens")
@@ -504,7 +510,10 @@ para("The preceding sections yield a single organising insight. Across feedback,
   "and through elaborated prompting (Section 5); and offloading breeds metacognitive laziness unless the "
   "process is restructured into a designed cycle of generation, critique, and reflection (Section 6). We "
   "formalise this insight as a two-axis framework for AI-aware writing instruction, with a third, "
-  "outcome layer (Figure 3).")
+  "outcome layer (Figure 3). Unlike the AI-literacy taxonomies that classify the competencies learners "
+  "should acquire, the framework is organised around an instructional design principle—the locus and "
+  "structure of intervention—and is explicitly theory-bearing, positioning the field's rival accounts of "
+  "agency as poles of a single continuum rather than as competing ontologies.")
 figure(f"{FIG}/figure1_stance_structure.png",
        "Figure 3. The Stance–Structure Continuum for AI-aware writing instruction. The vertical axis "
        "represents theoretical stance (instrumental–mediational to relational–distributed); the "
