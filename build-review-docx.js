@@ -1,8 +1,29 @@
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
         AlignmentType, LevelFormat, HeadingLevel, BorderStyle, WidthType,
         ShadingType, PageNumber, PageBreak, Header, Footer, ExternalHyperlink,
-        TabStopType, TabStopPosition } = require("docx");
+        ImageRun, TabStopType, TabStopPosition } = require("docx");
 const fs = require("fs");
+
+// ---- figure helpers ----
+function pngSize(path) { const b = fs.readFileSync(path); return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) }; }
+function figure(path, capLabel, capText, widthPx = 590) {
+  const { w, h } = pngSize(path);
+  const dispH = Math.round(widthPx * h / w);
+  const img = new Paragraph({
+    alignment: AlignmentType.CENTER, spacing: { before: 200, after: 40 }, keepNext: true,
+    children: [new ImageRun({ type: "png", data: fs.readFileSync(path),
+      transformation: { width: widthPx, height: dispH },
+      altText: { title: capLabel, description: capText, name: capLabel } })],
+  });
+  const cap = new Paragraph({
+    alignment: AlignmentType.JUSTIFIED, spacing: { after: 200, line: 260 },
+    children: [
+      new TextRun({ text: capLabel + " ", font: "Times New Roman", size: 18, bold: true }),
+      new TextRun({ text: capText, font: "Times New Roman", size: 18 }),
+    ],
+  });
+  return [img, cap];
+}
 
 // ---------- helpers ----------
 const FONT = "Times New Roman";
@@ -149,6 +170,8 @@ children.push(h2("2.3", "Adversarial verification protocol"));
 children.push(body("To mitigate the risk of citing fabricated or misattributed findings—a documented hazard when AI-assisted tooling supports literature retrieval—twelve load-bearing empirical claims were subjected to a three-vote adversarial verification protocol. Each claim was independently re-checked by three separate verification passes that actively sought to refute it (confirming source existence, authorship, journal, date, sample size, and reported effect). A claim was retained only if it survived this scrutiny; a claim was rejected if it failed two of three checks. Of the twelve claims examined, eleven were confirmed and one was rejected: a circulating set of disparity statistics (“146 implementations; 57% disparities; 14.7% lower predictive accuracy”) was traced to a legitimate DOI whose actual content (a qualitative review of approximately seventy-five papers) did not contain those figures, and was therefore excluded. Claims that could not be fully verified are reported with explicit hedging. In a subsequent pass, the bibliographic details of every cited reference (authorship, venue, year, and identifier) were independently re-checked against scholarly indexes; corrections were applied where discrepancies were found, and candidate sources whose authorship could not be confirmed were excluded rather than cited speculatively."));
 children.push(h2("2.4", "Limitations of the method"));
 children.push(body("As a narrative review, this synthesis is interpretive and non-exhaustive; it does not apply formal systematic-review protocols (e.g., PRISMA) or quantitative pooling, and is therefore susceptible to selection and interpretation effects. Full-text retrieval was constrained for a subset of sources, so certain numeric values derive from cross-checked secondary extractions and should be confirmed against primary documents prior to onward citation. These limitations are revisited in Section 7."));
+children.push(...figure("fig5_method.png", "Figure 1.",
+  "Structured narrative-review and adversarial-verification workflow. Five thematic search angles fed source screening (~40 retained, 2023–2026); twelve load-bearing claims were each independently checked three times, of which eleven were confirmed and one rejected as a misattributed statistic, before synthesis into 36 bibliographically re-verified references."));
 
 // ---------- 3. CONCEPTUAL FRAMING ----------
 children.push(h1(3, "Conceptual Framing: What Makes AI “Agentic”?"));
@@ -158,6 +181,8 @@ children.push(body([
   new TextRun({ text: "Three conceptual fault-lines warrant emphasis. ", font: FONT, bold: false }),
   run("First, terminology is inconsistent: many education papers use “AI agent” and “agentic AI” interchangeably, whereas Sapkota et al. (2025) treat them as distinct paradigms. Second, the asserted leap beyond classical ITS—that agentic systems reason about goals and generate novel instructional strategies rather than following scripted branching—is largely conceptual and not yet demonstrated through rigorous comparative evidence. Third, a normative tension is visible between the academic literature, which embraces autonomy, and institutional bodies such as UNESCO and the OECD, which deliberately avoid “agentic” language and foreground human agency, accountability, and oversight."),
 ]));
+children.push(...figure("fig1_evolution.png", "Figure 2.",
+  "From passive tools to autonomous agents: the evolution of AI in education. Agentic systems are distinguished from earlier paradigms by autonomy, goal-directed planning, tool use, persistent memory, and multi-agent orchestration. Synthesised from Kamalov et al. (2025), Sapkota et al. (2025), and Yan (2025)."));
 
 // ---------- 4. PEDAGOGICAL ROLES ----------
 children.push(h1(4, "Pedagogical Roles"));
@@ -189,9 +214,13 @@ children.push(makeTable([
 ], [3260, 2700, 3400]));
 children.push(caption("Table 2. Principal positive-efficacy evidence for AI tutoring and generative AI in learning."));
 children.push(body("These positive findings carry important hedges: the Kestin et al. (2025) tutoring lesson was researcher-engineered for best-case prompting over short single topics; the Nigeria trial’s (De Simone et al., 2025) “1.5–2 years of schooling” equivalence is an extrapolation; and both ran in teacher-mentored rather than fully autonomous settings."));
-children.push(body("Convergent 2026 meta-analytic work situates the effect as moderate and, crucially, pedagogy-dependent. A meta-analysis confined to generative-AI pedagogical agents reported g = 0.401, with stronger effects under teacher-directed than self-directed learning (Cheng et al., 2026), while a meta-review synthesising prior systematic reviews reached similar conclusions about the centrality of instructional design (Zhang et al., 2026). A 2026 systematic review of higher education likewise reported mixed, discipline-dependent outcomes alongside engagement gains, reinforcing the call for longitudinal evidence (Hon, 2026). Taken together, these syntheses caution against headline point estimates and favour a range bounded by the conditions of use."));
+children.push(body("Convergent 2026 meta-analytic work situates the effect as moderate and, crucially, pedagogy-dependent. A meta-analysis confined to generative-AI pedagogical agents reported g = 0.401, with stronger effects under teacher-directed than self-directed learning (Cheng et al., 2026), while a meta-review synthesising prior systematic reviews reached similar conclusions about the centrality of instructional design (Zhang et al., 2026). A 2026 systematic review of higher education likewise reported mixed, discipline-dependent outcomes alongside engagement gains, reinforcing the call for longitudinal evidence (Hon, 2026). Taken together, these syntheses caution against headline point estimates and favour a range bounded by the conditions of use (Figure 3)."));
+children.push(...figure("fig2_forest.png", "Figure 3.",
+  "Reported standardized effect sizes for AI and generative-AI on learning outcomes. Metrics, comparators, and contexts differ across studies and are not directly poolable; values are shown for orientation only. Whiskers denote the 95% confidence interval (Liu et al., 2025) or the authors’ reported range (Kestin et al., 2025). The retracted estimate (Wang & Fan, 2025) is included solely as a cautionary marker. Sources: Liu et al. (2025); Kestin et al. (2025); Cheng et al. (2026); De Simone et al. (2025)."));
 children.push(h2("5.1", "Over-reliance and the erosion of durable learning"));
-children.push(body("Countervailing evidence is equally rigorous. In a field randomised controlled trial in Turkish secondary mathematics, students using unguarded GPT-4 improved during practice but, once AI access was removed, scored approximately 17% worse on examinations than peers who never had access; critically, a guardrailed “tutor” variant that offered hints rather than answers eliminated this harm (Bastani et al., 2025). This provides the strongest causal evidence that the detriment is design-dependent rather than intrinsic. Convergent findings include reduced self-regulated learning and absent transfer gains despite better short-term essays (“metacognitive laziness”; Fan et al., 2025); superficial learning under over-reliance in 65.5% of fifty-eight programming-education studies (Teaching with AI, 2025); and a preprint EEG study in which LLM users showed the weakest neural connectivity and 83% could not quote from an essay they had just written (Kosmyna et al., 2025). The last is reported here as suggestive only, given its small sample (N = 54) and non-peer-reviewed status. Learner-side accounts corroborate the over-reliance mechanism: a 2026 thematic analysis found that students encountered fabricated citations and overconfident, sycophantic responses, and developed ad hoc verification strategies in response (Shoufan & Esmaeil, 2026)."));
+children.push(body("Countervailing evidence is equally rigorous. In a field randomised controlled trial in Turkish secondary mathematics, students using unguarded GPT-4 improved during practice but, once AI access was removed, scored approximately 17% worse on examinations than peers who never had access; critically, a guardrailed “tutor” variant that offered hints rather than answers eliminated this harm (Bastani et al., 2025). This provides the strongest causal evidence that the detriment is design-dependent rather than intrinsic (Figure 4). Convergent findings include reduced self-regulated learning and absent transfer gains despite better short-term essays (“metacognitive laziness”; Fan et al., 2025); superficial learning under over-reliance in 65.5% of fifty-eight programming-education studies (Teaching with AI, 2025); and a preprint EEG study in which LLM users showed the weakest neural connectivity and 83% could not quote from an essay they had just written (Kosmyna et al., 2025). The last is reported here as suggestive only, given its small sample (N = 54) and non-peer-reviewed status. Learner-side accounts corroborate the over-reliance mechanism: a 2026 thematic analysis found that students encountered fabricated citations and overconfident, sycophantic responses, and developed ad hoc verification strategies in response (Shoufan & Esmaeil, 2026)."));
+children.push(...figure("fig3_dissociation.png", "Figure 4.",
+  "The design-dependent dissociation between immediate output and durable learning (Bastani et al., 2025). During practice, both AI groups improved; on the subsequent AI-free examination, unguarded GPT use reduced scores by approximately 17% relative to students who never had AI, whereas a hint-only guardrailed tutor eliminated the harm. Values are indexed to the control group (= 100)."));
 children.push(h2("5.2", "Evidence quality and a cautionary retraction"));
 children.push(body("Pooled effect sizes for generative AI in education range widely (g ≈ 0.46 to 1.14) across 2025–2026 meta-analyses, signalling heterogeneous, short-term, and frequently low-rigour primary studies alongside probable publication bias. Most strikingly, a heavily cited meta-analysis (Wang & Fan, 2025, retracted; originally reporting g = 0.867) was retracted in 2026 for data discrepancies after several hundred citations and approximately half a million reads (Retraction note, 2026). Accordingly, the conservative peer-reviewed estimate (Liu et al., 2025; g ≈ 0.58) should be preferred, and effects reported as a range rather than a point value."));
 
@@ -208,6 +237,8 @@ children.push(makeTable([
   ["OECD Digital Education Outlook (2023)", "Mandatory bias testing; algorithm transparency; human-in-the-loop grading"],
 ], [3460, 5900]));
 children.push(caption("Table 3. Principal policy instruments governing AI in education (all entries verified against primary sources)."));
+children.push(...figure("fig4_timeline.png", "Figure 5.",
+  "Key governance milestones for AI in education, 2023–2025. Sources: UNESCO (2023, 2024); European Parliament and Council of the European Union (2024)."));
 children.push(body([
   new TextRun({ text: "The agentic accountability gap. ", font: FONT, bold: true, italics: true }),
   run("When autonomous agents initiate and execute actions without a clearly designated human owner, responsibility diffuses across developers, deployers, and end-users—a “moral crumple zone” (Agentic AI, 2025). Critically, the strongest education-specific instruments (UNESCO, the EU AI Act, the OECD) were drafted for generative and predictive AI and predate the agentic framing, constituting a governance gap in itself."),
