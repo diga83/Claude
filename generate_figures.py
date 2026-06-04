@@ -114,9 +114,6 @@ def figure1():
     # connector showing high-structure quadrants drive the outcome
     ax.add_patch(FancyArrowPatch((7.8,10.05),(7.8,10.28), arrowstyle="-|>",
                  mutation_scale=11, color="#2f6b2f", lw=1.2, zorder=4))
-
-    fig.suptitle("Figure 1. The Stance–Structure Continuum for AI-aware writing instruction",
-                 y=0.045, fontsize=10.5, fontweight="bold")
     save(fig, "figure1_stance_structure")
 
 # =====================================================================
@@ -164,9 +161,6 @@ def figure2():
     for cx in [2.3,5.0,7.7]:
         ax.add_patch(FancyArrowPatch((cx,5.45),(cx,3.95), arrowstyle="-|>",
                      mutation_scale=12, color=GREY, lw=1.0, ls=(0,(3,2))))
-
-    fig.suptitle("Figure 2. The review landscape and the pedagogical lacuna",
-                 y=0.02, fontsize=10.5, fontweight="bold")
     save(fig, "figure2_gap_map")
 
 # =====================================================================
@@ -211,9 +205,6 @@ def figure3():
         facecolor="#1f4d1f", edgecolor="#1f4d1f"))
     ax.text(7.45, 0.92, "Stance–Structure framework\n(Figure 1)",
             ha="center", va="center", fontsize=8.6, fontweight="bold", color="white")
-
-    fig.suptitle("Figure 3. From three strands to one organising principle",
-                 y=0.02, fontsize=10.5, fontweight="bold")
     save(fig, "figure3_synthesis")
 
 figure1(); figure2(); figure3()
