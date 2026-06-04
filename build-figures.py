@@ -57,13 +57,12 @@ def fig1():
 def fig2():
     # (label, point, ci_low, ci_high, marker_note, color)
     rows = [
-        ("Wang & Fan (2025) — RETRACTED\nmeta-analysis, performance", 0.867, None, None, "retracted", GREY),
         ("Kestin et al. (2025)\nHarvard physics RCT (range)", 1.015, 0.73, 1.30, "range", TEAL),
         ("Liu et al. (2025)\nmeta-analysis, 37 studies", 0.577, 0.395, 0.759, "ci", BLUE),
         ("Cheng et al. (2026)\nmeta-analysis, GenAI pedagogical agents", 0.401, None, None, "point", BLUE),
         ("World Bank / De Simone et al. (2025)\nNigeria RCT (composite, SD)", 0.31, None, None, "point", AMBER),
     ]
-    fig, ax = plt.subplots(figsize=(9.2, 4.6))
+    fig, ax = plt.subplots(figsize=(9.2, 4.0))
     ys = list(range(len(rows)))[::-1]
     for y, (label, pt, lo, hi, note, color) in zip(ys, rows):
         if lo is not None:
