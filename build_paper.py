@@ -325,14 +325,22 @@ para("Read together, these reviews leave three openings unfilled. On the teachin
   "being reworked. On feedback, the syntheses are effect-size and perception focused; the construct of "
   "feedback literacy (Carless & Boud, 2018), although directly applicable, is largely absent. On "
   "authorship, agency appears as a student concern or as one theme among many, never as an instructional "
-  "objective that drives design. Frameworks have begun to appear—critical-AI-literacy and "
-  "academic-writing AI-literacy models that classify the functional, critical, and rhetorical "
-  "competencies learners need—but these are competency taxonomies rather than syntheses of how writing "
-  "instruction is redesigned, and none integrates the field's fragmented theoretical resources into a "
-  "single account. The contribution of this review is therefore specific: not the first framework for AI "
-  "in writing, but the first to consolidate the teaching literature across feedback, voice, and process "
-  "and to resolve its theoretical fragmentation into one design-and-theory framework. The remainder of "
-  "this article develops that synthesis.")
+  "objective that drives design.")
+para("Frameworks have begun to appear, but they occupy a different register from the synthesis attempted "
+  "here. Several are competency taxonomies that classify what learners should know: Giray's (2025) "
+  "adaptation of Selber's multiliteracies to academic writing distinguishes functional, critical, and "
+  "rhetorical AI literacies, while Wang and Wang's (2025) empirically grounded APSE model specifies four "
+  "dimensions of L2 writers' critical AI literacy—awareness, positionality, strategy, and evaluation. "
+  "Others are general learning-loop architectures: the AI-Educational Development Loop (Yu et al., 2026) "
+  "bridges classical educational theories with human-in-the-loop AI for feedback-sensitive tasks, and "
+  "practitioner rubrics such as the VAPOR heuristic (Online Learning Consortium, 2026) help students "
+  "monitor authorial markers while composing with AI. Each is valuable, but each addresses a part of the "
+  "problem—learner competencies, a generic feedback loop, or an authorial-voice checklist—rather than "
+  "consolidating how writing instruction is being redesigned across feedback, voice, and process, and "
+  "none resolves the field's theoretical fragmentation. The contribution of this review is therefore "
+  "specific: not the first framework for AI in writing, but the first to integrate the teaching "
+  "literature across these three strands and to recast the field's rival theories of agency as poles of "
+  "a single design-and-theory continuum. The remainder of this article develops that synthesis.")
 
 # ================= 4. FEEDBACK =================
 H1("4. AI-Mediated Feedback as Pedagogy: A Feedback-Literacy Lens")
@@ -716,6 +724,9 @@ references = [
  "https://doi.org/10.1111/bjet.13544",
  "Flower, L., & Hayes, J. R. (1981). A cognitive process theory of writing. College Composition and "
  "Communication, 32(4), 365–387. https://doi.org/10.2307/356600",
+ "Giray, L. (2025). AI literacy framework for academic writing in the age of artificial intelligence. "
+ "Internet Reference Services Quarterly. Advance online publication. "
+ "https://doi.org/10.1080/10875301.2025.2605067",
  "Godwin-Jones, R. (2024). Distributed agency in second language learning and teaching through "
  "generative AI. Language Learning & Technology, 28(2), 5–31. https://hdl.handle.net/10125/73570",
  "Graham, S. S. (2023). Post-process but not post-writing: Large language models and a future for "
@@ -728,6 +739,8 @@ references = [
  "Joshi, N., & Vogel, D. (2025). Writing with AI lowers psychological ownership, but longer prompts can "
  "help. In Proceedings of the 7th ACM Conference on Conversational User Interfaces (CUI '25). "
  "Association for Computing Machinery. https://doi.org/10.1145/3719160.3736608",
+ "Online Learning Consortium. (2026, May). The VAPOR framework for critical AI literacy across "
+ "disciplines. OLC Insights. https://onlinelearningconsortium.org/olc-insights/2026/05/vapor-framework/",
  "Sandstead, M. G., & Kibler, A. K. (2025). Voice in L2 writing in the age of AI. Journal of Second "
  "Language Writing, 69, 101212. https://doi.org/10.1016/j.jslw.2025.101212",
  "Sanz-Tejeda, A., Domínguez-Oller, J. C., Baldaquí-Escandell, J. M., Gómez-Díaz, R., & "
@@ -743,12 +756,18 @@ references = [
  "102921. https://doi.org/10.1016/j.compcom.2025.102921",
  "Vygotsky, L. S. (1978). Mind in society: The development of higher psychological processes (M. Cole, "
  "V. John-Steiner, S. Scribner, & E. Souberman, Eds.). Harvard University Press.",
+ "Wang, C., & Wang, Z. (2025). Investigating L2 writers' critical AI literacy in AI-assisted writing: "
+ "An APSE model. Journal of Second Language Writing, 67. "
+ "https://www.sciencedirect.com/science/article/pii/S1060374325000128",
  "Xiao, F., Zhu, S., & Xin, W. (2025). Exploring the landscape of generative AI (ChatGPT)-powered "
  "writing instruction in English as a foreign language education: A scoping review. ECNU Review of "
  "Education, 8(1), 1–19. https://doi.org/10.1177/20965311241310881",
  "Yan, D., & Zhang, S. (2024). L2 writer engagement with automated written corrective feedback provided "
  "by ChatGPT: A mixed-method multiple case study. Humanities and Social Sciences Communications, 11, "
  "1066. https://doi.org/10.1057/s41599-024-03543-y",
+ "Yu, N., Zhang, J., Mitra, S., Smith, R., & Rich, A. (2026). AI-Educational Development Loop (AI-EDL): "
+ "A conceptual framework to bridge AI capabilities with classical educational theories. arXiv. "
+ "https://doi.org/10.48550/arXiv.2508.00970",
  "Zhai, N., & Ma, X. (2023). The effectiveness of automated writing evaluation on writing quality: A "
  "meta-analysis. Journal of Educational Computing Research, 61(4), 875–900. "
  "https://doi.org/10.1177/07356331221127300",
