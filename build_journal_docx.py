@@ -390,16 +390,17 @@ body("The most precise formal home for *6-7* is the expressivist strand of seman
 "expressives as contributing non-truth-conditional, speaker-oriented meaning—what Kaplan (1999) "
 "and Gutzmann (2015) call use-conditional meaning—independent of at-issue content. Potts’s "
 "diagnostic properties map onto *6-7* with uncanny precision (Table 3); descriptive "
-"ineffability—speakers cannot paraphrase an expressive and instead resort to examples of use—is "
-"exactly the behaviour of teenagers and lexicographers confronted with *6-7*. That a dictionary’s "
+"ineffability—speakers are never fully satisfied paraphrasing an expressive and resort instead to "
+"examples of use—is exactly the behaviour of teenagers and lexicographers confronted with *6-7*. "
+"That a dictionary’s "
 "best account is “impossible to define … but meaningful to the people who use it” is the textbook "
 "signature of expressive (use-conditional) meaning.")
 table('Table 3. Potts’s (2007) diagnostic properties of expressives mapped onto “6-7.”',
       ['Property', 'Definition (Potts, 2007)', 'Manifestation in “6-7”'],
-      [['Independence', 'Expressive content is separate from at-issue/descriptive content', 'Adds no proposition to any sentence it punctuates'],
+      [['Independence', 'Expressive content is *largely* independent of—and does not affect—the at-issue/descriptive content', 'Adds no proposition to any sentence it punctuates'],
        ['Nondisplaceability', 'Predicates something of the here-and-now of utterance', 'Performs the present moment; cannot report a past “6-7”'],
        ['Perspective dependence', 'Tied to a perspective, usually the speaker’s', 'Signals the speaker’s stance/affiliation, not a fact'],
-       ['Descriptive ineffability', 'Speakers cannot paraphrase it; they give examples of use', 'Defined by *when* it is said, not *what* it denotes'],
+       ['Descriptive ineffability', 'Speakers are never *fully satisfied* paraphrasing it in descriptive (non-expressive) terms', 'Defined by *when* it is said, not *what* it denotes'],
        ['Immediacy', 'Performs an act rather than describing one', 'Saying it *is* the social act'],
        ['Repeatability', 'Repetition strengthens rather than becoming redundant', 'Chanted, echoic deployment in classrooms and arenas']],
       widths=[1.4, 2.7, 2.4])
