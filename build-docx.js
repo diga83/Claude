@@ -2,8 +2,14 @@ const fs = require("fs");
 const {
   Document, Packer, Paragraph, TextRun, ExternalHyperlink,
   Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType,
-  AlignmentType,
+  AlignmentType, ImageRun,
 } = require("docx");
+
+// Read PNG intrinsic dimensions from the IHDR chunk.
+function pngSize(p) {
+  const b = fs.readFileSync(p);
+  return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+}
 
 const SRC = "lorem-ipsum-narrative-review.md";
 const OUT = "lorem-ipsum-narrative-review.docx";
@@ -52,6 +58,35 @@ while (i < lines.length) {
 
   // horizontal rule -> skip (template has none)
   if (/^---+$/.test(line.trim())) { i++; continue; }
+
+  // figure directive:  @@FIG path | Figure N. caption
+  if (line.startsWith("@@FIG ")) {
+    const rest = line.slice(6).trim();
+    const bar = rest.indexOf("|");
+    const imgPath = rest.slice(0, bar).trim();
+    const cap = rest.slice(bar + 1).trim();
+    const { w, h } = pngSize(imgPath);
+    const dispW = 600, dispH = Math.round(dispW * h / w);
+    children.push(new Paragraph({
+      alignment: AlignmentType.CENTER, spacing: { before: 120, after: 40, ...SINGLE },
+      children: [new ImageRun({
+        type: "png", data: fs.readFileSync(imgPath),
+        transformation: { width: dispW, height: dispH },
+        altText: { title: cap, description: cap, name: cap },
+      })],
+    }));
+    // caption: "Figure N." bold lead-in, rest italic — APA style
+    const m = cap.match(/^(Figure\s+\d+\.)\s*(.*)$/);
+    const capRuns = m
+      ? [new TextRun({ text: m[1] + " ", bold: true, size: 18 }),
+         new TextRun({ text: m[2], italics: true, size: 18 })]
+      : parseInline(cap, { size: 18 });
+    children.push(new Paragraph({
+      alignment: AlignmentType.CENTER, spacing: { before: 0, after: 200, ...SINGLE },
+      children: capRuns,
+    }));
+    i++; continue;
+  }
 
   // headings
   const h = line.match(/^(#{1,3})\s+(.*)$/);

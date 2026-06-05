@@ -30,7 +30,9 @@ This is a **narrative (interpretive) review** rather than a systematic review, a
 
 **Synthesis.** Findings were organized thematically rather than chronologically, tracing the text from classical substrate (§3–4), through attribution and material transmission (§5–7), to function, critique, and risk (§8–11), before discussion (§12–13).
 
-A structural limitation must be stated at the outset: **no peer-reviewed study addresses *lorem ipsum* directly.** The placeholder's history lives in classicist commentary, design-trade history, and journalism; its functional effects must be inferred from adjacent experimental literature. The review's contribution is therefore integrative and critical rather than empirical.
+A structural limitation must be stated at the outset: **no peer-reviewed study addresses *lorem ipsum* directly.** The placeholder's history lives in classicist commentary, design-trade history, and journalism; its functional effects must be inferred from adjacent experimental literature. The review's contribution is therefore integrative and critical rather than empirical. The overall procedure and the source-quality tiers applied during synthesis are summarized in Figure 1.
+
+@@FIG figures/fig1_methods.png | Figure 1. The structured narrative-review and adversarial-verification workflow, with the source-quality tiers applied during synthesis.
 
 ## 3. The Classical Substrate: Cicero, Epicurean Ethics, and the Torquatus Passage
 
@@ -54,6 +56,8 @@ The most telling artifact of corruption is the opening itself. "*Lorem*" is not 
 | **Standard placeholder (corrupted)** | ***Lorem ipsum** dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua…* |
 
 *Note.* The placeholder retains recognizable fragments (*dolor sit amet, consectetur*) while introducing non-existent forms (*adipiscing, eiusmod, incididunt*). The leading *Do-* of *dolorem* is lost at a page break (Cicero, 1914; Antigone, 2021).
+
+@@FIG figures/fig2_corruption.png | Figure 2. The corruption pathway from Cicero's original Latin (A), through the 1914 Loeb page break that severs "do-" from "lorem" (B), to the standard placeholder with its non-existent forms (C).
 
 The conceptual category to which this object belongs—**pseudo-Latin**, language-shaped text without meaning—has a respectable place in classical scholarship on "fakes" and pseudepigrapha (Peirano, 2012). Peirano's analysis concerns ancient literary forgery rather than modern typographic filler, but it supplies the theoretical frame: *lorem ipsum* is a late, mechanical instance of the long-running cultural practice of producing texts that wear the authority of Latinity while withholding its sense.
 
@@ -81,7 +85,9 @@ Two finer attributions require caution. The frequently encountered claim that th
 
 The text's leap from analog typography to global default came with **desktop publishing (DTP)**. Aldus PageMaker, introduced for the Apple Macintosh in 1985, is conventionally credited—together with the graphical interface and the laser printer—with launching the DTP revolution, and with carrying bundled *lorem ipsum* into the digital templates from which it propagated to word processors, layout software, and ultimately content-management systems and web frameworks. The general trajectory (DTP as the vector for the text's ubiquity) is secure; a commonly repeated attribution of the bundled adaptation to an Aldus art director, **Laura Perry**, is sourced only encyclopedically and should be treated as **unverified** ([attributed/unverified]) or omitted from a scholarly account.
 
-The outcome, however sourced, is not in doubt: by the 2000s, *lorem ipsum* had become an infrastructural default—generated on demand by countless tools and shipped inside design software—such that its presence in a layout signals "content pending" to practitioners worldwide.
+The outcome, however sourced, is not in doubt: by the 2000s, *lorem ipsum* had become an infrastructural default—generated on demand by countless tools and shipped inside design software—such that its presence in a layout signals "content pending" to practitioners worldwide. Figure 3 sets out this chronology, distinguishing the documented milestones from the rejected "1500s" conjecture.
+
+@@FIG figures/fig3_timeline.png | Figure 3. Transmission of lorem ipsum from Cicero (45 BCE) to the contemporary web. The "in use since the 1500s" claim is shown as a rejected conjecture; the earliest attested use is the 1966 Letraset sheets. Not to scale.
 
 ## 8. The Functional Rationale and the "Content-First" Critique
 
@@ -115,7 +121,9 @@ The authoritative explanation is linguistic, not conspiratorial. As the computat
 
 ## 12. Discussion
 
-Three themes emerge from this synthesis.
+Three themes emerge from this synthesis, which the interdisciplinary synthesis in Figure 4 draws together.
+
+@@FIG figures/fig4_map.png | Figure 4. Lorem ipsum at the intersection of three scholarly lenses—classical reception, design history, and HCI/UX—converging on the reading of the text as an accidental case of classical reception.
 
 **First, *lorem ipsum* is a case of accidental classical reception.** A fragment of Ciceronian ethics survived not through scholarly transmission but through mechanical accident—a page break in a 1914 translation, a 1960s lettering product, a 1980s software bundle—acquiring along the way a function (meaningless filler) opposite to its origin (an argument about the meaning of a good life). Studied this way, the placeholder is a miniature of how antiquity persists in modern material culture: fragmented, decontextualized, instrumentalized, and yet still legibly Latin enough to carry borrowed authority (Peirano, 2012, as a conceptual frame).
 
