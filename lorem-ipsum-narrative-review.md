@@ -36,7 +36,7 @@ A structural limitation must be stated at the outset: **no peer-reviewed study a
 
 The text derives from Cicero's *De finibus bonorum et malorum* ("On the Ends of Good and Evil"), a dialogue on the highest good composed in 45 BCE (Cicero, 1914/1998). In Book 1, the Roman aristocrat **Lucius Manlius Torquatus** presents and defends Epicurean ethics—the doctrine that pleasure, rightly understood, is the highest good and that pain is avoided not for its own sake but as the contrary of pleasure (Annas & Betegh, 2016; Atkins & Bénatouïl, 2021). The specific source lies at sections **1.10.32–33**, in the passage beginning *"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…"*—rendered by Rackham (Cicero, 1914) as, in substance, "Nor is there anyone who loves, pursues, or wishes to obtain pain itself because it is pain."
 
-Two points of scholarly precision matter. First, the doctrine is **Epicurean and is voiced by Torquatus**; a claim occasionally encountered that the passage belongs to "Hieronymus" is unsupported—Hieronymus of Rhodes figures elsewhere in Cicero's doxographic survey of ethical positions but is not the speaker here (Annas & Betegh, 2016; "The Inconsistency Charge," 2024). Second, the passage is not incidental filler in Cicero's argument but a node in his central exposition of the Epicurean calculus of pleasure and pain—an irony noted by classicist commentators: the world's standard *meaningless* text is excised from one of antiquity's more sustained discussions of how to live meaningfully (Antigone, 2021; O'Donnell, n.d.).
+Two points of scholarly precision matter. First, the doctrine is **Epicurean and is voiced by Torquatus**; a claim occasionally encountered that the passage belongs to "Hieronymus" is unsupported—Hieronymus of Rhodes figures elsewhere in Cicero's doxographic survey of ethical positions but is not the speaker here (Annas & Betegh, 2016; Parker, 2024). Second, the passage is not incidental filler in Cicero's argument but a node in his central exposition of the Epicurean calculus of pleasure and pain—an irony noted by classicist commentators: the world's standard *meaningless* text is excised from one of antiquity's more sustained discussions of how to live meaningfully (Antigone, 2021; O'Donnell, n.d.).
 
 For scholarly citation of the original, the authoritative Latin is the Oxford Classical Text of Reynolds (Cicero, 1998), with the parallel Latin–English of the Loeb edition (Cicero, 1914) and the open digital edition of the Perseus Digital Library (n.d.) providing accessible reference points.
 
@@ -95,7 +95,7 @@ Crucially, the debate is not one-sided. McGrane (2010) offered the standard rebu
 
 The empirical question implicit in the content-first critique—does placeholder versus realistic content change the outcome of design evaluation?—has, strikingly, **not been tested directly** in the peer-reviewed literature. The closest evidence comes from research on **prototype fidelity** in usability testing, which manipulates realism along dimensions such as interactivity and aesthetics rather than textual content per se.
 
-That literature is itself divided. Sauer and Sonderegger (2009; see also Sonderegger & Sauer, 2010) found that prototype fidelity and aesthetic realism measurably affect user behavior, perceived usability, and emotion, with lower-fidelity artifacts liable to distort subjective judgments. Earlier work by Catani and Biers (1998), however, found **no significant difference** in the number or severity of usability problems surfaced across low-, medium-, and high-fidelity prototypes, and comparable fidelity comparisons in mobile and tabletop settings have returned mixed results (de Sá & Carriço, 2006). The honest synthesis is that **realism in the design artifact can influence evaluation, but the effect is inconsistent and context-dependent**, and none of these studies isolates *content* realism specifically.
+That literature is itself divided. Sauer and Sonderegger (2009; see also Sonderegger & Sauer, 2010) found that prototype fidelity and aesthetic realism measurably affect user behavior, perceived usability, and emotion, with lower-fidelity artifacts liable to distort subjective judgments. Earlier work by Catani and Biers (1998), however, found **no significant difference** in the number or severity of usability problems surfaced across low-, medium-, and high-fidelity prototypes, and comparable fidelity comparisons in mobile settings have returned mixed results (Lim et al., 2006). The honest synthesis is that **realism in the design artifact can influence evaluation, but the effect is inconsistent and context-dependent**, and none of these studies isolates *content* realism specifically.
 
 The implication for *lorem ipsum* is twofold. The content-first claim that placeholder text *materially distorts* evaluation is **plausible and partially supported by analogy**, but it is not established by direct evidence; and the strongest empirical caution cuts both ways, since at least some fidelity research suggests evaluation outcomes are more robust to artifact realism than practitioners assume. This gap—between a confident professional discourse and an absent experimental base—is itself a finding.
 
@@ -125,7 +125,7 @@ Three themes emerge from this synthesis.
 
 ## 13. Limitations
 
-This review is constrained by its subject's literature. No peer-reviewed scholarship addresses *lorem ipsum* directly; several load-bearing historical claims rest on a single primary artifact (McClintock, 1994) or on reputable-but-non-academic sources; and key empirical questions (placeholder vs. realistic content; screen-reader handling of greeked body copy) lack controlled study, forcing reliance on analogy and standards. Archival verification of the *Before & After* letter, of the Letraset specimen record (Shaughnessy & Brook, 2015), and of the disputed personal attributions would materially strengthen the historical account. Source retrieval was also subject to indexing constraints, and primary full texts behind several citations were consulted via bibliographic and edition metadata rather than page images; quoted wording from the Latin and its translation should be checked against the cited critical editions (Cicero, 1914, 1998; Perseus Digital Library, n.d.) before reproduction.
+This review is constrained by its subject's literature. No peer-reviewed scholarship addresses *lorem ipsum* directly; several load-bearing historical claims rest on a single primary artifact (McClintock, 1994) or on reputable-but-non-academic sources; and key empirical questions (placeholder vs. realistic content; screen-reader handling of greeked body copy) lack controlled study, forcing reliance on analogy and standards. Archival verification of the *Before & After* letter, of the Letraset specimen record (Shaughnessy & Brook, 2015), and of the disputed personal attributions would materially strengthen the historical account. The peer-reviewed sources central to the empirical and philological arguments (Grothoff et al., 2005; Lim et al., 2006; Sauer & Sonderegger, 2009; Sonderegger & Sauer, 2010; Guerreiro et al., 2023; Parker, 2024) were verified against the original publications; the remaining citations—including the primary critical editions and the design-historical and journalistic sources—rest on publisher and edition metadata rather than full-text inspection, and quoted wording from the Latin and its translation should be checked against the cited critical editions (Cicero, 1914, 1998; Perseus Digital Library, n.d.) before reproduction.
 
 ## 14. Conclusion
 
@@ -149,25 +149,23 @@ Cicero, M. T. (1914). *De finibus bonorum et malorum* (H. Rackham, Trans.; Loeb 
 
 Cicero, M. T. (1998). *De finibus bonorum et malorum: Libri quinque* (L. D. Reynolds, Ed.; Oxford Classical Texts). Oxford University Press.
 
-de Sá, M., & Carriço, L. (2006). Low- vs. high-fidelity prototypes and the validity of mobile usability evaluations. In *Proceedings of the 4th Nordic Conference on Human–Computer Interaction (NordiCHI '06)*. Association for Computing Machinery. https://doi.org/10.1145/1182475.1182506
-
 Deque Systems. (n.d.). *Accessible forms: The problem with placeholders*. https://www.deque.com/blog/accessible-forms-the-problem-with-placeholders/
 
 Greenhalgh, T., Thorne, S., & Malterud, K. (2018). Time to challenge the spurious hierarchy of systematic over narrative reviews? *European Journal of Clinical Investigation, 48*(6), e12931. https://doi.org/10.1111/eci.12931
 
 Grothoff, C., Grothoff, K., Alkhutova, L., Stutsman, R., & Atallah, M. (2005). Translation-based steganography. In *Information Hiding (IH 2005)* (Lecture Notes in Computer Science Vol. 4437, pp. 213–233). Springer. https://doi.org/10.1007/11558859_17
 
-Guerreiro, N. M., Voita, E., & Martins, A. F. T. (2023). Hallucinations in large multilingual translation models. *Transactions of the Association for Computational Linguistics, 11*, 1500–1517. https://doi.org/10.1162/tacl_a_00615
+Guerreiro, N. M., Alves, D. M., Waldendorf, J., Haddow, B., Birch, A., Colombo, P., & Martins, A. F. T. (2023). Hallucinations in large multilingual translation models. *Transactions of the Association for Computational Linguistics, 11*, 1500–1517. https://doi.org/10.1162/tacl_a_00615
 
 Heller, S. (2018, February 15). *When type was dry*. PRINT Magazine. https://www.printmag.com/daily-heller/when-type-was-dry-letraset/
-
-The inconsistency charge in Cicero's *De finibus* 1–2. (2024). *The Classical Quarterly*. Cambridge University Press. https://doi.org/10.1017/S0009838824000107
 
 Krebs, B. (2014, August 27). *Lorem ipsum: Of good & evil, Google & China*. Krebs on Security. https://krebsonsecurity.com/2014/08/lorem-ipsum-of-good-evil-google-china/
 
 Lamacraft, J. (2013). Rub-down revolution. *Eye Magazine, (86)*. https://www.eyemagazine.com/feature/article/rub-down-revolution
 
 Liberman, M. (2014, August 20). *Lorem China*. Language Log, University of Pennsylvania. https://languagelog.ldc.upenn.edu/nll/?p=14163
+
+Lim, Y., Pangam, A., Periyasami, S., & Aneja, S. (2006). Comparative analysis of high- and low-fidelity prototypes for more valid usability evaluations of mobile devices. In *Proceedings of the 4th Nordic Conference on Human–Computer Interaction (NordiCHI '06)* (pp. 291–300). Association for Computing Machinery. https://doi.org/10.1145/1182475.1182506
 
 Lipsum.com. (n.d.). *Lorem Ipsum: All the facts*. https://www.lipsum.com/
 
@@ -178,6 +176,8 @@ McGrane, K. (2010, January 10). *In defense of lorem ipsum*. User Interface Engi
 Nielsen Norman Group. (2014). *Placeholders in form fields are harmful*. https://www.nngroup.com/articles/form-design-placeholders/
 
 O'Donnell, J. J. (n.d.). *Fake Latin*. Georgetown University. https://faculty.georgetown.edu/jod/texts/fakelatin.html
+
+Parker, D. (2024). The inconsistency charge in Cicero's *De finibus* 1–2. *The Classical Quarterly, 74*(1), 124–134. https://doi.org/10.1017/S0009838824000107
 
 Pearson, J. (2014, August 19). *The search for meaning in a cryptic Google translation of untranslatable words*. Vice (Motherboard). https://www.vice.com/en/article/the-search-for-meaning-in-a-cryptic-google-translation/
 
