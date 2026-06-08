@@ -64,8 +64,8 @@ fig.savefig(f"{OUT}/fig1.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 # ---------------------------------------------------------------
 fig, ax = plt.subplots(figsize=(9.8, 6.2)); ax.axis("off")
 ax.set_xlim(0, 100); ax.set_ylim(0, 62)
-# Root
-box(ax, 35, 54, 30, 6.5, "NOUN clock  ( < L. clocca 'bell', c.1350)", fc="#f3f3f3", ec=INK, fs=10.5, bold=True)
+# Root (wide box so the long single-line title cannot overflow)
+box(ax, 26, 54, 48, 6.5, "NOUN clock  (< L. clocca 'bell', c. 1350)", fc="#f3f3f3", ec=INK, fs=10, bold=True)
 # two noun derivations (well clear of center column)
 box(ax, 4, 40, 26, 6.5, "noun 'face'\n(timepiece analogy, early C20)", fc="#f3f3f3", ec=GREY, fs=9)
 box(ax, 70, 40, 26, 6.5, "verb 'register / record'\n(a time, a speed)", fc="#f3f3f3", ec=GREY, fs=9)
