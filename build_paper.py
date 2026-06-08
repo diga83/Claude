@@ -229,14 +229,24 @@ para("Two inclusion principles were applied. First, the evidentiary base was res
      "rather than as an analytic source.")
 
 para("Two limitations follow from the review" + chr(0x2019) + "s procedure and should temper "
-     "the confidence attached to the most fine-grained claims. Full texts behind several "
-     "academic paywalls and the major dictionaries could not be retrieved directly during "
-     "source identification; consequently, the precise dated citations reported in Section 3 "
-     "rest on consistent secondary and catalogue evidence and should be confirmed against the "
+     "the confidence attached to the most fine-grained claims. The dated lexicographic "
+     "citations reported in Section 3 derive from scholarly slang dictionaries consulted "
+     "through catalogue and secondary evidence and should be confirmed against the "
      "subscription or print originals before being quoted verbatim. Where the literature "
      "supports only an inference rather than a direct statement " + chr(0x2013) + " for "
      "example, linking a monograph on surveillance to the slang lexeme clock " + chr(0x2013) +
      " this is stated explicitly. A confidence rating accompanies the synthesis in Section 8.")
+
+para("For a convenience set of seven full-text sources central to the argument " +
+     chr(0x2013) + " Wong (2025), Ilbury (2020), Ilbury and Walcott (2026), Crowley (2025), "
+     "McKinnon (2017), Simmons (2014), and Zimman (2020) " + chr(0x2013) + " the full "
+     "published or author-accepted texts were examined directly. A simple lexical check of "
+     "this set returned a striking result that motivates the review" + chr(0x2019) + "s "
+     "central claim: the lemma clock occurs only in Wong (2025), and is entirely absent from "
+     "the other six, even though each engages the surrounding phenomena of passing, reading, "
+     "enregisterment, or appropriation. This concrete absence, reported in Sections 5 and 8, "
+     "is treated as evidence rather than as an artifact of sampling, since the set was "
+     "selected precisely for its topical proximity to the item.")
 
 # ============================================================
 # 3. LEXICOGRAPHIC RECORD
@@ -356,13 +366,21 @@ para("It is in transgender studies that clocking has received its most sustained
      "treatment, even though the field generally adopts the term as community vernacular "
      "rather than subjecting it to lexical analysis. The pivotal contribution is Wong" +
      chr(0x2019) + "s (2025) analysis of the ambivalences of trans recognition. Working in "
-     "social philosophy and drawing on Honneth, Wong treats clocking as the recognition of a "
-     "person" + chr(0x2019) + "s transness " + chr(0x2013) + " an event that conventionally "
-     "signals a failure to pass " + chr(0x2013) + " and then performs a deliberate inversion "
-     "of its usual valuation, arguing that, even for those who wish to pass, there are "
-     "grounds to regard passing as itself a form of misrecognition and clocking as a form of "
-     "recognition. This thesis stands as the sharpest scholarly disagreement in the corpus, "
-     "directly contesting the lay framing in which being clocked is uniformly a harm.")
+     "social philosophy and drawing on Honneth, Wong defines the term directly: " + chr(0x201C) +
+     "Clocking is literally recognition of a person" + chr(0x2019) + "s transness, which "
+     "implies that person" + chr(0x2019) + "s failing to pass, being spotted in their "
+     "transness, and losing realness" + chr(0x201D) + " (Wong, 2025), and elaborates that " +
+     chr(0x201C) + "being clocked designates being spotted as trans, losing realness, failing "
+     "to pass" + chr(0x201D) + " while " + chr(0x201C) + "clocking inscribes the demands of "
+     "cis-normativity within an act of seeing a person as trans" + chr(0x201D) + " (Wong, "
+     "2025). Wong then performs a deliberate inversion of the term" + chr(0x2019) + "s usual "
+     "valuation: because the criteria of passing are themselves cis-normative, " + chr(0x201C) +
+     "passing, not being clocked, is misrecognition; consequently, recognition is clocking" +
+     chr(0x201D) + " (Wong, 2025), a position the article condenses into the formula that " +
+     chr(0x201C) + "recognition is clocking, and clocking is recognition" + chr(0x201D) + ". "
+     "This thesis stands as the sharpest scholarly disagreement in the corpus, directly "
+     "contesting the lay framing in which being clocked is uniformly a harm. It is also, "
+     "notably, the only source in the assembled set that uses the lexeme clock at all.")
 
 para("Schiffer" + chr(0x2019) + "s (2022) ethnographic study brings the term into "
      "interactional sociology. Reflecting on fieldwork conducted as a transgender woman, "
@@ -419,13 +437,17 @@ para("The item belongs to a Black and Latinx queer vernacular system whose other
 para("The pragmatic literature distinguishes the cluster with some precision: clocking is the "
      "detection of a concealed truth or flaw; reading is the artful delivery of a pointed "
      "insult; and shade is the indirect, implicational form of reading. The speech act of "
-     "reading has been analyzed as a form of reversed or mock impoliteness that builds "
-     "solidarity rather than division, both in backstage drag interaction and in the "
-     "mediatized " + chr(0x2018) + "Reading Challenge" + chr(0x2019) + " of RuPaul" +
-     chr(0x2019) + "s Drag Race (Mann, 2011; McKinnon, 2023; Simmons, 2014). It is telling "
-     "that even within this comparatively developed literature, reading and shade are defined "
-     "and exemplified far more sharply than clocking, which tends to be glossed in passing. "
-     "The asymmetry is itself evidence of the lacuna this review identifies.")
+     "reading has been analyzed as a form of mock impoliteness that builds in-group "
+     "solidarity rather than division: McKinnon (2017) examines reading in the backstage "
+     "talk of four drag queen performers and argues that what appears as insult functions to "
+     "build a shared " + chr(0x2018) + "thick skin," + chr(0x2019) + " while McKinnon (2023) "
+     "and Simmons (2014) extend the analysis to the mediatized " + chr(0x2018) + "Reading "
+     "Challenge" + chr(0x2019) + " and to the speech codes of RuPaul" + chr(0x2019) +
+     "s Drag Race respectively. It is telling that even within this comparatively developed "
+     "literature " + chr(0x2013) + " and in keeping with the lexical check reported in "
+     "Section 2 " + chr(0x2013) + " reading and shade are defined and exemplified far more "
+     "sharply than clocking, which is glossed only in passing where it appears at all. The "
+     "asymmetry is itself evidence of the lacuna this review identifies.")
 
 # ============================================================
 # 7. MEDIATIZATION AND APPROPRIATION
@@ -493,7 +515,12 @@ para("Read together, the four literatures yield a coherent genealogy. A general 
 
 para("The review also makes plain a conspicuous lacuna. Despite the rich treatment of its "
      "lexical siblings, the item clock has attracted no dedicated empirical or lexicological "
-     "study; it is everywhere adjacent and nowhere central. Closing this gap would require "
+     "study; it is everywhere adjacent and nowhere central. The point is not merely "
+     "impressionistic: in the assembled set of seven full-text sources closest to the topic, "
+     "the lemma clock appears only in Wong (2025) and is absent from the remaining six, each "
+     "of which nonetheless theorizes passing, reading, enregisterment, or appropriation "
+     "(Crowley, 2025; Ilbury, 2020; Ilbury & Walcott, 2026; McKinnon, 2017; Simmons, 2014; "
+     "Zimman, 2020). Closing this gap would require "
      "three steps. First, a corpus-based diachronic study, modeled on existing work on shade "
      "and reading, could trace the item" + chr(0x2019) + "s frequency, collocational profile, "
      "and register migration across community, broadcast, and social-media data. Second, a "
@@ -523,9 +550,10 @@ claims = [
     ("Passing-as-misrecognition / clocking-as-recognition inversion", "High", "Wong (2025)"),
     ("Diffusion best framed as racialized appropriation/erasure", "High",
      "Ilbury (2020); Ilbury & Walcott (2026); Crowley (2025)"),
-    ("clock vs reading vs shade are distinct speech acts", "Medium", "Mann (2011); McKinnon (2023); Simmons (2014)"),
+    ("clock vs reading vs shade are distinct speech acts", "Medium", "McKinnon (2017, 2023); Simmons (2014)"),
     ("Regional origin (US vs British) of perception sense", "Low (contested)", "OED vs. usage evidence"),
-    ("No dedicated study of clock exists (lacuna)", "High", "Convergent negative finding"),
+    ("No dedicated study of clock exists; lemma absent in 6 of 7 full-text sources", "High",
+     "Lexical check; convergent negative finding"),
 ]
 for cl, conf, sup in claims:
     cells = tbl2.add_row().cells
@@ -602,9 +630,10 @@ refs = [
     "all mean AAVE" + chr(0x201D) + ": The appropriation of African American Vernacular "
     "English as " + chr(0x201C) + "TikTok language." + chr(0x201D) + " Journal of "
     "Sociolinguistics. Advance online publication. https://doi.org/10.1111/josl.70024",
-    "Mann, S. L. (2011). " + chr(0x201C) + "Building a thick skin for each other" + chr(0x201D) +
+    "McKinnon, S. (2017). " + chr(0x201C) + "Building a thick skin for each other" + chr(0x201D) +
     ": The use of " + chr(0x201C) + "reading" + chr(0x201D) + " as an interactional practice "
-    "of mock impoliteness in drag queen backstage talk. Journal of Language and Sexuality.",
+    "of mock impoliteness in drag queen backstage talk. Journal of Language and Sexuality, "
+    "6(1), 90" + chr(0x2013) + "127. https://doi.org/10.1075/jls.6.1.04mck",
     "McKinnon, S. (2023). " + chr(0x201C) + "Haute couture? More like haute glue!" + chr(0x201D) +
     ": The discourse of the reading challenge in RuPaul" + chr(0x2019) + "s Drag Race. Journal "
     "of Language and Sexuality, 12(1), 73" + chr(0x2013) + "97. https://doi.org/10.1075/jls.21013",
@@ -619,7 +648,7 @@ refs = [
     "a speech code of American drag queens. Sexuality & Culture, 18(3), 630" + chr(0x2013) +
     "648. https://doi.org/10.1007/s12119-013-9213-2",
     "Wong, J. (2025). Ambivalences of trans recognition. Hypatia, 40(2), 269" + chr(0x2013) +
-    "289. https://www.cambridge.org/core/journals/hypatia",
+    "289. https://doi.org/10.1017/hyp.2024.61",
     "Zimman, L. (2020). Transgender language, transgender moment: Toward a trans linguistics. "
     "In K. Hall & R. Barrett (Eds.), The Oxford handbook of language and sexuality. Oxford "
     "University Press.",
