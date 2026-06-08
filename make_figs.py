@@ -62,30 +62,30 @@ fig.savefig(f"{OUT}/fig1.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 # ---------------------------------------------------------------
 # FIGURE 2 — Semantic genealogy of "to clock"
 # ---------------------------------------------------------------
-fig, ax = plt.subplots(figsize=(9.8, 5.4)); ax.axis("off")
-ax.set_xlim(0, 100); ax.set_ylim(0, 54)
+fig, ax = plt.subplots(figsize=(9.8, 6.2)); ax.axis("off")
+ax.set_xlim(0, 100); ax.set_ylim(0, 62)
 # Root
-box(ax, 35, 46, 30, 6.5, "NOUN clock  ( < L. clocca 'bell', c.1350)", fc="#f3f3f3", ec=INK, fs=10.5, bold=True)
+box(ax, 35, 54, 30, 6.5, "NOUN clock  ( < L. clocca 'bell', c.1350)", fc="#f3f3f3", ec=INK, fs=10.5, bold=True)
 # two noun derivations (well clear of center column)
-box(ax, 4, 35, 26, 6.5, "noun 'face'\n(timepiece analogy, early C20)", fc="#f3f3f3", ec=GREY, fs=9)
-box(ax, 70, 35, 26, 6.5, "verb 'register / record'\n(a time, a speed)", fc="#f3f3f3", ec=GREY, fs=9)
-arrow(ax, 44, 46, 22, 41.7); arrow(ax, 56, 46, 80, 41.7)
+box(ax, 4, 40, 26, 6.5, "noun 'face'\n(timepiece analogy, early C20)", fc="#f3f3f3", ec=GREY, fs=9)
+box(ax, 70, 40, 26, 6.5, "verb 'register / record'\n(a time, a speed)", fc="#f3f3f3", ec=GREY, fs=9)
+arrow(ax, 44, 54, 24, 48.0); arrow(ax, 56, 54, 76, 48.0)
 # strike branch (separate) — left column, gap from center
-box(ax, 4, 23, 26, 7, "VERB 'to strike / punch'\n(1941, orig. Australian)", fc=LIGHT2, ec=ACC2, fs=9)
-arrow(ax, 17, 35, 17, 30.3, color=ACC2)
-ax.text(17, 20.3, "separate branch\n(not the review's sense)", ha="center", va="top",
+box(ax, 4, 25, 26, 7, "VERB 'to strike / punch'\n(1941, orig. Australian)", fc=LIGHT2, ec=ACC2, fs=9)
+arrow(ax, 17, 40, 17, 33.8, color=ACC2)
+ax.text(17, 22.3, "separate branch\n(not the review's sense)", ha="center", va="top",
         fontsize=8, color=ACC2, style="italic")
 # perception sense (core) — center column
-box(ax, 36, 23, 28, 7, "VERB 'to notice / see /\nrecognize'  (1929; 1942)", fc=LIGHT, ec=ACC, fs=10, bold=True)
-arrow(ax, 50, 46, 50, 30.3, color=ACC, lw=2.2)
+box(ax, 36, 25, 28, 7, "VERB 'to notice / see /\nrecognize'  (1929; 1942)", fc=LIGHT, ec=ACC, fs=10, bold=True)
+arrow(ax, 50, 54, 50, 33.8, color=ACC, lw=2.2)
 # specialization
-box(ax, 36, 12, 28, 7, "SPECIALIZATION: 'clocked'\n= read as trans / not passing\n(ballroom & trans communities)", fc=LIGHT, ec=ACC, fs=9, bold=True)
-arrow(ax, 50, 23, 50, 19.3, color=ACC, lw=2.2)
-ax.text(66, 15.5, "narrowing", ha="left", va="center", fontsize=8.5, color=ACC, style="italic")
+box(ax, 36, 13, 28, 7.5, "SPECIALIZATION: 'clocked'\n= read as trans / not passing\n(ballroom & trans communities)", fc=LIGHT, ec=ACC, fs=9, bold=True)
+arrow(ax, 50, 25, 50, 21.4, color=ACC, lw=2.2)
+ax.text(66, 16.8, "narrowing", ha="left", va="center", fontsize=8.5, color=ACC, style="italic")
 # re-generalization
-box(ax, 36, 1, 28, 7, "RE-GENERALIZATION: 'clock it'\n= name a concealed truth\n(mainstream / Gen Z)", fc=LIGHT3, ec="#2f7d4f", fs=9, bold=True)
-arrow(ax, 50, 12, 50, 8.3, color="#2f7d4f", lw=2.2)
-ax.text(66, 4.5, "broadening", ha="left", va="center", fontsize=8.5, color="#2f7d4f", style="italic")
+box(ax, 36, 1, 28, 7.5, "RE-GENERALIZATION: 'clock it'\n= name a concealed truth\n(mainstream / Gen Z)", fc=LIGHT3, ec="#2f7d4f", fs=9, bold=True)
+arrow(ax, 50, 13, 50, 9.4, color="#2f7d4f", lw=2.2)
+ax.text(66, 4.8, "broadening", ha="left", va="center", fontsize=8.5, color="#2f7d4f", style="italic")
 plt.tight_layout(pad=0.4)
 fig.savefig(f"{OUT}/fig2.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 
