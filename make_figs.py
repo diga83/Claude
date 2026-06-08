@@ -16,15 +16,17 @@ LIGHT = "#eef2f7"; LIGHT2 = "#f6eef1"; LIGHT3 = "#eef5ee"; GOLD = "#b8860b"
 
 def box(ax, x, y, w, h, text, fc=LIGHT, ec=ACC, fs=11, bold=False, tc=INK):
     p = FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=0.06",
-                       linewidth=1.4, edgecolor=ec, facecolor=fc, mutation_aspect=1)
+                       linewidth=1.4, edgecolor=ec, facecolor=fc, mutation_aspect=1,
+                       clip_on=False)
     ax.add_patch(p)
     ax.text(x + w/2, y + h/2, text, ha="center", va="center", fontsize=fs,
-            color=tc, fontweight=("bold" if bold else "normal"), wrap=True)
+            color=tc, fontweight=("bold" if bold else "normal"), wrap=True,
+            clip_on=False)
 
 def arrow(ax, x1, y1, x2, y2, color=GREY, style="-|>", lw=1.6, ls="-"):
     ax.add_patch(FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=style,
                  mutation_scale=16, lw=lw, color=color, linestyle=ls,
-                 shrinkA=2, shrinkB=2))
+                 shrinkA=2, shrinkB=2, clip_on=False))
 
 # ---------------------------------------------------------------
 # FIGURE 1 — Structured narrative-review & verification workflow
@@ -60,31 +62,31 @@ fig.savefig(f"{OUT}/fig1.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 # ---------------------------------------------------------------
 # FIGURE 2 — Semantic genealogy of "to clock"
 # ---------------------------------------------------------------
-fig, ax = plt.subplots(figsize=(9.6, 5.0)); ax.axis("off")
-ax.set_xlim(0, 100); ax.set_ylim(0, 52)
+fig, ax = plt.subplots(figsize=(9.8, 5.4)); ax.axis("off")
+ax.set_xlim(0, 100); ax.set_ylim(0, 54)
 # Root
-box(ax, 36, 44, 28, 6.5, "NOUN clock  ( < L. clocca 'bell', c.1350)", fc="#f3f3f3", ec=INK, fs=10.5, bold=True)
-# two noun derivations
-box(ax, 8, 33, 28, 6.5, "noun 'face'\n(timepiece analogy, early C20)", fc="#f3f3f3", ec=GREY, fs=9.5)
-box(ax, 64, 33, 28, 6.5, "verb 'register / record'\n(a time, a speed)", fc="#f3f3f3", ec=GREY, fs=9.5)
-arrow(ax, 46, 44, 26, 39.5); arrow(ax, 54, 44, 74, 39.5)
-# strike branch (separate)
-box(ax, 8, 22, 28, 6.5, "VERB 'to strike / punch'\n(1941, orig. Australian)", fc=LIGHT2, ec=ACC2, fs=9.5)
-arrow(ax, 22, 33, 22, 28.5, color=ACC2)
-ax.text(22, 18.7, "separate branch\n(not the review's sense)", ha="center", va="top",
+box(ax, 35, 46, 30, 6.5, "NOUN clock  ( < L. clocca 'bell', c.1350)", fc="#f3f3f3", ec=INK, fs=10.5, bold=True)
+# two noun derivations (well clear of center column)
+box(ax, 4, 35, 26, 6.5, "noun 'face'\n(timepiece analogy, early C20)", fc="#f3f3f3", ec=GREY, fs=9)
+box(ax, 70, 35, 26, 6.5, "verb 'register / record'\n(a time, a speed)", fc="#f3f3f3", ec=GREY, fs=9)
+arrow(ax, 44, 46, 22, 41.7); arrow(ax, 56, 46, 80, 41.7)
+# strike branch (separate) — left column, gap from center
+box(ax, 4, 23, 26, 7, "VERB 'to strike / punch'\n(1941, orig. Australian)", fc=LIGHT2, ec=ACC2, fs=9)
+arrow(ax, 17, 35, 17, 30.3, color=ACC2)
+ax.text(17, 20.3, "separate branch\n(not the review's sense)", ha="center", va="top",
         fontsize=8, color=ACC2, style="italic")
-# perception sense (core)
-box(ax, 36, 22, 28, 7, "VERB 'to notice / see /\nrecognize'  (1929; 1942)", fc=LIGHT, ec=ACC, fs=10, bold=True)
-arrow(ax, 50, 44, 50, 29.2, color=ACC, lw=2.2)
+# perception sense (core) — center column
+box(ax, 36, 23, 28, 7, "VERB 'to notice / see /\nrecognize'  (1929; 1942)", fc=LIGHT, ec=ACC, fs=10, bold=True)
+arrow(ax, 50, 46, 50, 30.3, color=ACC, lw=2.2)
 # specialization
-box(ax, 36, 11, 28, 7, "SPECIALIZATION: 'clocked'\n= read as trans / not passing\n(ballroom & trans communities)", fc=LIGHT, ec=ACC, fs=9.2, bold=True)
-arrow(ax, 50, 22, 50, 18.2, color=ACC, lw=2.2)
-ax.text(65.5, 14.5, "narrowing", ha="left", va="center", fontsize=8.5, color=ACC, style="italic")
+box(ax, 36, 12, 28, 7, "SPECIALIZATION: 'clocked'\n= read as trans / not passing\n(ballroom & trans communities)", fc=LIGHT, ec=ACC, fs=9, bold=True)
+arrow(ax, 50, 23, 50, 19.3, color=ACC, lw=2.2)
+ax.text(66, 15.5, "narrowing", ha="left", va="center", fontsize=8.5, color=ACC, style="italic")
 # re-generalization
-box(ax, 36, 1, 28, 7, "RE-GENERALIZATION: 'clock it'\n= name a concealed truth\n(mainstream / Gen Z)", fc=LIGHT3, ec="#2f7d4f", fs=9.2, bold=True)
-arrow(ax, 50, 11, 50, 8.2, color="#2f7d4f", lw=2.2)
-ax.text(65.5, 4.5, "broadening", ha="left", va="center", fontsize=8.5, color="#2f7d4f", style="italic")
-plt.tight_layout(pad=0.3)
+box(ax, 36, 1, 28, 7, "RE-GENERALIZATION: 'clock it'\n= name a concealed truth\n(mainstream / Gen Z)", fc=LIGHT3, ec="#2f7d4f", fs=9, bold=True)
+arrow(ax, 50, 12, 50, 8.3, color="#2f7d4f", lw=2.2)
+ax.text(66, 4.5, "broadening", ha="left", va="center", fontsize=8.5, color="#2f7d4f", style="italic")
+plt.tight_layout(pad=0.4)
 fig.savefig(f"{OUT}/fig2.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 
 # ---------------------------------------------------------------
@@ -115,8 +117,8 @@ fig.savefig(f"{OUT}/fig3.png", dpi=200, bbox_inches="tight"); plt.close(fig)
 # ---------------------------------------------------------------
 # FIGURE 4 — Four scholarly lenses on "clock it"
 # ---------------------------------------------------------------
-fig, ax = plt.subplots(figsize=(8.6, 5.4)); ax.axis("off")
-ax.set_xlim(0, 100); ax.set_ylim(0, 62)
+fig, ax = plt.subplots(figsize=(9.0, 5.6)); ax.axis("off")
+ax.set_xlim(-3, 103); ax.set_ylim(-1, 63)
 # central hub
 hub = Circle((50, 31), 11, facecolor=GOLD, edgecolor=INK, lw=1.6, alpha=0.95, zorder=3)
 ax.add_patch(hub)
