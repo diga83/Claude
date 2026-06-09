@@ -267,13 +267,13 @@ h1('8. Meaning-Based Lexical Theory: Reference, Truth, and Sense')
 body("The dominant strand of formal semantics ties meaning to the world. Frege’s (1892/1948) "
 "distinction between sense (*Sinn*) and reference (*Bedeutung*) keeps reference central: “the morning "
 "star” and “the evening star” differ in sense yet share a referent, Venus. Truth-conditional "
-"semantics, developed by Davidson (1967) on Tarski’s theory of truth, holds that to give the meaning "
+"semantics, developed by Davidson (1967) on Tarski’s (1944) theory of truth, holds that to give the meaning "
 "of a sentence is to give its truth conditions, so that a word’s meaning is its contribution to those "
 "conditions. The difficulty is immediate: *6-7* has no plausible truth-conditional contribution. It is "
 "not a predicate, names nothing, and a sentence is no more or less true for containing it—by the "
 "lights of strict truth-conditional semantics, not so much false as not truth-apt.")
 body("Lexical semantics, in turn, studies word meaning and the sense relations—synonymy, hyponymy, "
-"antonymy, polysemy—that structure the lexicon (Jurafsky & Martin, 2023). Identifying lexical meaning "
+"antonymy, polysemy—that structure the lexicon (Cruse, 1986; Jurafsky & Martin, 2023). Identifying lexical meaning "
 "purely with reference makes it hard to account for synonymy and analytic entailment, so the field "
 "distinguishes an inferential aspect of lexical competence (relations among senses) from a referential "
 "aspect (naming and application) (Stanford Encyclopedia of Philosophy, n.d.). *6-7* enters into "
@@ -289,7 +289,7 @@ body("The principal rival tradition makes *use*, not reference, primary. Wittgen
 "resemblance rather than shared essence; Wittgenstein hedged—“not for all” cases—and *6-7* falls "
 "squarely in the use-governed, non-ostensive class he had in mind. Three further frameworks bear on "
 "slang: Firth’s (1957) distributional dictum (“you shall know a word by the company it keeps”); "
-"usage-based linguistics, which models grammar as a network of constructions learned from use; and "
+"usage-based linguistics, which models grammar as a network of constructions learned from use (Bybee, 2010); and "
 "construction grammar (Goldberg, 1995), which treats lexical and syntactic units alike as "
 "form–meaning pairings. Each permits “meaning” to be a conventionalised pairing of a form with a "
 "*function*—including a purely social function—rather than with a referent.")
@@ -456,10 +456,12 @@ for label, txt in [
 # ===== REFERENCES =====
 h1('References')
 REFS = [
- 'Bleacher Report. (n.d.). *How NBA star LaMelo Ball accidentally sparked the TikTok “6-7” meme*. https://bleacherreport.com/articles/25240758-how-nba-star-lamelo-ball-accidentally-sparked-tiktok-6-7-meme',
  'Blakemore, D. (2002). *Relevance and linguistic meaning: The semantics and pragmatics of discourse markers*. Cambridge University Press.',
+ 'Bleacher Report. (n.d.). *How NBA star LaMelo Ball accidentally sparked the TikTok “6-7” meme*. https://bleacherreport.com/articles/25240758-how-nba-star-lamelo-ball-accidentally-sparked-tiktok-6-7-meme',
+ 'Bybee, J. (2010). *Language, usage and cognition*. Cambridge University Press.',
  'CNN. (2025, October 18). *The “6-7” meme can be annoying. Kids are shouting it for a reason*. https://www.cnn.com/2025/10/18/us/6-7-meme-slang-explained-cec',
  'Complex. (2025). *Skrilla’s “6-7” meme, explained*. https://www.complex.com/music/a/khal/skrilla-6-7-meme-explained',
+ 'Cruse, D. A. (1986). *Lexical semantics*. Cambridge University Press.',
  'Davidson, D. (1967). Truth and meaning. *Synthese, 17*(3), 304–323. https://doi.org/10.1007/BF00485035',
  'Dawkins, R. (1976). *The selfish gene*. Oxford University Press.',
  'Dictionary.com. (2025, October 28). *Dictionary.com’s 2025 word of the year is “67.”* https://www.dictionary.com/articles/word-of-the-year-2025',
@@ -490,6 +492,7 @@ REFS = [
  'Skrilla. (2025). *Doot doot (6 7)* [Song]. Priority Records.',
  'Smithsonian Magazine. (2025, October 30). *The term “67” is impossible to define. It just became Dictionary.com’s word of the year for 2025*. https://www.smithsonianmag.com/smart-news/the-term-67-is-impossible-to-define-it-just-became-dictionary-coms-word-of-the-year-for-2025-180987650/',
  'Stanford Encyclopedia of Philosophy. (n.d.). *Word meaning*. https://plato.stanford.edu/entries/word-meaning/',
+ 'Tarski, A. (1944). The semantic conception of truth and the foundations of semantics. *Philosophy and Phenomenological Research, 4*(3), 341–376. https://doi.org/10.2307/2102968',
  'Today. (2024, June 27). *What does “skibidi” mean?* https://www.today.com/parents/teens/skibidi-slang-meaning-rcna153557',
  'University of Colorado Boulder. (2021, May 3). *To “yeet” or not to “yeet”: African American slang beyond Vine*. https://www.colorado.edu/linguistics/2021/05/03/yeet-or-not-yeet-african-american-slang-beyond-vine',
  'WHYY. (2025). *The meaning of “6-7” and its Philadelphia roots*. https://whyy.org/articles/meaning-6-7-skrilla-philadelphia/',
