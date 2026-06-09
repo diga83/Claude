@@ -173,11 +173,11 @@ figure('fig1_workflow.png',
        'Figure 1. The structured narrative-review and adversarial-verification workflow.')
 table('Table 1. Evidence and verification appraisal of principal claims.',
       ['Claim', 'Best source(s)', 'Tier', 'Status'],
-      [['Originates in Skrilla’s “Doot Doot (6 7)”', 'Complex, 2025; WHYY, 2025; Wikipedia, n.d.-b', 'Reputable press + creator', 'Secure'],
-       ['Official release 7 Feb 2025 (Priority Records)', 'Wikipedia, n.d.-b; Bleacher Report, n.d.', 'Reputable press', 'Secure'],
+      [['Originates in Skrilla’s “Doot Doot (6 7)”', 'Complex, 2025; WHYY, 2025; Skrilla, 2025', 'Creator interview + primary release', 'Secure'],
+       ['Official release 7 Feb 2025 (Priority Records)', 'Skrilla, 2025; Bleacher Report, n.d.', 'Primary release + press', 'Secure'],
        ['Has no fixed/definable meaning', 'Dictionary.com, 2025; Skrilla in Complex, 2025', 'Lexicographic + creator', 'Secure'],
        ['Spread via basketball / LaMelo Ball (6′7″)', 'Bleacher Report, n.d.; CNN, 2025', 'Reputable press', 'Secure'],
-       ['“67 Kid” video, 31 Mar 2025 (Cam Wilder)', 'Wikipedia, n.d.-a', 'Reputable press', 'Strong (surname spelling varies)'],
+       ['“67 Kid” video, 31 Mar 2025 (Cam Wilder)', 'Know Your Meme, n.d.', 'Edited meme database', 'Strong (surname spelling varies)'],
        ['Dictionary.com WOTY 2025; “impossible to define”', 'Dictionary.com, 2025; Smithsonian, 2025; NPR, 2025', 'Lexicographer statement', 'Secure'],
        ['Functions as a shibboleth via “semantic bleaching”', 'Taylor Jones in CNN, 2025', 'Named linguist (press)', 'Secure'],
        ['“Void of semantic meaning”; carries social meaning', 'Fridland, 2026', 'Named linguist (academic outlet)', 'Secure'],
@@ -198,7 +198,7 @@ h1('3. The “6-7” Phenomenon: Origins and the Skrilla Source')
 body("The proximate origin of *6-7* is “Doot Doot (6 7),” a Philadelphia drill song by the rapper "
 "Skrilla (produced by 1Ellis). The track leaked to streaming platforms in December 2024 and was "
 "officially released via Priority Records on 7 February 2025, later appearing on the deluxe edition of "
-"Skrilla’s *Zombie Love Kensington Paradise* (Wikipedia contributors, n.d.-b). Crucially, the phrase "
+"Skrilla’s *Zombie Love Kensington Paradise* (Skrilla, 2025; Complex, 2025). Crucially, the phrase "
 "was born semantically underdetermined: Skrilla has declined to fix its meaning, reportedly saying “I "
 "never put an actual meaning on it, and I still would not want to,” and elsewhere describing it as "
 "representing “what comes up in my head” (Complex, 2025; WHYY, 2025). Proposed sources—a Philadelphia "
@@ -213,7 +213,7 @@ body("The phrase migrated from music to mass meme through basketball. Highlight 
 "the literal height coincidence (Bleacher Report, n.d.). On 31 March 2025 a YouTube AAU-basketball "
 "video by Cam Wilder featured a young boy—later dubbed the “67 Kid”—shouting “six seven” with a "
 "palms-up, alternating up-and-down hand gesture; the clip became a primary vector of virality "
-"(Wikipedia contributors, n.d.-a). By autumn 2025 the term saturated NBA and WNBA media, NFL "
+"(Know Your Meme, n.d.). By autumn 2025 the term saturated NBA and WNBA media, NFL "
 "celebrations, and celebrity content—Shaquille O’Neal reportedly joined in while admitting he did not "
 "understand it, a telling detail for a term whose use is detached from comprehension. Dictionary.com "
 "(2025) reported that *67* appeared in digital media roughly six times more frequently in October 2025 "
@@ -477,6 +477,7 @@ REFS = [
  'Jakobson, R. (1960). Linguistics and poetics. In T. A. Sebeok (Ed.), *Style in language* (pp. 350–377). MIT Press.',
  'Jurafsky, D., & Martin, J. H. (2023). Lexical semantics. In *Speech and language processing* (3rd ed. draft, Chapter 19). https://web.stanford.edu/class/linguist1/Rdgs/JM19.pdf',
  'Kaplan, D. (1999). *The meaning of “ouch” and “oops”: Explorations in the theory of meaning as use* [Unpublished manuscript]. University of California, Los Angeles.',
+ 'Know Your Meme. (n.d.). *67 kid*. Literally Media. Retrieved June 4, 2026, from https://knowyourmeme.com/memes/67-kid',
  'Malinowski, B. (1923). The problem of meaning in primitive languages. In C. K. Ogden & I. A. Richards, *The meaning of meaning* (pp. 296–336). Kegan Paul.',
  'McCulloch, G. (2019). *Because internet: Understanding the new rules of language*. Riverhead Books.',
  'Merriam-Webster. (n.d.). Six seven. In *Merriam-Webster slang dictionary*. Retrieved June 4, 2026, from https://www.merriam-webster.com/slang/six-seven',
@@ -486,13 +487,12 @@ REFS = [
  'Potts, C. (2005). *The logic of conventional implicatures*. Oxford University Press.',
  'Potts, C. (2007). The expressive dimension. *Theoretical Linguistics, 33*(2), 165–198. https://doi.org/10.1515/TL.2007.011',
  'Silverstein, M. (2003). Indexical order and the dialectics of sociolinguistic life. *Language & Communication, 23*(3–4), 193–229. https://doi.org/10.1016/S0271-5309(03)00013-2',
+ 'Skrilla. (2025). *Doot doot (6 7)* [Song]. Priority Records.',
  'Smithsonian Magazine. (2025, October 30). *The term “67” is impossible to define. It just became Dictionary.com’s word of the year for 2025*. https://www.smithsonianmag.com/smart-news/the-term-67-is-impossible-to-define-it-just-became-dictionary-coms-word-of-the-year-for-2025-180987650/',
  'Stanford Encyclopedia of Philosophy. (n.d.). *Word meaning*. https://plato.stanford.edu/entries/word-meaning/',
  'Today. (2024, June 27). *What does “skibidi” mean?* https://www.today.com/parents/teens/skibidi-slang-meaning-rcna153557',
  'University of Colorado Boulder. (2021, May 3). *To “yeet” or not to “yeet”: African American slang beyond Vine*. https://www.colorado.edu/linguistics/2021/05/03/yeet-or-not-yeet-african-american-slang-beyond-vine',
  'WHYY. (2025). *The meaning of “6-7” and its Philadelphia roots*. https://whyy.org/articles/meaning-6-7-skrilla-philadelphia/',
- 'Wikipedia contributors. (n.d.-a). 6-7 (meme). In *Wikipedia*. Retrieved June 4, 2026, from https://en.wikipedia.org/wiki/6-7_(meme)',
- 'Wikipedia contributors. (n.d.-b). Doot doot (6 7). In *Wikipedia*. Retrieved June 4, 2026, from https://en.wikipedia.org/wiki/Doot_Doot_(6_7)',
  'Wittgenstein, L. (1953). *Philosophical investigations* (G. E. M. Anscombe, Trans.). Blackwell.',
 ]
 for ref in REFS:
