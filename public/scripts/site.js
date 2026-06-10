@@ -43,6 +43,18 @@
 
   /* ---------- lazy search index ---------- */
 
+  /* In the portable (file://) build, window.__CE_BASE holds the relative
+     prefix to the site root; site-absolute URLs must be rewritten. */
+  function resolveUrl(u) {
+    if (!window.__CE_BASE || u.charAt(0) !== "/") return u;
+    var hashIdx = u.search(/[#?]/);
+    var path = hashIdx === -1 ? u : u.slice(0, hashIdx);
+    var suffix = hashIdx === -1 ? "" : u.slice(hashIdx);
+    path = path.slice(1);
+    if (path === "" || path.slice(-1) === "/") path += "index.html";
+    return window.__CE_BASE + path + suffix;
+  }
+
   var indexPromise = null;
   function loadIndex() {
     if (!indexPromise) {
@@ -144,7 +156,7 @@
   var lastFocus = null;
 
   function itemHtml(item, iconName) {
-    return '<a class="palette-item" role="option" href="' + esc(item.url) + '" data-track="1">' +
+    return '<a class="palette-item" role="option" href="' + esc(resolveUrl(item.url)) + '" data-track="1">' +
       '<span class="pi-icon">' + icon(iconName || item.icon) + "</span>" +
       '<span class="pi-text"><span class="pi-q">' + esc(item.q) + '</span><span class="pi-cat">' + esc(item.catName) + "</span></span>" +
       '<span class="pi-enter">' + ICONS.enter + "</span></a>";
@@ -161,7 +173,7 @@
     }
     html += '<div class="palette-section-label">Browse topics</div>';
     html += data.categories.map(function (c) {
-      return '<a class="palette-item" role="option" href="' + esc(c.url) + '">' +
+      return '<a class="palette-item" role="option" href="' + esc(resolveUrl(c.url)) + '">' +
         '<span class="pi-icon">' + icon(c.icon) + "</span>" +
         '<span class="pi-text"><span class="pi-q">' + esc(c.name) + '</span><span class="pi-cat">' + c.count + " answers</span></span>" +
         '<span class="pi-enter">' + ICONS.enter + "</span></a>";
@@ -280,7 +292,7 @@
       '<span class="fact-cat">' + icon(pick.icon) + esc(pick.catName) + "</span>" +
       "<h2>" + esc(pick.q) + "</h2>" +
       "<p>" + esc(pick.a) + "</p>";
-    factFull.setAttribute("href", pick.url);
+    factFull.setAttribute("href", resolveUrl(pick.url));
     pushRecentUrl(pick.url);
   }
 
