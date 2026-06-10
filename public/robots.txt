@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Update the domain after launch (must match src/config.js SITE.url)
+Sitemap: https://catencyclopedia.example.com/sitemap-index.xml

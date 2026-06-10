@@ -1,0 +1,122 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../config.js";
+import { icon } from "../lib/icons.js";
+import { CATEGORIES, TOTAL_ENTRIES, POPULAR, hue, categoryUrl, entryUrl } from "../lib/data.js";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate - a.data.pubDate)
+  .slice(0, 3);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description
+};
+---
+<Base title={`${SITE.name} — Every Cat Question, Answered`} jsonLd={jsonLd}>
+  <section class="hero container">
+    <div class="aurora" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="blob blob-4"></div>
+    </div>
+    <span class="float-decor fd-1" aria-hidden="true" set:html={icon("paw")} />
+    <span class="float-decor fd-2" aria-hidden="true" set:html={icon("paw")} />
+    <span class="float-decor fd-3" aria-hidden="true" set:html={icon("paw")} />
+    <span class="float-decor fd-4" aria-hidden="true" set:html={icon("paw")} />
+
+    <div class="hero-in">
+      <span class="eyebrow"><span set:html={icon("sparkles")} /> The internet&rsquo;s cat questions, answered</span>
+    </div>
+    <h1 class="hero-in">Every cat question.<br /><span class="gradient-text">Answered.</span></h1>
+    <p class="lede hero-in">
+      Hundreds of clear, research-informed answers — from &ldquo;why does my cat purr?&rdquo;
+      to &ldquo;is this plant going to kill my cat?&rdquo;
+    </p>
+
+    <div class="hero-in">
+      <button class="hero-search" type="button" data-hero-search data-open-palette aria-label="Open search">
+        <span class="hs-icon" set:html={icon("search")} />
+        <span class="hs-placeholder" data-typewriter>Ask anything&hellip;</span>
+        <span class="hs-btn"><span set:html={icon("search")} />Search</span>
+      </button>
+    </div>
+
+    <div class="hero-cta-row hero-in">
+      <button class="chip-btn" type="button" data-surprise><span set:html={icon("shuffle")} />Surprise me with a fact</button>
+      <a class="chip-btn" href="#browse-heading"><span set:html={icon("paw")} />Browse all topics</a>
+      <a class="chip-btn" href="/blog/"><span set:html={icon("pen")} />Read the blog</a>
+    </div>
+
+    <div class="hero-stats hero-in">
+      <div class="stat"><span class="num" data-count-to={TOTAL_ENTRIES}>{TOTAL_ENTRIES}</span><span class="label">Answers</span></div>
+      <div class="stat"><span class="num" data-count-to={CATEGORIES.length}>{CATEGORIES.length}</span><span class="label">Topics</span></div>
+      <div class="stat"><span class="num">24/7</span><span class="label">Zoomies coverage</span></div>
+    </div>
+  </section>
+
+  <section class="container" aria-labelledby="browse-heading">
+    <div class="section-head reveal">
+      <h2 id="browse-heading">Browse by topic</h2>
+      <span class="sub">From first purr to senior years</span>
+    </div>
+    <div class="category-grid">
+      {CATEGORIES.map((cat, i) => (
+        <a class="category-card reveal" style={`--hue:${hue(cat.slug)};--d:${(i % 4) * 60}ms`} href={categoryUrl(cat)}>
+          <span class="card-icon" set:html={icon(cat.icon)} />
+          <span class="card-arrow" set:html={icon("arrowRight")} />
+          <h3>{cat.name}</h3>
+          <p>{cat.tagline}</p>
+          <span class="count">{cat.entries.length} answers</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="container" aria-labelledby="blog-heading">
+      <div class="section-head reveal">
+        <h2 id="blog-heading">Fresh from the blog</h2>
+        <a class="chip-btn" href="/blog/">All posts <span set:html={icon("arrowRight")} /></a>
+      </div>
+      <div class="blog-grid">
+        {posts.map((post, i) => (
+          <a class="post-card reveal" style={`--d:${i * 70}ms`} href={`/blog/${post.id}/`}>
+            <span class="pc-media">
+              {post.data.heroImage
+                ? <img src={post.data.heroImage} alt="" loading="lazy" />
+                : <span set:html={icon("cat")} />}
+            </span>
+            <span class="pc-body">
+              <span class="post-meta"><span set:html={icon("calendar")} />{post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="container" aria-labelledby="popular-heading">
+    <div class="section-head reveal">
+      <h2 id="popular-heading">Most-asked questions</h2>
+      <span class="sub">What everyone googles at 2am</span>
+    </div>
+    <ul class="popular-list">
+      {POPULAR.map((p, i) => (
+        <li class="reveal" style={`--d:${(i % 3) * 70}ms`}>
+          <a href={entryUrl(p.cat, p.entry)}>
+            <span class="pop-icon" set:html={icon(p.cat.icon)} />
+            {p.entry.q}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

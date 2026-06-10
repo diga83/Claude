@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../config.js";
+---
+<Base title={`Privacy Policy — ${SITE.name}`} description="How this site handles data, cookies, and advertising.">
+  <div class="container page-prose">
+    <h1>Privacy Policy</h1>
+    <p><em>Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</em></p>
+
+    <h2>What we collect</h2>
+    <p>
+      This site does not require accounts and does not collect personal information directly. Your
+      theme preference and recently viewed questions are stored only in your browser&rsquo;s local
+      storage and never leave your device.
+    </p>
+
+    <h2>Advertising</h2>
+    <p>
+      This site may display ads served by Google AdSense. Google and its partners may use cookies
+      and similar technologies to serve ads based on your visits to this and other websites. You can
+      opt out of personalized advertising at
+      <a href="https://www.google.com/settings/ads" rel="noopener">Google Ads Settings</a>, and learn
+      how Google uses data at
+      <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">policies.google.com</a>.
+      Visitors in the EEA/UK are shown a consent banner before any advertising cookies are set.
+    </p>
+
+    <h2>Analytics</h2>
+    <p>
+      If analytics are enabled, they are used in aggregate to understand which pages help readers —
+      not to identify individuals.
+    </p>
+
+    <h2>Third-party links</h2>
+    <p>External links are provided for reference; their destinations have their own privacy policies.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy? <a href="/contact/">Contact us</a>.</p>
+  </div>
+</Base>

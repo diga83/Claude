@@ -1,0 +1,21 @@
+---
+/* Renders an AdSense unit only when configured in src/config.js.
+   slot: your ad unit slot id; format: usually "auto". */
+import { SITE } from "../config.js";
+const { slot = "", format = "auto" } = Astro.props;
+const active = SITE.adsenseEnabled && SITE.adsenseClient && slot;
+---
+{active && (
+  <div class="ad-slot">
+    <span class="ad-label">Advertisement</span>
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client={SITE.adsenseClient}
+      data-ad-slot={slot}
+      data-ad-format={format}
+      data-full-width-responsive="true"
+    ></ins>
+    <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+)}

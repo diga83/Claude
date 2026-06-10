@@ -1,0 +1,88 @@
+---
+import Base from "../../layouts/Base.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { SITE } from "../../config.js";
+import { icon } from "../../lib/icons.js";
+import { CATEGORIES, hue, categoryUrl, entryUrl, relatedEntries } from "../../lib/data.js";
+
+export function getStaticPaths() {
+  return CATEGORIES.flatMap((cat) =>
+    cat.entries.map((entry) => ({
+      params: { cat: cat.slug, id: entry.id },
+      props: { cat, entry }
+    }))
+  );
+}
+
+const { cat, entry } = Astro.props;
+const catHue = hue(cat.slug);
+const related = relatedEntries(cat, entry, 4);
+const idx = cat.entries.indexOf(entry);
+const prevEntry = idx > 0 ? cat.entries[idx - 1] : null;
+const nextEntry = idx < cat.entries.length - 1 ? cat.entries[idx + 1] : null;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [{
+    "@type": "Question",
+    name: entry.q,
+    acceptedAnswer: { "@type": "Answer", text: entry.a }
+  }]
+};
+---
+<Base title={`${entry.q} — ${SITE.name}`} description={entry.a.slice(0, 155)} ogType="article" jsonLd={jsonLd}>
+  <div class="container answer-page">
+    <div class="category-hero">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">All topics</a> &nbsp;/&nbsp; <a href={categoryUrl(cat)}>{cat.name}</a> &nbsp;/&nbsp; This question
+      </nav>
+      <h1>
+        <span class="card-icon" style={`--hue:${catHue}`} set:html={icon(cat.icon)} />
+        {entry.q}
+      </h1>
+    </div>
+
+    <article class="answer-card reveal in">
+      <p>{entry.a}</p>
+      {entry.tags?.length > 0 && (
+        <div class="tag-row">
+          {entry.tags.map((t) => <span class="tag-chip">{t}</span>)}
+        </div>
+      )}
+      <div class="qa-tools" style="margin-top: 1.2rem;">
+        <button class="copy-link" type="button" data-copy={entryUrl(cat, entry)}>
+          <span set:html={icon("link")} />Copy link
+        </button>
+        <a class="qa-open-link" href={categoryUrl(cat)}>
+          <span set:html={icon("arrowLeft")} />All {cat.name} questions
+        </a>
+      </div>
+    </article>
+
+    <AdSlot slot="" />
+
+    <div class="section-head">
+      <h2>Related questions</h2>
+    </div>
+    <ul class="related-grid popular-list">
+      {related.map((r) => (
+        <li>
+          <a href={entryUrl(r.cat, r.entry)}>
+            <span class="pop-icon" set:html={icon(r.cat.icon)} />
+            {r.entry.q}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <nav class="cat-nav" aria-label="Question navigation">
+      {prevEntry
+        ? <a href={entryUrl(cat, prevEntry)}><span set:html={icon("arrowLeft")} />Previous question</a>
+        : <a href={categoryUrl(cat)}><span set:html={icon("arrowLeft")} />{cat.name}</a>}
+      {nextEntry
+        ? <a href={entryUrl(cat, nextEntry)}>Next question<span set:html={icon("arrowRight")} /></a>
+        : <a href={categoryUrl(cat)}>{cat.name}<span set:html={icon("arrowRight")} /></a>}
+    </nav>
+  </div>
+</Base>

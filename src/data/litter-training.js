@@ -1,0 +1,134 @@
+export default {
+  slug: "litter-training",
+  name: "Litter Box & Training",
+  tagline: "Box problems solved, plus how to actually train a cat — yes, it's possible.",
+  icon: "box",
+  entries: [
+    {
+      id: "how-many-litter-boxes",
+      q: "How many litter boxes do I need?",
+      a: "The golden rule: one per cat, plus one — so two boxes for one cat, three for two cats. Spread them across different locations (three boxes in one corner = one box, socially). In multi-story homes, one per floor. Why it matters: box scarcity and ambush-prone locations are leading causes of peeing outside the box and inter-cat tension.",
+      tags: ["litter boxes", "how many", "n plus one", "multi-cat"]
+    },
+    {
+      id: "best-litter-type",
+      q: "What type of litter do cats prefer?",
+      a: "Studies and behaviorists agree: most cats prefer unscented, fine-grained clumping clay, 2–3 inches deep — it's closest to the soft sand of their ancestors. Scented litters please humans, not cats (many cats avoid them). Alternatives (paper, pine, corn, wheat, crystal) work for specific needs — dust allergies, post-surgery, tracking — but switch gradually, and if a cat stops using the box after a litter change, that's your answer. Kittens under 8 weeks should avoid clumping litter (ingestion risk).",
+      tags: ["litter type", "clumping", "unscented", "preference"]
+    },
+    {
+      id: "covered-vs-uncovered-litter-box",
+      q: "Are covered or open litter boxes better?",
+      a: "Most cats prefer open boxes, or at least don't favor covers: hoods trap odor inside (nice for you, awful for the cat), restrict escape routes (a real issue in multi-cat homes), and hide the box's condition from owners. Some individual cats do like the privacy. The bigger factor is size — boxes should be 1.5× the cat's body length, and most commercial boxes are too small. A large plastic storage tote with a lowered entry often beats anything in the pet aisle.",
+      tags: ["covered", "hooded", "open box", "size"]
+    },
+    {
+      id: "how-often-clean-litter-box",
+      q: "How often should I scoop and change the litter box?",
+      a: "Scoop at least once daily (twice is better); a dirty box is the #1 reason cats go elsewhere. Full litter change: weekly for non-clumping, every 2–4 weeks for clumping, with a wash using mild dish soap — skip strong-smelling cleaners and bleach residue, which repel cats. Replace the box itself yearly or when scratched plastic holds odor. If you can smell the box, your cat — with a far better nose — is suffering.",
+      tags: ["scooping", "cleaning", "frequency", "hygiene"]
+    },
+    {
+      id: "where-to-put-litter-box",
+      q: "Where should I put the litter box?",
+      a: "Quiet, low-traffic, escape-friendly, and far from food and water — cats won't eliminate where they eat. Avoid: next to noisy appliances (a washer's spin cycle can create lifelong box aversion), dead-end closets where another pet can trap them, and basements requiring stairs for senior cats. The cat needs sightlines and more than one exit route. Convenient-for-humans but scary-for-cats locations are behind many \"mystery\" soiling problems.",
+      tags: ["location", "placement", "where", "quiet"]
+    },
+    {
+      id: "why-is-my-cat-peeing-outside-the-box",
+      q: "Why is my cat peeing outside the litter box?",
+      a: "Rule one: it's never spite. Step one is always a vet visit — urinary tract disease, cystitis, kidney disease, diabetes, and arthritis (can't climb in) are extremely common causes. If medical is cleared, audit the boxes: dirty, too few, too small, covered, scented litter, bad location, or being ambushed by another pet. Stress (new pets, moves, outdoor cats visible through windows) drives the rest. Clean accidents with enzymatic cleaner — ammonia-based cleaners smell like urine and invite repeats.",
+      tags: ["peeing outside box", "inappropriate urination", "house soiling", "medical", "stress"]
+    },
+    {
+      id: "spraying-vs-peeing",
+      q: "What's the difference between spraying and peeing?",
+      a: "Peeing: squatting, large puddle on a horizontal surface — usually medical or box-related. Spraying: standing, tail vertical and quivering, small urine amount on a vertical surface (walls, furniture, doors) — territorial marking, common near windows and doors where outside cats are seen. The distinction matters because treatment differs completely: spraying is about territory and stress; squat-peeing is about health and box conditions.",
+      tags: ["spraying", "marking", "vertical", "territorial", "difference"]
+    },
+    {
+      id: "how-to-stop-cat-spraying",
+      q: "How do I stop my cat from spraying?",
+      a: "First: neuter/spay — it resolves or greatly reduces spraying in ~90% of males. Then attack the triggers: block views of outdoor cats (window film), resolve multi-cat tension (more resources, vertical space), keep routines stable, and clean marks with enzymatic cleaner. Feliway-type pheromone diffusers help many cats. Persistent spraying despite all this merits a vet visit — anxiety medication is a legitimate, effective tool. Punishment reliably makes spraying worse.",
+      tags: ["spraying", "stop", "neutering", "pheromones", "feliway"]
+    },
+    {
+      id: "cat-pooping-outside-box",
+      q: "Why is my cat pooping outside the litter box (but peeing in it)?",
+      a: "Middening (poop outside, pee inside) has its own causes: constipation or arthritis pain (the cat associates the box with discomfort), a box too small for the longer posture pooping requires, litter aversion, or anxiety — poop placed prominently can be territorial messaging. Older cats with stiff hips often perch on the edge and miss. Fixes: vet check for pain/GI issues, a bigger lower-sided box, an extra box, and unscented litter.",
+      tags: ["pooping outside box", "middening", "defecation", "arthritis"]
+    },
+    {
+      id: "litter-training-adult-cat",
+      q: "How do I litter train an adult or formerly outdoor cat?",
+      a: "Confine to one room initially with food at one end, box at the other. For ex-outdoor cats, bridge the gap: start with a box of plain garden soil or sand, then mix in increasing amounts of litter over 1–2 weeks. Scoop promptly (success builds preference), never punish accidents, and clean misses with enzymatic cleaner. Most cats convert quickly — burying in loose substrate is hardwired; you're just redefining the substrate.",
+      tags: ["adult cat", "outdoor cat", "training", "soil", "transition"]
+    },
+    {
+      id: "why-doesnt-my-cat-bury-poop",
+      q: "Why doesn't my cat bury its poop?",
+      a: "Possible reasons: the litter hurts (declawed cats, paw injuries, or litter texture they hate), the box is too small or dirty to maneuver in, they never learned (orphaned kittens), or it's deliberate — leaving waste exposed is a confident territorial statement, common in multi-cat homes. Try a larger box, deeper softer litter, and cleaner conditions. If burying stopped suddenly, check paws and consider a vet visit.",
+      tags: ["burying", "not covering", "territorial", "litter texture"]
+    },
+    {
+      id: "automatic-litter-boxes-worth-it",
+      q: "Are automatic (self-cleaning) litter boxes worth it?",
+      a: "They're genuinely convenient and most cats accept them, but know the tradeoffs: high cost, mechanical failures, some cats fear the motor, and — most importantly — they hide the health data scooping provides (urine clump size and frequency are early kidney/diabetes alarms; many owners catch disease at the scoop). Safety has improved in current models, but small kittens shouldn't use them. Keep a traditional box available during transition, and monitor waste anyway.",
+      tags: ["automatic", "self-cleaning", "litter robot", "convenience"]
+    },
+    {
+      id: "can-i-toilet-train-my-cat",
+      q: "Can I toilet train my cat to use a human toilet?",
+      a: "Possible, but behaviorists and vets generally advise against it: it forces an unnatural posture (hard on aging joints), eliminates the ability to monitor urine/stool for health changes, fails when the lid is down or the bathroom occupied, and denies the hardwired digging/burying instinct — a real welfare cost. Flushed cat feces can also carry Toxoplasma into waterways. A well-kept litter box is the better technology.",
+      tags: ["toilet training", "human toilet", "bad idea", "welfare"]
+    },
+    {
+      id: "how-to-get-rid-of-cat-pee-smell",
+      q: "How do I get cat urine smell out of carpet and furniture?",
+      a: "Only enzymatic cleaners (Nature's Miracle, Anti-Icky-Poo, etc.) actually destroy the uric acid crystals — regular cleaners, vinegar, and baking soda mask briefly, and ammonia-based products make spots smell MORE like urine. Method: blot fresh urine, saturate the area generously (urine soaks deeper than you think — into padding), let it air-dry slowly (days, not hours), repeat for old stains. A UV flashlight finds hidden deposits. For soaked mattresses/carpet padding, replacement is sometimes the honest answer.",
+      tags: ["urine smell", "enzymatic cleaner", "carpet", "odor removal", "uv light"]
+    },
+    {
+      id: "can-cats-be-trained",
+      q: "Can cats actually be trained?",
+      a: "Absolutely — cats learn sit, high-five, fetch, recall, carrier entry, and even agility courses. The differences from dogs: cats work for the right rewards (tiny high-value treats, play — rarely praise alone), in short sessions (2–5 minutes), and never under compulsion. Clicker training works brilliantly. Beyond tricks, training has real welfare payoffs: voluntary carrier entry, stress-free nail trims, and mental enrichment. The saying goes: dogs ask \"what do you want?\", cats ask \"what's in it for me?\" — answer that, and they're excellent students.",
+      tags: ["training", "tricks", "intelligence", "rewards"]
+    },
+    {
+      id: "clicker-training-cats",
+      q: "How do I clicker train my cat?",
+      a: "Step 1 — \"charge\" the clicker: click, then immediately treat; repeat 10–20 times until the click predicts food. Step 2 — capture or lure behavior: e.g., lure the nose upward so the rear sits, click the instant the butt touches, treat. Timing is everything: the click marks the exact behavior being paid for. Keep sessions under 5 minutes, end on success, and progress in tiny steps. Target sticks (touch nose to stick) unlock many behaviors. No clicker? A consistent mouth click or word works.",
+      tags: ["clicker", "training", "target stick", "how to"]
+    },
+    {
+      id: "how-to-leash-train-cat",
+      q: "How do I leash train my cat?",
+      a: "Go slow — weeks, not days: (1) leave the harness near the food bowl; (2) drape it on the cat briefly with treats; (3) clip it on indoors, increasing duration (expect dramatic flopping at first); (4) attach the leash and follow the cat around indoors; (5) first outings in a quiet yard, letting the cat set the pace — leash walking a cat means escorting, not heeling. Use a well-fitted escape-resistant harness (never a collar — cats slip them and can be injured). Some cats love it; some never accept it. Both are normal.",
+      tags: ["leash", "harness", "walking", "outdoors", "training"]
+    },
+    {
+      id: "how-to-stop-scratching-furniture",
+      q: "How do I stop my cat scratching the couch?",
+      a: "Redirect, don't suppress — scratching is a need. The formula: put a tall, rock-solid sisal post directly next to the scratched spot (cats scratch where it matters socially, often near sleeping areas and room entrances); make the couch unpleasant (double-sided tape, vinyl guards); reward post use with treats and catnip; and only relocate the post gradually once habits shift. Add horizontal cardboard scratchers for floor-scratchers. Trim nails or add caps to cut damage meanwhile. Squirt bottles teach fear of you, not furniture ethics.",
+      tags: ["scratching furniture", "couch", "scratching post", "deterrent", "sisal"]
+    },
+    {
+      id: "keep-cat-off-counters",
+      q: "How do I keep my cat off the kitchen counter?",
+      a: "Counters pay out: food scraps, sink water, warm appliances, and a high perch. Win by making them pay less and alternatives pay more: zero food left out, fix dripping taps, and place a tall cat tree or window perch nearby (often the cat mainly wants height with a view of you cooking). Make counters mildly unpleasant when you're absent — aluminum foil, upside-down placemats with double-sided tape. Direct punishment just teaches \"counters are great when the human's gone.\" Reward four-paws-on-floor and tree use.",
+      tags: ["counters", "counter surfing", "kitchen", "deterrent"]
+    },
+    {
+      id: "is-spray-bottle-bad",
+      q: "Is it okay to discipline a cat with a spray bottle?",
+      a: "Behaviorists say no. Punishment — spraying, yelling, nose taps — doesn't teach cats what TO do; it teaches them you're unpredictable and dangerous, damaging trust and often adding stress-driven problems (hiding, soiling, aggression). Cats also just learn to do the behavior when you're absent. What works: remove the payoff, make the unwanted spot/behavior unrewarding on its own (environmental deterrents), provide a better alternative, and reward it. Every \"bad\" behavior is a need being met the wrong way — meet it the right way.",
+      tags: ["spray bottle", "punishment", "discipline", "positive reinforcement"]
+    },
+    {
+      id: "teach-cat-its-name",
+      q: "How do I teach my cat its name (and to come when called)?",
+      a: "Research confirms cats can learn their names — make yours mean good things: say the name once, treat when the cat looks at you; repeat in short bursts daily. For recall, add a distinctive call (name + \"come\" or a kissy sound) just before every meal — within weeks most cats come running from anywhere in the house. Never call the cat for negatives (medication, carrier, vet), or you'll poison the cue; go get the cat for those instead.",
+      tags: ["name", "recall", "come when called", "training"]
+    }
+  ]
+};

@@ -1,0 +1,34 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../config.js";
+import { TOTAL_ENTRIES, CATEGORIES } from "../lib/data.js";
+---
+<Base title={`About — ${SITE.name}`} description="What the Cat Encyclopedia is, how answers are written, and what it is not.">
+  <div class="container page-prose">
+    <h1>About {SITE.name}</h1>
+    <p>
+      {SITE.name} is a free reference answering the cat questions people actually ask —
+      {TOTAL_ENTRIES} answers across {CATEGORIES.length} topics, from behavior and body language
+      to food safety, toxic plants, kitten care, and senior health.
+    </p>
+    <h2>How answers are written</h2>
+    <p>
+      Answers summarize mainstream veterinary and behavioral guidance — the positions of bodies like
+      the AVMA, AAFP, and ASPCA, peer-reviewed research where it exists, and the working consensus of
+      practicing vets. Where evidence is genuinely contested (raw feeding, certain breeds' welfare),
+      the answer says so rather than picking a side quietly.
+    </p>
+    <h2>What this site is not</h2>
+    <p>
+      It is not veterinary advice. No website can examine your cat. If your cat is unwell, behaving
+      unusually, or has eaten something questionable, contact a licensed veterinarian — and for
+      suspected poisoning in the US, the ASPCA Animal Poison Control Center at (888)&nbsp;426-4435 or
+      the Pet Poison Helpline at (855)&nbsp;764-7661.
+    </p>
+    <h2>Corrections</h2>
+    <p>
+      Spotted something outdated or wrong? Please <a href="/contact/">get in touch</a> — corrections
+      make the encyclopedia better for every cat.
+    </p>
+  </div>
+</Base>

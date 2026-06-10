@@ -1,0 +1,52 @@
+---
+import Base from "../../layouts/Base.astro";
+import { SITE } from "../../config.js";
+import { icon } from "../../lib/icons.js";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate - a.data.pubDate);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `${SITE.name} Blog`,
+  url: new URL("/blog/", SITE.url).href
+};
+---
+<Base title={`Blog — ${SITE.name}`} description="Guides, deep dives, and seasonal advice for cat people — from the Cat Encyclopedia team." jsonLd={jsonLd}>
+  <div class="container">
+    <div class="category-hero">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; Blog</nav>
+      <h1>
+        <span class="card-icon" style="--hue:25" set:html={icon("pen")} />
+        The Blog
+      </h1>
+      <p class="tagline">Longer reads: guides, deep dives, and seasonal advice for cat people.</p>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="tagline" style="padding-bottom: 4rem;">No posts yet — the first one is being typed by a cat walking across a keyboard.</p>
+    ) : (
+      <div class="blog-grid">
+        {posts.map((post, i) => (
+          <a class="post-card reveal" style={`--d:${(i % 3) * 70}ms`} href={`/blog/${post.id}/`}>
+            <span class="pc-media">
+              {post.data.heroImage
+                ? <img src={post.data.heroImage} alt="" loading="lazy" />
+                : <span set:html={icon("cat")} />}
+            </span>
+            <span class="pc-body">
+              <span class="post-meta">
+                <span set:html={icon("calendar")} />
+                {post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+              </span>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </span>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</Base>

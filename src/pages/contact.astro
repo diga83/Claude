@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../config.js";
+---
+<Base title={`Contact — ${SITE.name}`} description="Get in touch with the Cat Encyclopedia.">
+  <div class="container page-prose">
+    <h1>Contact</h1>
+    <p>
+      Corrections, suggestions, partnership inquiries, or a cat photo you simply need to share —
+      we read everything.
+    </p>
+    <p>
+      <!-- Replace with your real contact email or a form service (e.g. Netlify Forms, Formspree) before launch -->
+      Email: <a href="mailto:hello@example.com">hello@example.com</a>
+    </p>
+    <p>
+      For anything medical, please don&rsquo;t wait for an email reply — contact a licensed
+      veterinarian or, for suspected poisoning in the US, the ASPCA Animal Poison Control Center at
+      (888)&nbsp;426-4435.
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,41 @@
+# Decap CMS configuration — the blog admin at /admin/
+#
+# Default backend is git-gateway (Netlify Identity). Setup steps are in the README.
+# If you deploy somewhere other than Netlify, switch to the github backend:
+#   backend:
+#     name: github
+#     repo: YOUR_GITHUB_USER/YOUR_REPO
+#     branch: main
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images are stored in the repo / served from on the site
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+# Enable drafts via an editorial workflow (Draft -> In review -> Ready)
+publish_mode: editorial_workflow
+
+site_url: https://catencyclopedia.example.com
+display_url: https://catencyclopedia.example.com
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", hint: "Shown in post cards, search engines, and social shares. Aim for 120-155 characters." }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false, hint: "Optional. Landscape images (16:9) look best." }
+      - { label: "Tags", name: "tags", widget: "list", default: [], required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, hint: "Drafts are excluded from the published site." }
+      - { label: "Body", name: "body", widget: "markdown" }

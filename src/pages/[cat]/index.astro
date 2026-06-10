@@ -1,0 +1,113 @@
+---
+import Base from "../../layouts/Base.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { SITE } from "../../config.js";
+import { icon } from "../../lib/icons.js";
+import { CATEGORIES, hue, categoryUrl, entryUrl } from "../../lib/data.js";
+
+export function getStaticPaths() {
+  return CATEGORIES.map((cat) => ({ params: { cat: cat.slug }, props: { cat } }));
+}
+
+const { cat } = Astro.props;
+const catIdx = CATEGORIES.indexOf(cat);
+const prev = CATEGORIES[(catIdx - 1 + CATEGORIES.length) % CATEGORIES.length];
+const next = CATEGORIES[(catIdx + 1) % CATEGORIES.length];
+const catHue = hue(cat.slug);
+const showEmergency = cat.slug === "toxic" || cat.slug === "health";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: cat.entries.map((e) => ({
+    "@type": "Question",
+    name: e.q,
+    acceptedAnswer: { "@type": "Answer", text: e.a }
+  }))
+};
+---
+<Base title={`${cat.name} — ${SITE.name}`} description={cat.tagline} jsonLd={jsonLd}>
+  <div class="container">
+    <div class="progress-bar" aria-hidden="true"></div>
+
+    <div class="category-hero">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">All topics</a> &nbsp;/&nbsp; {cat.name}
+      </nav>
+      <h1>
+        <span class="card-icon" style={`--hue:${catHue}`} set:html={icon(cat.icon)} />
+        {cat.name}
+      </h1>
+      <p class="tagline">{cat.tagline}</p>
+
+      {showEmergency && (
+        <div class="notice">
+          <span set:html={icon("alert")} />
+          <div>
+            <strong>If this is an emergency:</strong> contact your vet or an emergency clinic now.
+            US poison hotlines: ASPCA Animal Poison Control <strong>(888)&nbsp;426-4435</strong> &middot;
+            Pet Poison Helpline <strong>(855)&nbsp;764-7661</strong>.
+          </div>
+        </div>
+      )}
+
+      <div class="filter-wrap">
+        <span class="search-icon" set:html={icon("search")} />
+        <label for="filter-input" style="position:absolute;left:-9999px">Filter questions in this topic</label>
+        <input id="filter-input" class="filter-input" type="search" placeholder={`Filter ${cat.entries.length} questions…`} autocomplete="off" />
+      </div>
+      <p class="filter-count" data-filter-count aria-live="polite"></p>
+    </div>
+
+    <div class="category-layout">
+      <div>
+        <div class="qa-list" data-qa-list data-cat={cat.slug}>
+          {cat.entries.map((e, i) => (
+            <article
+              class="qa-item reveal"
+              id={e.id}
+              style={`--d:${Math.min(i, 6) * 40}ms`}
+              data-q={(e.q + " " + (e.tags || []).join(" ")).toLowerCase()}
+            >
+              <button class="qa-toggle" type="button" aria-expanded="false" aria-controls={`panel-${e.id}`}>
+                {e.q}
+                <span class="chev" set:html={icon("chevron")} />
+              </button>
+              <div class="qa-panel" id={`panel-${e.id}`}>
+                <div class="qa-panel-inner">
+                  <div class="qa-body">
+                    <p>{e.a}</p>
+                    <div class="qa-tools">
+                      <a class="qa-open-link" href={entryUrl(cat, e)}>
+                        <span set:html={icon("arrowRight")} />Full answer page
+                      </a>
+                      <button class="copy-link" type="button" data-copy={entryUrl(cat, e)}>
+                        <span set:html={icon("link")} />Copy link
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <AdSlot slot="" />
+
+        <nav class="cat-nav" aria-label="Topic navigation">
+          <a href={categoryUrl(prev)}><span set:html={icon("arrowLeft")} />{prev.name}</a>
+          <a href={categoryUrl(next)}>{next.name}<span set:html={icon("arrowRight")} /></a>
+        </nav>
+      </div>
+
+      <aside class="toc" aria-label="Questions in this topic">
+        <h2>On this page</h2>
+        <ol>
+          {cat.entries.map((e) => (
+            <li><a href={`#${e.id}`} data-toc={e.id}>{e.q}</a></li>
+          ))}
+        </ol>
+      </aside>
+    </div>
+  </div>
+</Base>
