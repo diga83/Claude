@@ -19,11 +19,15 @@ It also deploys as-is to GitHub Pages, Netlify, or any static host.
 
 ## Features
 
-- **Full-text search** across all questions, answers, and tags, with keyboard navigation (↑/↓/Enter) and live results
-- **14 topic pages** with accordion Q&As, per-topic filtering, and prev/next navigation
-- **Deep links** — every answer has a copyable URL (`category.html?cat=behavior#why-do-cats-purr`) that opens and highlights the answer
-- **Dark mode** via `prefers-color-scheme`, reduced-motion support, keyboard accessible, semantic HTML
+- **Command-palette search** (⌘K / Ctrl+K / `/`) — full-text search across all questions, answers, and tags with stopword-aware ranking, keyboard navigation, recently-viewed history, and popular suggestions
+- **Interactive home** — animated aurora hero, typewriter search placeholder, parallax floating paws, animated counters, scroll-reveal sections, 3D-tilt category cards
+- **14 topic pages** — spring-animated accordions, per-topic filtering, scroll-spy table of contents, reading progress bar, prev/next navigation
+- **Deep links** — every answer has a copyable URL (`category.html?cat=behavior#why-do-cats-purr`) that opens and highlights the answer, with toast confirmation
+- **"Surprise me"** — random cat fact modal with reshuffle
+- **Light/dark theme toggle** (persisted, defaults to system preference), reduced-motion support throughout, keyboard accessible, semantic HTML
 - **Emergency notices** on health/toxin pages with poison-control hotlines
+
+Design: Claymorphism (soft-3D, playful) with Fredoka/Nunito typography and per-topic color identities, per the ui-ux-pro-max design system.
 
 ## Structure
 
