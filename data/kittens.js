@@ -1,0 +1,129 @@
+window.CAT_DATA = window.CAT_DATA || [];
+window.CAT_DATA.push({
+  slug: "kittens",
+  name: "Kittens",
+  tagline: "From newborn care to first vet visits — raising a kitten right.",
+  icon: "kitten",
+  entries: [
+    {
+      id: "when-can-kittens-leave-mother",
+      q: "When can kittens leave their mother?",
+      a: "12 weeks is ideal; 8 weeks is the common legal/practical minimum. Weeks 8–12 with mother and littermates teach crucial lessons: bite inhibition, litter habits, and cat social skills. Kittens separated too early are more prone to biting, anxiety, and behavior problems as adults. A \"free kitten\" at 5–6 weeks needs extra socialization work and a prompt vet visit.",
+      tags: ["adoption age", "weaning", "8 weeks", "12 weeks", "separation"]
+    },
+    {
+      id: "how-to-feed-newborn-kitten",
+      q: "How do I feed a newborn kitten without a mother?",
+      a: "Use kitten milk replacer (KMR) — never cow's milk, which causes deadly diarrhea. Feed with a kitten bottle or syringe, kitten belly-down (never on its back — aspiration risk). Frequency: every 2–3 hours including overnight for weeks 1–2, gradually spacing out. Keep the kitten warm first (a cold kitten can't digest), and stimulate peeing/pooping after each meal with a warm damp cloth. Weigh daily — steady gain of ~10g/day is the health metric. Contact a rescue for support; neonatal care is intense.",
+      tags: ["bottle feeding", "kmr", "newborn", "orphan", "milk replacer"]
+    },
+    {
+      id: "how-often-feed-kitten",
+      q: "How often should kittens eat?",
+      a: "Newborn–2 weeks: every 2–3 hours. 3–4 weeks: every 4 hours, starting gruel (KMR mixed with wet kitten food). 5–8 weeks: weaning onto wet kitten food, 4–5 small meals daily. 2–6 months: 3–4 meals daily. 6–12 months: 2–3 meals. Kittens have tiny stomachs and big energy needs — they cannot fast the way adults can, so never restrict a growing kitten's food.",
+      tags: ["feeding schedule", "meals", "weaning", "frequency"]
+    },
+    {
+      id: "when-do-kittens-open-eyes",
+      q: "When do kittens open their eyes?",
+      a: "Between 7 and 14 days old. All kittens are born with closed eyes and folded ears; eyes open gradually (sometimes one before the other) and are always blue at first — adult eye color develops around 6–7 weeks. Never force eyes open; if a closed eye looks swollen or crusty, it may be infected and needs a vet. Vision matures fully around 5 weeks.",
+      tags: ["eyes opening", "newborn", "blue eyes", "development"]
+    },
+    {
+      id: "how-to-tell-kitten-age",
+      q: "How can I tell how old a kitten is?",
+      a: "Quick milestones: eyes closed = under ~10 days; eyes open, crawling = ~2 weeks; walking unsteadily, ears up = ~3 weeks; confident walking, beginning play and teeth erupting = 4–5 weeks; eating solid food, blue eyes shifting color = 6–7 weeks; ~1 pound per month of age (a 2-lb kitten ≈ 8 weeks) until about 6 months; adult teeth replacing baby teeth = 3.5–6 months. A vet can pin age precisely from the teeth.",
+      tags: ["age", "milestones", "weight", "teeth", "development"]
+    },
+    {
+      id: "how-to-tell-kitten-sex",
+      q: "How do I tell if a kitten is male or female?",
+      a: "Lift the tail and look at the spacing: females show a vertical slit close beneath the anus (like a lowercase \"i\"), males a round opening with a wider gap to allow for testicles (like a colon \":\"). It's easiest from ~3–4 weeks and notoriously easy to get wrong in young kittens — even shelters misjudge. Coat clue: calico and tortoiseshell kittens are almost always female; orange tabbies are more often male.",
+      tags: ["sex", "male or female", "gender", "calico"]
+    },
+    {
+      id: "kitten-litter-training",
+      q: "How do I litter train a kitten?",
+      a: "Mostly, you don't — instinct does. Provide a shallow, open box with low sides, unscented clumping or pellet litter (kittens under 8 weeks may eat clumping litter, so use pellets or non-clumping first), in a quiet accessible spot. Place the kitten in the box after meals and naps; gently scratch the litter to demonstrate. Accidents mean the box is too far, too tall, too dirty, or there's a medical issue — never punish. Most kittens are reliable within days.",
+      tags: ["litter training", "litter box", "potty training", "accidents"]
+    },
+    {
+      id: "kitten-socialization-window",
+      q: "What is the kitten socialization window?",
+      a: "Roughly 2 to 7–9 weeks of age — the critical period when kittens form lifelong templates of what's safe. Kittens gently handled by multiple people, exposed to household sounds, dogs, carriers, nail trims, and varied experiences during this window become confident adults; those that miss it (e.g., feral-born kittens) may stay fearful for life. After adoption (usually 8+ weeks), continue positive exposure: visitors, car rides, handling paws and ears, the vacuum — always paired with treats and play.",
+      tags: ["socialization", "critical period", "handling", "fearful", "confident"]
+    },
+    {
+      id: "kitten-proofing-home",
+      q: "How do I kitten-proof my home?",
+      a: "Think of a toddler that can jump six feet and fit through gaps: secure or remove strings, cords, hair ties, and blind cords (strangulation/linear foreign bodies); cover outlets and bundle electrical cables (chewing); remove toxic plants (especially lilies); latch cabinets with chemicals and medications; close toilet lids, dryer doors, and reclining chairs; block gaps behind appliances; secure window screens; and keep small swallowables (earbuds, rubber bands, craft supplies) off floors. Get on your hands and knees and survey each room at kitten level.",
+      tags: ["kitten proofing", "safety", "cords", "hazards"]
+    },
+    {
+      id: "kitten-teething",
+      q: "Do kittens teethe?",
+      a: "Yes, twice. Baby teeth erupt at 2–6 weeks; then between 3.5 and 6 months, all 26 baby teeth are replaced by 30 adult teeth. Teething kittens chew everything, may drool, eat a bit gingerly, and have famously dreadful breath. Offer soft chew toys and keep cords out of reach. You may find tiny teeth on the floor — or never see them (most are swallowed harmlessly). Retained baby teeth (double fangs) at 6+ months need a vet's attention.",
+      tags: ["teething", "baby teeth", "chewing", "adult teeth"]
+    },
+    {
+      id: "kitten-vaccine-schedule",
+      q: "When do kittens get their first vaccines?",
+      a: "Core FVRCP starts at 6–8 weeks, repeated every 3–4 weeks until at least 16 weeks (the series matters — maternal antibodies block early doses unpredictably). Rabies is typically given at 12–16 weeks. FeLV vaccination is recommended for all kittens, starting around 8–12 weeks. The first vet visit should also cover deworming, flea control, and a FeLV/FIV test. Keep unvaccinated kittens away from unknown cats.",
+      tags: ["vaccines", "fvrcp", "rabies", "schedule", "first vet visit"]
+    },
+    {
+      id: "when-to-spay-neuter-kitten",
+      q: "When should I spay or neuter my kitten?",
+      a: "Standard guidance is around 4–5 months, before puberty — female kittens can get pregnant as young as 4 months, and early neutering prevents spraying, roaming, and heat behaviors before they start. Shelters safely neuter as early as 8 weeks/2 lbs (\"pediatric neutering\"). Spaying before the first heat also dramatically reduces mammary cancer risk. Discuss exact timing with your vet, especially for large breeds.",
+      tags: ["spay", "neuter", "age", "fix", "pregnancy prevention"]
+    },
+    {
+      id: "kitten-biting-how-to-stop",
+      q: "How do I stop my kitten from biting me?",
+      a: "Kitten biting is normal play-predation aimed at the wrong target. Rules: never use hands or feet as toys; when teeth touch skin, go still and boring (yelp \"ow,\" withdraw attention briefly); immediately redirect to a wand toy or kicker; provide 2–3 energetic play sessions daily. Kittens raised with littermates learn bite inhibition naturally — single kittens need you to teach it consistently. Punishment teaches fear, not gentleness.",
+      tags: ["biting", "play aggression", "bite inhibition", "redirect"]
+    },
+    {
+      id: "single-kitten-syndrome",
+      q: "Should I adopt one kitten or two?",
+      a: "If you can, two — especially for kittens under 6 months. \"Single kitten syndrome\" describes the hard-biting, midnight-zooming, furniture-shredding behavior of solo kittens with no peer to burn energy with and learn boundaries from. Two kittens entertain each other, learn bite inhibition together, and are genuinely less work than one. Adult cats are different — many prefer being only cats.",
+      tags: ["two kittens", "single kitten syndrome", "pair", "adoption"]
+    },
+    {
+      id: "kitten-sleeping-hours",
+      q: "How much do kittens sleep?",
+      a: "A lot — up to 20 hours a day in young kittens, settling toward 16 hours by adolescence. Sleep is when growth hormone does its work, so don't wake a sleeping kitten for play. The flip side: their waking hours are turbocharged. A kitten that's suddenly lethargic during normal active times (not just sleeping more) needs a vet — kittens crash fast when sick.",
+      tags: ["sleep", "hours", "growth", "lethargy"]
+    },
+    {
+      id: "fading-kitten-syndrome",
+      q: "What is fading kitten syndrome?",
+      a: "The rapid decline of a young kitten (usually under 9 weeks): stops nursing, loses weight, becomes cold, limp, and unresponsive. Causes range from congenital defects to infections, fleas (anemia), and hypoglycemia. Emergency first aid while getting to a vet: warm the kitten gradually (towel-wrapped heating pad on low), and rub a little corn syrup or sugar water on the gums if it can swallow. Daily weighing of young kittens catches fading early — failure to gain is the first sign.",
+      tags: ["fading kitten", "emergency", "newborn", "decline", "hypoglycemia"]
+    },
+    {
+      id: "kitten-wont-poop",
+      q: "Why won't my orphaned kitten pee or poop?",
+      a: "Kittens under ~3–4 weeks can't eliminate on their own — the mother normally stimulates them by licking. Bottle-feeders must mimic this: after every feeding, gently rub the genital/anal area with a warm, damp cotton ball or cloth until the kitten urinates (every feed) and defecates (at least once daily). No urine for 12+ hours or no stool for 2–3 days means a vet visit — constipation escalates quickly in neonates.",
+      tags: ["stimulation", "peeing", "pooping", "orphan", "bottle baby"]
+    },
+    {
+      id: "when-are-cats-full-grown",
+      q: "When is a cat fully grown?",
+      a: "Most cats reach adult size around 12 months and social maturity at 2–4 years. Growth in height/length largely stops by 9–12 months, though young adults fill out muscle into year two. Big breeds run long: Maine Coons and Norwegian Forest Cats keep growing until 3–5 years. Switch from kitten to adult food at ~12 months (later for large breeds, per your vet).",
+      tags: ["full grown", "adult size", "growth", "maine coon"]
+    },
+    {
+      id: "why-does-my-kitten-cry",
+      q: "Why does my kitten keep crying?",
+      a: "Kittens cry to communicate needs: hunger, cold (critical in neonates), loneliness (especially the first nights after adoption — they just lost mom and littermates), needing elimination help (bottle babies), being trapped somewhere, or pain. New-home crying usually fades within a week; help with a warm snuggle bed, a ticking-clock or heartbeat toy, and a worn t-shirt of yours. Constant crying with lethargy, or in a kitten that won't eat, is a vet matter.",
+      tags: ["crying", "meowing", "new kitten", "night", "lonely"]
+    },
+    {
+      id: "can-kittens-have-catnip",
+      q: "Can kittens have catnip?",
+      a: "It's safe at any age — but pointless before ~3–6 months, since the catnip response is genetic and doesn't develop until then (and roughly 30% of cats never respond). There's no harm in offering it early; just don't conclude your kitten is immune until it's closer to a year old.",
+      tags: ["catnip", "age", "response", "safe"]
+    }
+  ]
+});
