@@ -18,8 +18,8 @@ public_folder: "/images/blog"
 # Enable drafts via an editorial workflow (Draft -> In review -> Ready)
 publish_mode: editorial_workflow
 
-site_url: https://catencyclopedia.example.com
-display_url: https://catencyclopedia.example.com
+site_url: https://kittydrama.com
+display_url: https://kittydrama.com
 
 collections:
   - name: "blog"

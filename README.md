@@ -1,4 +1,4 @@
-# 🐱 The Cat Encyclopedia
+# 🐱 KittyDrama — the cat encyclopedia
 
 A comprehensive, searchable cat encyclopedia + blog, built with [Astro](https://astro.build). Every one of the **333 answers across 14 topics** is pre-rendered as a real, indexable HTML page — designed to rank in search and earn through AdSense — with a Decap CMS admin for publishing blog posts without touching code.
 
@@ -55,7 +55,7 @@ Deploying somewhere other than Netlify? Switch the backend in `public/admin/conf
 
 ## Going live + AdSense checklist
 
-1. **Buy a domain** and update it in two places: `SITE.url` in `src/config.js` and the `Sitemap:` line in `public/robots.txt`.
+1. **Domain**: `kittydrama.com` is already configured in `src/config.js`, `public/robots.txt`, and the CMS config. After deploying, add the custom domain in Netlify (Domain management) and point your registrar's DNS at it.
 2. **Deploy**: push to GitHub, connect the repo to Netlify (or Cloudflare Pages) — `netlify.toml` already configures the build. Every push auto-deploys.
 3. **Replace the placeholder email** in `src/pages/contact.astro` (or wire up Netlify Forms).
 4. **Submit the sitemap** in [Google Search Console](https://search.google.com/search-console) and let the site index. Give it content age — AdSense rejects brand-new empty-feeling sites; a few blog posts and a few weeks help a lot.

@@ -1,5 +1,5 @@
 ---
-title: "Welcome to the Cat Encyclopedia"
+title: "Welcome to KittyDrama"
 description: "What this site is, how to use it, and why we built a search engine for cat questions."
 pubDate: 2026-06-10
 tags: ["announcements"]
@@ -8,7 +8,7 @@ draft: false
 
 Every cat owner has done it: it's 2am, your cat is yowling at a wall, and you're typing *"why is my cat staring at nothing"* into a search engine — then wading through ten pages of ads to find half an answer.
 
-We built the Cat Encyclopedia to fix that. **333 answers across 14 topics**, written to be clear, honest about uncertainty, and aligned with mainstream veterinary guidance. No twenty-paragraph preamble before the answer. No "as an avid cat lover" filler.
+We built KittyDrama to fix that. **333 answers across 14 topics**, written to be clear, honest about uncertainty, and aligned with mainstream veterinary guidance. No twenty-paragraph preamble before the answer. No "as an avid cat lover" filler.
 
 ## How to use it
 
