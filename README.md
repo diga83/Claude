@@ -1,15 +1,16 @@
 # 🐱 KittyDrama — the cat encyclopedia
 
-A comprehensive, searchable cat encyclopedia + blog, built with [Astro](https://astro.build). Every one of the **333 answers across 14 topics** is pre-rendered as a real, indexable HTML page — designed to rank in search and earn through AdSense — with a Decap CMS admin for publishing blog posts without touching code.
+A comprehensive, searchable cat encyclopedia + blog with its own **self-hosted backend**. The public site is a set of pre-built static pages ([Astro](https://astro.build)) — every one of the **333 answers across 14 topics** is a real, indexable HTML page designed to rank in search and earn through AdSense. A Node.js server (Express + SQLite) provides the admin at `/admin`: log in, write blog posts, edit any encyclopedia answer, moderate comments, and collect newsletter signups — no third-party services involved.
 
 ## Quick start
 
 ```bash
 npm install
-npm run dev       # local dev server at http://localhost:4321
-npm run build     # static production build into dist/
-npm run preview   # serve the production build locally
+npm run build     # generate the static site into dist/
+npm start         # run the server: site + /admin + /api on port 4321
 ```
+
+First visit to `/admin` asks you to create your admin account (one time). For front-end-only development there's still `npm run dev` (Astro dev server, no backend).
 
 ## What's inside
 
@@ -17,92 +18,73 @@ npm run preview   # serve the production build locally
 |---|---|
 | `/` | Interactive home: aurora hero, ⌘K command palette, tilt cards, surprise-me fact modal |
 | `/behavior/`, `/toxic/`, … | 14 topic pages with animated accordions, filtering, scroll-spy TOC, `FAQPage` structured data |
-| `/behavior/why-do-cats-purr/`, … | **333 individual question pages** — each with its own URL, meta tags, structured data, and related questions (this is what ranks in Google) |
-| `/blog/` + `/blog/<slug>/` | The blog — markdown posts with hero images, tags, `BlogPosting` structured data |
-| `/admin/` | Decap CMS — log in and write posts in a rich editor (setup below) |
+| `/behavior/why-do-cats-purr/`, … | **333 individual question pages** — each with its own URL, meta tags, structured data, related questions, and comments |
+| `/blog/` + `/blog/<slug>/` | The blog — markdown posts with hero images, tags, comments, `BlogPosting` structured data |
+| `/admin` | **The backend**: dashboard, post editor with live markdown preview + image uploads, encyclopedia editor, comment moderation, subscriber list, publish button |
+| `/api/comments`, `/api/subscribe` | Public JSON API the static pages call for comments + newsletter |
 | `/about/`, `/privacy/`, `/contact/` | The policy pages AdSense requires |
-| `/rss.xml`, `/sitemap-index.xml`, `/search-index.json`, `/robots.txt` | Feeds and crawl plumbing, generated at build time |
+| `/rss.xml`, `/sitemap-index.xml`, `/search-index.json`, `/robots.txt` | Feeds and crawl plumbing, regenerated on every publish |
 
-## Publishing blog posts
+## How publishing works
 
-Two ways:
+Content lives in files (blog: `src/content/blog/*.md`, encyclopedia: `content/encyclopedia/*.json`); everything dynamic (accounts, sessions, comments, subscribers) lives in one SQLite file (`data/site.db`). When you save in the admin with **“Publish site after saving”** checked — or click **Publish site** in the sidebar — the server reruns the Astro build into a staging directory and atomically swaps it in. The public site is never served half-built, and readers always get static HTML. Comments and newsletter signups are live instantly and never need a publish.
 
-**1. Write a markdown file** in `src/content/blog/`:
+The admin's spam defenses: comments are held for moderation, forms have honeypot fields and minimum-fill-time checks, and the public API is rate-limited per IP. Login is bcrypt + rate-limited, sessions are HttpOnly cookies, and all admin writes are CSRF-protected.
 
-```markdown
----
-title: "Your Post Title"
-description: "120–155 characters for search results and social cards."
-pubDate: 2026-06-15
-heroImage: /images/blog/my-image.jpg   # optional
-tags: ["guides"]
-draft: false
----
+## Deploying on cPanel
 
-Your post content in markdown…
-```
+See **[DEPLOY-CPANEL.md](DEPLOY-CPANEL.md)** for the step-by-step (Setup Node.js App → npm install → visit `/admin`). Short version: it's one Node app with `server.js` as the startup file; the first boot builds the site automatically.
 
-Commit and push — the site rebuilds and the post is live, listed on `/blog/`, the home page, and the RSS feed. Set `draft: true` to keep it out of the published site.
-
-**2. Use the admin UI at `/admin/`** (after deploying):
-
-Login is handled by [DecapBridge](https://decapbridge.com) — free, built for Decap CMS. (Netlify's old Identity + Git Gateway services are deprecated and can't be enabled on new sites.)
-
-1. Sign up at **decapbridge.com** and click **Create New Site**
-2. Connect it to this GitHub repository and the branch your host deploys (follow the dashboard prompts)
-3. Copy the `backend:` snippet it gives you into `public/admin/config.yml` — only the `YOUR_DECAPBRIDGE_SITE_ID` placeholder in `identity_url` should need replacing
-4. In the DecapBridge dashboard, invite yourself (and any co-authors) by email
-5. Visit `yoursite.com/admin/`, log in with that email + password, and write. Posts you publish are committed to the repo and deployed automatically. Drafts go through a Draft → Review → Publish workflow.
-
-Writers don't need GitHub accounts — DecapBridge handles users, invites, and password resets.
+**Back up two things**: the `data/` folder (database + cookie secret) and `public/images/` (uploads). Content files (`src/content/blog/`, `content/encyclopedia/`) are worth backing up too if you edit via the admin in production.
 
 ## Going live + AdSense checklist
 
-1. **Domain**: `kittydrama.com` is already configured in `src/config.js`, `public/robots.txt`, and the CMS config. After deploying, add the custom domain in Netlify (Domain management) and point your registrar's DNS at it.
-2. **Deploy**: push to GitHub, connect the repo to Netlify (or Cloudflare Pages) — `netlify.toml` already configures the build. Every push auto-deploys.
-3. **Replace the placeholder email** in `src/pages/contact.astro` (or wire up Netlify Forms).
-4. **Submit the sitemap** in [Google Search Console](https://search.google.com/search-console) and let the site index. Give it content age — AdSense rejects brand-new empty-feeling sites; a few blog posts and a few weeks help a lot.
-5. **Apply for AdSense** at [adsense.google.com](https://adsense.google.com). When approved:
+1. **Domain**: `kittydrama.com` is already configured in `src/config.js` and `public/robots.txt`. Point the domain at your hosting and make sure HTTPS (AutoSSL) is active — the admin login requires it.
+2. **Replace the placeholder email** in `src/pages/contact.astro`.
+3. **Submit the sitemap** in [Google Search Console](https://search.google.com/search-console) and let the site index. Give it content age — AdSense rejects brand-new empty-feeling sites; a few blog posts and a few weeks help a lot.
+4. **Apply for AdSense** at [adsense.google.com](https://adsense.google.com). When approved:
    - Set `adsenseClient: "ca-pub-XXXXXXXXXXXXXXXX"` and `adsenseEnabled: true` in `src/config.js`
    - Create ad units in AdSense and put their slot ids into the `<AdSlot slot="..." />` components (topic pages, question pages, blog posts)
    - Add the `ads.txt` file AdSense gives you to `public/ads.txt`
    - Enable Google's consent message (Privacy & messaging in AdSense) for EEA/UK visitors
-6. **Realistic expectations**: pet content runs roughly $2–10 RPM. Traffic is the product — keep publishing; the blog and the 333 long-tail question pages are the engine.
+   - Click **Publish site** in the admin to roll all of it out
+5. **Realistic expectations**: pet content runs roughly $2–10 RPM. Traffic is the product — keep publishing; the blog and the 333 long-tail question pages are the engine.
 
-## Editing encyclopedia content
+## Editing content without the admin
 
-Q&A content lives in `src/data/*.js` — one module per topic:
+Everything the admin edits is a plain file, so you can also edit directly:
 
-```js
-{
-  id: "unique-slug",        // becomes the URL: /topic/unique-slug/
-  q: "The question?",
-  a: "The answer text.",
-  tags: ["search", "keywords"]
-}
-```
+- **Blog posts**: markdown with frontmatter in `src/content/blog/` (schema in `src/content.config.ts`)
+- **Encyclopedia**: `content/encyclopedia/<topic>.json` — entries are `{ id, q, a, tags }`; `id` becomes the URL `/topic/id/`
+- New topics: add a JSON file with `slug/name/tagline/icon/order`, pick an icon in `src/lib/icons.js`
 
-Add an entry, rebuild, and it gets its own page, joins the topic accordion, the search index, and the sitemap automatically. New topics: add a module in `src/data/`, register it in `src/lib/data.js`, pick an icon in `src/lib/icons.js`.
+Rebuild (`npm run build` or the admin's Publish button) and new entries get their own page, join the accordion, search index, and sitemap automatically.
 
 ## Project structure
 
 ```
-astro.config.mjs        Site URL + sitemap integration
-netlify.toml            Build & deploy config
+server.js                  Server entry (cPanel startup file): static site + /admin + /api
+server/
+  routes-admin.js          All admin pages and actions
+  routes-api.js            Public API: comments, newsletter
+  auth.js                  Sessions, bcrypt, CSRF, rate limiting
+  build.js                 Publish pipeline (astro build → atomic swap)
+  content.js               File-backed content ops (posts, encyclopedia)
+  db.js                    SQLite schema (users, sessions, comments, subscribers)
+  ui.js + static/          Admin layout, styles, client JS
+content/encyclopedia/*.json  The 333 Q&As — edited by the admin
 src/
-  config.js             Site name, domain, AdSense settings  ← edit before launch
-  content/blog/*.md     Blog posts (what /admin/ edits)
-  content.config.ts     Blog frontmatter schema
-  data/*.js             The 333 Q&As, one module per topic
-  lib/data.js           Aggregation, related-questions, URL helpers
-  lib/icons.js          SVG icon set (server-side)
-  layouts/Base.astro    Head/SEO/header/footer shell
-  components/AdSlot.astro  AdSense unit (renders only when configured)
-  pages/                Home, topics, questions, blog, policies, feeds
+  config.js                Site name, domain, AdSense settings  ← edit before launch
+  content/blog/*.md        Blog posts — edited by the admin
+  lib/data.js              Loads encyclopedia JSON; related-questions, URL helpers
+  layouts/Base.astro       Head/SEO/header/footer shell (incl. newsletter form)
+  components/              AdSlot, Comments, Logo
+  pages/                   Home, topics, questions, blog, policies, feeds
 public/
-  scripts/site.js       Client interactivity (palette, theme, accordions…)
-  admin/                Decap CMS
-  robots.txt
+  scripts/site.js          Client interactivity (palette, theme, accordions…)
+  scripts/dynamic.js       Comments + newsletter (talks to /api)
+  images/blog/             Uploaded images
+data/                      Runtime state: SQLite DB + cookie secret (not in git — back it up!)
 ```
 
 ## Disclaimer

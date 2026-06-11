@@ -1419,3 +1419,72 @@ kbd {
 @media (max-width: 720px) {
   .nav-links { display: none; }
 }
+
+/* ==========================================================================
+   Comments + newsletter (dynamic sections backed by the Node server)
+   ========================================================================== */
+
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+.comments { margin-top: 2.5rem; }
+.comments-list { display: grid; gap: 0.8rem; margin-bottom: 1.4rem; }
+.comments-empty { color: var(--fg-muted); font-weight: 600; }
+
+.comment {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--clay-shadow);
+  padding: 1rem 1.3rem;
+}
+.comment-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-bottom: 0.35rem;
+}
+.comment-meta strong { color: var(--fg-strong); }
+.comment-meta time { color: var(--fg-muted); font-size: 0.8rem; font-weight: 600; }
+.comment p { margin: 0; white-space: pre-wrap; }
+
+.comment-form {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.3rem;
+  display: grid;
+  gap: 0.8rem;
+}
+.comment-form input[type="text"]:not(.hp-field),
+.comment-form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--fg);
+  resize: vertical;
+}
+.comment-form input:focus, .comment-form textarea:focus { outline: 2px solid var(--ring); outline-offset: 1px; }
+.comment-form-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.comment-form-row input { max-width: 320px; }
+.comment-form-note { color: var(--fg-muted); font-size: 0.85rem; font-weight: 600; }
+.comment-form-note.ok { color: var(--accent); }
+
+.newsletter-form { display: grid; gap: 0.5rem; }
+.newsletter-row { display: flex; gap: 0.5rem; }
+.newsletter-row input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  padding: 0 0.9rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--fg);
+}
+.newsletter-row input:focus { outline: 2px solid var(--ring); outline-offset: 1px; }
+.newsletter-row .btn-primary { min-height: 44px; padding: 0 1.1rem; font-size: 0.88rem; }
+.newsletter-note { font-size: 0.85rem; font-weight: 700; color: var(--fg-muted); min-height: 1.2em; }
+.newsletter-note.ok { color: var(--accent); }

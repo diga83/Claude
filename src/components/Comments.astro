@@ -1,0 +1,23 @@
+---
+/* Reader comments. The static page ships only this shell; approved comments
+   are fetched from the server's /api/comments endpoint at view time, so
+   publishing a comment never requires a site rebuild. */
+const { path } = Astro.props;
+---
+<section class="comments" data-comments data-path={path}>
+  <div class="section-head"><h2>Comments</h2></div>
+  <div class="comments-list" data-comments-list>
+    <p class="comments-empty">Loading comments…</p>
+  </div>
+  <form class="comment-form" data-comment-form>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field" />
+    <div class="comment-form-row">
+      <input type="text" name="author" maxlength="60" required placeholder="Your name" aria-label="Your name" />
+    </div>
+    <textarea name="body" rows="4" maxlength="2000" required placeholder="Share your experience or ask a follow-up…" aria-label="Your comment"></textarea>
+    <div class="comment-form-row">
+      <button class="btn-primary" type="submit">Post comment</button>
+      <span class="comment-form-note">Comments appear after review.</span>
+    </div>
+  </form>
+</section>

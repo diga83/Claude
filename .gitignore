@@ -3,3 +3,6 @@ dist/
 .astro/
 .DS_Store
 dist-portable/
+.dist-staging/
+.dist-old/
+data/

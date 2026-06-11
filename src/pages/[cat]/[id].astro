@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import AdSlot from "../../components/AdSlot.astro";
+import Comments from "../../components/Comments.astro";
 import { SITE } from "../../config.js";
 import { icon } from "../../lib/icons.js";
 import { CATEGORIES, hue, categoryUrl, entryUrl, relatedEntries } from "../../lib/data.js";
@@ -75,6 +76,8 @@ const jsonLd = {
         </li>
       ))}
     </ul>
+
+    <Comments path={entryUrl(cat, entry)} />
 
     <nav class="cat-nav" aria-label="Question navigation">
       {prevEntry

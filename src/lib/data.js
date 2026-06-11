@@ -1,24 +1,16 @@
-/* Aggregates the 14 category content modules into the structures
-   the pages and the search index endpoint build from. */
-import behavior from "../data/behavior.js";
-import communication from "../data/communication.js";
-import health from "../data/health.js";
-import nutrition from "../data/nutrition.js";
-import canCatsEat from "../data/can-cats-eat.js";
-import toxic from "../data/toxic.js";
-import kittens from "../data/kittens.js";
-import breeds from "../data/breeds.js";
-import grooming from "../data/grooming.js";
-import litterTraining from "../data/litter-training.js";
-import senior from "../data/senior.js";
-import reproduction from "../data/reproduction.js";
-import living from "../data/living.js";
-import science from "../data/science.js";
+/* Loads the 14 category content files (content/encyclopedia/*.json — editable
+   from the /admin backend) into the structures the pages and the search index
+   endpoint build from. Read at build time only. */
+import fs from "node:fs";
+import path from "node:path";
 
-export const CATEGORIES = [
-  behavior, communication, health, nutrition, canCatsEat, toxic, kittens,
-  breeds, grooming, litterTraining, senior, reproduction, living, science
-];
+const DIR = path.resolve(process.cwd(), "content", "encyclopedia");
+
+export const CATEGORIES = fs
+  .readdirSync(DIR)
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => JSON.parse(fs.readFileSync(path.join(DIR, f), "utf8")))
+  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 
 /* per-category color hue (drives card gradients) */
 const HUES = {
