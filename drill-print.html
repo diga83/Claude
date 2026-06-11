@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Drill — IGCSE ICT 4IT1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.drill-config-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.drill-config-card h3 {
+  font-family: var(--font-display);
+  margin-bottom: 0.85rem;
+}
+.drill-chapter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+.drill-chip {
+  padding: 0.45rem 0.9rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+.drill-chip.active { background: var(--blue); color: white; border-color: var(--blue); }
+.drill-options { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.drill-options label { display: inline-flex; gap: 0.45rem; align-items: center; cursor: pointer; font-size: 0.92rem; }
+
+/* The printable area */
+.drill-output {
+  background: white;
+  color: black;
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+  margin-top: 1.5rem;
+}
+[data-theme="dark"] .drill-output { background: white; color: black; }
+.drill-output h1, .drill-output h2, .drill-output h3 { color: black; }
+.drill-output h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 2px solid #1B3A6B;
+  padding-bottom: 0.4rem;
+}
+.drill-output .doc-meta {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.drill-output .student-line {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.drill-output .student-line span {
+  flex: 1;
+  border-bottom: 1.5px solid #333;
+  padding-bottom: 0.15rem;
+}
+.drill-output h2.ch-header {
+  font-size: 1.2rem;
+  font-family: 'Fraunces', serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  background: #f1f5f9;
+  color: black;
+  padding: 0.45rem 0.75rem;
+  border-radius: 4px;
+  page-break-after: avoid;
+}
+.print-q {
+  margin-bottom: 1.25rem;
+  page-break-inside: avoid;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.print-q .q-num {
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+.print-q .q-marks {
+  font-weight: 700;
+  color: #1B3A6B;
+  font-size: 0.85rem;
+  float: right;
+}
+.print-q .q-options {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 1.4rem;
+}
+.print-q .q-options li {
+  padding: 0.15rem 0;
+  font-size: 0.9rem;
+}
+.print-q .q-letter {
+  display: inline-block;
+  width: 24px;
+  font-weight: 600;
+}
+.print-q .q-essay-lines {
+  margin-top: 0.4rem;
+  border-left: 2px solid #ccc;
+  padding-left: 0.5rem;
+}
+.print-q .q-essay-lines .line {
+  height: 1.2rem;
+  border-bottom: 1px solid #d1d5db;
+}
+.print-q .q-chapter-meta {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 0.15rem;
+}
+
+.answer-key {
+  margin-top: 2.5rem;
+  page-break-before: always;
+}
+.answer-key h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #1B3A6B;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.85rem;
+}
+.ak-row {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.88rem;
+  page-break-inside: avoid;
+}
+.ak-row strong { color: #1B3A6B; }
+
+@media print {
+  /* Hide non-essential UI in print */
+  .topbar, .sidebar, .backdrop, #pomodoroWidget, #notesWidget,
+  .drill-config-card, .drill-controls, .no-print { display: none !important; }
+  .app { grid-template-columns: 1fr !important; margin-top: 0 !important; }
+  .main { padding: 0 !important; max-width: 100% !important; }
+  body { background: white !important; }
+  .drill-output { box-shadow: none; border: none; padding: 0; }
+  @page { margin: 18mm; size: A4 portrait; }
+}
+</style>
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="quiz-hero no-print" style="background: linear-gradient(135deg, #334155 0%, #1B3A6B 100%);">
+      <span class="hero-tag">Print &amp; revise offline</span>
+      <h1>🖨 Print Drill</h1>
+      <p>Generate a printable practice booklet of MCQs and/or essay questions. Pick chapters, difficulty, and how many of each. Print to paper for offline revision, mock exam practice, or to use in class.</p>
+    </div>
+
+    <div class="drill-config-card no-print">
+      <h3>1. Pick chapters</h3>
+      <div class="drill-chapter-chips" id="chapChips"></div>
+
+      <h3>2. Choose content</h3>
+      <div class="drill-options">
+        <label><input type="checkbox" id="incMCQ" checked> Include MCQs</label>
+        <label><input type="checkbox" id="incEssay" checked> Include essays</label>
+        <label><input type="checkbox" id="incAnswers" checked> Include answer key at end</label>
+      </div>
+      <div class="drill-options">
+        <label>MCQs per chapter:
+          <select id="mcqCount" style="margin-left:0.4rem; padding:0.35rem 0.6rem; border:1px solid var(--border); border-radius:6px; background:var(--surface-2); color:var(--text);">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="all">All</option>
+          </select>
+        </label>
+        <label>Essays per chapter:
+          <select id="essayCount" style="margin-left:0.4rem; padding:0.35rem 0.6rem; border:1px solid var(--border); border-radius:6px; background:var(--surface-2); color:var(--text);">
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="5">5</option>
+            <option value="all">All</option>
+          </select>
+        </label>
+        <label>Difficulty:
+          <select id="diff" style="margin-left:0.4rem; padding:0.35rem 0.6rem; border:1px solid var(--border); border-radius:6px; background:var(--surface-2); color:var(--text);">
+            <option value="all">All</option>
+            <option value="1">Easy only</option>
+            <option value="2">Medium only</option>
+            <option value="3">Hard only</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="drill-controls" style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="generateDrill()">📝 Generate booklet</button>
+        <button class="btn" onclick="window.print()" id="printBtn" style="display:none;">🖨 Print</button>
+      </div>
+    </div>
+
+    <div id="drillOutput"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+let drillState = {
+  chapters: new Set(CHAPTERS.map(c => c.id))
+};
+
+function renderChips() {
+  const chips = document.getElementById('chapChips');
+  chips.innerHTML = `<div class="drill-chip ${drillState.chapters.size === CHAPTERS.length ? 'active' : ''}" onclick="toggleAll()">All chapters</div>` +
+    CHAPTERS.map(ch => `
+      <div class="drill-chip ${drillState.chapters.has(ch.id) ? 'active' : ''}"
+           style="--ch-color:${ch.color};"
+           onclick="toggleChapter(${ch.id})">Ch ${ch.id}: ${ch.title}</div>
+    `).join('');
+}
+
+function toggleAll() {
+  if (drillState.chapters.size === CHAPTERS.length) drillState.chapters = new Set();
+  else drillState.chapters = new Set(CHAPTERS.map(c => c.id));
+  renderChips();
+}
+
+function toggleChapter(id) {
+  if (drillState.chapters.has(id)) drillState.chapters.delete(id);
+  else drillState.chapters.add(id);
+  renderChips();
+}
+
+function pickN(arr, n) {
+  if (n === 'all' || n === arr.length) return arr.slice();
+  const shuffled = arr.slice().sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, Math.min(parseInt(n,10), arr.length));
+}
+
+function generateDrill() {
+  const incMCQ = document.getElementById('incMCQ').checked;
+  const incEssay = document.getElementById('incEssay').checked;
+  const incAnswers = document.getElementById('incAnswers').checked;
+  const mcqN = document.getElementById('mcqCount').value;
+  const essayN = document.getElementById('essayCount').value;
+  const diff = document.getElementById('diff').value;
+
+  if (!incMCQ && !incEssay) {
+    alert('Pick at least MCQs or essays to include.');
+    return;
+  }
+  if (drillState.chapters.size === 0) {
+    alert('Pick at least one chapter.');
+    return;
+  }
+
+  const selectedChs = [...drillState.chapters].sort((a,b)=>a-b);
+  let qNum = 1;
+  let html = '';
+  const answerKey = [];
+
+  // Document header
+  const studentName = (typeof studentFullName === 'function') ? studentFullName() : null;
+  html += `
+    <h1>IGCSE ICT 4IT1 — Practice Drill</h1>
+    <div class="doc-meta">
+      <span>${selectedChs.length === CHAPTERS.length ? 'All chapters' : 'Chapters: ' + selectedChs.join(', ')}</span>
+      <span>Generated: ${new Date().toLocaleDateString()}</span>
+    </div>
+    <div class="student-line">
+      ${studentName ? `<span><strong>Student:</strong> ${escapeHtml(studentName)}</span>` : '<span><strong>Name:</strong> </span>'}
+      <span><strong>Date:</strong> </span>
+      <span><strong>Score:</strong>      / </span>
+    </div>
+  `;
+
+  // For each chapter, output questions
+  selectedChs.forEach(chId => {
+    const ch = CHAPTERS.find(c => c.id === chId);
+
+    let mcqs = [];
+    let essays = [];
+
+    if (incMCQ) {
+      mcqs = MCQ_BANK.filter(q => q.ch === chId &&
+        (diff === 'all' || q.d === parseInt(diff, 10)));
+      mcqs = pickN(mcqs, mcqN);
+    }
+    if (incEssay) {
+      essays = ESSAY_BANK.filter(q => q.ch === chId);
+      essays = pickN(essays, essayN);
+    }
+
+    if (mcqs.length === 0 && essays.length === 0) return;
+
+    html += `<h2 class="ch-header">Chapter ${chId}: ${ch.title}</h2>`;
+
+    // MCQs first
+    mcqs.forEach(q => {
+      const myNum = qNum++;
+      const diffLabel = ['', 'Easy', 'Medium', 'Hard'][q.d];
+      html += `
+        <div class="print-q">
+          <span class="q-marks">[1 mark]</span>
+          <span class="q-num">${myNum}.</span>${escapeHtml(q.q)}
+          <ul class="q-options">
+            ${q.o.map((opt, i) => `
+              <li><span class="q-letter">${String.fromCharCode(65+i)})</span> ${escapeHtml(opt)}</li>
+            `).join('')}
+          </ul>
+          <div class="q-chapter-meta">${diffLabel}</div>
+        </div>
+      `;
+      answerKey.push({
+        num: myNum,
+        ch: chId,
+        type: 'mcq',
+        answer: `${String.fromCharCode(65 + q.a)}) ${q.o[q.a]}`,
+        explanation: q.e
+      });
+    });
+
+    // Essays
+    essays.forEach(q => {
+      const myNum = qNum++;
+      const lineCount = Math.max(4, Math.min(20, q.marks * 2));
+      const lines = Array(lineCount).fill('<div class="line"></div>').join('');
+      html += `
+        <div class="print-q">
+          <span class="q-marks">[${q.marks} mark${q.marks === 1 ? '' : 's'}]</span>
+          <span class="q-num">${myNum}.</span>${escapeHtml(q.q)}
+          <div class="q-essay-lines">${lines}</div>
+        </div>
+      `;
+      answerKey.push({
+        num: myNum,
+        ch: chId,
+        type: 'essay',
+        marks: q.marks,
+        mark_scheme: q.mark_scheme,
+        keywords: q.keywords
+      });
+    });
+  });
+
+  // Answer key
+  if (incAnswers) {
+    html += `<div class="answer-key"><h2>📝 Answer Key &amp; Mark Schemes</h2>`;
+    answerKey.forEach(a => {
+      if (a.type === 'mcq') {
+        html += `
+          <div class="ak-row">
+            <strong>Q${a.num} (Ch ${a.ch}):</strong> ${escapeHtml(a.answer)}<br>
+            <span style="color:#555; font-size:0.85rem;">${escapeHtml(a.explanation)}</span>
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="ak-row">
+            <strong>Q${a.num} (Ch ${a.ch}, ${a.marks} marks):</strong>
+            <ul style="margin:0.3rem 0 0.3rem 1.2rem; padding:0; font-size:0.85rem;">
+              ${a.mark_scheme.map(m => `<li>${escapeHtml(m)}</li>`).join('')}
+            </ul>
+            <span style="color:#666; font-size:0.78rem;">Key terms: ${a.keywords.map(escapeHtml).join(', ')}</span>
+          </div>
+        `;
+      }
+    });
+    html += `</div>`;
+  }
+
+  document.getElementById('drillOutput').innerHTML = `<div class="drill-output">${html}</div>`;
+  document.getElementById('printBtn').style.display = 'inline-flex';
+  // Scroll to output
+  setTimeout(() => {
+    document.getElementById('drillOutput').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function escapeHtml(s) {
+  return (s || '').toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', renderChips);
+</script>
+</body>
+</html>

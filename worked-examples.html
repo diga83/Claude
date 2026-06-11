@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worked Examples — IGCSE ICT 4IT1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.we-question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.we-question-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.we-marks {
+  background: var(--amber);
+  color: white;
+  padding: 0.25rem 0.7rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.we-question-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+.we-scenario-box {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+}
+[data-theme="dark"] .we-scenario-box { background: rgba(96, 165, 250, 0.1); }
+
+.we-answer {
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  margin: 1rem 0;
+  border-left: 5px solid;
+  position: relative;
+}
+.we-answer.excellent { border-color: var(--green); }
+.we-answer.medium { border-color: var(--amber); }
+.we-answer.weak { border-color: var(--red); }
+.we-grade {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+.we-answer.excellent .we-grade { color: var(--green); }
+.we-answer.medium .we-grade { color: var(--amber); }
+.we-answer.weak .we-grade { color: var(--red); }
+.we-score-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border: 1.5px solid;
+  padding: 0.15rem 0.55rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+}
+.we-answer.excellent .we-score-pill { border-color: var(--green); color: var(--green); }
+.we-answer.medium .we-score-pill { border-color: var(--amber); color: var(--amber); }
+.we-answer.weak .we-score-pill { border-color: var(--red); color: var(--red); }
+
+.we-student-text {
+  background: var(--surface);
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-style: italic;
+  line-height: 1.65;
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.we-marker {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+.we-marker-title {
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  color: var(--mid);
+}
+.we-marker ul { margin: 0; padding-left: 1.3rem; }
+.we-marker li { margin: 0.25rem 0; line-height: 1.5; }
+.we-marker .tick { color: var(--green); font-weight: 700; }
+.we-marker .cross { color: var(--red); font-weight: 700; }
+
+.we-chapter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 1.5rem;
+}
+.we-chip {
+  padding: 0.45rem 0.85rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+.we-chip:hover { border-color: var(--border-strong); }
+.we-chip.active { background: var(--blue); color: white; border-color: var(--blue); }
+</style>
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #047857 0%, #1D4ED8 100%);">
+      <span class="hero-tag">Annotated mark schemes</span>
+      <h1>🎓 Worked Examples</h1>
+      <p>See exactly what scores full marks vs. what scores half marks. Real exam-style questions with three different student answers, marked and annotated to show why each scored what it did. The single best way to learn what examiners reward.</p>
+    </div>
+
+    <div class="we-chapter-chips" id="weChips"></div>
+
+    <div id="weBody"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+
+// Worked examples — chapter-keyed; each entry has a question + 3 sample answers (excellent/medium/weak)
+const WORKED_EXAMPLES = [
+  {
+    chapter: 1,
+    question: "A nurse working on a hospital ward needs a device to access patient records while moving around. Identify ONE suitable device and explain TWO reasons why it is appropriate.",
+    marks: 4,
+    answers: [
+      {
+        grade: "excellent",
+        score: "4 / 4",
+        label: "Full marks (4/4)",
+        text: "A tablet device would be suitable for the nurse. Firstly, a tablet has high portability (1) — it is lightweight and thin, allowing the nurse to carry it easily between patient beds throughout her shift (1). Secondly, a tablet has a touchscreen user interface (1) — this allows the nurse to quickly navigate patient records by tapping the screen, even while wearing medical gloves, without requiring a separate keyboard or mouse (1).",
+        analysis: [
+          { type: "tick", text: "Device clearly named ('tablet device') — specific, not just 'tablet'" },
+          { type: "tick", text: "Feature 1 (portability) named AND developed — linked to the SPECIFIC scenario (moving between beds during shift)" },
+          { type: "tick", text: "Feature 2 (touchscreen UI) named AND developed with scenario detail (medical gloves)" },
+          { type: "tick", text: "Each feature earns 2 marks because the explanation links back to the nurse's actual situation" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "2 / 4",
+        label: "Partial marks (2/4)",
+        text: "A tablet would be suitable because it is portable and has a touchscreen. The nurse can carry it around and use it easily.",
+        analysis: [
+          { type: "tick", text: "Device named (tablet) — 1 mark" },
+          { type: "tick", text: "Two features named (portability, touchscreen) — 1 mark each... wait, only 1 mark" },
+          { type: "cross", text: "Features are NAMED but not DEVELOPED — no explanation of WHY they help in the nurse's specific situation" },
+          { type: "cross", text: "Vague phrases like 'easily' and 'carry it around' don't earn the second mark per feature" },
+          { type: "cross", text: "Missed marks: develop each feature with 'because' or 'so that' linked to the scenario" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 4",
+        label: "Weak answer (1/4)",
+        text: "A laptop would be best because laptops are good. They can do lots of things and have lots of features. The nurse can take it with her.",
+        analysis: [
+          { type: "cross", text: "Laptop is portable BUT bulkier than ideal for one-handed clinical use on a ward — student could have justified" },
+          { type: "tick", text: "Device named (laptop) — earns 1 mark" },
+          { type: "cross", text: "'Laptops are good' / 'lots of features' — these are not specific features from the spec" },
+          { type: "cross", text: "No named features (portability, touchscreen, etc.) — zero feature marks" },
+          { type: "cross", text: "No link to the scenario — generic answer that could be about anything" }
+        ]
+      }
+    ],
+    examiner_note: "This is a CLASSIC scenario question. The mark scheme always wants: (1) device clearly identified, (2+3) feature named, (4+5) feature explained in the scenario context. Use the 4-step formula: 'A [device] is suitable because [feature]. This means [scenario-specific consequence]'. Every time."
+  },
+
+  {
+    chapter: 6,
+    question: "Discuss the benefits of a client-server network compared to a peer-to-peer network for a school of 1,000 students and 100 staff.",
+    marks: 6,
+    answers: [
+      {
+        grade: "excellent",
+        score: "6 / 6",
+        label: "Full marks (6/6)",
+        text: "A client-server network would offer several major benefits for a school of this size. Firstly, it provides centralised user management (1) — the IT team can create accounts for 1,100 users from one server, rather than configuring each computer individually as required in P2P (1). Secondly, it allows centralised backup of all student work (1) — files saved to the server are automatically backed up nightly, protecting students from data loss if their computer fails (1). Thirdly, security is significantly stronger (1) — staff have admin-level access while students have restricted access, and the firewall protects all 1,100 users from external threats from a central point (1).",
+        analysis: [
+          { type: "tick", text: "Three distinct benefits identified — each earns 1 mark" },
+          { type: "tick", text: "Each benefit DEVELOPED with explanation — earning the second mark per point" },
+          { type: "tick", text: "Application to the specific scenario (1,100 users, IT team, student vs staff access)" },
+          { type: "tick", text: "Comparative language ('rather than', 'while') shows genuine comparison" },
+          { type: "tick", text: "Technical vocabulary used correctly: centralised, admin access, firewall" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "3 / 6",
+        label: "Partial marks (3/6)",
+        text: "Client-server is better than peer-to-peer for a school. The server can do backups for everyone. It is also more secure. Lots of people can use it at the same time and the IT staff can manage all the accounts.",
+        analysis: [
+          { type: "tick", text: "Centralised backups mentioned — 1 mark" },
+          { type: "tick", text: "Security mentioned — 1 mark" },
+          { type: "tick", text: "Central management mentioned — 1 mark" },
+          { type: "cross", text: "None of the three points are DEVELOPED — just named. Missing the second mark each time." },
+          { type: "cross", text: "'More secure' — HOW? 'Lots of people' — HOW does that help? Each point needs a 'because' or 'so that'" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 6",
+        label: "Weak answer (1/6)",
+        text: "A client-server network is good because it has a server. Servers are powerful computers that do lots of things. Peer-to-peer is when computers connect together. The school should use a server.",
+        analysis: [
+          { type: "tick", text: "Mentions that client-server has a server — barely 1 mark" },
+          { type: "cross", text: "Defines what a server is, but doesn't say what BENEFITS it brings" },
+          { type: "cross", text: "Defines P2P but doesn't COMPARE it to client-server" },
+          { type: "cross", text: "Question asks to DISCUSS BENEFITS — student has described what each network IS but not why client-server is better" },
+          { type: "cross", text: "No scenario-specific points (1,000 students, 100 staff)" }
+        ]
+      }
+    ],
+    examiner_note: "'Discuss' questions need DEVELOPED points, not a list. The pattern: STATE the benefit → EXPLAIN how it works → APPLY to the scenario. For 6 marks, aim for 3 developed points (3 x 2 marks) NOT 6 short points (6 x 1 mark). And ALWAYS use the scenario details — the 1,000 students and 100 staff aren't there for decoration."
+  },
+
+  {
+    chapter: 5,
+    question: "Explain TWO differences between Wi-Fi and Bluetooth.",
+    marks: 4,
+    answers: [
+      {
+        grade: "excellent",
+        score: "4 / 4",
+        label: "Full marks (4/4)",
+        text: "Wi-Fi and Bluetooth differ in range and typical use. Wi-Fi has a longer range, typically around 50 metres (1), making it suitable for whole-house or office connectivity to the internet (1). Bluetooth has a much shorter range, around 10 metres (1), making it ideal for short-range device-to-device pairing such as connecting wireless headphones to a phone (1).",
+        analysis: [
+          { type: "tick", text: "Two clearly identified differences (range, use case)" },
+          { type: "tick", text: "Each difference COMPARES Wi-Fi AND Bluetooth — not just listing facts about each separately" },
+          { type: "tick", text: "Specific values given (50m vs 10m) showing knowledge" },
+          { type: "tick", text: "Real-world examples (whole house, headphones to phone)" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "2 / 4",
+        label: "Partial marks (2/4)",
+        text: "Wi-Fi is for the internet. Bluetooth is for phones. Wi-Fi is faster than Bluetooth. They both use wireless signals.",
+        analysis: [
+          { type: "tick", text: "Identifies that they have different uses — 1 mark" },
+          { type: "tick", text: "Notes Wi-Fi is faster than Bluetooth — 1 mark for speed difference" },
+          { type: "cross", text: "'Wi-Fi is for the internet, Bluetooth is for phones' — oversimplified, not technically accurate (phones use both)" },
+          { type: "cross", text: "'Both use wireless signals' is a SIMILARITY, not a difference — wastes time" },
+          { type: "cross", text: "No explanation of WHY they differ (range, speed values)" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "0 / 4",
+        label: "No marks (0/4)",
+        text: "Wi-Fi and Bluetooth are both wireless. Wi-Fi has Wi-Fi and Bluetooth has Bluetooth. They are different because they have different names.",
+        analysis: [
+          { type: "cross", text: "Common-sense / circular statements that show no ICT knowledge" },
+          { type: "cross", text: "Lists similarity ('both wireless') — opposite of what's asked" },
+          { type: "cross", text: "'Different names' is not a technical difference" },
+          { type: "cross", text: "Zero marks awarded — no specification points addressed" }
+        ]
+      }
+    ],
+    examiner_note: "'Explain' questions need MORE than 'state'. Pattern: state the fact + give detail + give example. For 'compare/contrast' questions, use comparative language: 'Wi-Fi has X RANGE WHILE Bluetooth has Y'. Don't list two separate things; compare them on the same axis."
+  },
+
+  {
+    chapter: 7,
+    question: "Explain the difference between phishing and pharming. Give one example of each.",
+    marks: 5,
+    answers: [
+      {
+        grade: "excellent",
+        score: "5 / 5",
+        label: "Full marks (5/5)",
+        text: "Phishing is a social engineering attack that uses fake messages (usually emails) to trick users into giving personal information (1). For example, an email pretending to be from the user's bank asking them to 'verify' their password by clicking a link to a fake login page (1). Pharming is a more technical attack that silently redirects users from legitimate websites to fake versions via DNS manipulation (1) — the user doesn't need to click anything; they type the correct URL but are taken to a fraudulent site (1). An example would be the user typing their bank's URL into a browser and being silently redirected to a fake banking site (1).",
+        analysis: [
+          { type: "tick", text: "Phishing defined precisely (social engineering, fake message, trick into giving info)" },
+          { type: "tick", text: "Phishing example specific (bank email, password verification, fake login page)" },
+          { type: "tick", text: "Pharming defined precisely (DNS manipulation, silent redirect)" },
+          { type: "tick", text: "Critical detail noted: pharming requires NO user action — common exam trap" },
+          { type: "tick", text: "Pharming example specific and matches the definition" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "3 / 5",
+        label: "Partial marks (3/5)",
+        text: "Phishing is when someone sends a fake email to get your password. Pharming is similar but uses websites. An example of phishing is an email pretending to be from a bank. An example of pharming is a fake website.",
+        analysis: [
+          { type: "tick", text: "Phishing definition — has the key elements (fake email, get password) — 1 mark" },
+          { type: "tick", text: "Phishing example acceptable (bank email) — 1 mark" },
+          { type: "tick", text: "Pharming example mentioned (fake website) — 1 mark" },
+          { type: "cross", text: "Pharming definition is too vague — 'similar but uses websites' misses the KEY POINT: pharming is SILENT (DNS attack, no user action)" },
+          { type: "cross", text: "Does NOT explain HOW pharming works — just says 'uses websites'" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 5",
+        label: "Weak answer (1/5)",
+        text: "Phishing and pharming are both bad things hackers do. They try to steal your information. They are different but similar.",
+        analysis: [
+          { type: "tick", text: "Recognises both are attacks — barely 1 mark" },
+          { type: "cross", text: "No definitions of EITHER term — just describes them as 'bad things'" },
+          { type: "cross", text: "No examples given" },
+          { type: "cross", text: "'Different but similar' shows lack of understanding of what makes them different" }
+        ]
+      }
+    ],
+    examiner_note: "This pair (phishing vs pharming) appears almost every year. The KEY distinction examiners want: phishing REQUIRES the user to make a mistake (click a link); pharming requires NO mistake — even careful users can be fooled. If you can include this distinction clearly, you secure the marks."
+  },
+
+  {
+    chapter: 4,
+    question: "A computer feels slow when running multiple programs. Recommend TWO hardware upgrades and explain how each would improve performance.",
+    marks: 4,
+    answers: [
+      {
+        grade: "excellent",
+        score: "4 / 4",
+        label: "Full marks (4/4)",
+        text: "First, upgrade the RAM — increasing from 4GB to 16GB (1) allows more programs to be held in fast memory at the same time, reducing the slow swapping of data to and from the hard disk (1). Second, replace the HDD with an SSD (1) — SSDs are 5-10x faster at reading and writing files, so programs and the operating system load almost instantly, dramatically improving responsiveness (1).",
+        analysis: [
+          { type: "tick", text: "Two specific upgrades named (RAM increase, HDD→SSD)" },
+          { type: "tick", text: "Each upgrade NUMERICALLY specific (4→16GB; 5-10x faster)" },
+          { type: "tick", text: "Each explanation links the upgrade to WHY it helps with multitasking" },
+          { type: "tick", text: "Uses technical vocabulary correctly (swapping, OS loading)" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "2 / 4",
+        label: "Partial marks (2/4)",
+        text: "Add more RAM, this will make it faster. Get an SSD, this will also make it faster.",
+        analysis: [
+          { type: "tick", text: "RAM upgrade mentioned — 1 mark" },
+          { type: "tick", text: "SSD upgrade mentioned — 1 mark" },
+          { type: "cross", text: "'Will make it faster' is too vague — does NOT explain HOW or WHY" },
+          { type: "cross", text: "Misses the development mark for each upgrade — needs the second mark per point" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "0 / 4",
+        label: "No marks (0/4)",
+        text: "Buy a new computer because old computers are slow. Or get more storage so it can store more stuff.",
+        analysis: [
+          { type: "cross", text: "'Buy a new computer' isn't an upgrade — and isn't what the question asked" },
+          { type: "cross", text: "More storage doesn't help with running multiple programs (this is a memory issue, not storage)" },
+          { type: "cross", text: "Shows confusion between storage (HDD/SSD capacity) and memory (RAM)" }
+        ]
+      }
+    ],
+    examiner_note: "Hardware upgrade questions need SPECIFICS. Vague answers like 'more memory' or 'faster CPU' score poorly. Include exact terms (RAM, SSD, GHz) and concrete numbers where possible. Always link the upgrade to the SPECIFIC PROBLEM in the question."
+  },
+
+  {
+    chapter: 9,
+    question: "Discuss the impact of online shopping on traditional high-street retailers.",
+    marks: 6,
+    answers: [
+      {
+        grade: "excellent",
+        score: "6 / 6",
+        label: "Full marks (6/6)",
+        text: "Online shopping has significantly damaged traditional high-street retailers. Customers can compare prices across many websites in seconds (1), often finding the same product 10-30% cheaper than in-store due to lower overhead costs for online retailers (1). The convenience of 24/7 shopping with home delivery means fewer people visit physical stores (1), leading to declining footfall on UK high streets — many famous chains like Debenhams have closed (1). However, traditional retailers have responded by offering omnichannel experiences (1) — combining online ordering with in-store collection ('click and collect'), specialist staff for advice, and immediate product availability that online cannot match (1).",
+        analysis: [
+          { type: "tick", text: "Multiple impacts identified (price competition, convenience, declining footfall)" },
+          { type: "tick", text: "Each point DEVELOPED with reasoning" },
+          { type: "tick", text: "Real-world example used (Debenhams closure)" },
+          { type: "tick", text: "BOTH sides discussed — challenges AND retailer adaptations" },
+          { type: "tick", text: "Question word ('Discuss') addressed with balanced analysis" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "3 / 6",
+        label: "Partial marks (3/6)",
+        text: "Online shopping is bad for high street shops. People buy things online instead of in shops. Shops are closing. Online shopping is cheaper. People prefer to stay at home.",
+        analysis: [
+          { type: "tick", text: "Identifies price competition (cheaper online) — 1 mark" },
+          { type: "tick", text: "Identifies convenience (stay home) — 1 mark" },
+          { type: "tick", text: "Identifies result (shops closing) — 1 mark" },
+          { type: "cross", text: "None of the points DEVELOPED — no 'because', 'so that' or examples" },
+          { type: "cross", text: "ONE-SIDED — 'Discuss' means BOTH sides. Missing what shops do to fight back" },
+          { type: "cross", text: "Discuss questions cap at half marks without both perspectives" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 6",
+        label: "Weak answer (1/6)",
+        text: "Online shopping is a thing that people do. They buy things on the internet. Shops on the high street sell things too. Some people like to go shopping in shops.",
+        analysis: [
+          { type: "tick", text: "Mentions the two systems exist — 1 mark (generously)" },
+          { type: "cross", text: "Does not DISCUSS IMPACTS at all — just describes both options" },
+          { type: "cross", text: "No analysis of effects on traditional retailers" },
+          { type: "cross", text: "Failed to address the command word 'Discuss'" }
+        ]
+      }
+    ],
+    examiner_note: "'Discuss' is the highest-mark command word. ALWAYS give both sides — pros AND cons, or impacts AND responses. One-sided answers automatically cap at around 50% of the marks available. Build at least 3 developed points; aim for one example or piece of evidence to strengthen each."
+  }
+];
+
+let weCurrentFilter = 'all';
+
+function renderChips() {
+  const chips = document.getElementById('weChips');
+  const chapters = [...new Set(WORKED_EXAMPLES.map(w => w.chapter))].sort((a,b) => a-b);
+  chips.innerHTML = `
+    <div class="we-chip ${weCurrentFilter === 'all' ? 'active' : ''}" onclick="setWEFilter('all')">All examples</div>
+    ${chapters.map(ch => {
+      const chMeta = CHAPTERS.find(c => c.id === ch);
+      return `<div class="we-chip ${weCurrentFilter === ch ? 'active' : ''}" 
+                   style="--ch-color:${chMeta?.color || 'var(--blue)'};"
+                   onclick="setWEFilter(${ch})">Ch ${ch}: ${chMeta?.title || ''}</div>`;
+    }).join('')}
+  `;
+}
+
+function setWEFilter(filter) {
+  weCurrentFilter = filter;
+  renderChips();
+  renderWorkedExamples();
+}
+
+function renderWorkedExamples() {
+  const body = document.getElementById('weBody');
+  const list = weCurrentFilter === 'all'
+    ? WORKED_EXAMPLES
+    : WORKED_EXAMPLES.filter(w => w.chapter === weCurrentFilter);
+
+  body.innerHTML = list.map(w => {
+    const ch = CHAPTERS.find(c => c.id === w.chapter);
+    return `
+      <div class="we-question-card" style="--ch-color: ${ch?.color || '#1D4ED8'};">
+        <div class="we-question-header">
+          <strong style="color: ${ch?.color || '#1D4ED8'}; font-size: 0.85rem;">CHAPTER ${w.chapter} — ${ch?.title || ''}</strong>
+          <span class="we-marks">${w.marks} marks</span>
+        </div>
+
+        <div class="we-question-text">${w.question}</div>
+
+        ${w.answers.map(a => `
+          <div class="we-answer ${a.grade}">
+            <div class="we-grade">
+              ${a.grade === 'excellent' ? '🏆' : a.grade === 'medium' ? '⚖️' : '❌'}
+              ${a.label}
+              <span class="we-score-pill">${a.score}</span>
+            </div>
+            <div class="we-student-text">${a.text}</div>
+            <div class="we-marker">
+              <div class="we-marker-title">Examiner annotation</div>
+              <ul>
+                ${a.analysis.map(item => `
+                  <li><span class="${item.type}">${item.type === 'tick' ? '✓' : '✕'}</span> ${item.text}</li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        `).join('')}
+
+        <div class="callout tip" style="margin-top: 1.25rem;">
+          <div class="ct-title">👨‍🏫 Examiner takeaway</div>
+          <p>${w.examiner_note}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderChips();
+  renderWorkedExamples();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossary — IGCSE ICT 4IT1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="glossary-hero">
+      <h1>📖 Glossary</h1>
+      <p>Every key term across the spec — searchable, cross-referenced to chapters. Click any chapter link to read the term in context.</p>
+    </div>
+
+    <div style="display:flex; gap:0.6rem; margin-bottom:1rem; flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="startSelfTest()" style="background:linear-gradient(135deg, #6D28D9, #1D4ED8); border-color:transparent;">🎯 Self-test mode</button>
+      <button class="btn" id="exitTestBtn" onclick="exitSelfTest()" style="display:none; color:var(--red); border-color:var(--red);">⏹ Exit test</button>
+    </div>
+
+    <div id="browseMode">
+      <div style="margin-bottom:1rem;">
+        <input type="text" id="glossInput" class="search-input"
+               style="padding-left:1rem; background:var(--surface);"
+               placeholder="🔍 Search glossary terms…"
+               oninput="filterGlossary(this.value)">
+      </div>
+
+      <div class="alpha-nav" id="alphaNav"></div>
+      <div id="glossaryBody"></div>
+    </div>
+
+    <div id="testMode" style="display:none;"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+let glossaryFilter = '';
+
+function buildAlphaNav() {
+  const nav = document.getElementById('alphaNav');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const hasLetter = new Set(GLOSSARY.map(g => g.t[0].toUpperCase()));
+  nav.innerHTML = letters.split('').map(l => {
+    const has = hasLetter.has(l);
+    return `<button class="alpha-btn ${has ? 'has-items' : ''}" ${has ? '' : 'disabled'}
+                    onclick="scrollToLetter('${l}')">${l}</button>`;
+  }).join('');
+}
+
+function renderGlossaryBody() {
+  const body = document.getElementById('glossaryBody');
+  const filter = glossaryFilter.toLowerCase();
+  const filtered = filter
+    ? GLOSSARY.filter(g => g.t.toLowerCase().includes(filter) || g.d.toLowerCase().includes(filter))
+    : GLOSSARY;
+
+  if (filtered.length === 0) {
+    body.innerHTML = `<div class="gloss-search-result-empty">
+      <h3 style="margin-bottom:0.5rem;">No terms match "${filter}"</h3>
+      <p>Try a different keyword.</p>
+    </div>`;
+    return;
+  }
+
+  const grouped = {};
+  filtered.forEach(g => {
+    const L = g.t[0].toUpperCase();
+    if (!grouped[L]) grouped[L] = [];
+    grouped[L].push(g);
+  });
+
+  body.innerHTML = Object.keys(grouped).sort().map(L => `
+    <div class="gloss-letter-group" id="letter-${L}">
+      <div class="gloss-letter">${L}</div>
+      <div class="gloss-grid">
+        ${grouped[L].map(g => `
+          <div class="gloss-term" id="term-${encodeURIComponent(g.t)}">
+            <div class="term">${highlightFilter(g.t, filter)}</div>
+            <div class="def">${highlightFilter(g.d, filter)}
+              <a href="chapters/chapter-${g.ch}.html" style="color:var(--blue); font-weight:600; margin-left:0.4em;">→ Ch ${g.ch}</a>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function highlightFilter(text, query) {
+  if (!query) return text;
+  const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function filterGlossary(value) {
+  glossaryFilter = value;
+  renderGlossaryBody();
+}
+
+function scrollToLetter(L) {
+  const el = document.getElementById('letter-' + L);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ═══════════ SELF-TEST MODE ═══════════
+let testState = {
+  active: false,
+  pool: [],
+  index: 0,
+  correct: 0,
+  incorrect: 0,
+  showAnswer: false,
+  history: [] // { term, definition, userAnswer, scored: 'correct'|'partial'|'wrong' }
+};
+
+function startSelfTest() {
+  testState.active = true;
+  testState.pool = [...GLOSSARY].sort(() => Math.random() - 0.5);
+  testState.index = 0;
+  testState.correct = 0;
+  testState.incorrect = 0;
+  testState.history = [];
+  testState.showAnswer = false;
+  document.getElementById('browseMode').style.display = 'none';
+  document.getElementById('testMode').style.display = 'block';
+  document.getElementById('exitTestBtn').style.display = 'inline-flex';
+  renderTestQuestion();
+}
+
+function exitSelfTest() {
+  if (testState.history.length > 0 && !confirm('Exit the test? You\'ll lose your current progress.')) return;
+  testState.active = false;
+  document.getElementById('browseMode').style.display = '';
+  document.getElementById('testMode').style.display = 'none';
+  document.getElementById('exitTestBtn').style.display = 'none';
+}
+
+function renderTestQuestion() {
+  if (testState.index >= testState.pool.length) {
+    renderTestComplete();
+    return;
+  }
+  const term = testState.pool[testState.index];
+  const studentFirst = (typeof studentFirstName === 'function') ? studentFirstName() : null;
+  const pct = testState.correct + testState.incorrect > 0 
+    ? Math.round((testState.correct / (testState.correct + testState.incorrect)) * 100)
+    : 0;
+
+  document.getElementById('testMode').innerHTML = `
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #6D28D9 0%, #1D4ED8 100%); margin-bottom: 1.5rem;">
+      <span class="hero-tag">Glossary self-test ${studentFirst ? '· ' + studentFirst : ''}</span>
+      <h1 style="font-size:1.5rem;">🎯 Type the definition</h1>
+      <p>Read the term, type what it means in your own words, then check your answer.</p>
+    </div>
+
+    <div class="session-stats" style="margin-bottom:1rem;">
+      <div class="s-stat"><div class="v">${testState.index + 1}</div><div class="k">Term ${testState.index + 1} of ${testState.pool.length}</div></div>
+      <div class="s-stat"><div class="v green">${testState.correct}</div><div class="k">Got right</div></div>
+      <div class="s-stat"><div class="v red">${testState.incorrect}</div><div class="k">Wrong</div></div>
+      <div class="s-stat"><div class="v amber">${pct}%</div><div class="k">Score</div></div>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-meta">
+        <span><strong style="color:var(--blue);">Term ${testState.index + 1}</strong></span>
+        <span style="background:var(--blue-light); color:var(--blue); padding:0.2rem 0.6rem; border-radius:100px; font-weight:600; font-size:0.75rem;">Chapter ${term.ch}</span>
+      </div>
+      <div class="question" style="font-size:1.4rem; color:var(--blue); margin-bottom:1rem;">
+        ${escapeHtml(term.t)}
+      </div>
+      <textarea id="testAnswer" placeholder="Type the definition in your own words..."
+                style="width:100%; min-height:120px; padding:1rem; background:var(--surface-2); border:1.5px solid var(--border); border-radius:10px; font-family:var(--font-body); font-size:1rem; line-height:1.55; color:var(--text); resize:vertical;"
+                ${testState.showAnswer ? 'readonly' : ''}></textarea>
+      <div id="testFeedback"></div>
+      <div class="quiz-actions" style="margin-top:1rem;">
+        ${testState.showAnswer ? `
+          <button class="btn" onclick="markTest('wrong')" style="background:var(--red-light, #FEE2E2); color:var(--red); border-color:var(--red);">✕ Wrong</button>
+          <button class="btn" onclick="markTest('partial')" style="background:var(--amber-light); color:var(--amber); border-color:var(--amber);">~ Partial</button>
+          <button class="btn btn-primary" onclick="markTest('correct')" style="background:var(--green); border-color:var(--green);">✓ Correct</button>
+        ` : `
+          <button class="btn" onclick="skipTest()">Skip →</button>
+          <button class="btn btn-primary" onclick="checkTest()">Check answer</button>
+        `}
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:0.82rem; color:var(--mid); margin-top:1rem;">
+      <strong>Enter</strong> to check · <strong>1/2/3</strong> to mark · <strong>S</strong> to skip · <strong>Esc</strong> to exit
+    </p>
+  `;
+
+  setTimeout(() => {
+    const ta = document.getElementById('testAnswer');
+    if (ta) {
+      if (testState.showAnswer && testState._pendingUserAnswer) {
+        ta.value = testState._pendingUserAnswer;
+      } else if (!testState.showAnswer) {
+        ta.focus();
+      }
+    }
+    if (testState.showAnswer) {
+      const fb = document.getElementById('testFeedback');
+      if (fb) {
+        fb.innerHTML = `
+          <div class="quiz-feedback" style="background:var(--blue-light); border-color:var(--blue); margin-top:1rem;">
+            <div class="fb-title" style="color:var(--blue);">📘 Model definition</div>
+            <div class="fb-explain" style="color:var(--text); font-weight:500;">${escapeHtml(term.d)}</div>
+            <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--text-mid);">
+              <strong>How well did you do?</strong> Be honest — if you missed a key part, mark partial. This is for YOUR learning.
+            </p>
+          </div>
+        `;
+      }
+    }
+  }, 50);
+}
+
+function checkTest() {
+  const userAnswer = document.getElementById('testAnswer').value.trim();
+  if (!userAnswer) {
+    if (!confirm('You haven\'t typed anything. Show the answer anyway?')) return;
+  }
+  testState.showAnswer = true;
+  testState._pendingUserAnswer = userAnswer;
+  renderTestQuestion(); // re-renders with mark buttons; will restore answer
+}
+
+function markTest(verdict) {
+  const term = testState.pool[testState.index];
+  const userAnswer = testState._pendingUserAnswer || document.getElementById('testAnswer')?.value.trim() || '';
+  testState.history.push({
+    term: term.t,
+    chapter: term.ch,
+    correctAnswer: term.d,
+    userAnswer,
+    verdict
+  });
+  if (verdict === 'correct') testState.correct++;
+  else if (verdict === 'wrong') testState.incorrect++;
+  // 'partial' counts as half — we'll just not increment the wrong counter
+  if (window.recordActivity) window.recordActivity('question');
+  testState.index++;
+  testState.showAnswer = false;
+  testState._pendingUserAnswer = null;
+  renderTestQuestion();
+}
+
+function skipTest() {
+  testState.history.push({
+    term: testState.pool[testState.index].t,
+    chapter: testState.pool[testState.index].ch,
+    correctAnswer: testState.pool[testState.index].d,
+    userAnswer: '(skipped)',
+    verdict: 'skipped'
+  });
+  testState.index++;
+  testState.showAnswer = false;
+  renderTestQuestion();
+}
+
+function renderTestComplete() {
+  const total = testState.correct + testState.incorrect;
+  const pct = total > 0 ? Math.round((testState.correct / total) * 100) : 0;
+  const grade = pct >= 80 ? { msg: 'Excellent!', emoji: '🏆', color: 'var(--green)' }
+              : pct >= 60 ? { msg: 'Good work!', emoji: '👏', color: 'var(--blue)' }
+              : pct >= 40 ? { msg: 'Keep going!', emoji: '💪', color: 'var(--amber)' }
+              : { msg: 'More revision needed', emoji: '📚', color: 'var(--red)' };
+
+  const studentFirst = (typeof studentFirstName === 'function') ? studentFirstName() : null;
+  const congratsName = studentFirst ? `, ${studentFirst}` : '';
+
+  document.getElementById('testMode').innerHTML = `
+    <div class="quiz-result" style="text-align:center; padding:2rem;">
+      <div style="font-size:5rem; margin-bottom:1rem;">${grade.emoji}</div>
+      <h2 style="font-family:var(--font-display); font-size:2rem; color:${grade.color}; margin-bottom:0.5rem;">${grade.msg}${congratsName}</h2>
+      <p style="font-size:1.1rem; color:var(--text-mid); margin-bottom:2rem;">
+        You scored <strong style="color:${grade.color}">${testState.correct}</strong> of <strong>${total}</strong> definitions correct (${pct}%)
+      </p>
+
+      <div class="session-stats" style="max-width:600px; margin:0 auto 2rem;">
+        <div class="s-stat"><div class="v green">${testState.correct}</div><div class="k">Correct</div></div>
+        <div class="s-stat"><div class="v red">${testState.incorrect}</div><div class="k">Wrong</div></div>
+        <div class="s-stat"><div class="v amber">${testState.history.filter(h=>h.verdict==='partial').length}</div><div class="k">Partial</div></div>
+        <div class="s-stat"><div class="v">${testState.history.filter(h=>h.verdict==='skipped').length}</div><div class="k">Skipped</div></div>
+      </div>
+
+      <div style="display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="startSelfTest()">↻ Test again</button>
+        <button class="btn" onclick="exitSelfTest()">← Back to glossary</button>
+      </div>
+
+      <details style="margin-top:2rem; text-align:left; max-width:700px; margin-left:auto; margin-right:auto;">
+        <summary style="cursor:pointer; font-weight:600; padding:0.6rem; background:var(--surface-2); border-radius:8px;">
+          📋 Review all answers
+        </summary>
+        <div style="margin-top:1rem;">
+          ${testState.history.map((h, i) => `
+            <div style="background:var(--surface); border:1px solid var(--border); border-left:4px solid ${
+              h.verdict === 'correct' ? 'var(--green)' :
+              h.verdict === 'partial' ? 'var(--amber)' :
+              h.verdict === 'wrong' ? 'var(--red)' : 'var(--mid)'
+            }; padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.5rem;">
+              <div style="font-weight:700; margin-bottom:0.3rem;">
+                ${i + 1}. ${escapeHtml(h.term)} <span style="font-size:0.78rem; color:var(--mid); font-weight:500;">(Ch ${h.chapter})</span>
+                <span style="float:right; font-size:0.78rem; color:${
+                  h.verdict === 'correct' ? 'var(--green)' :
+                  h.verdict === 'partial' ? 'var(--amber)' :
+                  h.verdict === 'wrong' ? 'var(--red)' : 'var(--mid)'
+                }; font-weight:700; text-transform:uppercase;">${h.verdict}</span>
+              </div>
+              ${h.userAnswer && h.userAnswer !== '(skipped)' ? `
+                <div style="font-size:0.85rem; color:var(--text-mid); margin-bottom:0.3rem;">
+                  <strong>You said:</strong> ${escapeHtml(h.userAnswer)}
+                </div>
+              ` : ''}
+              <div style="font-size:0.85rem;">
+                <strong style="color:var(--blue);">Correct:</strong> ${escapeHtml(h.correctAnswer)}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </details>
+    </div>
+  `;
+}
+
+// Keyboard shortcuts within test mode
+document.addEventListener('keydown', e => {
+  if (!testState.active) return;
+  if (e.target.tagName === 'TEXTAREA' && e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+    e.preventDefault();
+    if (!testState.showAnswer) checkTest();
+    return;
+  }
+  if (e.target.tagName === 'TEXTAREA' && e.key !== 'Escape') return;
+  if (e.key === 'Escape') { exitSelfTest(); return; }
+  if (e.key === 's' || e.key === 'S') { skipTest(); return; }
+  if (e.key === '1') markTest('wrong');
+  else if (e.key === '2') markTest('partial');
+  else if (e.key === '3') markTest('correct');
+});
+
+function escapeHtml(s) {
+  return (s || '').toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildAlphaNav();
+  renderGlossaryBody();
+
+  // Highlight specific term from URL hash
+  const hash = decodeURIComponent(window.location.hash.replace('#term-', ''));
+  if (hash) {
+    setTimeout(() => {
+      const term = GLOSSARY.find(g => g.t === hash);
+      if (term) {
+        const L = term.t[0].toUpperCase();
+        scrollToLetter(L);
+        setTimeout(() => {
+          const el = document.getElementById('term-' + encodeURIComponent(hash));
+          if (el) el.classList.add('highlight');
+        }, 400);
+      }
+    }, 100);
+  }
+});
+</script>
+</body>
+</html>

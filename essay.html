@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essay Practice — IGCSE ICT 4IT1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.essay-question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.essay-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.marks-badge {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  background: var(--amber);
+  color: white;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+.ch-pill {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+}
+.essay-question {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.essay-textarea {
+  width: 100%;
+  min-height: 240px;
+  padding: 1rem 1.1rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+.essay-textarea:focus { outline: none; border-color: var(--blue); }
+.word-counter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--mid);
+  margin-top: 0.5rem;
+}
+.word-counter .target { color: var(--text-mid); }
+
+.keyword-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.8rem 0;
+}
+.kw-pill {
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  color: var(--mid);
+}
+.kw-pill.found {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 600;
+}
+.kw-pill.found::before { content: '✓ '; }
+.kw-pill.missing::before { content: '○ '; }
+
+.mark-scheme-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mark-scheme-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+.mark-scheme-points li:last-child { border-bottom: none; }
+.mark-scheme-points input[type="checkbox"] {
+  margin-top: 0.3rem;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.mark-scheme-points label { cursor: pointer; flex: 1; font-size: 0.92rem; line-height: 1.5; }
+.mark-scheme-points input:checked + label { color: var(--green); }
+
+.self-mark-result {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+}
+[data-theme="dark"] .self-mark-result { background: rgba(96, 165, 250, 0.1); }
+.self-mark-result .sm-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--blue); }
+
+.essay-config {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.chip {
+  padding: 0.45rem 0.85rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+.chip:hover { border-color: var(--border-strong); }
+.chip.active { background: var(--teal); color: white; border-color: var(--teal); }
+.chapter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div id="essayContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+let essaySession = {
+  filterChapters: new Set([1,2,3,4,5,6,7,8,9,10]),
+  currentQuestion: null,
+  answerShown: false,
+  recentSeen: []
+};
+
+function renderConfig() {
+  const c = document.getElementById('essayContainer');
+  c.innerHTML = `
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #0F766E 0%, #1D4ED8 100%);">
+      <span class="hero-tag">Extended response practice</span>
+      <h1>✎ Essay & Written Practice</h1>
+      <p>Type your answer to extended-response questions. Get keyword detection and full mark scheme reveal — self-mark your work and see where you'd score.</p>
+    </div>
+
+    <div class="essay-config">
+      <h4 style="font-family:var(--font-body); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--mid); font-weight:700; margin-bottom:0.6rem;">📚 Choose chapters</h4>
+      <div class="chapter-chips" id="essayChips">
+        <div class="chip ${essaySession.filterChapters.size === CHAPTERS.length ? 'active' : ''}" onclick="toggleAllEssayChapters()">All</div>
+        ${CHAPTERS.map(ch => `
+          <div class="chip ${essaySession.filterChapters.has(ch.id) ? 'active' : ''}"
+               onclick="toggleEssayChapter(${ch.id})">
+            Ch ${ch.id}
+          </div>
+        `).join('')}
+      </div>
+      <p style="font-size:0.82rem; color:var(--mid); margin-top:0.8rem;">
+        ${countAvailableEssays()} essay questions available with current filters
+      </p>
+      <button class="btn btn-primary" onclick="nextEssay()" style="margin-top:1rem;">▶ Start practice</button>
+    </div>
+
+    <div class="callout note" style="margin-top:1.5rem;">
+      <div class="ct-title">💡 How this works</div>
+      <p><strong>1. Type your answer</strong> in full sentences — develop each point.</p>
+      <p><strong>2. Submit</strong> and we check it for key terms and concepts.</p>
+      <p><strong>3. Reveal the mark scheme</strong> and self-mark by ticking which points you covered.</p>
+      <p><strong>4. The keyword check is a guide</strong>, not a final score — the mark scheme is the official standard.</p>
+    </div>
+  `;
+}
+
+function countAvailableEssays() {
+  return ESSAY_BANK.filter(q => essaySession.filterChapters.has(q.ch)).length;
+}
+
+function toggleEssayChapter(id) {
+  if (essaySession.filterChapters.has(id)) essaySession.filterChapters.delete(id);
+  else essaySession.filterChapters.add(id);
+  renderConfig();
+}
+
+function toggleAllEssayChapters() {
+  if (essaySession.filterChapters.size === CHAPTERS.length) {
+    essaySession.filterChapters = new Set();
+  } else {
+    essaySession.filterChapters = new Set(CHAPTERS.map(c => c.id));
+  }
+  renderConfig();
+}
+
+function pickEssay() {
+  const pool = ESSAY_BANK.filter(q => essaySession.filterChapters.has(q.ch));
+  if (pool.length === 0) return null;
+  const avoid = Math.min(5, pool.length - 1);
+  const recentSet = new Set(essaySession.recentSeen.slice(-avoid));
+  const fresh = pool.filter(q => !recentSet.has(q));
+  const picked = (fresh.length > 0 ? fresh : pool)[Math.floor(Math.random() * (fresh.length > 0 ? fresh.length : pool.length))];
+  essaySession.recentSeen.push(picked);
+  return picked;
+}
+
+function nextEssay() {
+  if (essaySession.filterChapters.size === 0) {
+    alert('Please select at least one chapter.');
+    return;
+  }
+  const q = pickEssay();
+  if (!q) { alert('No questions available.'); return; }
+  essaySession.currentQuestion = q;
+  essaySession.answerShown = false;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = essaySession.currentQuestion;
+  const ch = CHAPTERS.find(c => c.id === q.ch);
+  const targetWords = q.marks * 35; // ~35 words per mark as a rough guide
+
+  document.getElementById('essayContainer').innerHTML = `
+    <div class="essay-question-card">
+      <div class="essay-meta">
+        <span class="marks-badge">${q.marks} marks</span>
+        <span class="ch-pill"><strong style="color:${ch.color};">Ch ${q.ch}:</strong> ${ch.title}</span>
+      </div>
+      <div class="essay-question">${q.q}</div>
+
+      <textarea class="essay-textarea" id="essayAnswer" placeholder="Type your answer here. Use full sentences. Develop each point with 'because' or 'so that'..."
+                oninput="updateLiveAnalysis()"></textarea>
+      <div class="word-counter">
+        <span><span id="wordCount">0</span> words written</span>
+        <span class="target">Target: ~${targetWords} words for ${q.marks} marks</span>
+      </div>
+
+      <div id="liveKeywords" style="margin-top:1.5rem; display:none;">
+        <h4 style="font-family:var(--font-body); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--mid); font-weight:700; margin-bottom:0.5rem;">
+          🔍 Key terms detected so far
+        </h4>
+        <div class="keyword-pills" id="keywordPills"></div>
+      </div>
+
+      <div class="quiz-actions" style="margin-top:1.5rem;">
+        <button class="btn" onclick="renderConfig()">⏹ End</button>
+        <button class="btn btn-primary" onclick="submitEssay()">✓ Submit & reveal mark scheme</button>
+      </div>
+    </div>
+  `;
+}
+
+function updateLiveAnalysis() {
+  const text = document.getElementById('essayAnswer').value;
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+  document.getElementById('wordCount').textContent = words;
+
+  if (words < 10) {
+    document.getElementById('liveKeywords').style.display = 'none';
+    return;
+  }
+
+  document.getElementById('liveKeywords').style.display = 'block';
+  const q = essaySession.currentQuestion;
+  const textLower = text.toLowerCase();
+
+  document.getElementById('keywordPills').innerHTML = q.keywords.map(kw => {
+    const found = textLower.includes(kw.toLowerCase());
+    return `<span class="kw-pill ${found ? 'found' : 'missing'}">${kw}</span>`;
+  }).join('');
+}
+
+function submitEssay() {
+  const text = document.getElementById('essayAnswer').value.trim();
+  if (!text || text.length < 20) {
+    if (!confirm('Your answer seems very short. Submit anyway?')) return;
+  }
+  essaySession.answerShown = true;
+  if (window.recordActivity) window.recordActivity('question');
+  renderResults(text);
+}
+
+function renderResults(userAnswer) {
+  const q = essaySession.currentQuestion;
+  const ch = CHAPTERS.find(c => c.id === q.ch);
+  const textLower = userAnswer.toLowerCase();
+
+  // Keyword analysis
+  const foundKws = q.keywords.filter(kw => textLower.includes(kw.toLowerCase()));
+  const missingKws = q.keywords.filter(kw => !textLower.includes(kw.toLowerCase()));
+  const kwScore = Math.round((foundKws.length / q.keywords.length) * 100);
+
+  const words = userAnswer.split(/\s+/).filter(w => w.length > 0).length;
+
+  let kwMessage, kwColor;
+  if (kwScore >= 80) { kwMessage = "Excellent coverage of key terms!"; kwColor = "var(--green)"; }
+  else if (kwScore >= 60) { kwMessage = "Good — most key terms mentioned."; kwColor = "var(--blue)"; }
+  else if (kwScore >= 40) { kwMessage = "Some key terms covered. Try to include more in your answer."; kwColor = "var(--amber)"; }
+  else { kwMessage = "Most key terms are missing. Re-read the chapter and try again."; kwColor = "var(--red)"; }
+
+  document.getElementById('essayContainer').innerHTML = `
+    <div class="essay-question-card">
+      <div class="essay-meta">
+        <span class="marks-badge">${q.marks} marks</span>
+        <span class="ch-pill"><strong style="color:${ch.color};">Ch ${q.ch}:</strong> ${ch.title}</span>
+        <span style="margin-left:auto; font-size:0.82rem; color:var(--mid);">${words} words written</span>
+      </div>
+      <div class="essay-question">${q.q}</div>
+
+      <details open style="margin-bottom:1.5rem;">
+        <summary style="cursor:pointer; font-weight:600; padding:0.5rem 0; color:var(--text-mid);">📝 Your answer</summary>
+        <div style="background:var(--surface-2); padding:1rem 1.2rem; border-radius:10px; margin-top:0.5rem; white-space:pre-wrap; line-height:1.6;">${escapeHtml(userAnswer)}</div>
+      </details>
+
+      <div class="self-mark-result" style="border-color:${kwColor};">
+        <div class="sm-title" style="color:${kwColor};">🔍 Keyword analysis: ${foundKws.length}/${q.keywords.length} (${kwScore}%)</div>
+        <p style="font-size:0.92rem; color:var(--text-mid); margin-bottom:0.8rem;">${kwMessage}</p>
+        <div class="keyword-pills">
+          ${foundKws.map(kw => `<span class="kw-pill found">${kw}</span>`).join('')}
+          ${missingKws.map(kw => `<span class="kw-pill missing">${kw}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="callout model" style="margin-top:1.5rem;">
+        <div class="ct-title">✎ MARK SCHEME — Self-mark your answer</div>
+        <p style="font-size:0.88rem; color:var(--text-mid); margin-bottom:0.8rem;">Tick each point that your answer clearly covered. Total marks = points you ticked.</p>
+        <ul class="mark-scheme-points" id="markPoints">
+          ${q.mark_scheme.map((point, i) => `
+            <li>
+              <input type="checkbox" id="mp-${i}" onchange="updateSelfMark()">
+              <label for="mp-${i}">${point}</label>
+            </li>
+          `).join('')}
+        </ul>
+        <div class="self-mark-result" id="selfMarkResult" style="display:none;"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn" onclick="renderConfig()">⏹ End</button>
+        <button class="btn" onclick="renderQuestion()">↻ Re-try this question</button>
+        <button class="btn btn-primary" onclick="nextEssay()">Next question →</button>
+      </div>
+    </div>
+  `;
+  updateSelfMark();
+}
+
+function updateSelfMark() {
+  const q = essaySession.currentQuestion;
+  const checked = document.querySelectorAll('#markPoints input:checked').length;
+  const total = q.mark_scheme.length;
+  if (checked === 0) {
+    document.getElementById('selfMarkResult').style.display = 'none';
+    return;
+  }
+  // Cap at marks available, but cleaner to just show point count
+  const result = document.getElementById('selfMarkResult');
+  result.style.display = 'block';
+  const pct = Math.round((checked / total) * 100);
+
+  let estMarks;
+  if (q.mark_scheme.length === q.marks) {
+    estMarks = checked;
+  } else {
+    estMarks = Math.min(q.marks, Math.round((checked / total) * q.marks));
+  }
+
+  result.innerHTML = `
+    <div class="sm-title">Your self-mark: ${estMarks} / ${q.marks} marks (${Math.round((estMarks/q.marks)*100)}%)</div>
+    <p style="font-size:0.9rem; color:var(--text-mid);">You ticked ${checked} of ${total} mark scheme points.</p>
+  `;
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+document.addEventListener('DOMContentLoaded', renderConfig);
+</script>
+</body>
+</html>

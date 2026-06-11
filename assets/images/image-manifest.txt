@@ -1,0 +1,74 @@
+IMAGE MANIFEST — filenames expected by each chapter
+=======================================================
+
+Drop each file into assets/images/ with the EXACT name below.
+The placeholder is replaced automatically when the file exists.
+
+
+--- CHAPTER 1 ---
+  ch1-device-types.jpg
+      Figure 1.1: A range of digital devices — desktop, laptop, tablet, smartphone, games console and smart speaker — showing the variety of form factors.
+  ch1-convergence.png
+      Figure 1.2: Convergence: how a single smartphone now replaces a phone, camera, GPS, music player, games console and torch.
+  ch1-device-features.png
+      Figure 1.3: The nine key features used to compare digital devices: portability, performance, storage, user interface, connectivity, media support, energy use, expansion and security.
+
+--- CHAPTER 2 ---
+  ch2-software-stack.png
+      Figure 2.1: The software stack: hardware at the base, then firmware, the operating system, system/utility software, and application software at the top.
+  ch2-os-functions.png
+      Figure 2.2: The main functions of an operating system: memory management, resource management, security, file management and print spooling.
+  ch2-licensing.png
+      Figure 2.3: Open source vs proprietary software — a side-by-side comparison of the two licensing models.
+
+--- CHAPTER 3 ---
+  ch3-input-output.png
+      Figure 3.1: Input devices (keyboard, mouse, scanner, microphone) feed data in; output devices (monitor, printer, speaker) present results.
+  ch3-storage-compare.png
+      Figure 3.2: HDD vs SSD vs optical disc — internal structure and key characteristics of each storage technology.
+  ch3-capacity-units.png
+      Figure 3.3: Storage capacity units from smallest to largest: bit, byte, KiB, MiB, GiB, TiB (each step is 1,024 times the previous).
+
+--- CHAPTER 4 ---
+  ch4-ram-rom.png
+      Figure 4.1: RAM vs ROM: volatile working memory compared with non-volatile permanent memory.
+  ch4-fde-cycle.png
+      Figure 4.2: The Fetch-Decode-Execute cycle, showing the Control Unit, ALU and registers inside the CPU.
+
+--- CHAPTER 5 ---
+  ch5-network-types.png
+      Figure 5.1: Network types by geographic scale: PAN, LAN and WAN, with the internet as the world's largest WAN.
+  ch5-wireless-tech.png
+      Figure 5.2: Wireless technologies compared by range and use: NFC, Bluetooth, Wi-Fi, and cellular (4G/5G).
+  ch5-network-hardware.png
+      Figure 5.3: How network hardware connects a home to the internet: device → router/WAP → gateway → ISP → internet.
+
+--- CHAPTER 6 ---
+  ch6-network-models.png
+      Figure 6.1: Peer-to-peer vs client-server networks — how devices relate in each model.
+  ch6-security-layers.png
+      Figure 6.2: Layered network security: firewall, encryption, authentication, access rights and backups working together.
+
+--- CHAPTER 7 ---
+  ch7-online-threats.png
+      Figure 7.1: Common online threats: malware, phishing, pharming and unauthorised access — and the defences against each.
+  ch7-digital-impact.png
+      Figure 7.2: The impact of digital technology on employment, working practices, and everyday life.
+
+--- CHAPTER 8 ---
+  ch8-online-communities.png
+      Figure 8.1: Types of online community: social networks, forums/wikis, gaming, VLEs, blogs and social bookmarking.
+  ch8-craab.png
+      Figure 8.2: The CRAAB framework for evaluating online sources: Currency, Relevance, Authority, Accuracy and Bias.
+
+--- CHAPTER 9 ---
+  ch9-online-services.png
+      Figure 9.1: The main categories of online service: shopping, banking, education, gaming, news, auctions and streaming.
+  ch9-cloud-vs-local.png
+      Figure 9.2: Cloud computing vs local storage and software — where data and applications live in each model.
+
+--- CHAPTER 10 ---
+  ch10-database-relationships.png
+      Figure 10.1: A relational database: tables linked by primary and foreign keys in a one-to-many relationship.
+  ch10-spreadsheet-functions.png
+      Figure 10.2: Common spreadsheet functions in action: SUM, AVERAGE, IF, VLOOKUP and COUNTIF with example cells.

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IGCSE Edexcel ICT 4IT1 — Interactive Study Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="hero">
+      <span class="hero-tag">Edexcel International GCSE • 4IT1</span>
+      <h1>Master ICT.<br><span class="accent">One question at a time.</span></h1>
+      <p>A complete interactive study system for the Edexcel IGCSE ICT specification. Read full chapters, take unlimited practice questions, sit full exam papers, and track everything.</p>
+      <div class="hero-cta">
+        <a class="btn-hero solid" href="chapters/chapter-1.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Start with Chapter 1
+        </a>
+        <a class="btn-hero ghost" href="#dailyDashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Try today's question
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="v">10</div><div class="k">Chapters</div></div>
+        <div class="hero-stat"><div class="v">226</div><div class="k">MCQs</div></div>
+        <div class="hero-stat"><div class="v">88</div><div class="k">Essay Qs</div></div>
+        <div class="hero-stat"><div class="v">3</div><div class="k">Mock papers</div></div>
+        <div class="hero-stat"><div class="v">10</div><div class="k">Mind maps</div></div>
+        <div class="hero-stat"><div class="v">120+</div><div class="k">Glossary terms</div></div>
+      </div>
+    </div>
+
+    <!-- Question of the day + Weak spots -->
+    <div id="dailyDashboard" style="display:grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem;"></div>
+
+    <h2 class="section-title"><span class="st-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>Practice mode</h2>
+    <div class="quick-actions">
+      <a class="quick-action" href="mcq.html">
+        <div class="quick-action-icon" style="background:var(--amber-light); color:var(--amber);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+        <div><h4>Unlimited MCQ</h4><p>226 questions, shuffled — practice forever</p></div>
+      </a>
+      <a class="quick-action" href="essay.html">
+        <div class="quick-action-icon" style="background:var(--teal-light); color:var(--teal);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <div><h4>Essay practice</h4><p>Write answers + auto keyword check + mark scheme</p></div>
+      </a>
+      <a class="quick-action" href="command-words.html">
+        <div class="quick-action-icon" style="background:#EDE9FE; color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg></div>
+        <div><h4>Command word drills</h4><p>Master State vs Describe vs Explain vs Discuss</p></div>
+      </a>
+      <a class="quick-action" href="worked-examples.html">
+        <div class="quick-action-icon" style="background:#D1FAE5; color:#047857;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div><h4>Worked examples</h4><p>See 6/6 vs 3/6 model answers, annotated by topic</p></div>
+      </a>
+      <a class="quick-action" href="exam-papers.html">
+        <div class="quick-action-icon" style="background:#FEE2E2; color:#DC2626;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></div>
+        <div><h4>Full mock papers</h4><p>3 different Paper 1 mocks with 90-min timer</p></div>
+      </a>
+      <a class="quick-action" href="drill-print.html">
+        <div class="quick-action-icon" style="background:#E2E8F0; color:#334155;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg></div>
+        <div><h4>Print drill booklet</h4><p>Generate a printable mock of any chapters</p></div>
+      </a>
+      <a class="quick-action" href="flashcards.html">
+        <div class="quick-action-icon" style="background:var(--purple-light); color:var(--purple);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div>
+        <div><h4>Flashcards (SRS)</h4><p>Spaced repetition — proven memorisation system</p></div>
+      </a>
+      <a class="quick-action" href="mindmaps.html">
+        <div class="quick-action-icon" style="background:#E0E7FF; color:#3730A3;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div>
+        <div><h4>Mind maps</h4><p>Visual concept maps for each chapter</p></div>
+      </a>
+      <a class="quick-action" href="diagrams.html">
+        <div class="quick-action-icon" style="background:#EDE9FE; color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></svg></div>
+        <div><h4>Interactive diagrams</h4><p>Explore network topologies and more, click parts to learn</p></div>
+      </a>
+      <a class="quick-action" href="mindmap-builder.html">
+        <div class="quick-action-icon" style="background:#FEE2E2; color:#DC2626;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
+        <div><h4>Build a mind map</h4><p>Create your own custom concept maps</p></div>
+      </a>
+      <a class="quick-action" href="explorer.html">
+        <div class="quick-action-icon" style="background:#DBEAFE; color:#1E40AF;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <div><h4>Question explorer</h4><p>Filter all 314 questions by chapter, difficulty, command word</p></div>
+      </a>
+    </div>
+
+    <h2 class="section-title"><span class="st-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Exam toolkit</h2>
+    <div class="quick-actions">
+      <a class="quick-action" href="tools.html">
+        <div class="quick-action-icon" style="background:#CCFBF1; color:#0F766E;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M16 14v4"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
+        <div><h4>ICT calculators</h4><p>File size, binary, network speed converters</p></div>
+      </a>
+      <a class="quick-action" href="writing-tools.html">
+        <div class="quick-action-icon" style="background:#D1FAE5; color:#15803D;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg></div>
+        <div><h4>Writing tools</h4><p>Build comparison tables &amp; manage citations</p></div>
+      </a>
+      <a class="quick-action" href="summaries.html">
+        <div class="quick-action-icon" style="background:#E2E8F0; color:#475569;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M15 2v5h5"/></svg></div>
+        <div><h4>Print summaries</h4><p>One-page chapter summaries for revision packs</p></div>
+      </a>
+      <a class="quick-action" href="panic-kit.html">
+        <div class="quick-action-icon" style="background:#FEE2E2; color:#DC2626;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg></div>
+        <div><h4>Exam day kit</h4><p>What to do 1 week / 1 day / 1 hour before</p></div>
+      </a>
+    </div>
+
+    <h2 class="section-title"><span class="st-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Study tools</h2>
+    <div class="quick-actions">
+      <a class="quick-action" href="videos.html">
+        <div class="quick-action-icon" style="background:#FEE2E2; color:#B91C1C;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+        <div><h4>Video lessons</h4><p>Short video lessons for every topic + exam technique</p></div>
+      </a>
+      <a class="quick-action" href="chapters/chapter-1.html">
+        <div class="quick-action-icon" style="background:var(--blue-light); color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div><h4>Read chapters</h4><p>Full study book content — start with Chapter 1</p></div>
+      </a>
+      <a class="quick-action" href="revision-guide.html">
+        <div class="quick-action-icon" style="background:#FEE2E2; color:#DC2626;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div><h4>Revision guide</h4><p>Last-minute condensed summary</p></div>
+      </a>
+      <a class="quick-action" href="streaks.html">
+        <div class="quick-action-icon" style="background:#FEE2E2; color:#DC2626;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+        <div><h4>Streaks & badges</h4><p>Daily goals, study streak, achievement badges</p></div>
+      </a>
+      <a class="quick-action" href="notes.html">
+        <div class="quick-action-icon" style="background:var(--blue-light); color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <div><h4>My notes</h4><p>Per-chapter notes with auto-save & export</p></div>
+      </a>
+      <a class="quick-action" href="glossary.html">
+        <div class="quick-action-icon" style="background:var(--teal-light); color:var(--teal);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+        <div><h4>Glossary</h4><p>Searchable A–Z of every key term</p></div>
+      </a>
+      <a class="quick-action" href="bookmarks.html">
+        <div class="quick-action-icon" style="background:var(--amber-light); color:var(--amber);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg></div>
+        <div><h4>Bookmarks</h4><p>Sections you've saved for quick access</p></div>
+      </a>
+      <a class="quick-action" href="progress.html">
+        <div class="quick-action-icon" style="background:var(--green-light); color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></div>
+        <div><h4>Progress</h4><p>What you've read and your quiz scores</p></div>
+      </a>
+    </div>
+
+    <h2 class="section-title">Paper 1 — Written Theory (Topics 1–4)</h2>
+    <div class="chapter-grid" id="paper1Cards"></div>
+
+    <h2 class="section-title">Paper 2 — Practical (Topics 5–6)</h2>
+    <div class="chapter-grid" id="paper2Cards"></div>
+
+    <div style="text-align:center; padding:3rem 1rem; color:var(--mid); font-size:0.85rem; margin-top:2rem;">
+      <p style="margin-bottom:0.5rem;">IGCSE Edexcel ICT 4IT1 — Interactive Study Book</p>
+      <p style="font-size:0.78rem; opacity:0.7;">Author: Subhashini Sumanasekara BSc (Computing)(UK), MSc (Strategic IT)(UK), B.Ed., MA (Education Management)</p>
+      <p style="font-size:0.78rem; opacity:0.7; margin-top:0.5rem;">Tip: try the Pomodoro timer (bottom-right of every page) for focused study sessions.</p>
+    </div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+function renderHomeCards() {
+  const cardHtml = ch => {
+    const isRead = state.readChapters.has(ch.id);
+    const score = state.quizScores[ch.id];
+    return `<a class="chapter-card ${isRead ? 'read' : ''}"
+              style="--ch-color:${ch.color}; --ch-light:${ch.colorLight};"
+              href="chapters/${ch.file}">
+      <div class="ch-num">${String(ch.id).padStart(2, '0')}</div>
+      <div class="ch-meta">Paper ${ch.paper} · Spec ${ch.spec}</div>
+      <h3>${ch.title}</h3>
+      <p>${ch.summary}</p>
+      <div class="ch-foot">
+        <span class="ch-stat">${ch.sections} sections</span>
+        ${isRead ? '<span class="read-badge">✓ Read</span>' : (score !== undefined ? `<span class="ch-stat">Quiz: ${score}%</span>` : '<span class="ch-stat">Not started</span>')}
+      </div>
+    </a>`;
+  };
+  document.getElementById('paper1Cards').innerHTML = CHAPTERS.filter(c => c.paper === 1).map(cardHtml).join('');
+  document.getElementById('paper2Cards').innerHTML = CHAPTERS.filter(c => c.paper === 2).map(cardHtml).join('');
+}
+
+// ═══════════ QUESTION OF THE DAY ═══════════
+// Deterministic daily pick — same question for the same date, changes each day.
+const QOTD_KEY = 'igcse_ict_qotd_state_v1';
+
+function dayOfYear() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const diff = now - start;
+  const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay) + now.getFullYear() * 1000; // unique seed per day/year
+}
+
+function getDailyQuestion() {
+  if (typeof MCQ_BANK === 'undefined' || MCQ_BANK.length === 0) return null;
+  const seed = dayOfYear();
+  return MCQ_BANK[seed % MCQ_BANK.length];
+}
+
+function getQotdState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(QOTD_KEY) || '{}');
+    // Reset state if it's from a different day
+    const today = dayOfYear();
+    if (s.day !== today) return { day: today, answered: false, correctIdx: null, userIdx: null };
+    return s;
+  } catch(e) { return { day: dayOfYear(), answered: false }; }
+}
+
+function saveQotdState(s) {
+  try { localStorage.setItem(QOTD_KEY, JSON.stringify(s)); } catch(e) {}
+}
+
+function renderQOTDCard() {
+  const q = getDailyQuestion();
+  if (!q) return '';
+  const ch = CHAPTERS.find(c => c.id === q.ch);
+  const state = getQotdState();
+  // Compute shuffled answer order for the day (stable per day)
+  const seed = dayOfYear();
+  const order = q.o.map((opt, i) => ({ opt, originalIdx: i, sortKey: ((seed * 31 + i * 7919) % 100000) }));
+  order.sort((a, b) => a.sortKey - b.sortKey);
+
+  return `
+    <div style="background: linear-gradient(135deg, ${ch.color}11, ${ch.color}22); border:1px solid ${ch.color}33; border-radius: var(--radius); padding: 1.5rem 1.6rem;">
+      <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; flex-wrap:wrap;">
+        <span style="display:inline-flex; align-items:center; gap:0.35rem; background: ${ch.color}; color: white; padding: 0.25rem 0.7rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.26L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Question of the day</span>
+        <span style="font-size:0.78rem; color:var(--mid);">Chapter ${q.ch}: ${ch.title}</span>
+      </div>
+      <div style="font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; line-height: 1.45; margin-bottom: 0.85rem;">
+        ${q.q}
+      </div>
+      <div id="qotdOptions">
+        ${order.map((o, i) => {
+          const isCorrect = o.originalIdx === q.a;
+          const isUser = state.answered && state.userIdx === o.originalIdx;
+          let optClass = '';
+          if (state.answered) {
+            if (isCorrect) optClass = 'correct';
+            else if (isUser) optClass = 'incorrect';
+            optClass += ' locked';
+          }
+          return `
+            <div class="answer-opt ${optClass}" 
+                 ${state.answered ? '' : `onclick="answerQOTD(${o.originalIdx}, ${q.a})"`}
+                 style="margin-bottom:0.4rem;">
+              <span class="letter">${String.fromCharCode(65 + i)}</span>
+              <span>${o.opt}</span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      ${state.answered ? `
+        <div class="quiz-feedback ${state.userIdx === q.a ? 'correct' : 'incorrect'}" style="margin-top: 0.85rem;">
+          <div class="fb-title">${state.userIdx === q.a ? '✓ Correct!' : '✕ Not quite — but now you know!'}</div>
+          <div class="fb-explain">${q.e}</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.85rem; flex-wrap:wrap; gap:0.5rem;">
+          <span style="font-size:0.82rem; color:var(--mid);">Come back tomorrow for a new question!</span>
+          <a class="btn btn-primary" href="mcq.html" style="padding:0.5rem 1rem; font-size:0.85rem;">More practice →</a>
+        </div>
+      ` : `
+        <p style="font-size:0.82rem; color:var(--text-mid); margin-top:0.6rem;">
+          Pick the correct answer to start your day. Resets at midnight.
+        </p>
+      `}
+    </div>
+  `;
+}
+
+function answerQOTD(userIdx, correctIdx) {
+  const state = getQotdState();
+  state.answered = true;
+  state.userIdx = userIdx;
+  state.correctIdx = correctIdx;
+  saveQotdState(state);
+  if (window.recordActivity) window.recordActivity('question');
+  // Re-render dashboard
+  renderDashboard();
+}
+
+// ═══════════ WEAK SPOTS RECOMMENDER ═══════════
+function getWeakSpots() {
+  // Look at quiz scores per chapter; pick lowest 3 scored chapters
+  const scored = [];
+  CHAPTERS.forEach(ch => {
+    const score = state.quizScores[ch.id];
+    if (typeof score === 'number') {
+      scored.push({ ch, score });
+    }
+  });
+  // Also check wrong-answer pool by chapter
+  let wrongs = [];
+  try { wrongs = JSON.parse(localStorage.getItem('igcse_ict_wrong_mcqs_v1') || '[]'); } catch(e) {}
+  const wrongsByChapter = {};
+  if (wrongs.length > 0 && typeof MCQ_BANK !== 'undefined') {
+    wrongs.forEach(fp => {
+      const q = MCQ_BANK.find(q => (q.q || '').slice(0, 80) === fp);
+      if (q) wrongsByChapter[q.ch] = (wrongsByChapter[q.ch] || 0) + 1;
+    });
+  }
+  // Build weak-spot list: chapters with low scores OR high wrong counts
+  const weak = [];
+  CHAPTERS.forEach(ch => {
+    const score = state.quizScores[ch.id];
+    const wrongCount = wrongsByChapter[ch.id] || 0;
+    if ((typeof score === 'number' && score < 70) || wrongCount >= 3) {
+      weak.push({
+        ch,
+        score: typeof score === 'number' ? score : null,
+        wrongCount,
+        // weakness score for sorting: lower score and more wrongs = weaker
+        weakness: (typeof score === 'number' ? (100 - score) : 0) + wrongCount * 10
+      });
+    }
+  });
+  weak.sort((a, b) => b.weakness - a.weakness);
+  return weak.slice(0, 3); // top 3 weakest
+}
+
+function renderWeakSpotsCard() {
+  const weak = getWeakSpots();
+
+  if (weak.length === 0) {
+    // No weak spots yet — encourage activity
+    return `
+      <div style="background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.6rem;">
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; flex-wrap:wrap;">
+          <span style="display:inline-flex; align-items:center; gap:0.35rem; background: var(--green); color: white; padding: 0.25rem 0.7rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Weak spots</span>
+        </div>
+        <div style="font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; line-height: 1.45; margin-bottom: 0.5rem;">
+          No weak spots identified yet
+        </div>
+        <p style="font-size: 0.92rem; color: var(--text-mid); margin-bottom: 0.85rem;">
+          Once you've taken some quizzes, this section will surface the chapters where you scored lowest, so you can focus where it counts.
+        </p>
+        <a class="btn btn-primary" href="mcq.html" style="padding:0.55rem 1.1rem; font-size:0.88rem;">Start practising →</a>
+      </div>
+    `;
+  }
+
+  return `
+    <div style="background: var(--surface); border:1px solid var(--border); border-left: 4px solid var(--red); border-radius: var(--radius); padding: 1.5rem 1.6rem;">
+      <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; flex-wrap:wrap;">
+        <span style="display:inline-flex; align-items:center; gap:0.35rem; background: var(--red); color: white; padding: 0.25rem 0.7rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Your weak spots</span>
+        <span style="font-size:0.78rem; color:var(--mid);">Focus here for biggest improvement</span>
+      </div>
+      <div style="font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.85rem;">
+        ${weak.length} chapter${weak.length === 1 ? '' : 's'} needing more revision
+      </div>
+      <div style="display:grid; gap:0.5rem;">
+        ${weak.map(w => `
+          <a href="chapters/${w.ch.file}" style="text-decoration:none; color:inherit; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.65rem 0.85rem; background:var(--surface-2); border-radius:8px; border-left:3px solid ${w.ch.color}; transition: transform 0.1s;" onmouseover="this.style.transform='translateX(3px)'" onmouseout="this.style.transform='translateX(0)'">
+            <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
+              <span style="display:grid; place-items:center; width:32px; height:32px; background:${w.ch.color}25; color:${w.ch.color}; border-radius:8px; font-family:var(--font-display); font-weight:700; font-size:0.85rem; flex-shrink:0;">${w.ch.id}</span>
+              <div style="min-width:0; flex:1;">
+                <div style="font-weight:600; font-size:0.92rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${w.ch.title}</div>
+                <div style="font-size:0.78rem; color:var(--mid);">
+                  ${w.score !== null ? `Quiz score: <strong style="color:${w.score < 50 ? 'var(--red)' : w.score < 70 ? 'var(--amber)' : 'var(--green)'}">${w.score}%</strong>` : ''}
+                  ${w.score !== null && w.wrongCount > 0 ? ' · ' : ''}
+                  ${w.wrongCount > 0 ? `<strong style="color:var(--red);">${w.wrongCount}</strong> wrong answer${w.wrongCount === 1 ? '' : 's'}` : ''}
+                </div>
+              </div>
+            </div>
+            <span style="color:${w.ch.color}; font-weight:600; font-size:0.85rem; flex-shrink:0;">Review →</span>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderDashboard() {
+  const container = document.getElementById('dailyDashboard');
+  if (!container) return;
+  // Two columns on wide screens
+  const html = `${renderQOTDCard()}${renderWeakSpotsCard()}`;
+  container.innerHTML = html;
+  // Apply two-column layout on wider screens via CSS
+  if (window.innerWidth >= 900) {
+    container.style.gridTemplateColumns = '1fr 1fr';
+  } else {
+    container.style.gridTemplateColumns = '1fr';
+  }
+}
+
+window.addEventListener('resize', () => {
+  if (document.getElementById('dailyDashboard')) {
+    if (window.innerWidth >= 900) {
+      document.getElementById('dailyDashboard').style.gridTemplateColumns = '1fr 1fr';
+    } else {
+      document.getElementById('dailyDashboard').style.gridTemplateColumns = '1fr';
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderHomeCards();
+  renderDashboard();
+});
+</script>
+</body>
+</html>

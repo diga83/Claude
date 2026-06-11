@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Day Panic Kit — IGCSE ICT 4IT1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.panic-card { background: var(--surface); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem; border-left: 5px solid var(--ch-color, var(--blue)); }
+.panic-card h3 { font-family: var(--font-display); margin-bottom: 0.7rem; display:flex; align-items:center; gap:0.6rem; }
+.panic-card .time-badge { background: var(--ch-color, var(--blue)); color:white; font-size:0.72rem; padding:0.25rem 0.65rem; border-radius:100px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+.panic-card ul { padding-left: 1.4rem; }
+.panic-card li { margin-bottom: 0.45rem; line-height: 1.55; font-size: 0.95rem; }
+.panic-tab-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+.panic-tab { padding: 0.5rem 1rem; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.panic-tab.active { background: var(--red); color: white; border-color: var(--red); }
+
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+.do-box { background: var(--green-light); border-left: 3px solid var(--green); padding: 0.85rem 1rem; border-radius: 0 8px 8px 0; }
+.dont-box { background: #FEE2E2; border-left: 3px solid var(--red); padding: 0.85rem 1rem; border-radius: 0 8px 8px 0; }
+[data-theme="dark"] .do-box { background: rgba(34,197,94,0.1); }
+[data-theme="dark"] .dont-box { background: rgba(239,68,68,0.1); }
+.do-box strong, .dont-box strong { display: block; margin-bottom: 0.3rem; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.do-box ul, .dont-box ul { margin: 0; padding-left: 1.2rem; }
+.do-box li, .dont-box li { font-size: 0.85rem; margin-bottom: 0.25rem; }
+@media (max-width:700px) { .do-dont { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #DC2626 0%, #B45309 100%);">
+      <span class="hero-tag">Last-minute revision</span>
+      <h1>🚨 Exam Day Panic Kit</h1>
+      <p>Time-boxed advice for the days, hours and minutes leading up to your IGCSE ICT exam. Pick how long you have, follow the steps.</p>
+    </div>
+
+    <div class="panic-tab-row">
+      <div class="panic-tab active" onclick="showSection('week')">📅 One week to go</div>
+      <div class="panic-tab" onclick="showSection('day')">⏰ 24 hours to go</div>
+      <div class="panic-tab" onclick="showSection('morning')">🌅 Exam morning</div>
+      <div class="panic-tab" onclick="showSection('inexam')">📝 In the exam</div>
+      <div class="panic-tab" onclick="showSection('after')">🎉 After the exam</div>
+    </div>
+
+    <div id="panicContent"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+
+const SECTIONS = {
+  week: {
+    title: 'One week before the exam',
+    color: '#1D4ED8',
+    cards: [
+      { title: 'Focus on what you know less', time: 'Days 7-5', body: [
+        'Look at your <strong>weak spots</strong> on the progress page. Pick the 2-3 chapters where you score lowest.',
+        'For each weak chapter: re-read the summary, do the chapter MCQs again, attempt the harder essay questions with the mark scheme.',
+        'Don\'t spend time on chapters where you already get 80%+ — diminishing returns.'
+      ]},
+      { title: 'Do at least 2 full timed mocks', time: 'Days 4-2', body: [
+        'Sit a <strong>full 90-minute Paper 1 mock</strong> under exam conditions. No phone, no Google, no breaks.',
+        'Mark it strictly. Don\'t be generous — count only what the mark scheme actually rewards.',
+        'After marking, identify the question types you lost most marks on (e.g. "explain" questions, command-word interpretation).'
+      ]},
+      { title: 'Active recall, not re-reading', time: 'All week', body: [
+        'Re-reading notes feels productive but does little. <strong>Active recall</strong> (testing yourself) builds real memory.',
+        'Use flashcards (SRS), the glossary self-test, and MCQ practice modes.',
+        'Try to <strong>explain a topic aloud</strong> without looking at notes. If you can\'t, that\'s the gap to fix.'
+      ]},
+      { title: 'Don\'t stay up late', time: 'Every night', body: [
+        'Sleep is when your brain consolidates what you studied. Sacrificing sleep to study is counterproductive.',
+        'Aim for 8 hours a night. <strong>A tired brain forgets what it learned.</strong>'
+      ]}
+    ]
+  },
+  day: {
+    title: '24 hours before the exam',
+    color: '#B45309',
+    cards: [
+      { title: 'Do NOT try to learn anything new', time: 'All day', body: [
+        'Cramming new topics now will <strong>not stick</strong> and may make you anxious.',
+        'Stick to topics you\'ve already studied. Reinforce, don\'t expand.'
+      ]},
+      { title: 'Quick recap of all chapters', time: '1-2 hours', body: [
+        'Use the <a href="summaries.html" style="color:var(--blue); text-decoration:underline;">chapter summaries</a> page — one A4 page per chapter, just the key points.',
+        'Read each chapter\'s summary out loud. Speak the content; don\'t just look at it.',
+        'Take note of any term in the glossary you still can\'t define from memory.'
+      ]},
+      { title: 'Light flashcard review', time: '30 min', body: [
+        'Run through your flashcards on the SRS page. Don\'t introduce new ones.',
+        'Just refresh the cards already in rotation.'
+      ]},
+      { title: 'Pack your bag tonight', time: 'Before bed', body: [
+        '<strong>Black pens (×2)</strong>, pencil, eraser, ruler, sharpener.',
+        '<strong>Watch or check exam centre clock plan</strong>. Phones aren\'t allowed inside.',
+        '<strong>Water bottle</strong> (clear, no labels) and a snack for before.',
+        'Your <strong>candidate ID</strong> if your school issues one.'
+      ]},
+      { title: 'Sleep early', time: 'Tonight', body: [
+        '<strong>Aim for 8+ hours.</strong> A well-rested brain is your best asset.',
+        'No screens for an hour before bed if possible.',
+        'Set 2 alarms — better to wake up extra-early than risk being late.'
+      ]}
+    ]
+  },
+  morning: {
+    title: 'Exam morning',
+    color: '#0F766E',
+    cards: [
+      { title: 'Eat a real breakfast', time: 'On waking', body: [
+        '<strong>Eat carbs + protein</strong>: porridge with banana, eggs on toast, peanut-butter sandwich.',
+        '<strong>Skip energy drinks and sugary cereals</strong> — they spike and crash you.',
+        'Drink water. Not coffee on an empty stomach unless you always do.'
+      ]},
+      { title: 'No last-minute panic', time: '1 hour before', body: [
+        'Don\'t pick up notes or do practice questions. <strong>You either know it now or you don\'t.</strong>',
+        'Trying to learn now causes anxiety more than it helps.',
+        'Talk about something completely unrelated. Walk if possible.'
+      ]},
+      { title: 'Arrive early', time: '20-30 min before', body: [
+        '<strong>Don\'t cut it close.</strong> Public transport, traffic, anxiety — leave buffer.',
+        'Use the bathroom before you go in.',
+        'Find your seat calmly. Sit, breathe, settle.'
+      ]}
+    ]
+  },
+  inexam: {
+    title: 'During the exam',
+    color: '#1D4ED8',
+    cards: [
+      { title: 'First 5 minutes', time: 'Read everything', body: [
+        '<strong>Read every question first</strong> before writing anything. Mark questions you\'re confident about.',
+        'Check the back of the paper — sometimes there are extra pages you might miss.',
+        'Note the <strong>marks for each question</strong>. A 6-mark question deserves 6 minutes; a 1-mark MCQ deserves 30 seconds.'
+      ]},
+      { title: 'Time management', time: 'Throughout', body: [
+        '<strong>Paper 1: 90 minutes for 100 marks ≈ 1 minute per mark.</strong>',
+        'Save 5-10 minutes at the end for review and unanswered questions.',
+        '<strong>Don\'t get stuck.</strong> Stuck for >2 min? Skip it, come back later. A blank "stuck" answer wastes time you need elsewhere.'
+      ]},
+      { title: 'Reading command words', time: 'Per question', body: [
+        '<strong>State / Identify / Give:</strong> One-word or short answer.',
+        '<strong>Describe:</strong> Give detail of what something is or how it works.',
+        '<strong>Explain:</strong> Give reasons or causes. Use "because" or "this is because".',
+        '<strong>Compare:</strong> Show similarities AND differences. Use "whereas".',
+        '<strong>Discuss / Evaluate:</strong> Multiple perspectives, then a judgement.',
+        '<a href="command-words.html" style="color:var(--blue); text-decoration:underline;">Full command word guide</a>'
+      ]},
+      { title: 'Answering essay questions', time: 'Per essay', body: [
+        '<strong>Look at the marks.</strong> 4 marks = 4 distinct points (one mark each, roughly).',
+        '<strong>Use the keywords from the question</strong> in your answer. Examiners reward this.',
+        'For 6+ mark questions, plan briefly (1 min): bullet your main points before writing prose.',
+        '<strong>Use real-world examples</strong> where possible — they almost always score marks.'
+      ]},
+      { title: 'If you panic', time: 'When stuck', body: [
+        '<strong>Pause. Three deep breaths.</strong> Count: 4 in, 4 hold, 4 out.',
+        'Skip the question — you can return to it. Find something you DO know and answer that. Confidence returns.',
+        '<strong>You don\'t need 100% to do well.</strong> 70%+ is a high grade. Aim to score where you can.'
+      ]}
+    ]
+  },
+  after: {
+    title: 'After the exam',
+    color: '#15803D',
+    cards: [
+      { title: 'Don\'t analyse it', time: 'Today', body: [
+        '<strong>Resist the urge to compare answers with friends.</strong> It changes nothing and feeds anxiety.',
+        'It\'s done. Move on. You\'ll learn the result soon enough.'
+      ]},
+      { title: 'Celebrate', time: 'Tonight', body: [
+        'You worked hard. <strong>Treat yourself.</strong> Food, friends, a film, whatever you enjoy.',
+        'You earned a break.'
+      ]},
+      { title: 'If you have more exams', time: 'Tomorrow', body: [
+        '<strong>One day off, then back to revision</strong> for the next paper. Don\'t lose momentum.',
+        'Apply what worked: timed practice, weak-spot focus, active recall.'
+      ]}
+    ]
+  }
+};
+
+let activeSection = 'week';
+function showSection(s) {
+  activeSection = s;
+  document.querySelectorAll('.panic-tab').forEach(t => t.classList.remove('active'));
+  event?.target?.classList.add('active');
+  draw();
+}
+
+function draw() {
+  const sect = SECTIONS[activeSection];
+  document.getElementById('panicContent').innerHTML = sect.cards.map(c => `
+    <div class="panic-card" style="--ch-color:${sect.color};">
+      <h3>
+        <span style="font-family:var(--font-display); flex:1;">${c.title}</span>
+        <span class="time-badge">${c.time}</span>
+      </h3>
+      <ul>${c.body.map(b => `<li>${b}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Determine which section to show by default based on user's progress
+  draw();
+});
+</script>
+</body>
+</html>

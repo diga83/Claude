@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICT Tools — IGCSE ICT 4IT1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+.tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+.tool-card h3 { font-family: var(--font-display); margin-bottom: 0.5rem; display:flex; align-items:center; gap:0.5rem; }
+.tool-card p { color: var(--text-mid); font-size: 0.88rem; margin-bottom: 1rem; }
+.tool-card label { display:block; margin-bottom: 0.85rem; font-size: 0.85rem; font-weight: 600; }
+.tool-card input, .tool-card select {
+  width: 100%; padding: 0.55rem 0.85rem; margin-top: 0.3rem;
+  background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: var(--font-mono); font-size: 1rem; color: var(--text);
+}
+.tool-result {
+  background: var(--surface-2); padding: 1rem 1.2rem; border-radius: 10px;
+  border-left: 4px solid var(--blue); margin-top: 1rem;
+  font-family: var(--font-mono); font-size: 1rem; line-height: 1.7;
+}
+.tool-result strong { color: var(--blue); display: block; margin-bottom: 0.3rem; font-family: var(--font-body); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.tool-formula { background: #FEF3C7; color: #78350F; padding: 0.4rem 0.7rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.82rem; margin-top: 0.5rem; display:inline-block; }
+[data-theme="dark"] .tool-formula { background: rgba(180,83,9,0.2); color: #FBBF24; }
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);">
+      <span class="hero-tag">Exam tools</span>
+      <h1>🧮 ICT Calculators &amp; Reference</h1>
+      <p>The number questions that come up in the exam — file sizes, binary conversions, network speeds. Use these to check your working or learn the formulas.</p>
+    </div>
+
+    <div class="tool-grid">
+
+      <!-- Binary / Decimal / Hex converter -->
+      <div class="tool-card">
+        <h3>🔢 Number base converter</h3>
+        <p>Convert between binary, decimal and hexadecimal. Useful for IP addresses, colour codes, file permissions.</p>
+        <label>Decimal
+          <input type="number" id="numDec" oninput="updateNumber('dec')" min="0" step="1" placeholder="e.g. 255">
+        </label>
+        <label>Binary
+          <input type="text" id="numBin" oninput="updateNumber('bin')" placeholder="e.g. 11111111">
+        </label>
+        <label>Hexadecimal
+          <input type="text" id="numHex" oninput="updateNumber('hex')" placeholder="e.g. FF">
+        </label>
+        <div class="tool-formula">8-bit binary = 1 byte. Range: 0–255 (decimal) = 00000000–11111111 = 00–FF</div>
+      </div>
+
+      <!-- Image file size -->
+      <div class="tool-card">
+        <h3>🖼 Image file size</h3>
+        <p>Calculate uncompressed bitmap size. Real image formats (JPEG, PNG) use compression so will be smaller.</p>
+        <label>Width (pixels)
+          <input type="number" id="imgW" value="1920" oninput="updateImg()" min="1">
+        </label>
+        <label>Height (pixels)
+          <input type="number" id="imgH" value="1080" oninput="updateImg()" min="1">
+        </label>
+        <label>Colour depth (bits per pixel)
+          <select id="imgD" onchange="updateImg()">
+            <option value="1">1 bit (monochrome)</option>
+            <option value="8">8 bits (256 colours)</option>
+            <option value="16">16 bits (high colour)</option>
+            <option value="24" selected>24 bits (true colour)</option>
+            <option value="32">32 bits (true + alpha)</option>
+          </select>
+        </label>
+        <div class="tool-result" id="imgResult"></div>
+        <div class="tool-formula">File size (bits) = width × height × bit depth. Divide by 8 for bytes.</div>
+      </div>
+
+      <!-- Audio file size -->
+      <div class="tool-card">
+        <h3>🎵 Audio file size</h3>
+        <p>Calculate uncompressed audio size (e.g. WAV). MP3 uses compression and is much smaller.</p>
+        <label>Duration (seconds)
+          <input type="number" id="audSec" value="180" oninput="updateAud()" min="1">
+        </label>
+        <label>Sample rate (Hz)
+          <select id="audRate" onchange="updateAud()">
+            <option value="8000">8 kHz (telephone)</option>
+            <option value="22050">22 kHz (low quality)</option>
+            <option value="44100" selected>44.1 kHz (CD quality)</option>
+            <option value="48000">48 kHz (DVD)</option>
+            <option value="96000">96 kHz (studio)</option>
+          </select>
+        </label>
+        <label>Bit depth
+          <select id="audBits" onchange="updateAud()">
+            <option value="8">8-bit</option>
+            <option value="16" selected>16-bit (CD)</option>
+            <option value="24">24-bit (studio)</option>
+          </select>
+        </label>
+        <label>Channels
+          <select id="audCh" onchange="updateAud()">
+            <option value="1">1 (mono)</option>
+            <option value="2" selected>2 (stereo)</option>
+          </select>
+        </label>
+        <div class="tool-result" id="audResult"></div>
+        <div class="tool-formula">Size = seconds × sample rate × (bit depth ÷ 8) × channels</div>
+      </div>
+
+      <!-- Video file size -->
+      <div class="tool-card">
+        <h3>🎬 Video file size estimator</h3>
+        <p>Rough estimate using bitrate × duration. Real codecs (H.264, HEVC) vary widely.</p>
+        <label>Duration (minutes)
+          <input type="number" id="vidMin" value="60" oninput="updateVid()" min="1">
+        </label>
+        <label>Quality preset
+          <select id="vidQ" onchange="updateVid()">
+            <option value="0.5">480p / SD streaming (~0.5 Mbps)</option>
+            <option value="2.5" selected>720p HD streaming (~2.5 Mbps)</option>
+            <option value="5">1080p HD streaming (~5 Mbps)</option>
+            <option value="15">1080p Blu-ray (~15 Mbps)</option>
+            <option value="35">4K streaming (~35 Mbps)</option>
+            <option value="80">4K Blu-ray (~80 Mbps)</option>
+          </select>
+        </label>
+        <div class="tool-result" id="vidResult"></div>
+        <div class="tool-formula">Size (bytes) ≈ duration (s) × bitrate (bits/s) ÷ 8</div>
+      </div>
+
+      <!-- Data unit converter -->
+      <div class="tool-card">
+        <h3>📏 Data unit converter</h3>
+        <p>Convert between bits, bytes, KB, MB, GB, TB. Watch out: bits vs bytes (8× difference).</p>
+        <label>Value
+          <input type="number" id="duVal" value="1024" oninput="updateDU()" min="0" step="any">
+        </label>
+        <label>From unit
+          <select id="duFrom" onchange="updateDU()">
+            <option value="0">bits</option>
+            <option value="1" selected>bytes (B)</option>
+            <option value="2">kilobytes (KB)</option>
+            <option value="3">megabytes (MB)</option>
+            <option value="4">gigabytes (GB)</option>
+            <option value="5">terabytes (TB)</option>
+          </select>
+        </label>
+        <div class="tool-result" id="duResult"></div>
+        <div class="tool-formula">1 byte = 8 bits · 1 KB = 1024 bytes · 1 MB = 1024 KB · 1 GB = 1024 MB · 1 TB = 1024 GB</div>
+      </div>
+
+      <!-- Network download time -->
+      <div class="tool-card">
+        <h3>📡 Download time calculator</h3>
+        <p>How long does it take to download a file on a given connection?</p>
+        <label>File size
+          <input type="number" id="dlSize" value="2000" oninput="updateDL()" min="0" step="any">
+        </label>
+        <label>Size unit
+          <select id="dlUnit" onchange="updateDL()">
+            <option value="KB">KB</option>
+            <option value="MB" selected>MB</option>
+            <option value="GB">GB</option>
+          </select>
+        </label>
+        <label>Connection speed (Mbps)
+          <select id="dlSpeed" onchange="updateDL()">
+            <option value="0.5">0.5 Mbps (3G mobile)</option>
+            <option value="5">5 Mbps (basic broadband)</option>
+            <option value="20">20 Mbps (UK average ~2020)</option>
+            <option value="50" selected>50 Mbps (typical fibre)</option>
+            <option value="100">100 Mbps (fast fibre)</option>
+            <option value="500">500 Mbps (FTTP gigabit-lite)</option>
+            <option value="1000">1000 Mbps (gigabit)</option>
+          </select>
+        </label>
+        <div class="tool-result" id="dlResult"></div>
+        <div class="tool-formula">Time (s) = (file size in bits) ÷ (speed in bits/s). Mbps is *megabits* per second!</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+function fmt(n) { return n.toLocaleString(undefined, { maximumFractionDigits: 2 }); }
+function bestSize(bytes) {
+  if (bytes >= 1099511627776) return `${fmt(bytes / 1099511627776)} TB`;
+  if (bytes >= 1073741824)    return `${fmt(bytes / 1073741824)} GB`;
+  if (bytes >= 1048576)       return `${fmt(bytes / 1048576)} MB`;
+  if (bytes >= 1024)          return `${fmt(bytes / 1024)} KB`;
+  return `${fmt(bytes)} bytes`;
+}
+function fmtTime(seconds) {
+  if (seconds < 1) return `${(seconds * 1000).toFixed(0)} ms`;
+  if (seconds < 60) return `${seconds.toFixed(1)} seconds`;
+  if (seconds < 3600) {
+    const m = Math.floor(seconds / 60);
+    const s = Math.round(seconds % 60);
+    return `${m} min ${s} s`;
+  }
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  return `${h} hr ${m} min`;
+}
+
+// ── Number converter ──
+function updateNumber(from) {
+  let n = NaN;
+  if (from === 'dec') n = parseInt(document.getElementById('numDec').value, 10);
+  if (from === 'bin') n = parseInt(document.getElementById('numBin').value, 2);
+  if (from === 'hex') n = parseInt(document.getElementById('numHex').value, 16);
+  if (isNaN(n) || n < 0) return;
+  document.getElementById('numDec').value = (from === 'dec' ? document.getElementById('numDec').value : n);
+  document.getElementById('numBin').value = (from === 'bin' ? document.getElementById('numBin').value : n.toString(2));
+  document.getElementById('numHex').value = (from === 'hex' ? document.getElementById('numHex').value : n.toString(16).toUpperCase());
+}
+
+// ── Image ──
+function updateImg() {
+  const w = parseInt(document.getElementById('imgW').value, 10);
+  const h = parseInt(document.getElementById('imgH').value, 10);
+  const d = parseInt(document.getElementById('imgD').value, 10);
+  if (!w || !h || !d) return;
+  const bits = w * h * d;
+  const bytes = bits / 8;
+  document.getElementById('imgResult').innerHTML = `
+    <strong>File size</strong>
+    ${fmt(bits)} bits = ${fmt(bytes)} bytes<br>
+    = ${bestSize(bytes)}
+  `;
+}
+
+// ── Audio ──
+function updateAud() {
+  const s = parseFloat(document.getElementById('audSec').value);
+  const rate = parseInt(document.getElementById('audRate').value, 10);
+  const bits = parseInt(document.getElementById('audBits').value, 10);
+  const ch = parseInt(document.getElementById('audCh').value, 10);
+  if (!s || !rate || !bits || !ch) return;
+  const bytes = s * rate * (bits / 8) * ch;
+  document.getElementById('audResult').innerHTML = `
+    <strong>Uncompressed file size</strong>
+    ${fmt(bytes)} bytes<br>
+    = ${bestSize(bytes)}
+  `;
+}
+
+// ── Video ──
+function updateVid() {
+  const min = parseFloat(document.getElementById('vidMin').value);
+  const mbps = parseFloat(document.getElementById('vidQ').value);
+  if (!min || !mbps) return;
+  const seconds = min * 60;
+  const bytes = (seconds * mbps * 1000000) / 8;
+  document.getElementById('vidResult').innerHTML = `
+    <strong>Estimated size</strong>
+    ${bestSize(bytes)} (≈ ${fmt(bytes)} bytes)
+  `;
+}
+
+// ── Data units ──
+function updateDU() {
+  const v = parseFloat(document.getElementById('duVal').value);
+  const from = parseInt(document.getElementById('duFrom').value, 10);
+  if (isNaN(v)) return;
+  // Convert to bytes (base unit)
+  const inBits = from === 0 ? v : v * 8 * Math.pow(1024, from - 1);
+  const bytes = inBits / 8;
+  document.getElementById('duResult').innerHTML = `
+    <strong>Converted</strong>
+    ${fmt(inBits)} bits<br>
+    ${fmt(bytes)} bytes<br>
+    ${fmt(bytes / 1024)} KB<br>
+    ${fmt(bytes / 1048576)} MB<br>
+    ${fmt(bytes / 1073741824)} GB<br>
+    ${fmt(bytes / 1099511627776)} TB
+  `;
+}
+
+// ── Download time ──
+function updateDL() {
+  const size = parseFloat(document.getElementById('dlSize').value);
+  const unit = document.getElementById('dlUnit').value;
+  const mbps = parseFloat(document.getElementById('dlSpeed').value);
+  if (!size || !mbps) return;
+  const bytes = unit === 'KB' ? size * 1024 : unit === 'MB' ? size * 1048576 : size * 1073741824;
+  const bits = bytes * 8;
+  const bitsPerSec = mbps * 1000000;
+  const seconds = bits / bitsPerSec;
+  document.getElementById('dlResult').innerHTML = `
+    <strong>Download time</strong>
+    ${fmtTime(seconds)}<br>
+    <span style="font-size:0.82rem; color:var(--text-mid);">(${fmt(bits)} bits ÷ ${fmt(bitsPerSec)} bits/s)</span>
+  `;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateImg(); updateAud(); updateVid(); updateDU(); updateDL();
+});
+</script>
+</body>
+</html>

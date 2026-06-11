@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question Explorer — IGCSE ICT 4IT1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.explorer-filters {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  position: sticky;
+  top: 70px;
+  z-index: 10;
+}
+.filter-row { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom: 0.85rem; align-items:center; }
+.filter-row:last-child { margin-bottom: 0; }
+.filter-label { font-size:0.75rem; color:var(--mid); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-right:0.4rem; }
+.filter-chip {
+  padding: 0.4rem 0.8rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+.filter-chip:hover { border-color: var(--blue); }
+.filter-chip.active { background: var(--blue); color: white; border-color: var(--blue); }
+.filter-chip.command { background: var(--purple-light); color: var(--purple); border-color: var(--purple); }
+.filter-chip.command.active { background: var(--purple); color: white; }
+.filter-search { flex:1; min-width:200px; padding:0.45rem 0.85rem; border:1.5px solid var(--border); border-radius:8px; background:var(--surface-2); color:var(--text); font-size:0.9rem; font-family:var(--font-body); }
+.explorer-stats { padding: 0.6rem 0.85rem; background: var(--surface-2); border-radius: 8px; font-size: 0.82rem; color: var(--text-mid); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top: 0.85rem; }
+
+.question-list { display: grid; gap: 0.75rem; }
+.question-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--ch-color, var(--blue));
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.question-meta { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom: 0.5rem; font-size: 0.75rem; }
+.question-meta .tag { padding:0.15rem 0.55rem; border-radius:100px; background:var(--surface-2); color:var(--text-mid); font-weight:600; }
+.question-meta .tag.mcq { background: var(--amber-light); color: var(--amber); }
+.question-meta .tag.essay { background: var(--teal-light); color: var(--teal); }
+.question-meta .tag.cmd { background: var(--purple-light); color: var(--purple); }
+.question-meta .tag.diff-1 { background: var(--green-light); color: var(--green); }
+.question-meta .tag.diff-2 { background: #FEF3C7; color: var(--amber); }
+.question-meta .tag.diff-3 { background: #FEE2E2; color: var(--red); }
+[data-theme="dark"] .question-meta .tag.diff-1 { background:rgba(34,197,94,0.15); }
+[data-theme="dark"] .question-meta .tag.diff-2 { background:rgba(180,83,9,0.15); }
+[data-theme="dark"] .question-meta .tag.diff-3 { background:rgba(239,68,68,0.15); }
+.question-text { font-weight: 500; }
+.question-detail { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px dashed var(--border); display: none; }
+.question-item.expanded .question-detail { display: block; }
+.question-item .toggle-detail { font-size:0.78rem; color:var(--blue); cursor:pointer; font-weight:600; margin-top:0.4rem; user-select:none; }
+.question-item .toggle-detail:hover { text-decoration: underline; }
+.opt-list { list-style: none; padding: 0; margin-top: 0.5rem; }
+.opt-list li { padding:0.3rem 0.6rem; font-size:0.88rem; }
+.opt-list li.correct { color:var(--green); font-weight:600; }
+
+@media (max-width:700px) {
+  .explorer-filters { position: static; }
+}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #1E40AF 0%, #5B21B6 100%);">
+      <span class="hero-tag">Question explorer</span>
+      <h1>🔎 Search every question</h1>
+      <p>Filter all 314 MCQs and essay questions by chapter, difficulty, command word, marks, or keyword. Find exactly what you want to practise.</p>
+    </div>
+
+    <div class="explorer-filters">
+      <div class="filter-row">
+        <input type="text" id="searchInput" class="filter-search" placeholder="🔍 Search question text or keyword..." oninput="renderResults()">
+        <select id="sortSel" onchange="renderResults()" style="padding:0.45rem 0.85rem; border:1.5px solid var(--border); border-radius:8px; background:var(--surface-2); color:var(--text); font-size:0.85rem; font-family:var(--font-body);">
+          <option value="ch">Sort: Chapter</option>
+          <option value="diff">Sort: Difficulty (easy first)</option>
+          <option value="diff-hard">Sort: Difficulty (hard first)</option>
+          <option value="marks">Sort: Marks (low → high)</option>
+          <option value="marks-high">Sort: Marks (high → low)</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Type</span>
+        <div class="filter-chip active" data-filter="type" data-value="all" onclick="toggleFilter(this)">All</div>
+        <div class="filter-chip" data-filter="type" data-value="mcq" onclick="toggleFilter(this)">MCQ</div>
+        <div class="filter-chip" data-filter="type" data-value="essay" onclick="toggleFilter(this)">Essay</div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Chapter</span>
+        <div class="filter-chip active" data-filter="ch" data-value="all" onclick="toggleFilter(this)">All</div>
+        <div id="chapChips" style="display:contents;"></div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Difficulty</span>
+        <div class="filter-chip active" data-filter="diff" data-value="all" onclick="toggleFilter(this)">All</div>
+        <div class="filter-chip" data-filter="diff" data-value="1" onclick="toggleFilter(this)">Easy</div>
+        <div class="filter-chip" data-filter="diff" data-value="2" onclick="toggleFilter(this)">Medium</div>
+        <div class="filter-chip" data-filter="diff" data-value="3" onclick="toggleFilter(this)">Hard</div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Command word</span>
+        <div class="filter-chip active" data-filter="cmd" data-value="all" onclick="toggleFilter(this)">All</div>
+        <div id="cmdChips" style="display:contents;"></div>
+      </div>
+      <div class="explorer-stats" id="explorerStats"></div>
+    </div>
+
+    <div id="resultsList" class="question-list"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const COMMAND_WORDS = ['Define', 'State', 'Describe', 'Explain', 'Identify', 'Discuss', 'Compare', 'Evaluate', 'Analyse'];
+
+let filters = { type: 'all', ch: 'all', diff: 'all', cmd: 'all' };
+
+function toggleFilter(el) {
+  const f = el.dataset.filter;
+  const v = el.dataset.value;
+  filters[f] = v;
+  document.querySelectorAll(`[data-filter="${f}"]`).forEach(c => c.classList.toggle('active', c.dataset.value === v));
+  renderResults();
+}
+
+function detectCommand(text) {
+  for (const c of COMMAND_WORDS) {
+    if (new RegExp('\\b' + c + '\\b', 'i').test(text)) return c;
+  }
+  return null;
+}
+
+function applyFilters() {
+  const all = [];
+  if (filters.type === 'all' || filters.type === 'mcq') {
+    MCQ_BANK.forEach(q => all.push({ kind: 'mcq', q }));
+  }
+  if (filters.type === 'all' || filters.type === 'essay') {
+    ESSAY_BANK.forEach(q => all.push({ kind: 'essay', q }));
+  }
+  const search = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+  return all.filter(item => {
+    const q = item.q;
+    if (filters.ch !== 'all' && String(q.ch) !== filters.ch) return false;
+    if (filters.diff !== 'all' && item.kind === 'mcq' && String(q.d) !== filters.diff) return false;
+    if (filters.diff !== 'all' && item.kind === 'essay') return false; // essays don't have difficulty
+    if (filters.cmd !== 'all') {
+      const cmd = detectCommand(q.q || '');
+      if (!cmd || cmd.toLowerCase() !== filters.cmd.toLowerCase()) return false;
+    }
+    if (search) {
+      const hay = ((q.q || '') + ' ' + ((q.o || []).join(' ')) + ' ' + ((q.keywords || []).join(' '))).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+function sortResults(results) {
+  const sort = document.getElementById('sortSel').value;
+  if (sort === 'ch') return results.sort((a, b) => (a.q.ch || 0) - (b.q.ch || 0));
+  if (sort === 'diff') return results.sort((a, b) => (a.q.d || 99) - (b.q.d || 99));
+  if (sort === 'diff-hard') return results.sort((a, b) => (b.q.d || 0) - (a.q.d || 0));
+  if (sort === 'marks') return results.sort((a, b) => (a.q.marks || 1) - (b.q.marks || 1));
+  if (sort === 'marks-high') return results.sort((a, b) => (b.q.marks || 0) - (a.q.marks || 0));
+  return results;
+}
+
+function renderResults() {
+  const results = sortResults(applyFilters());
+  const totalMCQ = MCQ_BANK.length;
+  const totalEssay = ESSAY_BANK.length;
+  document.getElementById('explorerStats').innerHTML = `
+    <span><strong>${results.length}</strong> of ${totalMCQ + totalEssay} questions match</span>
+    <span style="font-size:0.75rem;">Click any question to see details</span>
+  `;
+  const html = results.length === 0
+    ? `<div style="text-align:center; padding:3rem 1.5rem; color:var(--text-mid);">
+        <div style="font-size:3rem; margin-bottom:0.5rem; opacity:0.5;">🤷</div>
+        <h3 style="font-family:var(--font-display); margin-bottom:0.3rem;">No questions match those filters</h3>
+        <p>Try widening your search or clearing some filters.</p>
+       </div>`
+    : results.map((item, idx) => renderItem(item, idx)).join('');
+  document.getElementById('resultsList').innerHTML = html;
+}
+
+function renderItem(item, idx) {
+  const q = item.q;
+  const ch = CHAPTERS.find(c => c.id === q.ch);
+  const chColor = ch?.color || 'var(--blue)';
+  const cmd = detectCommand(q.q || '');
+  const diffLabel = ['', 'Easy', 'Medium', 'Hard'][q.d || 0];
+  return `
+    <div class="question-item" style="--ch-color:${chColor};" id="qi-${idx}">
+      <div class="question-meta">
+        <span class="tag ${item.kind}">${item.kind.toUpperCase()}</span>
+        <span class="tag">Ch ${q.ch}: ${ch?.title || 'Unknown'}</span>
+        ${item.kind === 'mcq' && q.d ? `<span class="tag diff-${q.d}">${diffLabel}</span>` : ''}
+        ${item.kind === 'essay' ? `<span class="tag">${q.marks} marks</span>` : '<span class="tag">1 mark</span>'}
+        ${cmd ? `<span class="tag cmd">${cmd}</span>` : ''}
+      </div>
+      <div class="question-text">${escapeHtml(q.q)}</div>
+      <div class="toggle-detail" onclick="toggleDetail(${idx})">▾ Show ${item.kind === 'mcq' ? 'answer & options' : 'mark scheme'}</div>
+      <div class="question-detail">
+        ${item.kind === 'mcq' ? `
+          <ul class="opt-list">
+            ${(q.o || []).map((opt, i) => `<li class="${i === q.a ? 'correct' : ''}">${String.fromCharCode(65+i)}) ${escapeHtml(opt)}${i === q.a ? ' ✓' : ''}</li>`).join('')}
+          </ul>
+          ${q.e ? `<p style="font-size:0.85rem; color:var(--text-mid); margin-top:0.6rem; font-style:italic;"><strong>Why:</strong> ${escapeHtml(q.e)}</p>` : ''}
+        ` : `
+          <p style="font-size:0.82rem; color:var(--mid); font-weight:700; margin-bottom:0.4rem;">MARK SCHEME (${q.marks} marks):</p>
+          <ul style="padding-left:1.2rem; font-size:0.88rem;">
+            ${(q.mark_scheme || []).map(m => `<li style="margin-bottom:0.25rem;">${escapeHtml(m)}</li>`).join('')}
+          </ul>
+          ${q.keywords ? `<p style="font-size:0.78rem; color:var(--mid); margin-top:0.5rem;"><strong>Key terms:</strong> ${q.keywords.map(escapeHtml).join(', ')}</p>` : ''}
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function toggleDetail(idx) {
+  const el = document.getElementById('qi-' + idx);
+  if (el) {
+    el.classList.toggle('expanded');
+    const toggle = el.querySelector('.toggle-detail');
+    if (toggle) {
+      const expanded = el.classList.contains('expanded');
+      toggle.textContent = expanded ? '▴ Hide details' : '▾ Show ' + (toggle.textContent.includes('answer') ? 'answer & options' : 'mark scheme');
+    }
+  }
+}
+
+function escapeHtml(s) {
+  return (s || '').toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function initFilters() {
+  document.getElementById('chapChips').innerHTML = CHAPTERS.map(c =>
+    `<div class="filter-chip" data-filter="ch" data-value="${c.id}" onclick="toggleFilter(this)" title="${c.title}">${c.id}</div>`
+  ).join('');
+  document.getElementById('cmdChips').innerHTML = COMMAND_WORDS.map(c =>
+    `<div class="filter-chip command" data-filter="cmd" data-value="${c}" onclick="toggleFilter(this)">${c}</div>`
+  ).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initFilters();
+  renderResults();
+});
+</script>
+</body>
+</html>

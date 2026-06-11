@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Lessons — IGCSE ICT 4IT1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.video-filters { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem; align-items:center; }
+.vfilter {
+  padding:0.5rem 1rem; background:var(--surface); border:1.5px solid var(--border);
+  border-radius:100px; font-size:0.85rem; font-weight:600; cursor:pointer; transition:all 0.15s;
+  display:inline-flex; align-items:center; gap:0.4rem;
+}
+.vfilter:hover { border-color:var(--blue); }
+.vfilter.active { background:var(--cat-color, var(--blue)); color:white; border-color:var(--cat-color, var(--blue)); }
+.vfilter .count { font-size:0.72rem; opacity:0.7; }
+
+.video-progress-bar {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+}
+.video-progress-bar .pinfo { flex:1; min-width:180px; }
+.video-progress-bar .ptrack { height:8px; background:var(--surface-2); border-radius:100px; overflow:hidden; margin-top:0.4rem; }
+.video-progress-bar .pfill { height:100%; background:linear-gradient(90deg, var(--red), var(--amber)); border-radius:100px; transition:width 0.5s; }
+
+.video-section { margin-bottom:2.5rem; }
+.video-section h2 {
+  font-family:var(--font-display); font-size:1.3rem; margin-bottom:1rem;
+  display:flex; align-items:center; gap:0.6rem; padding-bottom:0.5rem;
+  border-bottom:2px solid var(--cat-color, var(--border));
+}
+.video-section h2 .sec-count { font-size:0.8rem; color:var(--mid); font-weight:500; margin-left:auto; }
+
+.video-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:1.25rem; }
+.video-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; transition:all 0.2s; border-top:4px solid var(--cat-color, var(--blue));
+}
+.video-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+
+.video-thumb {
+  position:relative; aspect-ratio:16/9; background:var(--surface-2);
+  display:grid; place-items:center; cursor:pointer; overflow:hidden;
+}
+.video-thumb iframe { width:100%; height:100%; border:0; display:block; }
+.video-thumb .placeholder {
+  text-align:center; color:var(--mid); padding:1rem; width:100%; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem;
+  background:linear-gradient(135deg, var(--cat-color, #1D4ED8)18, var(--cat-color, #1D4ED8)08);
+}
+.video-thumb .placeholder .play-ring {
+  width:54px; height:54px; border-radius:50%; border:2.5px dashed var(--cat-color, var(--blue));
+  display:grid; place-items:center; font-size:1.3rem; color:var(--cat-color, var(--blue)); opacity:0.7;
+}
+.video-thumb .placeholder .coming { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--cat-color, var(--blue)); opacity:0.8; }
+.video-thumb .play-overlay {
+  position:absolute; inset:0; display:grid; place-items:center; background:rgba(0,0,0,0.04);
+}
+.video-thumb .play-btn {
+  width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,0.95);
+  display:grid; place-items:center; font-size:1.5rem; color:var(--cat-color, var(--blue));
+  box-shadow:0 4px 16px rgba(0,0,0,0.25); transition:transform 0.15s;
+}
+.video-thumb:hover .play-btn { transform:scale(1.1); }
+.video-thumb .duration-badge {
+  position:absolute; bottom:8px; right:8px; background:rgba(0,0,0,0.8); color:white;
+  font-size:0.72rem; padding:0.15rem 0.45rem; border-radius:4px; font-family:var(--font-mono);
+}
+.video-thumb .free-badge {
+  position:absolute; top:8px; left:8px; background:var(--green); color:white;
+  font-size:0.68rem; padding:0.2rem 0.5rem; border-radius:4px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+}
+
+.video-body { padding:1rem 1.15rem 1.15rem; }
+.video-meta-row { display:flex; gap:0.4rem; margin-bottom:0.5rem; flex-wrap:wrap; align-items:center; }
+.video-tag { font-size:0.68rem; padding:0.15rem 0.5rem; border-radius:100px; background:var(--surface-2); color:var(--text-mid); font-weight:600; }
+.video-tag.spec { background:var(--cat-color, var(--blue))15; color:var(--cat-color, var(--blue)); font-family:var(--font-mono); }
+.video-body h3 { font-size:1rem; font-family:var(--font-display); margin-bottom:0.35rem; line-height:1.3; }
+.video-body p { font-size:0.85rem; color:var(--text-mid); line-height:1.5; margin-bottom:0.75rem; }
+.video-actions { display:flex; gap:0.5rem; align-items:center; }
+.watched-toggle {
+  font-size:0.78rem; padding:0.35rem 0.7rem; border-radius:6px; border:1.5px solid var(--border);
+  background:var(--surface); cursor:pointer; font-weight:600; color:var(--text-mid); transition:all 0.15s;
+}
+.watched-toggle:hover { border-color:var(--green); }
+.watched-toggle.done { background:var(--green-light); border-color:var(--green); color:var(--green); }
+[data-theme="dark"] .watched-toggle.done { background:rgba(34,197,94,0.15); }
+.chapter-link { font-size:0.78rem; color:var(--blue); text-decoration:none; font-weight:600; margin-left:auto; }
+.chapter-link:hover { text-decoration:underline; }
+
+.video-empty { text-align:center; padding:3rem 1rem; color:var(--text-mid); }
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #B91C1C 0%, #DC2626 100%);">
+      <span class="hero-tag">Video lessons</span>
+      <h1>🎬 Video Library</h1>
+      <p>Short, focused video lessons covering every topic in the 4IT1 specification, plus exam technique and worked answers. Watch, pause, rewind — learn at your own pace.</p>
+    </div>
+
+    <div class="video-progress-bar" id="videoProgress"></div>
+    <div class="video-filters" id="videoFilters"></div>
+    <div id="videoSections"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/videos.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const WATCHED_KEY = 'igcse_ict_videos_watched_v1';
+let watched = new Set();
+let activeFilter = 'all';
+
+function loadWatched() {
+  try { watched = new Set(JSON.parse(localStorage.getItem(WATCHED_KEY) || '[]')); }
+  catch(e) { watched = new Set(); }
+}
+function saveWatched() {
+  try { localStorage.setItem(WATCHED_KEY, JSON.stringify([...watched])); } catch(e) {}
+}
+
+// Stable unique key per video (category + title)
+function vKey(v) { return v.cat + '::' + v.title; }
+
+function catColor(catId) {
+  return (VIDEO_CATEGORIES.find(c => c.id === catId) || {}).color || 'var(--blue)';
+}
+
+function renderFilters() {
+  const total = VIDEOS.length;
+  let html = `<button class="vfilter ${activeFilter==='all'?'active':''}" onclick="setFilter('all')">All <span class="count">(${total})</span></button>`;
+  VIDEO_CATEGORIES.forEach(c => {
+    const n = VIDEOS.filter(v => v.cat === c.id).length;
+    html += `<button class="vfilter ${activeFilter===c.id?'active':''}" style="--cat-color:${c.color};" onclick="setFilter('${c.id}')">${c.icon} ${c.label} <span class="count">(${n})</span></button>`;
+  });
+  document.getElementById('videoFilters').innerHTML = html;
+}
+
+function renderProgress() {
+  const total = VIDEOS.length;
+  const done = VIDEOS.filter(v => watched.has(vKey(v))).length;
+  const pct = total ? Math.round(done / total * 100) : 0;
+  const live = VIDEOS.filter(v => v.youtubeId).length;
+  document.getElementById('videoProgress').innerHTML = `
+    <div class="pinfo">
+      <strong style="font-family:var(--font-display);">${done} of ${total} videos watched</strong>
+      <div class="ptrack"><div class="pfill" style="width:${pct}%;"></div></div>
+    </div>
+    <div style="font-size:0.82rem; color:var(--text-mid);">${live} video${live===1?'':'s'} available now${live < total ? ` · ${total - live} coming soon` : ''}</div>
+  `;
+}
+
+function videoCard(v) {
+  const color = catColor(v.cat);
+  const key = vKey(v);
+  const isWatched = watched.has(key);
+  const ch = v.chapter ? CHAPTERS.find(c => c.id === v.chapter) : null;
+
+  let thumb;
+  if (v.youtubeId) {
+    thumb = `
+      <div class="video-thumb" style="--cat-color:${color};">
+        <iframe src="https://www.youtube-nocookie.com/embed/${v.youtubeId}" title="${escapeHtml(v.title)}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+        ${v.duration ? `<span class="duration-badge">${v.duration}</span>` : ''}
+        ${v.free ? `<span class="free-badge">Free</span>` : ''}
+      </div>`;
+  } else {
+    thumb = `
+      <div class="video-thumb" style="--cat-color:${color};" title="Video coming soon">
+        <div class="placeholder">
+          <div class="play-ring">▶</div>
+          <div class="coming">Coming soon</div>
+        </div>
+        ${v.free ? `<span class="free-badge">Free</span>` : ''}
+      </div>`;
+  }
+
+  return `
+    <div class="video-card" style="--cat-color:${color};" data-key="${escapeHtml(key)}">
+      ${thumb}
+      <div class="video-body">
+        <div class="video-meta-row">
+          ${v.chapter ? `<span class="video-tag">Ch ${v.chapter}</span>` : ''}
+          ${v.spec && v.spec !== '—' ? `<span class="video-tag spec" style="--cat-color:${color};">${v.spec}</span>` : ''}
+        </div>
+        <h3>${escapeHtml(v.title)}</h3>
+        <p>${escapeHtml(v.desc)}</p>
+        <div class="video-actions">
+          <button class="watched-toggle ${isWatched?'done':''}" onclick="toggleWatched('${escapeHtml(key).replace(/'/g, "\\'")}')">${isWatched ? '✓ Watched' : '○ Mark watched'}</button>
+          ${ch ? `<a class="chapter-link" href="chapters/${ch.file}">Read chapter →</a>` : ''}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderSections() {
+  const container = document.getElementById('videoSections');
+  const cats = activeFilter === 'all' ? VIDEO_CATEGORIES : VIDEO_CATEGORIES.filter(c => c.id === activeFilter);
+  let html = '';
+  cats.forEach(cat => {
+    const vids = VIDEOS.filter(v => v.cat === cat.id);
+    if (vids.length === 0) return;
+    const done = vids.filter(v => watched.has(vKey(v))).length;
+    html += `
+      <div class="video-section" style="--cat-color:${cat.color};">
+        <h2>${cat.icon} ${cat.label} <span class="sec-count">${done}/${vids.length} watched</span></h2>
+        <div class="video-grid">${vids.map(videoCard).join('')}</div>
+      </div>`;
+  });
+  if (!html) html = `<div class="video-empty"><div style="font-size:3rem; opacity:0.4;">🎬</div><p>No videos in this category yet.</p></div>`;
+  container.innerHTML = html;
+}
+
+function setFilter(f) {
+  activeFilter = f;
+  renderFilters();
+  renderSections();
+}
+
+function toggleWatched(key) {
+  if (watched.has(key)) watched.delete(key);
+  else {
+    watched.add(key);
+    if (window.recordActivity) window.recordActivity('reading');
+  }
+  saveWatched();
+  renderProgress();
+  renderSections();
+}
+
+function escapeHtml(s) {
+  return (s || '').toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadWatched();
+  renderProgress();
+  renderFilters();
+  renderSections();
+});
+</script>
+</body>
+</html>
