@@ -1,15 +1,16 @@
 # Decap CMS configuration — the blog admin at /admin/
 #
-# Default backend is git-gateway (Netlify Identity). Setup steps are in the README.
-# If you deploy somewhere other than Netlify, switch to the github backend:
-#   backend:
-#     name: github
-#     repo: YOUR_GITHUB_USER/YOUR_REPO
-#     branch: main
+# Login is provided by DecapBridge (https://decapbridge.com) — Netlify's own
+# Identity/Git Gateway service is deprecated and unavailable on new sites.
+# Setup steps are in the README. After creating the site in the DecapBridge
+# dashboard, replace YOUR_DECAPBRIDGE_SITE_ID below with the ID it gives you.
 
 backend:
   name: git-gateway
-  branch: main
+  repo: diga83/Claude
+  branch: claude/relaxed-faraday-l80n6k
+  identity_url: https://auth.decapbridge.com/sites/YOUR_DECAPBRIDGE_SITE_ID
+  gateway_url: https://gateway.decapbridge.com
 
 # Where uploaded images are stored in the repo / served from on the site
 media_folder: "public/images/blog"

@@ -44,14 +44,17 @@ Your post content in markdown…
 
 Commit and push — the site rebuilds and the post is live, listed on `/blog/`, the home page, and the RSS feed. Set `draft: true` to keep it out of the published site.
 
-**2. Use the admin UI at `/admin/`** (after deploying to Netlify):
+**2. Use the admin UI at `/admin/`** (after deploying):
 
-1. In Netlify: **Site settings → Identity → Enable Identity**
-2. **Identity → Registration → Invite only**, then invite your own email
-3. **Identity → Services → Enable Git Gateway**
-4. Visit `yoursite.com/admin/`, log in, and write. Posts you publish are committed to the repo and deployed automatically. Drafts go through a Draft → Review → Publish workflow.
+Login is handled by [DecapBridge](https://decapbridge.com) — free, built for Decap CMS. (Netlify's old Identity + Git Gateway services are deprecated and can't be enabled on new sites.)
 
-Deploying somewhere other than Netlify? Switch the backend in `public/admin/config.yml` to `github` (instructions in that file).
+1. Sign up at **decapbridge.com** and click **Create New Site**
+2. Connect it to this GitHub repository and the branch your host deploys (follow the dashboard prompts)
+3. Copy the `backend:` snippet it gives you into `public/admin/config.yml` — only the `YOUR_DECAPBRIDGE_SITE_ID` placeholder in `identity_url` should need replacing
+4. In the DecapBridge dashboard, invite yourself (and any co-authors) by email
+5. Visit `yoursite.com/admin/`, log in with that email + password, and write. Posts you publish are committed to the repo and deployed automatically. Drafts go through a Draft → Review → Publish workflow.
+
+Writers don't need GitHub accounts — DecapBridge handles users, invites, and password resets.
 
 ## Going live + AdSense checklist
 
