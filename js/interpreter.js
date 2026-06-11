@@ -1,6 +1,9 @@
-/* Somnia — dream interpreter: client-side analysis of a free-text dream.
-   Detects known symbols, emotions, and themes, then composes a reading
-   through the lens the user selects. All processing happens in-browser. */
+/* Somnia — dream interpreter.
+   Two modes:
+   - AI reading: POSTs the dream to /api/interpret (Claude-powered, uses 1
+     credit). Falls back gracefully when the backend isn't deployed.
+   - Instant reading: free, on-device analysis against the symbol database.
+   Nothing is uploaded in instant mode. */
 (function () {
   'use strict';
 
@@ -13,9 +16,9 @@
     { id: 'sadness', label: 'sadness or loss', words: ['sad', 'crying', 'cried', 'tears', 'grief', 'mourning', 'lonely', 'alone', 'lost', 'missing', 'empty'] },
     { id: 'anger', label: 'anger or frustration', words: ['angry', 'furious', 'rage', 'mad', 'frustrated', 'annoyed', 'yelling', 'screaming', 'fight', 'fighting', 'argument'] },
     { id: 'joy', label: 'joy or relief', words: ['happy', 'joy', 'laughing', 'laughed', 'excited', 'wonderful', 'beautiful', 'peaceful', 'calm', 'relief', 'free', 'amazing'] },
-    { id: 'confusion', label: 'confusion or disorientation', words: ['confused', 'strange', 'weird', 'odd', 'disoriented', 'maze', 'couldn’t find', 'could not find', 'searching', 'looking for'] },
+    { id: 'confusion', label: 'confusion or disorientation', words: ['confused', 'strange', 'weird', 'odd', 'disoriented', 'maze', "couldn't find", 'searching', 'looking for'] },
     { id: 'shame', label: 'embarrassment or exposure', words: ['embarrassed', 'ashamed', 'shame', 'humiliated', 'naked', 'exposed', 'everyone was looking', 'staring'] },
-    { id: 'powerless', label: 'powerlessness', words: ['stuck', 'trapped', 'frozen', 'paralyzed', 'helpless', 'couldn’t move', 'could not move', 'couldn’t run', 'could not run', 'couldn’t scream', 'could not scream', 'slow motion'] }
+    { id: 'powerless', label: 'powerlessness', words: ['stuck', 'trapped', 'frozen', 'paralyzed', 'helpless', "couldn't move", "couldn't run", "couldn't scream", 'slow motion'] }
   ];
 
   const LENS_INTROS = {
@@ -31,7 +34,8 @@
     emotion: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>',
     reading: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>',
     questions: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>',
-    note: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>'
+    note: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>',
+    spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l1.9 5.7L20 9.6l-5 3.8 1.9 6.1L12 15.8l-4.9 3.7L9 13.4 4 9.6l6.1-1.9z"/></svg>'
   };
 
   function esc(s) {
@@ -63,6 +67,45 @@
     });
   }
 
+  /* ---------- Mode switch ---------- */
+  let mode = localStorage.getItem('somnia-interpreter-mode') || 'ai';
+  const modeBtns = document.querySelectorAll('[data-mode]');
+
+  function renderModeUI() {
+    modeBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+    });
+    const meter = document.getElementById('credit-meter');
+    if (meter && window.somniaCredits) {
+      const s = window.somniaCredits.summary();
+      if (mode === 'ai') {
+        meter.classList.remove('hidden');
+        meter.innerHTML = s.unlimited
+          ? '<span><strong>' + esc(s.plan.name) + '</strong> plan — unlimited AI readings</span><a href="pricing.html">Manage plan</a>'
+          : '<span><strong>' + s.total + '</strong> AI reading credit' + (s.total === 1 ? '' : 's') + ' left (' + esc(s.plan.name) + ' plan)</span><a href="pricing.html">Get more</a>';
+      } else {
+        meter.classList.add('hidden');
+      }
+    }
+    const submit = document.getElementById('interpret-submit');
+    if (submit) {
+      submit.innerHTML = mode === 'ai'
+        ? ICONS.spark + ' Get my AI reading <span class="small" style="opacity:.8; font-weight:500;">(1 credit)</span>'
+        : ICONS.reading + ' Interpret instantly (free)';
+    }
+  }
+
+  modeBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.dataset.mode;
+      localStorage.setItem('somnia-interpreter-mode', mode);
+      renderModeUI();
+    });
+  });
+  renderModeUI();
+  document.addEventListener('somnia:credits-changed', renderModeUI);
+
+  /* ---------- Instant (on-device) reading ---------- */
   function lensText(sym, lens) {
     switch (lens) {
       case 'psychology': return sym.psychology || sym.overview;
@@ -76,7 +119,6 @@
   function buildReading(text, lens, symbols, emotions) {
     const parts = [];
     parts.push(LENS_INTROS[lens] || LENS_INTROS.balanced);
-
     if (emotions.length) {
       const labels = emotions.map(function (e) { return e.label; });
       const listed = labels.length > 1
@@ -87,7 +129,6 @@
     } else {
       parts.push('You didn’t mention how the dream felt. Emotion is the most informative part of a dream — when you recall it, note whether the feeling was fear, relief, frustration, or something else, and where that feeling appears in waking life.');
     }
-
     if (symbols.length) {
       symbols.forEach(function (s) {
         parts.push('• ' + s.name + ': ' + lensText(s, lens));
@@ -116,6 +157,139 @@
     return qs;
   }
 
+  function disclaimerCard() {
+    return '<div class="result-card" style="border-left-color: var(--color-warning);"><h3>' + ICONS.note + 'Keep in mind</h3>' +
+      '<p class="mb-0">There is no scientific evidence that dream symbols have fixed, universal meanings. The most useful interpretation is the one <em>you</em> build from your own associations. This tool is for reflection and entertainment — it is not medical, psychological, or spiritual advice. If distressing dreams are affecting your sleep or daily life, consider talking to a healthcare professional.</p></div>';
+  }
+
+  function showOutput(html, cls) {
+    output.className = 'result-section ' + (cls || '');
+    output.innerHTML = html;
+    output.classList.remove('hidden');
+    output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderInstant(text, lens) {
+    const symbols = detectSymbols(text);
+    const emotions = detectEmotions(text);
+    const reading = buildReading(text, lens, symbols, emotions);
+    const questions = reflectionQuestions(symbols, emotions);
+
+    let html = '';
+    html += '<div class="result-card"><h3>' + ICONS.symbols + 'Symbols detected</h3>';
+    if (symbols.length) {
+      html += '<div class="symbol-pill-row">' + symbols.map(function (s) {
+        return '<a class="chip" href="dictionary.html#' + s.id + '">' + esc(s.name) + '</a>';
+      }).join('') + '</div><p class="muted small mb-0">Tap a symbol to read its full dictionary entry.</p>';
+    } else {
+      html += '<p class="mb-0">No dictionary symbols matched — your reading below focuses on emotion and personal context instead.</p>';
+    }
+    html += '</div>';
+    html += '<div class="result-card"><h3>' + ICONS.emotion + 'Emotional tone</h3><p class="mb-0">' +
+      (emotions.length
+        ? 'Detected: ' + emotions.map(function (e) { return esc(e.label); }).join(', ') + '.'
+        : 'No explicit emotions detected in your description — try adding how the dream felt.') +
+      '</p></div>';
+    html += '<div class="result-card"><h3>' + ICONS.reading + 'Your reading</h3>' +
+      reading.map(function (p) { return '<p>' + esc(p).replace(/^• /, '<strong>&bull;</strong> ') + '</p>'; }).join('') +
+      '</div>';
+    html += '<div class="result-card"><h3>' + ICONS.questions + 'Questions to reflect on</h3><ul>' +
+      questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul></div>';
+    html += disclaimerCard();
+    html += '<p class="text-center mt-4"><a class="btn btn-secondary" href="journal.html">Save this dream in your journal</a></p>';
+    showOutput(html, 'ai-reading');
+  }
+
+  /* ---------- AI reading ---------- */
+  function renderAILoading() {
+    showOutput(
+      '<div class="ai-loading">' +
+      '<p>' + ICONS.spark + ' Reading your dream&hellip; this usually takes a few seconds.</p>' +
+      '<div class="skeleton" style="height: 72px; margin-bottom: 12px;"></div>' +
+      '<div class="skeleton" style="height: 180px; margin-bottom: 12px;"></div>' +
+      '<div class="skeleton" style="height: 110px;"></div>' +
+      '</div>'
+    );
+  }
+
+  function renderUpsell() {
+    showOutput(
+      '<div class="result-card" style="text-align: center;">' +
+      '<h3 style="justify-content: center;">' + ICONS.spark + 'You’re out of AI reading credits</h3>' +
+      '<p class="muted">Your free credits refresh monthly — or upgrade for more. The instant on-device reading below is always free.</p>' +
+      '<p><a class="btn btn-primary" href="pricing.html">See plans &amp; credit packs</a> ' +
+      '<button type="button" class="btn btn-secondary" id="use-instant-instead">Use instant reading</button></p>' +
+      '</div>'
+    );
+    const btn = document.getElementById('use-instant-instead');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        renderInstant(document.getElementById('dream-text').value.trim(), document.getElementById('lens-select').value);
+      });
+    }
+  }
+
+  function renderAIReading(r) {
+    let html = '';
+    html += '<div class="result-card"><h3>' + ICONS.spark + 'The heart of your dream</h3>' +
+      '<p>' + esc(r.summary) + '</p>' +
+      '<p class="mb-0 muted"><strong>Emotional tone:</strong> ' + esc(r.emotional_tone) + '</p></div>';
+
+    if (Array.isArray(r.symbols) && r.symbols.length) {
+      html += '<div class="result-card"><h3>' + ICONS.symbols + 'Your dream’s symbols</h3><ul>' +
+        r.symbols.map(function (s) {
+          return '<li><strong>' + esc(s.name) + ':</strong> ' + esc(s.meaning) + '</li>';
+        }).join('') + '</ul></div>';
+    }
+
+    html += '<div class="result-card"><h3>' + ICONS.reading + 'Your reading</h3>' +
+      String(r.reading).split(/\n{2,}|\n/).filter(Boolean).map(function (p) {
+        return '<p>' + esc(p) + '</p>';
+      }).join('') + '</div>';
+
+    if (Array.isArray(r.reflection_questions) && r.reflection_questions.length) {
+      html += '<div class="result-card"><h3>' + ICONS.questions + 'Questions to reflect on</h3><ul>' +
+        r.reflection_questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul></div>';
+    }
+
+    html += '<div class="result-card" style="border-left-color: var(--color-warning);"><h3>' + ICONS.note + 'A gentle note</h3>' +
+      '<p>' + esc(r.gentle_note) + '</p>' +
+      '<p class="mb-0 small muted">AI readings are reflective prompts, not facts, predictions, or medical advice.</p></div>';
+
+    html += '<p class="text-center mt-4"><a class="btn btn-secondary" href="journal.html">Save this dream in your journal</a></p>';
+    showOutput(html, 'ai-reading');
+  }
+
+  async function runAI(text, lens) {
+    if (window.somniaCredits && !window.somniaCredits.canSpend()) {
+      renderUpsell();
+      return;
+    }
+    if (window.somniaCredits) window.somniaCredits.spend();
+    renderAILoading();
+    const submit = document.getElementById('interpret-submit');
+    if (submit) submit.disabled = true;
+    try {
+      const resp = await fetch('/api/interpret', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dream: text, lens: lens })
+      });
+      const data = await resp.json().catch(function () { return {}; });
+      if (!resp.ok || !data.reading) {
+        throw new Error(data.error || 'AI reading unavailable');
+      }
+      renderAIReading(data.reading);
+    } catch (err) {
+      if (window.somniaCredits) window.somniaCredits.refund();
+      window.somniaToast('AI reading unavailable — showing the free instant reading instead');
+      renderInstant(text, lens);
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  }
+
+  /* ---------- Submit ---------- */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     const text = document.getElementById('dream-text').value.trim();
@@ -130,44 +304,8 @@
     }
     errEl.classList.add('hidden');
 
-    const symbols = detectSymbols(text);
-    const emotions = detectEmotions(text);
-    const reading = buildReading(text, lens, symbols, emotions);
-    const questions = reflectionQuestions(symbols, emotions);
-
-    let html = '';
-
-    html += '<div class="result-card"><h3>' + ICONS.symbols + 'Symbols detected</h3>';
-    if (symbols.length) {
-      html += '<div class="symbol-pill-row">' + symbols.map(function (s) {
-        return '<a class="chip" href="dictionary.html#' + s.id + '">' + esc(s.name) + '</a>';
-      }).join('') + '</div><p class="muted small mb-0">Tap a symbol to read its full dictionary entry.</p>';
-    } else {
-      html += '<p class="mb-0">No dictionary symbols matched — your reading below focuses on emotion and personal context instead.</p>';
-    }
-    html += '</div>';
-
-    html += '<div class="result-card"><h3>' + ICONS.emotion + 'Emotional tone</h3><p class="mb-0">' +
-      (emotions.length
-        ? 'Detected: ' + emotions.map(function (e) { return esc(e.label); }).join(', ') + '.'
-        : 'No explicit emotions detected in your description — try adding how the dream felt.') +
-      '</p></div>';
-
-    html += '<div class="result-card"><h3>' + ICONS.reading + 'Your reading</h3>' +
-      reading.map(function (p) { return '<p>' + esc(p).replace(/^• /, '<strong>&bull;</strong> ') + '</p>'; }).join('') +
-      '</div>';
-
-    html += '<div class="result-card"><h3>' + ICONS.questions + 'Questions to reflect on</h3><ul>' +
-      questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul></div>';
-
-    html += '<div class="result-card" style="border-left-color: var(--color-warning);"><h3>' + ICONS.note + 'Keep in mind</h3>' +
-      '<p class="mb-0">There is no scientific evidence that dream symbols have fixed, universal meanings. The most useful interpretation is the one <em>you</em> build from your own associations. This tool is for reflection and entertainment — it is not medical, psychological, or spiritual advice. If distressing dreams are affecting your sleep or daily life, consider talking to a healthcare professional.</p></div>';
-
-    html += '<p class="text-center mt-4"><a class="btn btn-secondary" href="journal.html">Save this dream in your journal</a></p>';
-
-    output.innerHTML = html;
-    output.classList.remove('hidden');
-    output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (mode === 'ai') runAI(text, lens);
+    else renderInstant(text, lens);
   });
 
   /* Example dream buttons */

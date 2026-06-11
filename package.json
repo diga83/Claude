@@ -1,0 +1,14 @@
+{
+  "name": "somnia",
+  "version": "1.0.0",
+  "description": "Somnia — dream interpretation site with AI readings, dream dictionary, journal, and guides",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.1"
+  }
+}

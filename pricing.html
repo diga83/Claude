@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing — AI Dream Readings, Plans &amp; Credits | Somnia</title>
+  <meta name="description" content="Start free with 5 AI dream readings a month. Upgrade to Lucid or Oneironaut for more readings, all interpretive lenses, and unlimited dreamwork — or top up with credit packs.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%238b5cf6' d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('somnia-theme') || 'dark');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Somnia home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+        Somnia
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="dictionary.html">Dictionary</a></li>
+        <li><a href="interpreter.html">Interpreter</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="guides/index.html">Guides</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="pricing.html" aria-current="page">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <span data-credit-badge data-base=""></span>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" style="padding-bottom: var(--space-5);">
+      <div class="stars" aria-hidden="true"></div>
+      <div class="container">
+        <span class="hero-eyebrow">Simple pricing &middot; Start free</span>
+        <h1>Every dream deserves<br>a real reading</h1>
+        <p class="lead">Start free with 5 AI readings a month and an unlimited on-device interpreter. Upgrade when your dream life outgrows the free tier.</p>
+        <div class="text-center">
+          <div class="billing-toggle" role="group" aria-label="Billing period">
+            <button type="button" id="bill-monthly" aria-pressed="true">Monthly</button>
+            <button type="button" id="bill-yearly" aria-pressed="false">Yearly <span class="save-pill">Save up to 33%</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: var(--space-4);">
+      <div class="container">
+        <div class="plan-grid" id="plan-grid" aria-live="polite"></div>
+        <p class="text-center small muted mt-4">Prices in USD. Cancel anytime — your journal and dictionary access never expire. <strong>Demo note:</strong> checkout on this preview is simulated; no payment is collected.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="packs-title" data-reveal>
+      <div class="container" style="max-width: 880px;">
+        <h2 class="section-title" id="packs-title">Or just top up credits</h2>
+        <p class="section-subtitle">No subscription needed. Credit packs never expire and stack with any plan.</p>
+        <div class="pack-row" id="pack-row"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="compare-title" data-reveal>
+      <div class="container" style="max-width: 880px;">
+        <h2 class="section-title" id="compare-title">Compare plans</h2>
+        <div class="table-scroll">
+          <table class="compare-table">
+            <thead>
+              <tr><th scope="col">Feature</th><th scope="col">Dreamer</th><th scope="col">Lucid</th><th scope="col">Oneironaut</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>AI dream readings</td><td>5 / month</td><td>100 / month</td><td class="check">Unlimited</td></tr>
+              <tr><td>Instant on-device readings</td><td class="check">Unlimited</td><td class="check">Unlimited</td><td class="check">Unlimited</td></tr>
+              <tr><td>Interpretive lenses</td><td>Balanced + Psychology</td><td class="check">All 5</td><td class="check">All 5</td></tr>
+              <tr><td>Dream dictionary (77 symbols)</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>Private journal + stats</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>Guides &amp; quiz</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+              <tr><td>Long-dream support</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+              <tr><td>Early access to new features</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="pricing-faq" data-reveal>
+      <div class="container" style="max-width: 760px;">
+        <h2 class="section-title" id="pricing-faq">Pricing questions</h2>
+        <details class="accordion">
+          <summary>What exactly is an “AI reading”?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="accordion-body"><p>You describe your dream in your own words and a state-of-the-art AI composes a personalized interpretation: the dream’s emotional core, its symbols read in your context, a multi-paragraph reading in the lens you choose, and reflection questions. It works on any dream — not just ones containing dictionary symbols.</p></div>
+        </details>
+        <details class="accordion">
+          <summary>What happens when I run out of credits?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="accordion-body"><p>Nothing breaks. The instant on-device interpreter, the dictionary, your journal, and all guides stay fully available — they’re free forever. Monthly credits refresh on the 1st, and credit packs never expire.</p></div>
+        </details>
+        <details class="accordion">
+          <summary>Is my dream content private?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="accordion-body"><p>Your journal lives only in your browser and is never uploaded. Instant readings are processed entirely on your device. AI readings send only the dream text you submit, solely to generate your reading — it is not used to build a profile of you.</p></div>
+        </details>
+        <details class="accordion">
+          <summary>Can I cancel anytime?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="accordion-body"><p>Yes. Downgrading takes effect at the end of your billing period, you keep any unused pack credits, and nothing you’ve written is ever locked away.</p></div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Demo checkout modal -->
+  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+    <div class="modal">
+      <h3 id="checkout-title">Confirm (demo checkout)</h3>
+      <p class="muted" id="checkout-desc"></p>
+      <p class="small muted">This preview simulates checkout — in production this opens Stripe and credits are granted by webhook. No payment is collected here.</p>
+      <p class="mb-0">
+        <button class="btn btn-primary" type="button" id="checkout-confirm">Confirm</button>
+        <button class="btn btn-secondary" type="button" id="checkout-cancel">Cancel</button>
+      </p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width:24px;height:24px;color:var(--color-primary)"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg> Somnia</a>
+          <p class="muted small mt-3">A dream interpretation site that takes both the symbolism and the science seriously. Your journal never leaves your device.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="dictionary.html">Dream Dictionary</a></li>
+            <li><a href="interpreter.html">Dream Interpreter</a></li>
+            <li><a href="journal.html">Dream Journal</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Guides</h4>
+          <ul>
+            <li><a href="guides/lucid-dreaming.html">Lucid Dreaming</a></li>
+            <li><a href="guides/dream-recall.html">Dream Recall</a></li>
+            <li><a href="guides/nightmares.html">Nightmares</a></li>
+            <li><a href="guides/sleep-science.html">Sleep Science</a></li>
+            <li><a href="guides/history-of-dreams.html">History &amp; Theories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="about.html">About &amp; Methodology</a></li>
+            <li><a href="about.html#disclaimer">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-disclaimer">Content on Somnia is for reflection, education, and entertainment only — dream meanings are personal, and science does not support universal symbol definitions. Nothing here is medical, psychological, or psychiatric advice. If distressing dreams affect your sleep or daily life, please talk to a qualified professional. &copy; <span data-year>2026</span> Somnia.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/credits.js"></script>
+  <script src="js/effects.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const C = window.somniaCredits;
+      let billing = 'monthly';
+
+      const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+
+      function esc(s) {
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+      }
+
+      function planPrice(plan) {
+        if (plan.monthly === 0) return { amount: '0', per: 'forever' };
+        if (billing === 'yearly') {
+          return { amount: (plan.yearly / 12).toFixed(2), per: '/mo billed yearly ($' + plan.yearly.toFixed(2) + ')' };
+        }
+        return { amount: plan.monthly.toFixed(2), per: '/month' };
+      }
+
+      function renderPlans() {
+        const current = C.summary().plan.id;
+        const grid = document.getElementById('plan-grid');
+        grid.innerHTML = Object.values(C.PLANS).map(function (plan) {
+          const price = planPrice(plan);
+          const isCurrent = plan.id === current;
+          return '<div class="plan-card' + (plan.popular ? ' popular' : '') + '" data-reveal>' +
+            (plan.popular ? '<span class="popular-badge">Most popular</span>' : '') +
+            '<div class="plan-name">' + esc(plan.name) + '</div>' +
+            '<div class="plan-tagline">' + esc(plan.tagline) + '</div>' +
+            '<div class="plan-price">$' + price.amount + ' <span class="per">' + price.per + '</span></div>' +
+            '<p class="plan-billed">' + (plan.monthly > 0 && billing === 'yearly' ? 'Two months free vs monthly' : '&nbsp;') + '</p>' +
+            '<ul class="plan-features">' + plan.features.map(function (f) {
+              return '<li>' + CHECK + esc(f) + '</li>';
+            }).join('') + '</ul>' +
+            (isCurrent
+              ? '<span class="current-plan" style="text-align:center;">Your current plan</span>'
+              : '<button class="btn ' + (plan.popular ? 'btn-primary' : 'btn-secondary') + '" type="button" data-plan="' + plan.id + '">' +
+                (plan.monthly === 0 ? 'Switch to free' : 'Choose ' + esc(plan.name)) + '</button>') +
+            '</div>';
+        }).join('');
+        grid.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('revealed'); });
+      }
+
+      function renderPacks() {
+        document.getElementById('pack-row').innerHTML = C.PACKS.map(function (p) {
+          return '<div class="pack-card">' +
+            (p.best ? '<span class="tag">Best value</span>' : '<span class="tag" style="visibility:hidden;">·</span>') +
+            '<div class="pack-credits">' + p.credits + '</div>' +
+            '<p class="muted small">AI reading credits<br>' + esc(p.label) + '</p>' +
+            '<button class="btn btn-secondary btn-sm" type="button" data-pack="' + p.id + '">Buy for $' + p.price.toFixed(2) + '</button>' +
+            '</div>';
+        }).join('');
+      }
+
+      /* Demo checkout modal */
+      const modal = document.getElementById('checkout-modal');
+      let pendingAction = null;
+
+      function openModal(desc, action) {
+        document.getElementById('checkout-desc').textContent = desc;
+        pendingAction = action;
+        modal.hidden = false;
+        requestAnimationFrame(function () { modal.classList.add('open'); });
+        document.getElementById('checkout-confirm').focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        setTimeout(function () { modal.hidden = true; }, 220);
+        pendingAction = null;
+      }
+
+      document.getElementById('checkout-confirm').addEventListener('click', function () {
+        if (pendingAction) pendingAction();
+        closeModal();
+      });
+      document.getElementById('checkout-cancel').addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+      document.addEventListener('click', function (e) {
+        const planBtn = e.target.closest('[data-plan]');
+        if (planBtn) {
+          const plan = C.PLANS[planBtn.dataset.plan];
+          if (plan.monthly === 0) {
+            C.changePlan('free', billing);
+            window.somniaToast('Switched to the free Dreamer plan');
+            renderPlans();
+            return;
+          }
+          const price = billing === 'yearly' ? '$' + plan.yearly.toFixed(2) + '/year' : '$' + plan.monthly.toFixed(2) + '/month';
+          openModal('Subscribe to ' + plan.name + ' at ' + price + '?', function () {
+            C.changePlan(plan.id, billing);
+            window.somniaToast('Welcome to ' + plan.name + ' — enjoy your readings ✦');
+            renderPlans();
+          });
+        }
+        const packBtn = e.target.closest('[data-pack]');
+        if (packBtn) {
+          const pack = C.PACKS.find(function (p) { return p.id === packBtn.dataset.pack; });
+          openModal('Buy ' + pack.credits + ' AI reading credits for $' + pack.price.toFixed(2) + '?', function () {
+            C.purchasePack(pack.id);
+            window.somniaToast(pack.credits + ' credits added to your account');
+          });
+        }
+      });
+
+      document.getElementById('bill-monthly').addEventListener('click', function () {
+        billing = 'monthly';
+        this.setAttribute('aria-pressed', 'true');
+        document.getElementById('bill-yearly').setAttribute('aria-pressed', 'false');
+        renderPlans();
+      });
+      document.getElementById('bill-yearly').addEventListener('click', function () {
+        billing = 'yearly';
+        this.setAttribute('aria-pressed', 'true');
+        document.getElementById('bill-monthly').setAttribute('aria-pressed', 'false');
+        renderPlans();
+      });
+
+      renderPlans();
+      renderPacks();
+    })();
+  </script>
+</body>
+</html>
