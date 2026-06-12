@@ -198,23 +198,38 @@ function generatePaper(paperId, seed) {
     mcqs.push(...pickN(chPool, 2));
   }
 
-  // Written questions: pick ~10 covering different chapters
-  const essays = [];
-  for (let ch = 1; ch <= 12; ch += 2) { // Ch 1, 3, 5, 7, 9, 11
-    const chPool = ESSAY_BANK.filter(q => q.ch === ch);
-    if (chPool.length > 0) essays.push(...pickN(chPool, 1));
+  // Written questions — mirror the real paper: exactly ONE 6-mark discuss,
+  // the rest mostly 2-4 mark parts, targeting ~60 written marks (+20 MCQ = 80)
+  const sixMarkers = pickN(ESSAY_BANK.filter(q => q.marks === 6), 1);
+  const essays = [...sixMarkers];
+  let writtenMarks = essays.reduce((t, q) => t + q.marks, 0);
+  // One smaller question per chapter in a shuffled order until ~60 marks
+  const chapterOrder = pickN([1,2,3,4,5,6,7,8,9,10,11,12], 12);
+  for (const ch of chapterOrder) {
+    if (writtenMarks >= 58) break;
+    const chPool = ESSAY_BANK.filter(q => q.ch === ch && q.marks <= 4 && !essays.includes(q));
+    if (chPool.length > 0) {
+      const picked = pickN(chPool, 1)[0];
+      essays.push(picked);
+      writtenMarks += picked.marks;
+    }
   }
-  // Add some more from other chapters
-  for (let ch = 2; ch <= 12; ch += 2) {
-    const chPool = ESSAY_BANK.filter(q => q.ch === ch);
-    if (chPool.length > 0) essays.push(...pickN(chPool, 1));
+  // Second pass if still short
+  for (const ch of chapterOrder) {
+    if (writtenMarks >= 58) break;
+    const chPool = ESSAY_BANK.filter(q => q.ch === ch && q.marks <= 4 && !essays.includes(q));
+    if (chPool.length > 0) {
+      const picked = pickN(chPool, 1)[0];
+      essays.push(picked);
+      writtenMarks += picked.marks;
+    }
   }
 
   return {
     id: paperId,
     title: `Paper 1 — Mock ${paperId}`,
     mcqs: mcqs.slice(0, 20),  // 20 MCQs x 1 mark = 20 marks
-    essays: essays.slice(0, 10), // 10 written questions of varying marks
+    essays: essays,           // ~60 written marks incl. one 6-mark discuss
     duration: 120 * 60
   };
 }
@@ -300,6 +315,13 @@ function renderPaperList() {
 
     ${renderAttemptHistory()}
 
+    <div class="callout note" style="margin-bottom:1.5rem;">
+      <div class="ct-title">📐 How the real Paper 1 is built (analysis of 2019–2025 papers)</div>
+      <p><strong>6 multi-part scenario questions</strong> · <strong>80 marks</strong> · 2 hours · each question worth 9–18 marks and themed on a topic area.</p>
+      <p>Most parts are <strong>1–2 marks</strong> (Give / State / Identify / Complete / Describe), with a handful of 3–4 mark Explain/Construct parts and <strong>exactly one 6-mark Discuss</strong> extended response per paper.</p>
+      <p>The <strong>pseudocode command set is enclosed with the paper</strong> — you don't memorise it, but you must read it fluently. Multiple-choice parts are scattered inside questions, not a separate section.</p>
+    </div>
+
     <h2 class="section-title">Paper 1 — Principles of Computer Science (2 hours, 80 marks)</h2>
 
     ${PAPER_SETS.map(p => `
@@ -308,7 +330,7 @@ function renderPaperList() {
       <div class="paper-info">
         <h3>Mock Paper 1 — Set ${p.set}</h3>
         <p>${p.desc}</p>
-        <div class="meta">⏱ 2 hours · 20 MCQs + 10 written · ~80 marks</div>
+        <div class="meta">⏱ 2 hours · 20 MCQs + written questions · ~80 marks · one 6-mark discuss</div>
       </div>
       <div style="font-size:1.5rem; color:var(--mid);">→</div>
     </a>`).join('')}
