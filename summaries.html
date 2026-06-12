@@ -101,13 +101,13 @@ function toggleCh(id) {
 
 function summariseChapter(ch) {
   // Pull from search index if available
-  const data = (typeof CHAPTER_SEARCH_INDEX !== 'undefined') ? CHAPTER_SEARCH_INDEX.find(c => c.id === ch.id) : null;
+  const data = (typeof CHAPTER_SEARCH_INDEX !== 'undefined') ? CHAPTER_SEARCH_INDEX.find(c => c.chId === ch.id) : null;
   // Pull glossary terms for this chapter
   const terms = (typeof GLOSSARY !== 'undefined') ? GLOSSARY.filter(g => g.ch === ch.id) : [];
   // Pull sections / key topics from search index
   const sections = data?.sections || [];
   // Build content
-  const sectionList = sections.slice(0, 8).map(s => `<li>${s.title}</li>`).join('');
+  const sectionList = sections.slice(0, 8).map(s => `<li>${s.heading}</li>`).join('');
   const termList = terms.slice(0, 12).map(t => `<div class="term-item"><strong>${t.t}:</strong> ${t.d.substring(0, 80)}${t.d.length > 80 ? '…' : ''}</div>`).join('');
 
   return `

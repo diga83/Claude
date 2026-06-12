@@ -1244,7 +1244,7 @@ function showWelcomeScreen() {
     : '';
   overlay.innerHTML = `
     <div class="welcome-box">
-      <div class="welcome-mark">4IT</div>
+      <div class="welcome-mark">CS</div>
       <h1>Welcome!</h1>
       <p class="welcome-sub">Before you start studying, tell us your name. We'll use it to personalise your experience — your progress, notes, and exported files. Nothing is sent anywhere; it's stored only on this device.</p>
       ${storageNote}
