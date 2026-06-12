@@ -2,7 +2,7 @@
    Caches all site files so the app works offline once installed.
 */
 
-const CACHE_NAME = 'igcse-ict-v15';
+const CACHE_NAME = 'igcse-ict-v16';
 const ASSETS = [
   './',
   './index.html',

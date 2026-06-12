@@ -302,35 +302,16 @@ function renderPaperList() {
 
     <h2 class="section-title">Paper 1 — Written Theory (1h 30min, 100 marks)</h2>
 
-    <a class="paper-card" onclick="startPaper(1); return false;" href="#" style="--ch-color:#1D4ED8; --ch-color-dark:#1E3A8A; text-decoration:none; color:inherit;">
-      <div class="paper-icon">P1<sub style="font-size:0.7em">A</sub></div>
+    ${PAPER_SETS.map(p => `
+    <a class="paper-card" onclick="startPaper(${p.id}); return false;" href="#" style="--ch-color:${p.color}; --ch-color-dark:${p.dark}; text-decoration:none; color:inherit;">
+      <div class="paper-icon">P1<sub style="font-size:0.7em">${p.set}</sub></div>
       <div class="paper-info">
-        <h3>Mock Paper 1 — Set A</h3>
-        <p>Mixed MCQs and extended response questions across all Paper 1 topics. Designed to feel like the real exam.</p>
+        <h3>Mock Paper 1 — Set ${p.set}</h3>
+        <p>${p.desc}</p>
         <div class="meta">⏱ 90 minutes · 27 MCQs + 7 written · ~100 marks</div>
       </div>
       <div style="font-size:1.5rem; color:var(--mid);">→</div>
-    </a>
-
-    <a class="paper-card" onclick="startPaper(2); return false;" href="#" style="--ch-color:#0F766E; --ch-color-dark:#134E4A; text-decoration:none; color:inherit;">
-      <div class="paper-icon">P1<sub style="font-size:0.7em">B</sub></div>
-      <div class="paper-info">
-        <h3>Mock Paper 1 — Set B</h3>
-        <p>Different selection of questions — practise more breadth and challenge yourself again.</p>
-        <div class="meta">⏱ 90 minutes · 27 MCQs + 7 written · ~100 marks</div>
-      </div>
-      <div style="font-size:1.5rem; color:var(--mid);">→</div>
-    </a>
-
-    <a class="paper-card" onclick="startPaper(3); return false;" href="#" style="--ch-color:#6D28D9; --ch-color-dark:#4C1D95; text-decoration:none; color:inherit;">
-      <div class="paper-icon">P1<sub style="font-size:0.7em">C</sub></div>
-      <div class="paper-info">
-        <h3>Mock Paper 1 — Set C</h3>
-        <p>Third variant. Use this if you've already completed sets A and B to keep practising on fresh questions.</p>
-        <div class="meta">⏱ 90 minutes · 27 MCQs + 7 written · ~100 marks</div>
-      </div>
-      <div style="font-size:1.5rem; color:var(--mid);">→</div>
-    </a>
+    </a>`).join('')}
 
     <h2 class="section-title">Paper 2 — Practical (Reference)</h2>
 
@@ -354,8 +335,24 @@ function renderPaperList() {
   `;
 }
 
+// 10 mock paper sets — each uses a different seed, so each draws a different
+// selection of questions from the bank.
+const PAPER_SETS = [
+  { id: 1,  set: 'A', color: '#1D4ED8', dark: '#1E3A8A', desc: 'Mixed MCQs and extended response questions across all Paper 1 topics. Designed to feel like the real exam.' },
+  { id: 2,  set: 'B', color: '#0F766E', dark: '#134E4A', desc: 'Different selection of questions — practise more breadth and challenge yourself again.' },
+  { id: 3,  set: 'C', color: '#6D28D9', dark: '#4C1D95', desc: 'Third variant with a fresh draw of questions from every chapter.' },
+  { id: 4,  set: 'D', color: '#B45309', dark: '#78350F', desc: 'Fourth full mock — keep your exam timing sharp with new questions.' },
+  { id: 5,  set: 'E', color: '#15803D', dark: '#14532D', desc: 'Fifth variant. By now you should be hitting your target grade consistently.' },
+  { id: 6,  set: 'F', color: '#B91C1C', dark: '#7F1D1D', desc: 'Sixth full mock with another unique mix of theory questions.' },
+  { id: 7,  set: 'G', color: '#3730A3', dark: '#312E81', desc: 'Seventh variant — ideal for a timed weekly mock in the run-up to the exam.' },
+  { id: 8,  set: 'H', color: '#C2410C', dark: '#7C2D12', desc: 'Eighth full mock. Focus on command words: state, describe, explain, discuss.' },
+  { id: 9,  set: 'I', color: '#0E7490', dark: '#155E75', desc: 'Ninth variant with yet another draw from the 650-question bank.' },
+  { id: 10, set: 'J', color: '#A21CAF', dark: '#701A75', desc: 'Final full mock — sit it the week before the real exam as your dress rehearsal.' }
+];
+
 function startPaper(paperId) {
-  if (!confirm(`Start Mock Paper ${['', 'A', 'B', 'C'][paperId]}? You'll have 90 minutes.`)) return;
+  const setName = (PAPER_SETS.find(p => p.id === paperId) || {}).set || paperId;
+  if (!confirm(`Start Mock Paper ${setName}? You'll have 90 minutes.`)) return;
   const paper = generatePaper(paperId, paperId * 7919);
   examSession = {
     active: true,
