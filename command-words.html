@@ -230,218 +230,111 @@
 // Each drill: a single scenario asked with multiple command words
 const DRILLS = [
   {
-    id: 1,
-    chapter: 1,
-    color: '#064E3B',
-    scenario: "A nurse moves between hospital wards and needs to access digital patient records.",
+    id: 1, chapter: 4, color: '#059669',
+    scenario: "A computer stores numbers using 8-bit binary. A student must work with the denary number 75 and the binary value 11001010.",
     variants: [
-      {
-        cmd: 'State',
-        question: 'State one digital device suitable for the nurse.',
-        marks: 1,
-        answer: 'A tablet (1)',
-        watchout: 'For "State", you ONLY need to name the device. Do NOT add reasons — they earn no marks here. One word can score full marks.'
-      },
-      {
-        cmd: 'Describe',
-        question: 'Describe one feature of a tablet that makes it useful for the nurse.',
-        marks: 2,
-        answer: 'A tablet is lightweight and portable (1) so the nurse can carry it easily between wards during a shift without it weighing them down (1).',
-        watchout: '"Describe" needs WHAT the feature is AND HOW it works/applies. Just saying "it is portable" without development scores only 1 of 2 marks.'
-      },
-      {
-        cmd: 'Explain',
-        question: 'Explain TWO reasons why a tablet is suitable for the nurse.',
-        marks: 4,
-        answer: 'Firstly, a tablet has high portability (1) — being lightweight, the nurse can carry it easily between wards without it slowing them down (1). Secondly, a tablet has a touchscreen interface (1) which allows the nurse to navigate patient records quickly even while wearing medical gloves (1).',
-        watchout: '"Explain" needs feature (1) + reason linked to scenario (1) for each point. Generic reasons (e.g. "it is easy to use") score 0 — must connect to THIS nurse in THIS hospital.'
-      },
-      {
-        cmd: 'Justify',
-        question: 'A tablet has been chosen for the nurse. Justify this choice using TWO device features.',
-        marks: 4,
-        answer: 'A tablet is justified because it is portable (1), letting the nurse carry it efficiently between wards which a desktop could not (1). It also has Wi-Fi connectivity (1), letting the nurse retrieve up-to-date patient records from the hospital network anywhere on the ward (1).',
-        watchout: '"Justify" is similar to Explain BUT must defend the choice — show WHY tablet is better than alternatives. Compare implicitly: "a desktop could not...".'
-      },
-      {
-        cmd: 'Discuss',
-        question: "Discuss the suitability of providing every nurse on a ward with a tablet device.",
-        marks: 6,
-        answer: 'Advantages: tablets are portable so nurses can update records at the bedside (1+1); touchscreens are quick to use even with medical gloves (1+1). Disadvantages: tablets can be dropped or damaged in busy wards; battery may run out during a long shift; cost of equipping every nurse may be high (1+1).',
-        watchout: '"Discuss" needs BOTH sides. A one-sided answer (all positive or all negative) is capped at 3/6 marks. Aim for a balance: 2 pros and 2 cons minimum.'
-      }
+      { cmd: 'State', question: 'State how many bits are in one byte.', marks: 1,
+        answer: 'Eight (8) bits (1).',
+        watchout: '"State" wants a single fact. No working or explanation is needed for the mark.' },
+      { cmd: 'Convert', question: 'Convert the denary number 75 to 8-bit binary.', marks: 2,
+        answer: '64 + 8 + 2 + 1 = 75, so 01001011 (1 for method, 1 for correct answer).',
+        watchout: '"Convert" — always show the place-value working. The method earns a mark even if the final answer slips.' },
+      { cmd: 'Calculate', question: 'Calculate the denary value of 11001010.', marks: 2,
+        answer: '128 + 64 + 8 + 2 = 202 (1 for adding place values, 1 for 202).',
+        watchout: 'Line the bits up with the place values 128 64 32 16 8 4 2 1 to avoid slips.' },
+      { cmd: 'Explain', question: 'Explain what an overflow error is.', marks: 3,
+        answer: 'An overflow error occurs when a calculation result needs more bits than are available (1), for example an 8-bit addition producing a 9-bit answer (1), so the extra bit cannot be stored and the result is wrong (1).',
+        watchout: '"Explain" needs the cause AND the consequence — not just "the number is too big".' }
     ]
   },
   {
-    id: 2,
-    chapter: 6,
-    color: '#B91C1C',
-    scenario: "A small primary school has 30 computers in a single building, used by students aged 5–11.",
+    id: 2, chapter: 3, color: '#0891B2',
+    scenario: "A program must search a list of student names and, separately, sort a list of exam marks.",
     variants: [
-      {
-        cmd: 'State',
-        question: 'State the type of network most suitable for this school.',
-        marks: 1,
-        answer: 'A LAN (1) using client-server architecture (1) — either point earns the mark.',
-        watchout: 'State asks for the NAME of the network type. No explanation needed for 1 mark.'
-      },
-      {
-        cmd: 'Describe',
-        question: 'Describe what a client-server network is.',
-        marks: 2,
-        answer: 'In a client-server network, a dedicated central server provides services such as files, login authentication, and printing (1) to multiple client computers connected to the same network (1).',
-        watchout: 'Describe = WHAT + HOW. Both halves must be present. "A server controls everything" is not enough — say WHAT the server does.'
-      },
-      {
-        cmd: 'Explain',
-        question: 'Explain TWO benefits of a client-server network for this school.',
-        marks: 4,
-        answer: 'Firstly, centralised security and login means each student has their own account (1), so teachers can control what students access and protect young children from inappropriate content (1). Secondly, all student work is stored centrally on the server (1) and backed up automatically, so a student can log in to any classroom computer and access their files (1).',
-        watchout: 'Explain needs WHY each benefit matters TO THIS SCHOOL specifically. "Better security" is generic; "young children can be protected from inappropriate content" links to the scenario.'
-      },
-      {
-        cmd: 'Compare',
-        question: 'Compare client-server and peer-to-peer networks.',
-        marks: 6,
-        answer: 'Client-server has dedicated server hardware; peer-to-peer has no dedicated server — all devices are equal (1+1). Client-server is more secure with centralised admin and access rights; peer-to-peer has weaker, distributed security (1+1). Client-server has higher upfront cost (server hardware); peer-to-peer is cheaper to set up (1+1).',
-        watchout: '"Compare" must address BOTH sides for EACH point. "Client-server is secure" alone is incomplete — must contrast with peer-to-peer. Use linking words: "whereas", "but", "by comparison".'
-      },
-      {
-        cmd: 'Evaluate',
-        question: 'Evaluate whether a client-server network is the best choice for this school.',
-        marks: 6,
-        answer: 'For: centralised security protects young children (1+1); central backups protect student work (1+1); easier IT admin (1). Against: requires server hardware = higher upfront cost (1); needs technical staff to maintain (1). Conclusion: despite higher cost, the security and management benefits make client-server the best choice for a primary school with young pupils needing protection (1).',
-        watchout: '"Evaluate" needs pros + cons + A CONCLUSION. Without a clear final judgement, the top band cannot be reached. State your verdict explicitly: "Therefore...", "Overall..."'
-      }
+      { cmd: 'State', question: 'State one searching algorithm.', marks: 1,
+        answer: 'Linear search (or binary search) (1).',
+        watchout: 'Just name it. Adding how it works earns nothing extra for "State".' },
+      { cmd: 'Describe', question: 'Describe how a linear search works.', marks: 2,
+        answer: 'It checks each item in the list in turn from the start (1) until the target is found or the end of the list is reached (1).',
+        watchout: '"Describe" needs the method AND the stopping condition for both marks.' },
+      { cmd: 'Explain', question: 'Explain why a binary search cannot be used on an unsorted list.', marks: 3,
+        answer: 'Binary search checks the middle item and discards one half (1); it relies on the list being in order so it knows which half to keep (1); on an unsorted list it could discard the half containing the target and fail (1).',
+        watchout: 'Link the method to the sorted-list requirement, then state the consequence.' },
+      { cmd: 'Compare', question: 'Compare bubble sort and merge sort for a very large list.', marks: 4,
+        answer: 'Bubble sort compares adjacent items and swaps them, which is simple but slow on large lists (1+1). Merge sort divides the list and merges it back, which is much faster on large lists (1) but uses more memory (1).',
+        watchout: '"Compare" must address BOTH algorithms on the SAME points (speed, memory) — not describe each separately.' }
     ]
   },
   {
-    id: 3,
-    chapter: 9,
-    color: '#334155',
-    scenario: "A small startup company with 5 employees is choosing between cloud storage (e.g. Google Drive) and a local file server for their business documents.",
+    id: 3, chapter: 7, color: '#EA580C',
+    scenario: "A user opens a program. The CPU runs it while the operating system manages memory and storage.",
     variants: [
-      {
-        cmd: 'Name',
-        question: 'Name TWO advantages of cloud storage.',
-        marks: 2,
-        answer: 'Accessibility from any device with internet (1); automatic backups handled by the provider (1). Other valid: scalability, lower upfront cost, no need for on-premise hardware.',
-        watchout: 'Name = list. Two short points = 2 marks. Don\'t pad with explanation — wasted effort.'
-      },
-      {
-        cmd: 'Describe',
-        question: 'Describe ONE disadvantage of cloud storage for this startup.',
-        marks: 2,
-        answer: 'Cloud storage requires an internet connection to access files (1), so if the office internet fails, employees cannot work on their documents until connectivity returns (1).',
-        watchout: 'Describe needs the disadvantage AND its consequence. "Needs internet" alone = 1/2. Add the impact: "so they cannot work when internet is down".'
-      },
-      {
-        cmd: 'Explain',
-        question: 'Explain TWO reasons why cloud storage might be more suitable than a local server for a startup.',
-        marks: 4,
-        answer: 'Firstly, cloud storage has no upfront hardware cost (1) — a startup with limited capital does not have to buy or maintain server equipment (1). Secondly, cloud scales easily (1) — as the company grows from 5 to 50 employees, storage can be increased without buying more hardware (1).',
-        watchout: 'Explain = feature + reason tied to context. The phrase "a startup with limited capital" makes the reason scenario-specific — generic "cheaper" alone gets fewer marks.'
-      },
-      {
-        cmd: 'Discuss',
-        question: 'Discuss whether the startup should use cloud storage or a local server.',
-        marks: 6,
-        answer: 'Cloud advantages: lower upfront cost — important for a startup; scalable; automatic backups; access from anywhere — useful if employees work remotely (1+1+1). Cloud disadvantages: needs constant internet; ongoing subscription cost; some control given to provider; possible privacy concerns (1+1+1).',
-        watchout: 'Discuss = BOTH sides. With 6 marks aim for 3 cloud pros and 3 cloud cons. Don\'t need a conclusion (that\'s "Evaluate") but balance is essential.'
-      },
-      {
-        cmd: 'Evaluate',
-        question: 'Evaluate whether cloud storage is the best choice for the startup.',
-        marks: 6,
-        answer: 'Cloud benefits the startup: low upfront cost suits limited capital (1+1); scales as company grows; automatic backups remove IT overhead (1+1). Drawbacks: depends on internet — if office connection fails work stops; ongoing subscription adds up over time (1+1). Conclusion: cloud storage is well-suited to a 5-person startup with limited capital and changing needs — switching to a local server later remains an option if the firm grows large (1).',
-        watchout: 'Evaluate goes beyond Discuss by REACHING A CONCLUSION. Top band requires "therefore", "overall", or "on balance" — and the conclusion must follow from the evidence given.'
-      }
+      { cmd: 'State', question: 'State what the letters CPU stand for.', marks: 1,
+        answer: 'Central Processing Unit (1).',
+        watchout: 'A definition fact — one line is enough.' },
+      { cmd: 'Describe', question: 'Describe the fetch stage of the fetch-decode-execute cycle.', marks: 2,
+        answer: 'The next instruction is copied from main memory into the CPU (1), with its address taken from the program counter (1).',
+        watchout: 'Be specific that the instruction comes FROM memory INTO the CPU.' },
+      { cmd: 'Explain', question: 'Explain one difference between RAM and ROM.', marks: 2,
+        answer: 'RAM is volatile so it loses its contents when the power is off (1), whereas ROM is non-volatile and keeps its contents (1).',
+        watchout: 'Develop the point: name the property (volatile) AND its effect (loses contents).' },
+      { cmd: 'Justify', question: 'A laptop for travel uses an SSD rather than a hard disk drive. Justify this choice.', marks: 4,
+        answer: 'An SSD has no moving parts, so it is durable and survives being knocked while travelling, unlike an HDD (1+1). It is also faster and uses less power, extending battery life on the move (1+1).',
+        watchout: '"Justify" must defend the choice against the alternative (HDD) — say WHY it is better here.' }
     ]
   },
   {
-    id: 4,
-    chapter: 7,
-    color: '#15803D',
-    scenario: "An employee has just started working from home full-time after working in an office for 10 years.",
+    id: 4, chapter: 9, color: '#DB2777',
+    scenario: "A school connects 200 computers in one building and must transfer large files between them.",
     variants: [
-      {
-        cmd: 'State',
-        question: 'State ONE advantage of working from home for the employee.',
-        marks: 1,
-        answer: 'No commute (1) / flexible hours (1) / better work-life balance (1) — any one of these scores.',
-        watchout: 'For 1 mark just state one advantage. Adding explanation wastes time but doesn\'t lose marks.'
-      },
-      {
-        cmd: 'Describe',
-        question: 'Describe TWO disadvantages the employee may experience.',
-        marks: 4,
-        answer: 'Distractions at home — family members, household tasks, or pets may interrupt concentration (1+1). Isolation — the employee may miss the social contact and informal collaboration of being in an office with colleagues (1+1).',
-        watchout: 'Describe = name + develop. "Distractions" alone scores 1 of 2 — explain what kind and the impact.'
-      },
-      {
-        cmd: 'Explain',
-        question: 'Explain TWO health risks the employee may face working from home.',
-        marks: 4,
-        answer: 'RSI (repetitive strain injury) from long typing without proper ergonomics (1), as home setups often lack adjustable chairs and proper desk height like the office had (1). Eye strain from staring at a screen for long periods (1), worsened if home lighting is inadequate or the screen position is poor (1).',
-        watchout: 'Explain = risk + reason linked to context. The phrase "home setups often lack" links generic health risks to THIS employee\'s situation.'
-      },
-      {
-        cmd: 'Discuss',
-        question: 'Discuss whether working from home is better for the employee than working in the office.',
-        marks: 6,
-        answer: 'WFH advantages: no commute saves time and money; flexible hours improve work-life balance; can work in a comfortable environment (1+1+1). WFH disadvantages: distractions; isolation from colleagues; harder to separate work and home life; potential for longer hours; physical health risks if home setup is poor (1+1+1).',
-        watchout: 'Discuss needs balance. Spec specifically distinguishes individual vs employer perspective — read the question carefully. "For the employee" = focus on individual factors only.'
-      },
-      {
-        cmd: 'Evaluate',
-        question: 'Evaluate the impact of working from home on this employee.',
-        marks: 8,
-        answer: 'Positive impacts: time and money saved on commuting (1+1); ability to work in comfort and set own schedule (1+1); easier to balance family responsibilities (1+1). Negative impacts: isolation may affect mental health (1+1); distractions can reduce productivity (1+1); reduced career visibility may slow promotion (1+1). Conclusion: working from home benefits autonomy and time but requires the employee to actively manage isolation, distractions, and visibility. Whether it is better overall depends on their personality and situation (1+1).',
-        watchout: 'For 8 marks, expand to 6+ developed points across BOTH sides and reach a nuanced conclusion. "It depends on..." conclusions are valid for Evaluate — they show analytical thinking.'
-      }
+      { cmd: 'State', question: 'State the type of network within a single building.', marks: 1,
+        answer: 'A LAN (Local Area Network) (1).',
+        watchout: 'Name the network type only — no explanation needed.' },
+      { cmd: 'Describe', question: 'Describe a star topology.', marks: 2,
+        answer: 'Every device is connected to a central switch (1) which directs data to the correct device (1).',
+        watchout: 'Mention the central switch AND its role for both marks.' },
+      { cmd: 'Calculate', question: 'Calculate the time to transfer a 30 MB file over a 12 Mbps link.', marks: 3,
+        answer: '30 MB = 240 megabits (×8) (1); time = 240 ÷ 12 (1) = 20 seconds (1).',
+        watchout: 'Remember to convert bytes to bits (×8) before dividing by the speed.' },
+      { cmd: 'Discuss', question: 'Discuss the use of a star topology rather than a bus topology for this school.', marks: 6,
+        answer: 'Star: a single cable fault affects only one device and performance is good as each device has its own link (1+1); but it needs more cabling and a central switch, and if the switch fails the whole network stops (1+1). Bus is cheaper with less cable but a main-cable fault halts everything and collisions slow it down (1+1).',
+        watchout: '"Discuss" needs BOTH sides and a balanced view — a one-sided answer is capped around half marks.' }
     ]
   },
   {
-    id: 5,
-    chapter: 3,
-    color: '#0F766E',
-    scenario: "A supermarket needs to choose between SSD and HDD storage for the till computers at every checkout.",
+    id: 5, chapter: 11, color: '#475569',
+    scenario: "A company collects customers' personal data and uses software written by its own developers.",
     variants: [
-      {
-        cmd: 'Define',
-        question: 'Define what an SSD is.',
-        marks: 2,
-        answer: 'An SSD (Solid State Drive) is a storage device that uses flash memory chips with no moving parts (1) to read and write data faster and more durably than a traditional hard disk drive (1).',
-        watchout: 'Define needs the precise meaning. Include: what it is + key characteristic. "A fast drive" is incomplete.'
-      },
-      {
-        cmd: 'State',
-        question: 'State TWO differences between an SSD and an HDD.',
-        marks: 2,
-        answer: 'SSDs use flash memory; HDDs use spinning magnetic platters (1). SSDs are faster; HDDs are slower (1). Other valid: SSDs more durable; HDDs cheaper per GB.',
-        watchout: 'State = list, no explanation. Two short points = full marks. Don\'t pad.'
-      },
-      {
-        cmd: 'Compare',
-        question: 'Compare SSDs and HDDs on THREE features.',
-        marks: 6,
-        answer: 'Speed: SSDs much faster (no moving parts); HDDs slower (mechanical access) (1+1). Durability: SSDs more durable (no moving parts to break); HDDs fragile when knocked (1+1). Cost: HDDs cheaper per GB; SSDs more expensive but prices have fallen sharply (1+1).',
-        watchout: 'Compare = BOTH sides for EACH feature. "SSD is faster" is not a comparison. Use "whereas", "while", "in contrast" — every sentence should address both.'
-      },
-      {
-        cmd: 'Justify',
-        question: 'The supermarket has chosen SSDs for all till computers. Justify this choice.',
-        marks: 4,
-        answer: 'SSDs are faster than HDDs (1), so the till boots up quickly and transactions process without delay — vital for keeping checkout queues short (1). SSDs are also more durable (1), important in a busy retail environment where till computers are knocked frequently and shaken by customer scanning equipment (1).',
-        watchout: 'Justify = defend the choice in CONTEXT. Always tie reasons back to "supermarket till" — generic "faster is better" is weak. Mention queue speed, durability in retail.'
-      },
-      {
-        cmd: 'Evaluate',
-        question: 'Evaluate the decision to install SSDs in all till computers.',
-        marks: 6,
-        answer: 'For: SSDs are faster, keeping checkout queues moving — directly affects customer satisfaction (1+1); more durable in a busy retail environment (1+1); lower power use slightly reduces electricity bills across many tills (1). Against: SSDs cost more per GB than HDDs — significant when buying 50–100 tills (1); tills don\'t need huge storage capacity that HDDs offer cheaply (1). Conclusion: although SSDs have a higher unit cost, the speed and reliability gains outweigh this for a supermarket where till downtime directly loses sales (1).',
-        watchout: 'Evaluate must REACH A CONCLUSION. Top band requires this final judgement, supported by the evidence. Be specific about WHY your conclusion holds.'
-      }
+      { cmd: 'State', question: 'State the law that controls how personal data is handled.', marks: 1,
+        answer: 'The Data Protection Act 2018 (1).',
+        watchout: 'Name the correct Act precisely — the examiner wants the exact law.' },
+      { cmd: 'Describe', question: 'Describe one offence under the Computer Misuse Act 1990.', marks: 2,
+        answer: 'Unauthorised access to computer material — gaining access to a system without permission (hacking) (1+1).',
+        watchout: 'Name the offence AND describe it for both marks.' },
+      { cmd: 'Explain', question: 'Explain one environmental impact of discarding old computers.', marks: 3,
+        answer: 'Discarded devices become e-waste (1) which contains toxic materials such as lead and mercury (1) that can pollute land and water if not recycled properly (1).',
+        watchout: 'Give the issue, the detail (toxins) and the consequence to reach 3 marks.' },
+      { cmd: 'Discuss', question: 'Discuss the impact of using artificial intelligence to make decisions about people.', marks: 6,
+        answer: 'AI can process huge amounts of data quickly and consistently, helping decisions like loan or job screening (1+1). However, if the training data is biased the AI can make unfair decisions, and it is unclear who is accountable for a wrong decision (1+1). A balanced approach keeps human oversight of important decisions (1+1).',
+        watchout: 'Give benefits, drawbacks (bias, accountability) AND a reasoned conclusion for full marks.' }
+    ]
+  },
+  {
+    id: 6, chapter: 12, color: '#15803D',
+    scenario: "A student writes a Python program that asks the user for a number and processes a list of scores.",
+    variants: [
+      { cmd: 'State', question: 'State the data type returned by input().', marks: 1,
+        answer: 'A string (str) (1).',
+        watchout: 'One fact — remember input() ALWAYS returns a string.' },
+      { cmd: 'Describe', question: 'Describe what a validation range check does.', marks: 2,
+        answer: 'It checks that an entered value lies within an allowed minimum and maximum (1), rejecting or re-prompting if it is outside the range (1).',
+        watchout: 'Say what is checked AND what happens if the data fails the check.' },
+      { cmd: 'Explain', question: 'Explain the difference between a for loop and a while loop.', marks: 2,
+        answer: 'A for loop is count-controlled and repeats a known number of times (1), whereas a while loop is condition-controlled and repeats until a condition changes (1).',
+        watchout: 'Contrast the two clearly — known count vs unknown/condition based.' },
+      { cmd: 'Write', question: 'Write code that keeps asking for a number until the user enters one between 1 and 10.', marks: 3,
+        answer: 'num = int(input("Enter 1-10: ")) (1); while num < 1 or num > 10: (1); num = int(input("Enter 1-10: ")) inside the loop (1).',
+        watchout: '"Write" code answers need the cast to int, the correct while condition, and the re-prompt inside the loop.' }
     ]
   }
 ];

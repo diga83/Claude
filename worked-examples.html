@@ -150,7 +150,7 @@
     <div class="quiz-hero" style="background: linear-gradient(135deg, #047857 0%, #1D4ED8 100%);">
       <span class="hero-tag">Annotated mark schemes</span>
       <h1>🎓 Worked Examples</h1>
-      <p>See exactly what scores full marks vs. what scores half marks. Real exam-style questions with three different student answers, marked and annotated to show why each scored what it did. The single best way to learn what examiners reward.</p>
+      <p>See exactly what scores full marks vs. what scores half marks. Real 1CP2 exam-style questions with three different student answers, marked and annotated to show why each scored what it did. The single best way to learn what examiners reward.</p>
     </div>
 
     <div class="we-chapter-chips" id="weChips"></div>
@@ -169,282 +169,547 @@
 const WORKED_EXAMPLES = [
   {
     chapter: 1,
-    question: "A nurse working on a hospital ward needs a device to access patient records while moving around. Identify ONE suitable device and explain TWO reasons why it is appropriate.",
+    question: "A team is creating a program to manage a school sports day: recording entries, timing races and displaying results. Explain how decomposition and abstraction could be used when designing this program.",
     marks: 4,
     answers: [
       {
         grade: "excellent",
         score: "4 / 4",
         label: "Full marks (4/4)",
-        text: "A tablet device would be suitable for the nurse. Firstly, a tablet has high portability (1) — it is lightweight and thin, allowing the nurse to carry it easily between patient beds throughout her shift (1). Secondly, a tablet has a touchscreen user interface (1) — this allows the nurse to quickly navigate patient records by tapping the screen, even while wearing medical gloves, without requiring a separate keyboard or mouse (1).",
+        text: "Decomposition means breaking the problem down into smaller sub-problems (1). The sports day program could be split into separate parts such as 'record entries', 'time races' and 'display results', and each part could be designed, coded and tested as its own subprogram (1). Abstraction means removing unnecessary detail so the design focuses only on what matters (1). For example, the program only needs each runner's name, event and finishing time — details such as their height or what they are wearing can be ignored (1).",
         analysis: [
-          { type: "tick", text: "Device clearly named ('tablet device') — specific, not just 'tablet'" },
-          { type: "tick", text: "Feature 1 (portability) named AND developed — linked to the SPECIFIC scenario (moving between beds during shift)" },
-          { type: "tick", text: "Feature 2 (touchscreen UI) named AND developed with scenario detail (medical gloves)" },
-          { type: "tick", text: "Each feature earns 2 marks because the explanation links back to the nurse's actual situation" }
+          { type: "tick", text: "Both terms DEFINED precisely using specification wording — 1 mark each" },
+          { type: "tick", text: "Each definition APPLIED to the actual scenario (sports day), earning the second mark each time" },
+          { type: "tick", text: "Linking decomposition to subprograms shows how the idea carries into the code" },
+          { type: "tick", text: "A concrete example of detail being discarded makes the abstraction application mark safe" }
         ]
       },
       {
         grade: "medium",
         score: "2 / 4",
         label: "Partial marks (2/4)",
-        text: "A tablet would be suitable because it is portable and has a touchscreen. The nurse can carry it around and use it easily.",
+        text: "Decomposition is breaking a problem into smaller parts (1). Abstraction is removing unnecessary detail from a problem (1). Both of these would help the team design the program more easily.",
         analysis: [
-          { type: "tick", text: "Device named (tablet) — 1 mark" },
-          { type: "tick", text: "Two features named (portability, touchscreen) — 1 mark each... wait, only 1 mark" },
-          { type: "cross", text: "Features are NAMED but not DEVELOPED — no explanation of WHY they help in the nurse's specific situation" },
-          { type: "cross", text: "Vague phrases like 'easily' and 'carry it around' don't earn the second mark per feature" },
-          { type: "cross", text: "Missed marks: develop each feature with 'because' or 'so that' linked to the scenario" }
+          { type: "tick", text: "Decomposition defined correctly — 1 mark" },
+          { type: "tick", text: "Abstraction defined correctly — 1 mark" },
+          { type: "cross", text: "Neither term is APPLIED to the sports day scenario — the question says 'used when designing THIS program'" },
+          { type: "cross", text: "'Would help the team' is generic filler — it could be written about any question and earns nothing" }
         ]
       },
       {
         grade: "weak",
         score: "1 / 4",
         label: "Weak answer (1/4)",
-        text: "A laptop would be best because laptops are good. They can do lots of things and have lots of features. The nurse can take it with her.",
+        text: "Decomposition means splitting the program up into smaller pieces (1). Abstraction is when the code is abstract and difficult to understand. They both make programming quicker.",
         analysis: [
-          { type: "cross", text: "Laptop is portable BUT bulkier than ideal for one-handed clinical use on a ward — student could have justified" },
-          { type: "tick", text: "Device named (laptop) — earns 1 mark" },
-          { type: "cross", text: "'Laptops are good' / 'lots of features' — these are not specific features from the spec" },
-          { type: "cross", text: "No named features (portability, touchscreen, etc.) — zero feature marks" },
-          { type: "cross", text: "No link to the scenario — generic answer that could be about anything" }
+          { type: "tick", text: "The decomposition idea is just creditable — 1 mark" },
+          { type: "cross", text: "Abstraction definition is wrong — it is about REMOVING unnecessary detail, not about code being 'abstract' or hard to read" },
+          { type: "cross", text: "No application to the scenario at all" },
+          { type: "cross", text: "'Make programming quicker' is an unsupported assertion — no mark" }
         ]
       }
     ],
-    examiner_note: "This is a CLASSIC scenario question. The mark scheme always wants: (1) device clearly identified, (2+3) feature named, (4+5) feature explained in the scenario context. Use the 4-step formula: 'A [device] is suitable because [feature]. This means [scenario-specific consequence]'. Every time."
+    examiner_note: "For 'explain how X could be used' questions on Topic 1, use the two-step formula every time: DEFINE the term in spec language, then APPLY it to the named scenario ('the sports day program could be split into...'). Each term is usually worth 2 marks: definition + application. Definitions alone cap you at half marks."
   },
 
   {
-    chapter: 6,
-    question: "Discuss the benefits of a client-server network compared to a peer-to-peer network for a school of 1,000 students and 100 staff.",
-    marks: 6,
-    answers: [
-      {
-        grade: "excellent",
-        score: "6 / 6",
-        label: "Full marks (6/6)",
-        text: "A client-server network would offer several major benefits for a school of this size. Firstly, it provides centralised user management (1) — the IT team can create accounts for 1,100 users from one server, rather than configuring each computer individually as required in P2P (1). Secondly, it allows centralised backup of all student work (1) — files saved to the server are automatically backed up nightly, protecting students from data loss if their computer fails (1). Thirdly, security is significantly stronger (1) — staff have admin-level access while students have restricted access, and the firewall protects all 1,100 users from external threats from a central point (1).",
-        analysis: [
-          { type: "tick", text: "Three distinct benefits identified — each earns 1 mark" },
-          { type: "tick", text: "Each benefit DEVELOPED with explanation — earning the second mark per point" },
-          { type: "tick", text: "Application to the specific scenario (1,100 users, IT team, student vs staff access)" },
-          { type: "tick", text: "Comparative language ('rather than', 'while') shows genuine comparison" },
-          { type: "tick", text: "Technical vocabulary used correctly: centralised, admin access, firewall" }
-        ]
-      },
-      {
-        grade: "medium",
-        score: "3 / 6",
-        label: "Partial marks (3/6)",
-        text: "Client-server is better than peer-to-peer for a school. The server can do backups for everyone. It is also more secure. Lots of people can use it at the same time and the IT staff can manage all the accounts.",
-        analysis: [
-          { type: "tick", text: "Centralised backups mentioned — 1 mark" },
-          { type: "tick", text: "Security mentioned — 1 mark" },
-          { type: "tick", text: "Central management mentioned — 1 mark" },
-          { type: "cross", text: "None of the three points are DEVELOPED — just named. Missing the second mark each time." },
-          { type: "cross", text: "'More secure' — HOW? 'Lots of people' — HOW does that help? Each point needs a 'because' or 'so that'" }
-        ]
-      },
-      {
-        grade: "weak",
-        score: "1 / 6",
-        label: "Weak answer (1/6)",
-        text: "A client-server network is good because it has a server. Servers are powerful computers that do lots of things. Peer-to-peer is when computers connect together. The school should use a server.",
-        analysis: [
-          { type: "tick", text: "Mentions that client-server has a server — barely 1 mark" },
-          { type: "cross", text: "Defines what a server is, but doesn't say what BENEFITS it brings" },
-          { type: "cross", text: "Defines P2P but doesn't COMPARE it to client-server" },
-          { type: "cross", text: "Question asks to DISCUSS BENEFITS — student has described what each network IS but not why client-server is better" },
-          { type: "cross", text: "No scenario-specific points (1,000 students, 100 staff)" }
-        ]
-      }
-    ],
-    examiner_note: "'Discuss' questions need DEVELOPED points, not a list. The pattern: STATE the benefit → EXPLAIN how it works → APPLY to the scenario. For 6 marks, aim for 3 developed points (3 x 2 marks) NOT 6 short points (6 x 1 mark). And ALWAYS use the scenario details — the 1,000 students and 100 staff aren't there for decoration."
-  },
-
-  {
-    chapter: 5,
-    question: "Explain TWO differences between Wi-Fi and Bluetooth.",
+    chapter: 2,
+    question: "An algorithm is intended to output the total of the numbers 1 to 4:<br><span style='font-family:var(--font-mono); font-style:normal; font-size:0.9rem;'>1&nbsp; mark = 0<br>2&nbsp; count = 1<br>3&nbsp; WHILE count &lt; 4<br>4&nbsp; &nbsp;&nbsp;mark = mark + count<br>5&nbsp; &nbsp;&nbsp;count = count + 1<br>6&nbsp; ENDWHILE<br>7&nbsp; OUTPUT mark</span><br>(a) State the actual output of the algorithm. (1)<br>(b) Explain why the algorithm does not work as intended and how to fix it. (3)",
     marks: 4,
     answers: [
       {
         grade: "excellent",
         score: "4 / 4",
         label: "Full marks (4/4)",
-        text: "Wi-Fi and Bluetooth differ in range and typical use. Wi-Fi has a longer range, typically around 50 metres (1), making it suitable for whole-house or office connectivity to the internet (1). Bluetooth has a much shorter range, around 10 metres (1), making it ideal for short-range device-to-device pairing such as connecting wireless headphones to a phone (1).",
+        text: "(a) The output is 6 (1). (b) The condition on line 3 uses &lt; instead of &lt;= (1). The loop stops as soon as count reaches 4, so 4 is never added to mark — only 1 + 2 + 3 = 6 is totalled (1). Changing line 3 to WHILE count &lt;= 4 makes the loop body run for count = 4 as well, giving the intended output of 10 (1).",
         analysis: [
-          { type: "tick", text: "Two clearly identified differences (range, use case)" },
-          { type: "tick", text: "Each difference COMPARES Wi-Fi AND Bluetooth — not just listing facts about each separately" },
-          { type: "tick", text: "Specific values given (50m vs 10m) showing knowledge" },
-          { type: "tick", text: "Real-world examples (whole house, headphones to phone)" }
+          { type: "tick", text: "The student clearly TRACED the algorithm rather than assuming it works — output 6, not 10" },
+          { type: "tick", text: "The exact faulty operator is named (&lt; instead of &lt;=) — precision earns the mark" },
+          { type: "tick", text: "The CONSEQUENCE is explained: 4 is never added, so the sum is 1+2+3" },
+          { type: "tick", text: "The fix is given as an exact line of code, not just 'change the loop'" }
         ]
       },
       {
         grade: "medium",
         score: "2 / 4",
         label: "Partial marks (2/4)",
-        text: "Wi-Fi is for the internet. Bluetooth is for phones. Wi-Fi is faster than Bluetooth. They both use wireless signals.",
+        text: "(a) 6 (1). (b) The loop is wrong because it does not add up all of the numbers. It needs to run one more time to include the 4 (1).",
         analysis: [
-          { type: "tick", text: "Identifies that they have different uses — 1 mark" },
-          { type: "tick", text: "Notes Wi-Fi is faster than Bluetooth — 1 mark for speed difference" },
-          { type: "cross", text: "'Wi-Fi is for the internet, Bluetooth is for phones' — oversimplified, not technically accurate (phones use both)" },
-          { type: "cross", text: "'Both use wireless signals' is a SIMILARITY, not a difference — wastes time" },
-          { type: "cross", text: "No explanation of WHY they differ (range, speed values)" }
+          { type: "tick", text: "Output correctly traced as 6 — 1 mark" },
+          { type: "tick", text: "Recognises the loop runs one iteration too few — 1 mark" },
+          { type: "cross", text: "Does not identify the CAUSE — the &lt; condition on line 3 is never mentioned" },
+          { type: "cross", text: "No concrete fix is given — 'run one more time' is the symptom, not the repair" }
         ]
       },
       {
         grade: "weak",
-        score: "0 / 4",
-        label: "No marks (0/4)",
-        text: "Wi-Fi and Bluetooth are both wireless. Wi-Fi has Wi-Fi and Bluetooth has Bluetooth. They are different because they have different names.",
+        score: "1 / 4",
+        label: "Weak answer (1/4)",
+        text: "(a) The output is 10 because the algorithm adds the numbers 1 to 4. (b) There is an error on line 3 (1). It is a syntax error so the program will not run. Line 3 needs rewriting.",
         analysis: [
-          { type: "cross", text: "Common-sense / circular statements that show no ICT knowledge" },
-          { type: "cross", text: "Lists similarity ('both wireless') — opposite of what's asked" },
-          { type: "cross", text: "'Different names' is not a technical difference" },
-          { type: "cross", text: "Zero marks awarded — no specification points addressed" }
+          { type: "cross", text: "Output of 10 assumes the algorithm works as INTENDED — the student never traced it" },
+          { type: "tick", text: "Locates the fault on line 3 — 1 mark" },
+          { type: "cross", text: "Calls it a syntax error — wrong. The code runs but gives the wrong result, which is a LOGIC error" },
+          { type: "cross", text: "'Needs rewriting' is not a fix — say exactly what to change (&lt; to &lt;=)" }
         ]
       }
     ],
-    examiner_note: "'Explain' questions need MORE than 'state'. Pattern: state the fact + give detail + give example. For 'compare/contrast' questions, use comparative language: 'Wi-Fi has X RANGE WHILE Bluetooth has Y'. Don't list two separate things; compare them on the same axis."
+    examiner_note: "Never assume an algorithm does what the question says it is 'intended' to do — that wording is a signal that it doesn't. Build a quick trace table (one column per variable, one row per loop pass) before answering. For error questions, give all three: the LINE, the CAUSE (exact operator or value), and the FIX (the corrected line). And know your error types: code that runs but gives the wrong answer is a logic error, never a syntax error."
   },
 
   {
-    chapter: 7,
-    question: "Explain the difference between phishing and pharming. Give one example of each.",
+    chapter: 3,
+    question: "A sorted list holds 1,024 student ID numbers. Compare how a linear search and a binary search would find a target ID in this list, and explain which is more efficient.",
+    marks: 6,
+    answers: [
+      {
+        grade: "excellent",
+        score: "6 / 6",
+        label: "Full marks (6/6)",
+        text: "A linear search starts at the first item and checks every item one by one until the target is found or the end of the list is reached (1). A binary search examines the middle item, then discards the half of the list that cannot contain the target, and repeats this on the remaining half (1). Binary search can only be used because the list is already sorted — linear search works on any list (1). In the worst case, the linear search would have to check all 1,024 items (1), whereas the binary search halves the list with each comparison, so it needs at most about 10 checks, because 2^10 = 1,024 (1). Therefore the binary search is far more efficient for this list, and the gap grows as the list gets larger (1).",
+        analysis: [
+          { type: "tick", text: "Both algorithms described mechanically and accurately — one mark each" },
+          { type: "tick", text: "The precondition (binary search needs a SORTED list) is stated and linked to the scenario" },
+          { type: "tick", text: "Worst cases QUANTIFIED: 1,024 checks vs about 10 — the 2^10 = 1,024 maths nails the comparison" },
+          { type: "tick", text: "A clear, justified conclusion answers the 'which is more efficient' part of the question" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "3 / 6",
+        label: "Partial marks (3/6)",
+        text: "A linear search checks each item in turn starting from the beginning (1). A binary search keeps cutting the list in half until it finds the item (1). Binary search is faster (1) so it is the one that should be used here.",
+        analysis: [
+          { type: "tick", text: "Linear search described — 1 mark" },
+          { type: "tick", text: "Binary search halving idea described — 1 mark" },
+          { type: "tick", text: "Correct conclusion that binary search is more efficient — 1 mark" },
+          { type: "cross", text: "No numbers: 1,024 worst-case checks vs about 10 is the comparison the examiner is fishing for" },
+          { type: "cross", text: "Never mentions that binary search REQUIRES a sorted list — a standard mark scheme point" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 6",
+        label: "Weak answer (1/6)",
+        text: "A binary search is quicker than a linear search (1). A linear search looks through the list for the item. A binary search uses binary numbers so the computer can find things faster because computers work in binary.",
+        analysis: [
+          { type: "tick", text: "Bare assertion that binary search is quicker — 1 mark, generously" },
+          { type: "cross", text: "Misconception: binary search has nothing to do with binary NUMBERS — it is 'binary' because it splits the list in two" },
+          { type: "cross", text: "Neither algorithm's mechanism is actually described" },
+          { type: "cross", text: "No mention of the sorted-list requirement or any worst-case figures" }
+        ]
+      }
+    ],
+    examiner_note: "Comparison questions are marked on PAIRED points: describe both algorithms on the same axes (how they work, what they require, worst-case checks). For a list of size n, learn the magic numbers — linear search worst case = n checks; binary search worst case ≈ log2(n), so 1,024 items needs only about 10. Quoting the powers of 2 turns a vague 'faster' into a guaranteed mark."
+  },
+
+  {
+    chapter: 4,
+    question: "(a) Convert the denary number −90 into 8-bit two's complement binary. Show your working. (3)<br>(b) State how the most significant bit (MSB) shows that a two's complement number is negative. (1)",
+    marks: 4,
+    answers: [
+      {
+        grade: "excellent",
+        score: "4 / 4",
+        label: "Full marks (4/4)",
+        text: "(a) First write +90 in 8-bit binary: 64 + 16 + 8 + 2 = 90, so +90 = 0101 1010 (1). Invert every bit: 1010 0101 (1). Add 1: 1010 0110. So −90 = 1010 0110 (1). Check: −128 + 32 + 4 + 2 = −90 ✓. (b) In two's complement the MSB has a negative place value (−128 in 8 bits), so if the MSB is 1 the number is negative (1).",
+        analysis: [
+          { type: "tick", text: "All three steps shown in order: positive binary, invert, add 1 — each step is a method mark" },
+          { type: "tick", text: "+90 = 0101 1010 is correct (64+16+8+2) — a wrong start would lose the final answer mark" },
+          { type: "tick", text: "Self-check using place values (−128 + 32 + 4 + 2 = −90) catches slips and impresses no one but saves marks" },
+          { type: "tick", text: "(b) gives the reason — the MSB carries the place value −128 — not just 'it is a 1'" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "2 / 4",
+        label: "Partial marks (2/4)",
+        text: "(a) 90 in binary is 0101 1010 (1). Flip all the bits to get 1010 0101 (1). So −90 = 1010 0101. (b) The number is negative.",
+        analysis: [
+          { type: "tick", text: "Correct 8-bit binary for +90 — 1 method mark" },
+          { type: "tick", text: "Bits inverted correctly — 1 method mark" },
+          { type: "cross", text: "Forgot to ADD 1 — the classic two's complement error. 1010 0101 is actually −91, so the answer mark is lost" },
+          { type: "cross", text: "(b) restates the question — says nothing about the MSB or its −128 place value" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 4",
+        label: "Weak answer (1/4)",
+        text: "(a) 90 is 0101 1010 in binary (1). To make it negative you change the first bit to 1, so −90 = 1101 1010. (b) The first bit is the minus sign, like writing − in maths.",
+        analysis: [
+          { type: "tick", text: "Correct unsigned binary for 90 — 1 mark" },
+          { type: "cross", text: "Uses sign-and-magnitude, not two's complement — just setting the MSB gives 1101 1010 = −38, not −90" },
+          { type: "cross", text: "No invert step, no add-1 step — the required method is missing entirely" },
+          { type: "cross", text: "(b) 'like a minus sign' misses the key idea: the MSB has a NEGATIVE PLACE VALUE of −128" }
+        ]
+      }
+    ],
+    examiner_note: "Two's complement is a three-line recipe: (1) write the POSITIVE value in 8 bits, (2) invert every bit, (3) add 1. The add-1 step is the single most forgotten step in the whole paper. Always verify by adding the place values back (−128, 64, 32, 16, 8, 4, 2, 1) — it takes 20 seconds and catches almost every slip. Remember: no calculator in Paper 1, so show every line of working for method marks."
+  },
+
+  {
+    chapter: 5,
+    question: "A bitmap image is 800 pixels wide and 600 pixels high, with a colour depth of 8 bits. (a) Calculate the file size of the image in kilobytes (KB). Show your working. (3)<br>(b) State the effect on the file size of doubling the colour depth to 16 bits. (1)",
+    marks: 4,
+    answers: [
+      {
+        grade: "excellent",
+        score: "4 / 4",
+        label: "Full marks (4/4)",
+        text: "(a) Number of pixels = 800 × 600 = 480,000 (1). File size in bits = 480,000 × 8 = 3,840,000 bits (1). Convert to bytes: 3,840,000 ÷ 8 = 480,000 bytes = 480 KB (1). (b) The file size doubles to 960 KB (1).",
+        analysis: [
+          { type: "tick", text: "Formula applied in clear stages: pixels, then bits, then bytes, then KB — one method mark per stage" },
+          { type: "tick", text: "Remembered to divide by 8 to convert bits to bytes — the most commonly lost mark" },
+          { type: "tick", text: "Used decimal units as Edexcel requires: 1 KB = 1,000 bytes, so 480,000 B = 480 KB" },
+          { type: "tick", text: "(b) quantifies the effect ('doubles to 960 KB') rather than just saying 'bigger'" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "2 / 4",
+        label: "Partial marks (2/4)",
+        text: "(a) 800 × 600 = 480,000 pixels (1). 480,000 × 8 = 3,840,000 (1), so the file is 3,840,000 KB. (b) The file gets bigger.",
+        analysis: [
+          { type: "tick", text: "Pixel count correct — 1 mark" },
+          { type: "tick", text: "Multiplied by colour depth correctly — 1 mark" },
+          { type: "cross", text: "3,840,000 is in BITS — the student never divided by 8 for bytes, then slapped 'KB' on the wrong number" },
+          { type: "cross", text: "(b) 'gets bigger' is not enough when the relationship is exactly proportional — say it DOUBLES" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 4",
+        label: "Weak answer (1/4)",
+        text: "(a) 800 × 600 = 480,000 (1), so the file size is 480,000 KB. (b) It would look better quality.",
+        analysis: [
+          { type: "tick", text: "Pixel count correct — 1 mark" },
+          { type: "cross", text: "Colour depth ignored completely — the ×8 step is missing" },
+          { type: "cross", text: "Units invented: 480,000 pixels is not 480,000 KB" },
+          { type: "cross", text: "(b) answers a different question — the effect asked for is on FILE SIZE, not image quality" }
+        ]
+      }
+    ],
+    examiner_note: "Learn the formula as a chain: file size (bits) = width × height × colour depth, then ÷ 8 for bytes, then ÷ 1,000 for KB (Edexcel uses DECIMAL units: 1 KB = 1,000 B, 1 MB = 1,000 KB). Write each line of the chain separately — even if your final answer slips, the method marks survive. The same logic works for sound: sample rate × bit depth × duration."
+  },
+
+  {
+    chapter: 6,
+    question: "(a) Using a Caesar cipher with a key of 3, encrypt the word DOG. (2)<br>(b) A row of 12 pixels in a black-and-white image is: B B B B B B B W W W W B. Write the run-length encoding (RLE) of this row, and state why RLE is a lossless form of compression. (3)",
     marks: 5,
     answers: [
       {
         grade: "excellent",
         score: "5 / 5",
         label: "Full marks (5/5)",
-        text: "Phishing is a social engineering attack that uses fake messages (usually emails) to trick users into giving personal information (1). For example, an email pretending to be from the user's bank asking them to 'verify' their password by clicking a link to a fake login page (1). Pharming is a more technical attack that silently redirects users from legitimate websites to fake versions via DNS manipulation (1) — the user doesn't need to click anything; they type the correct URL but are taken to a fraudulent site (1). An example would be the user typing their bank's URL into a browser and being silently redirected to a fake banking site (1).",
+        text: "(a) Shift each letter 3 places forward in the alphabet: D→G, O→R, G→J (1). So DOG encrypts to GRJ (1). (b) The row contains a run of 7 black, then 4 white, then 1 black pixel, so the RLE is 7B 4W 1B (2). RLE is lossless because the original row can be rebuilt exactly from the count-value pairs — no data is permanently discarded (1).",
         analysis: [
-          { type: "tick", text: "Phishing defined precisely (social engineering, fake message, trick into giving info)" },
-          { type: "tick", text: "Phishing example specific (bank email, password verification, fake login page)" },
-          { type: "tick", text: "Pharming defined precisely (DNS manipulation, silent redirect)" },
-          { type: "tick", text: "Critical detail noted: pharming requires NO user action — common exam trap" },
-          { type: "tick", text: "Pharming example specific and matches the definition" }
+          { type: "tick", text: "Cipher method shown letter by letter (D→G, O→R, G→J) — the working earns a mark even if one letter slipped" },
+          { type: "tick", text: "RLE counts verified: 7 + 4 + 1 = 12 pixels, matching the row length" },
+          { type: "tick", text: "Each run stored as a count-value PAIR — exactly what the mark scheme wants" },
+          { type: "tick", text: "Lossless defined by its real meaning: the original can be PERFECTLY reconstructed" }
         ]
       },
       {
         grade: "medium",
         score: "3 / 5",
         label: "Partial marks (3/5)",
-        text: "Phishing is when someone sends a fake email to get your password. Pharming is similar but uses websites. An example of phishing is an email pretending to be from a bank. An example of pharming is a fake website.",
+        text: "(a) D→G, O→R, G→J, so the ciphertext is GRJ (2). (b) The encoding is 7B 4W (1). It is lossless because the picture stays good quality when you compress it.",
         analysis: [
-          { type: "tick", text: "Phishing definition — has the key elements (fake email, get password) — 1 mark" },
-          { type: "tick", text: "Phishing example acceptable (bank email) — 1 mark" },
-          { type: "tick", text: "Pharming example mentioned (fake website) — 1 mark" },
-          { type: "cross", text: "Pharming definition is too vague — 'similar but uses websites' misses the KEY POINT: pharming is SILENT (DNS attack, no user action)" },
-          { type: "cross", text: "Does NOT explain HOW pharming works — just says 'uses websites'" }
+          { type: "tick", text: "Caesar cipher fully correct with working — 2 marks" },
+          { type: "tick", text: "First two runs correct — 1 of the 2 RLE marks" },
+          { type: "cross", text: "The final 1B run is missing: 7 + 4 = 11 pixels, but the row has 12. Always check the counts add up" },
+          { type: "cross", text: "'Stays good quality' is the LOSSY-vs-lossy-quality argument — lossless means the data can be restored EXACTLY, not 'looks fine'" }
         ]
       },
       {
         grade: "weak",
         score: "1 / 5",
         label: "Weak answer (1/5)",
-        text: "Phishing and pharming are both bad things hackers do. They try to steal your information. They are different but similar.",
+        text: "(a) DOG becomes EPH because you move each letter along by one. (b) RLE counts up how many of the same pixel there are in a row (1). Lossless means some of the data gets lost but not much.",
         analysis: [
-          { type: "tick", text: "Recognises both are attacks — barely 1 mark" },
-          { type: "cross", text: "No definitions of EITHER term — just describes them as 'bad things'" },
-          { type: "cross", text: "No examples given" },
-          { type: "cross", text: "'Different but similar' shows lack of understanding of what makes them different" }
+          { type: "cross", text: "Used a key of 1 instead of the key of 3 given in the question — EPH scores nothing" },
+          { type: "tick", text: "Knows RLE counts runs of repeated values — 1 mark" },
+          { type: "cross", text: "Never actually writes the encoding of THIS row — the question says 'write the RLE'" },
+          { type: "cross", text: "Lossless defined as its exact opposite — lossless means NO data is lost" }
         ]
       }
     ],
-    examiner_note: "This pair (phishing vs pharming) appears almost every year. The KEY distinction examiners want: phishing REQUIRES the user to make a mistake (click a link); pharming requires NO mistake — even careful users can be fooled. If you can include this distinction clearly, you secure the marks."
+    examiner_note: "Caesar cipher questions are free marks if you slow down: write out the alphabet, count the shift on your fingers, and use the key GIVEN in the question. For RLE, always check your run counts sum to the row length (7+4+1 = 12 here). And learn the definitions as a pair: lossless = original perfectly restored (RLE, ZIP); lossy = data permanently removed (JPEG, MP3)."
   },
 
   {
-    chapter: 4,
-    question: "A computer feels slow when running multiple programs. Recommend TWO hardware upgrades and explain how each would improve performance.",
+    chapter: 7,
+    question: "Describe the fetch-decode-execute cycle carried out by the CPU when running a program.",
     marks: 4,
     answers: [
       {
         grade: "excellent",
         score: "4 / 4",
         label: "Full marks (4/4)",
-        text: "First, upgrade the RAM — increasing from 4GB to 16GB (1) allows more programs to be held in fast memory at the same time, reducing the slow swapping of data to and from the hard disk (1). Second, replace the HDD with an SSD (1) — SSDs are 5-10x faster at reading and writing files, so programs and the operating system load almost instantly, dramatically improving responsiveness (1).",
+        text: "The CPU fetches the next instruction from main memory (RAM) (1), using the address held in the program counter, which then increments to point to the following instruction (1). The control unit decodes the instruction to work out what operation is required (1). The instruction is then executed — for example, the ALU carries out a calculation or data is moved — and the cycle repeats for the next instruction, millions of times per second (1).",
         analysis: [
-          { type: "tick", text: "Two specific upgrades named (RAM increase, HDD→SSD)" },
-          { type: "tick", text: "Each upgrade NUMERICALLY specific (4→16GB; 5-10x faster)" },
-          { type: "tick", text: "Each explanation links the upgrade to WHY it helps with multitasking" },
-          { type: "tick", text: "Uses technical vocabulary correctly (swapping, OS loading)" }
+          { type: "tick", text: "All three stages named in the correct order: fetch, decode, execute" },
+          { type: "tick", text: "Fetch is technically precise: instruction comes from MAIN MEMORY at the address in the program counter" },
+          { type: "tick", text: "Decode tied to the right component — the control unit" },
+          { type: "tick", text: "Execute illustrated with the ALU, and the CYCLE (it repeats) is made explicit" }
         ]
       },
       {
         grade: "medium",
         score: "2 / 4",
         label: "Partial marks (2/4)",
-        text: "Add more RAM, this will make it faster. Get an SSD, this will also make it faster.",
+        text: "The CPU gets the next instruction from memory (1). It then works out what the instruction means and carries it out (1). This all happens extremely quickly.",
         analysis: [
-          { type: "tick", text: "RAM upgrade mentioned — 1 mark" },
-          { type: "tick", text: "SSD upgrade mentioned — 1 mark" },
-          { type: "cross", text: "'Will make it faster' is too vague — does NOT explain HOW or WHY" },
-          { type: "cross", text: "Misses the development mark for each upgrade — needs the second mark per point" }
+          { type: "tick", text: "Fetch stage creditable — instruction retrieved from memory" },
+          { type: "tick", text: "Decode and execute both present in everyday language — 1 mark between them" },
+          { type: "cross", text: "No components named: program counter, control unit and ALU are the detail that lifts this to full marks" },
+          { type: "cross", text: "'Happens extremely quickly' is filler — speed was not asked about and earns nothing" }
         ]
       },
       {
         grade: "weak",
-        score: "0 / 4",
-        label: "No marks (0/4)",
-        text: "Buy a new computer because old computers are slow. Or get more storage so it can store more stuff.",
+        score: "1 / 4",
+        label: "Weak answer (1/4)",
+        text: "The CPU is the brain of the computer. It fetches the program from the hard drive and then runs it (1). When it has finished it sends the results to the screen.",
         analysis: [
-          { type: "cross", text: "'Buy a new computer' isn't an upgrade — and isn't what the question asked" },
-          { type: "cross", text: "More storage doesn't help with running multiple programs (this is a memory issue, not storage)" },
-          { type: "cross", text: "Shows confusion between storage (HDD/SSD capacity) and memory (RAM)" }
+          { type: "cross", text: "'Brain of the computer' is a primary-school analogy — it earns nothing at GCSE" },
+          { type: "cross", text: "Key error: instructions are fetched from MAIN MEMORY (RAM), not from the hard drive" },
+          { type: "tick", text: "'Runs it' just scrapes a mark for the execute idea" },
+          { type: "cross", text: "Decode is never mentioned — one of the three stages is completely absent" }
         ]
       }
     ],
-    examiner_note: "Hardware upgrade questions need SPECIFICS. Vague answers like 'more memory' or 'faster CPU' score poorly. Include exact terms (RAM, SSD, GHz) and concrete numbers where possible. Always link the upgrade to the SPECIFIC PROBLEM in the question."
+    examiner_note: "Describe-the-cycle questions are marked on the three stage names PLUS one piece of technical precision per stage. Memorise the trio: FETCH — instruction copied from main memory, address supplied by the program counter (which then increments); DECODE — control unit interprets the instruction; EXECUTE — the operation is carried out (ALU for arithmetic/logic). Finish by saying the cycle repeats."
+  },
+
+  {
+    chapter: 8,
+    question: "A developer writes a program in a high-level language. Explain two differences between using a compiler and using an interpreter to translate the program.",
+    marks: 4,
+    answers: [
+      {
+        grade: "excellent",
+        score: "4 / 4",
+        label: "Full marks (4/4)",
+        text: "A compiler translates the whole program in one go and produces a machine-code executable file (1), whereas an interpreter translates and runs the program one line at a time and produces no executable (1). A compiler reports a list of all errors after compilation, and the program will not run until they are fixed (1), whereas an interpreter stops at the first error it reaches, which makes errors easier to find and fix while developing (1).",
+        analysis: [
+          { type: "tick", text: "Each difference compares BOTH translators on the same axis, joined with 'whereas'" },
+          { type: "tick", text: "Difference 1: whole-program + executable vs line-by-line + no executable — technically complete" },
+          { type: "tick", text: "Difference 2: error reporting behaviour, with a consequence (easier debugging) attached" },
+          { type: "tick", text: "No wasted words — four creditable statements for four marks" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "2 / 4",
+        label: "Partial marks (2/4)",
+        text: "A compiler changes the whole program into machine code at once (1). An interpreter goes through the program one line at a time (1). A compiler is better because it is faster.",
+        analysis: [
+          { type: "tick", text: "Compiler side of the first difference correct — 1 mark" },
+          { type: "tick", text: "Interpreter side correct — 1 mark" },
+          { type: "cross", text: "Only ONE axis of difference given; the question asks for TWO differences" },
+          { type: "cross", text: "'A compiler is better' is an opinion, not a difference — and 'faster' is left unexplained (compiled CODE runs faster; compiling itself takes time)" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 4",
+        label: "Weak answer (1/4)",
+        text: "A compiler compiles the code and an interpreter interprets it. A compiler turns the program into machine code that the computer can run (1). An interpreter is like a person who translates languages for you.",
+        analysis: [
+          { type: "cross", text: "'A compiler compiles' is circular — restating the word is never a definition" },
+          { type: "tick", text: "Compiler produces machine code — 1 mark" },
+          { type: "cross", text: "The human-translator analogy explains nothing technical about how an interpreter works" },
+          { type: "cross", text: "No actual DIFFERENCES are stated — nothing compares the two translators directly" }
+        ]
+      }
+    ],
+    examiner_note: "Learn the four classic compiler/interpreter axes and you can answer any version of this question: (1) whole program at once vs line by line; (2) produces an executable vs produces nothing; (3) all errors reported at the end vs stops at the first error; (4) compiled code runs faster vs interpreted code is slower but easier to debug. For each difference, write one sentence containing BOTH translators joined by 'whereas'."
   },
 
   {
     chapter: 9,
-    question: "Discuss the impact of online shopping on traditional high-street retailers.",
+    question: "An estate agent's office is replacing its old bus topology network of 12 computers with a star topology. Explain three reasons why the star topology is more suitable for the office.",
     marks: 6,
     answers: [
       {
         grade: "excellent",
         score: "6 / 6",
         label: "Full marks (6/6)",
-        text: "Online shopping has significantly damaged traditional high-street retailers. Customers can compare prices across many websites in seconds (1), often finding the same product 10-30% cheaper than in-store due to lower overhead costs for online retailers (1). The convenience of 24/7 shopping with home delivery means fewer people visit physical stores (1), leading to declining footfall on UK high streets — many famous chains like Debenhams have closed (1). However, traditional retailers have responded by offering omnichannel experiences (1) — combining online ordering with in-store collection ('click and collect'), specialist staff for advice, and immediate product availability that online cannot match (1).",
+        text: "Firstly, in a star topology each computer has its own cable to a central switch (1), so a single cable failure disconnects only one computer, whereas a break in the bus's main cable would stop the whole office working (1). Secondly, the switch forwards each frame only to the device it is addressed to (1), so data does not collide and performance stays high even when all 12 computers are busy — on a bus, every device shares one cable and collisions slow the network down (1). Thirdly, a star network is easy to expand (1): if the office hires more staff, a new computer just needs one cable to a spare port on the switch, with no disruption to the rest of the network (1).",
         analysis: [
-          { type: "tick", text: "Multiple impacts identified (price competition, convenience, declining footfall)" },
-          { type: "tick", text: "Each point DEVELOPED with reasoning" },
-          { type: "tick", text: "Real-world example used (Debenhams closure)" },
-          { type: "tick", text: "BOTH sides discussed — challenges AND retailer adaptations" },
-          { type: "tick", text: "Question word ('Discuss') addressed with balanced analysis" }
+          { type: "tick", text: "Three distinct reasons, each structured as point (1) + development (1)" },
+          { type: "tick", text: "Every development is COMPARATIVE — it says why the bus would be worse, which the question implies" },
+          { type: "tick", text: "Technical vocabulary used correctly: switch, frame, collisions, port" },
+          { type: "tick", text: "Scenario woven in: 'the whole office', 'all 12 computers', 'if the office hires more staff'" }
         ]
       },
       {
         grade: "medium",
         score: "3 / 6",
         label: "Partial marks (3/6)",
-        text: "Online shopping is bad for high street shops. People buy things online instead of in shops. Shops are closing. Online shopping is cheaper. People prefer to stay at home.",
+        text: "A star is more reliable because if one cable breaks, only that one computer is disconnected, but on a bus a broken main cable stops everything (1+1). A star is also faster (1). It is easier to add new computers too.",
         analysis: [
-          { type: "tick", text: "Identifies price competition (cheaper online) — 1 mark" },
-          { type: "tick", text: "Identifies convenience (stay home) — 1 mark" },
-          { type: "tick", text: "Identifies result (shops closing) — 1 mark" },
-          { type: "cross", text: "None of the points DEVELOPED — no 'because', 'so that' or examples" },
-          { type: "cross", text: "ONE-SIDED — 'Discuss' means BOTH sides. Missing what shops do to fight back" },
-          { type: "cross", text: "Discuss questions cap at half marks without both perspectives" }
+          { type: "tick", text: "Reason 1 fully developed with the bus comparison — 2 marks" },
+          { type: "tick", text: "'Faster' names a valid second reason — 1 mark" },
+          { type: "cross", text: "WHY is it faster? No mention of the switch directing traffic or collisions on the shared bus cable — development mark lost" },
+          { type: "cross", text: "'Easier to add computers' is asserted with no mechanism (spare switch port, no downtime) — scores nothing as written" }
         ]
       },
       {
         grade: "weak",
         score: "1 / 6",
         label: "Weak answer (1/6)",
-        text: "Online shopping is a thing that people do. They buy things on the internet. Shops on the high street sell things too. Some people like to go shopping in shops.",
+        text: "A star topology is better because it is shaped like a star, so data can move around more quickly. Bus topologies are old and slow. A star network has a switch in the middle (1).",
         analysis: [
-          { type: "tick", text: "Mentions the two systems exist — 1 mark (generously)" },
-          { type: "cross", text: "Does not DISCUSS IMPACTS at all — just describes both options" },
-          { type: "cross", text: "No analysis of effects on traditional retailers" },
-          { type: "cross", text: "Failed to address the command word 'Discuss'" }
+          { type: "cross", text: "'Shaped like a star' describes the diagram, not a benefit — no mark" },
+          { type: "cross", text: "'Old and slow' is an assertion with no technical reason attached" },
+          { type: "tick", text: "Knows a star has a central switch — 1 mark" },
+          { type: "cross", text: "No point is developed and the scenario (12 computers, an office that cannot afford downtime) is never used" }
         ]
       }
     ],
-    examiner_note: "'Discuss' is the highest-mark command word. ALWAYS give both sides — pros AND cons, or impacts AND responses. One-sided answers automatically cap at around 50% of the marks available. Build at least 3 developed points; aim for one example or piece of evidence to strengthen each."
+    examiner_note: "A 6-mark 'explain three reasons' question is marked as 3 × (point + development). The pattern for every point: name the feature, then add 'so...' with a consequence for THIS scenario, ideally contrasting with the alternative ('...whereas on a bus, one broken cable stops all 12 computers'). The three reliable star-vs-bus points are: fault tolerance per cable, no collisions because the switch directs traffic, and easy expansion."
+  },
+
+  {
+    chapter: 10,
+    question: "Employees at a company receive an email that appears to come from the IT department, asking them to click a link and enter their network password. (a) State the name of this type of attack. (1)<br>(b) Explain two ways the company could reduce the risk of this attack succeeding. (4)",
+    marks: 5,
+    answers: [
+      {
+        grade: "excellent",
+        score: "5 / 5",
+        label: "Full marks (5/5)",
+        text: "(a) Phishing (1). (b) Firstly, the company should train staff to recognise suspicious emails (1) — for example checking the sender's address carefully and never entering a password via an emailed link — so employees do not hand over their credentials in the first place (1). Secondly, the company should enable two-factor authentication on all accounts (1), so that even if an employee's password is stolen, the attacker still cannot log in without the second factor, such as a code generated on the employee's phone (1).",
+        analysis: [
+          { type: "tick", text: "Attack precisely named: phishing (a form of social engineering)" },
+          { type: "tick", text: "Defence 1 targets the PERSON — training — with concrete behaviours described" },
+          { type: "tick", text: "Defence 2 limits the DAMAGE — 2FA — with the mechanism explained (stolen password alone is useless)" },
+          { type: "tick", text: "Two genuinely different layers of protection: prevention plus damage limitation — defence in depth" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "3 / 5",
+        label: "Partial marks (3/5)",
+        text: "(a) Phishing (1). (b) The company should train the staff so they do not fall for fake emails (1). They should also use an email filter to block suspicious messages before they arrive (1).",
+        analysis: [
+          { type: "tick", text: "Phishing correctly identified — 1 mark" },
+          { type: "tick", text: "Training named — 1 mark" },
+          { type: "tick", text: "Email filtering named — 1 mark" },
+          { type: "cross", text: "Neither measure is DEVELOPED — no 'so that...' explaining how it stops credentials being stolen. Both second marks lost" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 5",
+        label: "Weak answer (1/5)",
+        text: "(a) A virus. (b) The company should warn everyone about fake emails (1). They should also install anti-virus software on every computer and turn the computers off at night.",
+        analysis: [
+          { type: "cross", text: "(a) A virus is malware — this attack involves no malicious software, just a deceptive message. It is phishing" },
+          { type: "tick", text: "Warning staff is a weak form of the training point — 1 mark" },
+          { type: "cross", text: "Anti-virus does not stop an employee typing their password into a fake page — wrong defence for a social engineering attack" },
+          { type: "cross", text: "'Turn computers off at night' is irrelevant to email-based credential theft" }
+        ]
+      }
+    ],
+    examiner_note: "When the attack manipulates a PERSON (phishing, shoulder surfing, pretexting), the marks go to human and procedural defences: staff training, email filtering, two-factor authentication, and policies like 'IT will never ask for your password'. Anti-malware answers score poorly because no malware is involved. Strong answers show defence in depth: one layer that prevents the trick, plus one layer that limits the damage if it works."
+  },
+
+  {
+    chapter: 11,
+    question: "Discuss the environmental impact of the manufacture, use and disposal of smartphones.",
+    marks: 6,
+    answers: [
+      {
+        grade: "excellent",
+        score: "6 / 6",
+        label: "Full marks (6/6 — top level)",
+        text: "Manufacturing smartphones damages the environment: rare metals such as lithium and cobalt must be mined, destroying habitats and consuming large amounts of energy and water — for most phones, manufacture causes the majority of their lifetime carbon emissions. During use, the impact continues: charging millions of phones consumes electricity, and the data centres and mobile networks they depend on use far more, often generated from non-renewable sources. At disposal, phones become e-waste; toxic materials such as lead and mercury can leach into soil and water from landfill, and because recycling rates are low, the scarce metals inside are simply lost. However, the impact can be reduced: phones can be refurbished and resold, manufacturers run take-back recycling schemes, and one smartphone can replace several separate devices such as a camera, sat-nav and music player, reducing total manufacturing. Overall, smartphones carry a significant environmental cost at every stage of their life cycle, but longer replacement cycles and proper recycling can reduce it considerably.",
+        analysis: [
+          { type: "tick", text: "Structured around all three stages named in the question: manufacture → use → disposal" },
+          { type: "tick", text: "Specific, accurate detail at each stage: lithium and cobalt mining, data centre energy, lead and mercury in e-waste" },
+          { type: "tick", text: "Chains of reasoning, not lists: mining → habitat destruction → carbon emissions" },
+          { type: "tick", text: "Balanced — mitigations (refurbishment, take-back schemes, device convergence) address the other side" },
+          { type: "tick", text: "Finishes with a supported conclusion — required for the top level" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "3 / 6",
+        label: "Partial marks (3/6 — mid level)",
+        text: "Smartphones are bad for the environment. Making them uses up materials that have to be dug out of the ground. Charging them uses electricity. When people throw phones away they go to landfill, which is bad for the planet because of the chemicals in them.",
+        analysis: [
+          { type: "tick", text: "Touches all three stages — manufacture, use and disposal — so reaches the middle level" },
+          { type: "tick", text: "Landfill point has the beginning of a reason ('because of the chemicals')" },
+          { type: "cross", text: "No specifics: which materials? which chemicals? how much energy? Named detail is what separates the levels" },
+          { type: "cross", text: "Entirely one-sided — no mitigations or counterpoints, so the top level is out of reach" },
+          { type: "cross", text: "No conclusion drawn" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 6",
+        label: "Weak answer (1/6 — bottom level)",
+        text: "Phones are bad for the planet because everyone has one and they keep buying new ones. People should stop using their phones so much. The environment is really important and we should look after it.",
+        analysis: [
+          { type: "cross", text: "Assertions with no computer science content — nothing about materials, energy or e-waste" },
+          { type: "tick", text: "'Keep buying new ones' gestures at the replacement-cycle problem — just enough for the bottom level" },
+          { type: "cross", text: "'The environment is important' is empty filler that examiners read hundreds of times" },
+          { type: "cross", text: "No structure, no stages, no balance, no conclusion" }
+        ]
+      }
+    ],
+    examiner_note: "Topic 5 'Discuss' questions are levels-based: examiners reward CHAINS of reasoning and balance, not bullet lists. Use the life-cycle structure as a free essay plan — manufacture (mining rare metals, energy, water), use (charging, data centres), disposal (e-waste, toxins, lost materials) — then add the other side (recycling, refurbishment, device convergence) and finish with one sentence of conclusion. One named, specific fact per stage is the difference between Level 2 and Level 3."
+  },
+
+  {
+    chapter: 12,
+    question: "Write a Python function called count_passes() that takes a list of integer test scores as a parameter and returns the number of scores that are 50 or higher. You must use a loop.",
+    marks: 6,
+    answers: [
+      {
+        grade: "excellent",
+        score: "6 / 6",
+        label: "Full marks (6/6)",
+        text: "<span style='font-family:var(--font-mono); font-style:normal; font-size:0.9rem;'>def count_passes(scores):&nbsp;&nbsp;# (1) def with parameter<br>&nbsp;&nbsp;&nbsp;&nbsp;total = 0&nbsp;&nbsp;# (1) counter initialised<br>&nbsp;&nbsp;&nbsp;&nbsp;for score in scores:&nbsp;&nbsp;# (1) loop over the list<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if score &gt;= 50:&nbsp;&nbsp;# (1) correct comparison<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total = total + 1&nbsp;&nbsp;# (1) counter updated inside the if<br>&nbsp;&nbsp;&nbsp;&nbsp;return total&nbsp;&nbsp;# (1) count returned</span>",
+        analysis: [
+          { type: "tick", text: "Function defined with the exact name asked for and a parameter to receive the list" },
+          { type: "tick", text: "Counter initialised BEFORE the loop — initialising inside the loop would reset it every pass" },
+          { type: "tick", text: "Boundary handled correctly: 'reaches 50 or higher' means >= 50, not > 50" },
+          { type: "tick", text: "RETURNS the value as the question demands — print(total) would lose this mark" },
+          { type: "tick", text: "return is indented inside the function but OUTSIDE the loop, so it runs after counting finishes" }
+        ]
+      },
+      {
+        grade: "medium",
+        score: "4 / 6",
+        label: "Partial marks (4/6)",
+        text: "<span style='font-family:var(--font-mono); font-style:normal; font-size:0.9rem;'>def count_passes(scores):<br>&nbsp;&nbsp;&nbsp;&nbsp;total = 0<br>&nbsp;&nbsp;&nbsp;&nbsp;for score in scores:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if score &gt; 50:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total = total + 1<br>&nbsp;&nbsp;&nbsp;&nbsp;print(total)</span>",
+        analysis: [
+          { type: "tick", text: "Definition, parameter, initialisation and loop all correct — 4 marks" },
+          { type: "cross", text: "Boundary error: score &gt; 50 misses a score of exactly 50. 'Or higher' always means &gt;=" },
+          { type: "cross", text: "print() instead of return — the question says RETURN, and a calling program would receive None" },
+          { type: "tick", text: "Counter correctly updated inside the if statement" }
+        ]
+      },
+      {
+        grade: "weak",
+        score: "1 / 6",
+        label: "Weak answer (1/6)",
+        text: "<span style='font-family:var(--font-mono); font-style:normal; font-size:0.9rem;'>def count_passes:<br>&nbsp;&nbsp;&nbsp;&nbsp;if scores &gt;= 50:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total + 1<br>return total</span>",
+        analysis: [
+          { type: "cross", text: "def count_passes: has no brackets or parameter — a syntax error before anything runs" },
+          { type: "cross", text: "No loop, even though the question explicitly requires one — compares the whole LIST to 50" },
+          { type: "cross", text: "total + 1 calculates a value but never stores it; total was also never initialised" },
+          { type: "tick", text: "The if ... &gt;= 50 idea shows the right comparison — 1 mark, generously" },
+          { type: "cross", text: "return is not indented, so it sits outside the function — another syntax error" }
+        ]
+      }
+    ],
+    examiner_note: "'Write a function' marks map almost one-to-one onto code features: def with parameter, initialise, loop, condition, update, return. Check three traps every time: (1) boundaries — 'or higher/at least' means >=, 'more than' means >; (2) return vs print — give the examiner exactly the one asked for; (3) indentation — initialise before the loop, update inside the if, return after the loop. In the onscreen Paper 2, RUN your function with a boundary value like exactly 50 before moving on."
   }
 ];
 
@@ -457,7 +722,7 @@ function renderChips() {
     <div class="we-chip ${weCurrentFilter === 'all' ? 'active' : ''}" onclick="setWEFilter('all')">All examples</div>
     ${chapters.map(ch => {
       const chMeta = CHAPTERS.find(c => c.id === ch);
-      return `<div class="we-chip ${weCurrentFilter === ch ? 'active' : ''}" 
+      return `<div class="we-chip ${weCurrentFilter === ch ? 'active' : ''}"
                    style="--ch-color:${chMeta?.color || 'var(--blue)'};"
                    onclick="setWEFilter(${ch})">Ch ${ch}: ${chMeta?.title || ''}</div>`;
     }).join('')}

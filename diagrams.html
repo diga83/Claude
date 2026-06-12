@@ -504,32 +504,30 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 const DIAGRAMS = [
-  { id: 'pc_anatomy',   chapter: 1, type: 'Concept explorer',       icon: '🖥', title: 'Anatomy of a Computer',
+  { id: 'pc_anatomy',   chapter: 7, type: 'Concept explorer',       icon: '🖥', title: 'Anatomy of a Computer',
     summary: 'Click each component (CPU, RAM, motherboard, storage) to see what it does and why it matters.', color: '#B45309' },
-  { id: 'software_stack', chapter: 2, type: 'Concept explorer',     icon: '💿', title: 'The Software Stack',
+  { id: 'software_stack', chapter: 8, type: 'Concept explorer',     icon: '💿', title: 'The Software Stack',
     summary: 'Click each layer (firmware, OS, system software, applications) to see how they relate and depend on each other.', color: '#0F766E' },
-  { id: 'storage_compare', chapter: 3, type: 'Comparison slider',   icon: '💾', title: 'HDD vs SSD vs Cloud',
+  { id: 'storage_compare', chapter: 7, type: 'Comparison slider',   icon: '💾', title: 'HDD vs SSD vs Cloud',
     summary: 'Compare three storage technologies on speed, capacity, durability, cost and reliability. See which wins for each scenario.', color: '#0F766E' },
-  { id: 'fde_cycle',    chapter: 4, type: 'Step-by-step animation', icon: '⚙', title: 'CPU Fetch-Decode-Execute Cycle',
+  { id: 'fde_cycle',    chapter: 7, type: 'Step-by-step animation', icon: '⚙', title: 'CPU Fetch-Decode-Execute Cycle',
     summary: 'Walk through how the CPU runs an instruction. Step through each stage to see registers, ALU, and memory bus in action.', color: '#1D4ED8' },
-  { id: 'topologies',   chapter: 5, type: 'Concept explorer',       icon: '🌐', title: 'Network Topologies',
+  { id: 'topologies',   chapter: 9, type: 'Concept explorer',       icon: '🌐', title: 'Network Topologies',
     summary: 'Compare bus, star, ring, and mesh networks. Click any device to learn its role.', color: '#1D4ED8' },
-  { id: 'security_quiz',chapter: 6, type: 'Drag-and-drop quiz',     icon: '🛡', title: 'Label the Security Threats',
+  { id: 'security_quiz',chapter: 10, type: 'Drag-and-drop quiz',     icon: '🛡', title: 'Label the Security Threats',
     summary: 'Drag each threat (phishing, malware, ransomware…) to its correct description. Get scored on accuracy.', color: '#B91C1C' },
-  { id: 'page_load',    chapter: 7, type: 'Step-by-step animation', icon: '📡', title: 'How a Web Page Loads',
+  { id: 'page_load',    chapter: 9, type: 'Step-by-step animation', icon: '📡', title: 'How a Web Page Loads',
     summary: 'Trace a request from your browser through DNS, routers, the server, and back — one step at a time.', color: '#7C3AED' },
-  { id: 'craab_quiz',   chapter: 8, type: 'Drag-and-drop quiz',     icon: '🔍', title: 'CRAAB: Evaluate a Source',
-    summary: 'Match each evaluation criterion (Currency, Relevance, Authority, Accuracy, Bias) to its definition.', color: '#15803D' },
   { id: 'cloud_compare',chapter: 9, type: 'Comparison slider',      icon: '☁', title: 'On-premises vs Cloud',
     summary: 'Compare hosting your own server vs using cloud services on cost, scalability, security, and control. See which fits each scenario.', color: '#0F766E' },
-  { id: 'db_relations', chapter:10, type: 'Concept explorer',       icon: '🗃', title: 'Database Relationships',
+  { id: 'db_relations', chapter:8, type: 'Concept explorer',       icon: '🗃', title: 'Database Relationships',
     summary: 'Explore tables, primary keys, foreign keys, and one-to-many relationships in a real club membership database.', color: '#6D28D9' }
 ];
 
 function renderHub() {
   document.getElementById('diagramViewer').innerHTML = '';
   document.getElementById('diagramHub').innerHTML = `
-    <h2 class="section-title">📚 All 10 diagrams</h2>
+    <h2 class="section-title">📚 All ${DIAGRAMS.length} diagrams</h2>
     <div class="diagram-hub">
       ${DIAGRAMS.map(d => `
         <div class="diagram-card" style="--ch-color:${d.color};" onclick="openDiagram('${d.id}')">
