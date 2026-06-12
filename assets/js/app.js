@@ -1840,7 +1840,7 @@ const TOUR_KEY = 'gcse_cs_tour_seen_v1';
 const TOUR_STEPS = [
   {
     title: 'Welcome to your study site! 👋',
-    body: `This is your home base. From here, you can access all 10 chapters, 226 MCQs, 88 essay questions, mock exam papers, and lots more. Let me show you around quickly — it'll only take 30 seconds.`,
+    body: `This is your home base. From here, you can access all 12 chapters, 190+ MCQs, 60+ exam-style questions, mock exam papers, and lots more. Let me show you around quickly — it'll only take 30 seconds.`,
     target: null // centered modal, no spotlight
   },
   {
