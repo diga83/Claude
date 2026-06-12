@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   EDEXCEL GCSE (9-1) COMPUTER SCIENCE 1CP2 — QUESTION BANK
+   EDEXCEL GCSE (9-1) COMPUTER SCIENCE 4CP0 — QUESTION BANK
    MCQs: {q, o[], a (correct index), e (explanation), ch, d (difficulty 1-3)}
    Essays: {q, marks, ch, mark_scheme[], keywords[]}
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -30,7 +30,7 @@ const MCQ_BANK = [
   {q:"A program runs but produces the wrong answer. This is a:", o:["Syntax error","Logic error","Power failure","Compression error"], a:1, e:"Logic errors run but give incorrect results.", ch:2, d:1},
   {q:"A missing colon at the end of an if statement causes a:", o:["Logic error","Syntax error","Overflow","Runtime data loss"], a:1, e:"Breaking the language's grammar rules is a syntax error.", ch:2, d:1},
   {q:"An algorithm is best defined as:", o:["A programming language","A step-by-step sequence of instructions to solve a problem","A type of CPU","A storage device"], a:1, e:"An algorithm is a precise sequence of steps that solves a problem.", ch:2, d:1},
-  {q:"Which is NOT a way of expressing an algorithm in 1CP2?", o:["Flowchart","Written description","Program code","Machine voltage diagram"], a:3, e:"Algorithms are expressed as flowcharts, written descriptions or code.", ch:2, d:1},
+  {q:"Which is NOT a way of expressing an algorithm in 4CP0?", o:["Flowchart","Written description","Program code","Machine voltage diagram"], a:3, e:"Algorithms are expressed as flowcharts, written descriptions or code.", ch:2, d:1},
   {q:"A rectangle in a flowchart represents:", o:["Input/output","A process or calculation","A decision","Start/stop"], a:1, e:"A rectangle is a process step such as a calculation or assignment.", ch:2, d:2},
   {q:"In the code total = total + num inside a loop, the variable total is:", o:["A constant","A running total (accumulator)","A flowchart symbol","An array index"], a:1, e:"It accumulates a running total each iteration.", ch:2, d:2},
   {q:"Trace this: x = 5; x = x + 3; x = x * 2. What is x?", o:["10","13","16","8"], a:2, e:"5 + 3 = 8, then 8 * 2 = 16.", ch:2, d:2},
@@ -95,13 +95,13 @@ const MCQ_BANK = [
   {q:"To store more colours in an image you must increase the:", o:["Sample rate","Colour depth","Bandwidth","Latency"], a:1, e:"More bits per pixel (colour depth) allow more colours.", ch:5, d:3},
 
   // ═══════ CHAPTER 6 — STORAGE, COMPRESSION & ENCRYPTION ═══════
-  {q:"In the 1CP2 spec, how many bytes are in 1 kilobyte?", o:["1000","1024","8","100"], a:0, e:"Edexcel uses decimal units: 1 KB = 1000 bytes.", ch:6, d:1},
+  {q:"How many bytes are in 1 decimal kilobyte (kB)?", o:["1000","1024","8","100"], a:0, e:"Decimal units step by 1,000: 1 kB = 1,000 bytes. The binary kibibyte (KiB) is 1,024 bytes.", ch:6, d:1},
   {q:"Which compression lets the original file be perfectly restored?", o:["Lossy","Lossless","Both","Neither"], a:1, e:"Lossless keeps all the original data.", ch:6, d:1},
   {q:"Which file type should NEVER use lossy compression?", o:["A photo","A music track","Program source code","A video"], a:2, e:"Losing data would corrupt code; lossless only.", ch:6, d:1},
   {q:"Run-length encoding (RLE) is a type of:", o:["Lossy compression","Lossless compression","Encryption","Sorting"], a:1, e:"RLE is lossless — it stores runs as count+value.", ch:6, d:1},
   {q:"Encryption is used to:", o:["Make files smaller","Make data unreadable without the key","Speed up the network","Remove malware"], a:1, e:"Encryption protects confidentiality with a key.", ch:6, d:1},
   {q:"A Caesar cipher works by:", o:["Removing vowels","Shifting each letter a fixed number of places","Reversing the text","Compressing the text"], a:1, e:"Each letter is shifted by the key value.", ch:6, d:1},
-  {q:"1 MB equals how many KB (1CP2 decimal units)?", o:["1000","1024","8","100"], a:0, e:"1 MB = 1000 KB in decimal units.", ch:6, d:1},
+  {q:"How many bytes are in 1 kibibyte (KiB)?", o:["1000","1024","8","100"], a:1, e:"Binary IEC units step by 1,024: 1 KiB = 2^10 = 1,024 bytes. (Decimal kB = 1,000 B.)", ch:6, d:1},
   {q:"The smallest unit of data is the:", o:["Byte","Bit","Nibble","Kilobyte"], a:1, e:"A bit (0 or 1) is the smallest unit.", ch:6, d:1},
   {q:"Run-length encoding of AAAABBBCC is:", o:["4A3B2C","A4B3C2","ABC432","43A2BC"], a:0, e:"4 A's, 3 B's, 2 C's → 4A3B2C.", ch:6, d:2},
   {q:"Why is compression useful when transferring files over a network?", o:["It encrypts them","It reduces file size so they transfer faster","It sorts them","It adds colour"], a:1, e:"Smaller files use less bandwidth and transfer faster.", ch:6, d:2},
@@ -157,7 +157,7 @@ const MCQ_BANK = [
   {q:"Which transmission medium is fastest over long distances?", o:["Copper cable","Fibre optic","Bluetooth","Twisted pair only"], a:1, e:"Fibre optic carries data as light, fast over long distances.", ch:9, d:1},
   {q:"HTTPS differs from HTTP because it:", o:["Is slower for no reason","Encrypts the data in transit","Only works on a LAN","Sends email"], a:1, e:"HTTPS adds encryption to protect web data.", ch:9, d:1},
   {q:"Latency is:", o:["Maximum data per second","The delay before data arrives","The cable type","The IP address"], a:1, e:"Latency is the time delay, measured in ms.", ch:9, d:1},
-  {q:"How many layers are in the TCP/IP model?", o:["3","4","7","2"], a:1, e:"Four: application, transport, internet, link.", ch:9, d:2},
+  {q:"How many layers are in the TCP/IP model?", o:["3","4","7","2"], a:1, e:"Four: application, transport, network, data link.", ch:9, d:2},
   {q:"If a single device's cable fails in a star network:", o:["The whole network fails","Only that device is affected","All data is lost","The switch breaks"], a:1, e:"Only the device on the broken cable is disconnected.", ch:9, d:2},
   {q:"Which topology re-routes data if one link fails?", o:["Bus","Star","Mesh","Single cable"], a:2, e:"Mesh has multiple paths, so data can re-route.", ch:9, d:2},
   {q:"A 20 MB file is sent over a 10 Mbps link. Roughly how long does it take?", o:["2 s","8 s","16 s","20 s"], a:2, e:"20 MB = 160 megabits; 160 ÷ 10 = 16 s.", ch:9, d:2},
@@ -270,7 +270,7 @@ const ESSAY_BANK = [
   {q:"Describe how run-length encoding compresses data and give an example. [3 marks]", marks:3, ch:6, mark_scheme:["Runs of the same value are stored as a count and the value (1)","e.g. AAAB becomes 3A1B (1)","It is lossless, so the original is fully recoverable (1)"], keywords:["run","count","value","example","lossless","rle"]},
   {q:"Encrypt the word 'CODE' using a Caesar cipher with a key of 2. Show the result. [2 marks]", marks:2, ch:6, mark_scheme:["Shift each letter +2: C→E, O→Q, D→F, E→G (1)","Result: EQFG (1)"], keywords:["shift","two","EQFG","caesar","letter"]},
   {q:"Explain why encryption is important when sending data over the internet. [3 marks]", marks:3, ch:6, mark_scheme:["Data can be intercepted while travelling across the network (1)","Encryption scrambles it using a key so it is unreadable (1)","Only someone with the correct key can decrypt and read it (1)"], keywords:["intercept","scramble","key","unreadable","decrypt","confidential"]},
-  {q:"A file is 8 MB. Convert this to KB and to bytes using 1CP2 (decimal) units. [2 marks]", marks:2, ch:6, mark_scheme:["8 MB = 8000 KB (1)","= 8,000,000 bytes (1)"], keywords:["8000","decimal","bytes","8000000","convert"]},
+  {q:"A file is 8 MB. Convert this to KB and to bytes using 4CP0 (decimal) units. [2 marks]", marks:2, ch:6, mark_scheme:["8 MB = 8000 KB (1)","= 8,000,000 bytes (1)"], keywords:["8000","decimal","bytes","8000000","convert"]},
 
   // CHAPTER 7
   {q:"Describe the three stages of the fetch-decode-execute cycle. [3 marks]", marks:3, ch:7, mark_scheme:["Fetch: the next instruction is copied from main memory to the CPU (1)","Decode: the control unit works out what the instruction means (1)","Execute: the instruction is carried out e.g. ALU performs a calculation (1)"], keywords:["fetch","memory","decode","control unit","execute","alu"]},
@@ -291,7 +291,7 @@ const ESSAY_BANK = [
   {q:"Describe the star topology and give one advantage and one disadvantage. [4 marks]", marks:4, ch:9, mark_scheme:["Each device connects to a central switch (1)","Advantage: one cable fault affects only that device (1)","Advantage/extra: good performance as devices have their own connection (1)","Disadvantage: if the central switch fails the whole network stops (1)"], keywords:["central","switch","device","cable","fault","switch fails","advantage","disadvantage"]},
   {q:"A 30 MB file is downloaded over a 12 Mbps connection. Calculate the time taken. [3 marks]", marks:3, ch:9, mark_scheme:["30 MB = 240 megabits (×8) (1)","time = 240 ÷ 12 (1)","= 20 seconds (1)"], keywords:["240","megabits","divide","12","20","seconds","×8"]},
   {q:"Explain the purpose of the SMTP, POP3 and IMAP protocols. [3 marks]", marks:3, ch:9, mark_scheme:["SMTP is used to send email (1)","POP3 downloads email to one device (often deleting the server copy) (1)","IMAP retrieves email while keeping it synced on the server across devices (1)"], keywords:["smtp","send","pop3","download","imap","sync","server"]},
-  {q:"Explain why the TCP/IP model is organised into layers. [3 marks]", marks:3, ch:9, mark_scheme:["Each layer has a specific job (application, transport, internet, link) (1)","Layers can be developed or changed independently (1)","Making the system simpler to build and troubleshoot (1)"], keywords:["layer","job","independent","develop","troubleshoot","tcp/ip"]},
+  {q:"Explain why the TCP/IP model is organised into layers. [3 marks]", marks:3, ch:9, mark_scheme:["Each layer has a specific job (application, transport, network, data link) (1)","Layers can be developed or changed independently (1)","Making the system simpler to build and troubleshoot (1)"], keywords:["layer","job","independent","develop","troubleshoot","tcp/ip"]},
 
   // CHAPTER 10
   {q:"Explain what social engineering is and give one example. [3 marks]", marks:3, ch:10, mark_scheme:["Manipulating people rather than machines into giving away access/information (1)","It exploits human trust / the weakest link (1)","Example: phishing / shoulder surfing / pretexting (1)"], keywords:["people","manipulate","trust","phishing","shoulder surfing","example"]},

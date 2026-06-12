@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chapter Summaries — GCSE Computer Science 1CP2</title>
+<title>Chapter Summaries — International GCSE Computer Science 4CP0</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#064E3B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,7 +140,7 @@ function generate() {
   const name = profile?.name ? `<p class="doc-meta"><strong>${profile.name}</strong> · ${new Date().toLocaleDateString()}</p>` : '';
   const content = `
     <div class="summary-doc">
-      <h1>GCSE Computer Science 1CP2 — Chapter Summaries</h1>
+      <h1>International GCSE Computer Science 4CP0 — Chapter Summaries</h1>
       ${name}
       ${ids.map(id => summariseChapter(CHAPTERS.find(c => c.id === id))).join('')}
     </div>

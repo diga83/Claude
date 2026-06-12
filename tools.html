@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CS Calculators &amp; Reference — GCSE Computer Science 1CP2</title>
+<title>CS Calculators &amp; Reference — International GCSE Computer Science 4CP0</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#064E3B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,7 +153,7 @@
       <!-- (e) Image file size -->
       <div class="tool-card">
         <h3>🖼 Image file size calculator</h3>
-        <p>Uncompressed bitmap size. Remember: 1CP2 uses <strong>decimal</strong> units — 1 KB = 1,000 B and 1 MB = 1,000,000 B.</p>
+        <p>Uncompressed bitmap size. Remember: 4CP0 uses <strong>decimal</strong> units — 1 KB = 1,000 B and 1 MB = 1,000,000 B.</p>
         <label>Width (pixels)
           <input type="number" id="imgW" value="800" min="1" oninput="imgCalc()">
         </label>
@@ -281,7 +281,7 @@
           <tr><td>'0'</td><td>48</td><td>0011 0000</td></tr>
         </table>
         <div class="tool-note">So 'C' = 65 + 2 = 67, 'e' = 97 + 4 = 101, '7' = 48 + 7 = 55. Lower case = upper case + 32.</div>
-        <div class="tool-note">1CP2 storage units are <strong>decimal</strong>: 1 KB = 1,000 B · 1 MB = 1,000 KB · 1 GB = 1,000 MB · 1 TB = 1,000 GB.</div>
+        <div class="tool-note">4CP0 storage units are <strong>decimal</strong>: 1 KB = 1,000 B · 1 MB = 1,000 KB · 1 GB = 1,000 MB · 1 TB = 1,000 GB.</div>
       </div>
 
     </div>
@@ -481,11 +481,11 @@ function imgCalc() {
   const bits = w * h * d;
   const bytes = bits / 8;
   out.innerHTML = `
-    <strong>File size (decimal units)</strong>
+    <strong>File size</strong>
     ${fmt(w)} × ${fmt(h)} × ${d} = <b>${fmt(bits)} bits</b><br>
     ÷ 8 = ${fmt(bytes)} bytes<br>
-    ÷ 1,000 = ${fmt(bytes / 1000)} KB<br>
-    ÷ 1,000,000 = <b>${fmt(bytes / 1000000)} MB</b>
+    <em>Decimal:</em> ${fmt(bytes / 1000)} kB · <b>${fmt(bytes / 1000000)} MB</b><br>
+    <em>Binary (IEC):</em> ${fmt(Math.round(bytes / 1024 * 100) / 100)} KiB · ${fmt(Math.round(bytes / 1048576 * 1000) / 1000)} MiB
   `;
 }
 
@@ -502,11 +502,11 @@ function sndCalc() {
   const bits = rate * depth * secs;
   const bytes = bits / 8;
   out.innerHTML = `
-    <strong>File size (decimal units)</strong>
+    <strong>File size</strong>
     ${fmt(rate)} × ${depth} × ${fmt(secs)} = <b>${fmt(bits)} bits</b><br>
     ÷ 8 = ${fmt(bytes)} bytes<br>
-    ÷ 1,000 = ${fmt(bytes / 1000)} KB<br>
-    ÷ 1,000,000 = <b>${fmt(bytes / 1000000)} MB</b>
+    <em>Decimal:</em> ${fmt(bytes / 1000)} kB · <b>${fmt(bytes / 1000000)} MB</b><br>
+    <em>Binary (IEC):</em> ${fmt(Math.round(bytes / 1024 * 100) / 100)} KiB · ${fmt(Math.round(bytes / 1048576 * 1000) / 1000)} MiB
   `;
 }
 

@@ -1,7 +1,7 @@
 {
-  "name": "GCSE Computer Science 1CP2 Study Book",
+  "name": "International GCSE Computer Science 4CP0 Study Book",
   "short_name": "GCSE Computer Science",
-  "description": "Interactive study book and practice system for Edexcel GCSE Computer Science 1CP2",
+  "description": "Interactive study book and practice system for Edexcel International GCSE Computer Science 4CP0",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

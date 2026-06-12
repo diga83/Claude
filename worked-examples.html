@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Worked Examples — GCSE Computer Science 1CP2</title>
+<title>Worked Examples — International GCSE Computer Science 4CP0</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#064E3B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,7 +150,7 @@
     <div class="quiz-hero" style="background: linear-gradient(135deg, #047857 0%, #1D4ED8 100%);">
       <span class="hero-tag">Annotated mark schemes</span>
       <h1>🎓 Worked Examples</h1>
-      <p>See exactly what scores full marks vs. what scores half marks. Real 1CP2 exam-style questions with three different student answers, marked and annotated to show why each scored what it did. The single best way to learn what examiners reward.</p>
+      <p>See exactly what scores full marks vs. what scores half marks. Real 4CP0 exam-style questions with three different student answers, marked and annotated to show why each scored what it did. The single best way to learn what examiners reward.</p>
     </div>
 
     <div class="we-chapter-chips" id="weChips"></div>
@@ -345,7 +345,7 @@ const WORKED_EXAMPLES = [
         ]
       }
     ],
-    examiner_note: "Two's complement is a three-line recipe: (1) write the POSITIVE value in 8 bits, (2) invert every bit, (3) add 1. The add-1 step is the single most forgotten step in the whole paper. Always verify by adding the place values back (−128, 64, 32, 16, 8, 4, 2, 1) — it takes 20 seconds and catches almost every slip. Remember: no calculator in Paper 1, so show every line of working for method marks."
+    examiner_note: "Two's complement is a three-line recipe: (1) write the POSITIVE value in 8 bits, (2) invert every bit, (3) add 1. The add-1 step is the single most forgotten step in the whole paper. Always verify by adding the place values back (−128, 64, 32, 16, 8, 4, 2, 1) — it takes 20 seconds and catches almost every slip. Show every line of working for method marks — verify by adding the place values back."
   },
 
   {
@@ -361,7 +361,7 @@ const WORKED_EXAMPLES = [
         analysis: [
           { type: "tick", text: "Formula applied in clear stages: pixels, then bits, then bytes, then KB — one method mark per stage" },
           { type: "tick", text: "Remembered to divide by 8 to convert bits to bytes — the most commonly lost mark" },
-          { type: "tick", text: "Used decimal units as Edexcel requires: 1 KB = 1,000 bytes, so 480,000 B = 480 KB" },
+          { type: "tick", text: "Used decimal units correctly: 1 kB = 1,000 bytes, so 480,000 B = 480 kB (binary KiB units would use 1,024)" },
           { type: "tick", text: "(b) quantifies the effect ('doubles to 960 KB') rather than just saying 'bigger'" }
         ]
       },
@@ -709,7 +709,7 @@ const WORKED_EXAMPLES = [
         ]
       }
     ],
-    examiner_note: "'Write a function' marks map almost one-to-one onto code features: def with parameter, initialise, loop, condition, update, return. Check three traps every time: (1) boundaries — 'or higher/at least' means >=, 'more than' means >; (2) return vs print — give the examiner exactly the one asked for; (3) indentation — initialise before the loop, update inside the if, return after the loop. In the onscreen Paper 2, RUN your function with a boundary value like exactly 50 before moving on."
+    examiner_note: "'Write a function' marks map almost one-to-one onto code features: def with parameter, initialise, loop, condition, update, return. Check three traps every time: (1) boundaries — 'or higher/at least' means >=, 'more than' means >; (2) return vs print — give the examiner exactly the one asked for; (3) indentation — initialise before the loop, update inside the if, return after the loop. In the practical Paper 2, RUN your function with a boundary value like exactly 50 before moving on."
   }
 ];
 

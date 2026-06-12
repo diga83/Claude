@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   GCSE Computer Science 1CP2 — SHARED APP LOGIC (v3)
+   International GCSE Computer Science 4CP0 — SHARED APP LOGIC (v3)
    Navigation, theme, progress, search, Pomodoro timer, bookmarks, PWA
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -165,7 +165,7 @@ function renderSidebar() {
     ${navItem('progress.html', 'Progress', '↑', '#15803D', 'progress')}
     ${navItem('glossary.html', 'Glossary', 'A', '#0F766E', 'glossary')}
 
-    <h3>Paper 1 — Topics 1–5</h3>
+    <h3>Theory chapters (Paper 1)</h3>
   `;
 
   CHAPTERS.filter(c => c.paper === 1).forEach(ch => {
@@ -179,7 +179,7 @@ function renderSidebar() {
     </a>`;
   });
 
-  html += '<h3>Paper 2 — Topic 6</h3>';
+  html += '<h3>Programming (Paper 2 focus)</h3>';
   CHAPTERS.filter(c => c.paper === 2).forEach(ch => {
     const isCurrent = currentPage === 'chapter' && currentCh === ch.id;
     const isRead = state.readChapters.has(ch.id);
@@ -1027,7 +1027,7 @@ function injectTopbar() {
       <span class="brand-mark">CS</span>
       <span class="brand-text">
         <span>GCSE CS Study</span>
-        <span class="sub">Edexcel 1CP2</span>
+        <span class="sub">Edexcel 4CP0</span>
       </span>
     </a>
     <div class="search-wrap">
@@ -1056,7 +1056,7 @@ function injectFooter() {
   f.innerHTML = `
     <div class="footer-inner">
       <p class="footer-author">
-        <strong>GCSE Computer Science 1CP2 Interactive Study Book</strong> · Author: Subhashini Sumanasekara BSc (Computing)(UK), MSc (Strategic IT)(UK), B.Ed., MA (Education Management)
+        <strong>International GCSE Computer Science 4CP0 Interactive Study Book</strong> · Author: Subhashini Sumanasekara BSc (Computing)(UK), MSc (Strategic IT)(UK), B.Ed., MA (Education Management)
       </p>
       <p class="footer-disclaimer">
         This is an independent revision resource. It is not affiliated with, endorsed by, or approved by Pearson Education Ltd or Edexcel. 'Edexcel' and 'Pearson' are trademarks of Pearson Education Ltd.

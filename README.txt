@@ -1,13 +1,13 @@
-EDEXCEL GCSE (9-1) COMPUTER SCIENCE (1CP2) — INTERACTIVE STUDY BOOK
+EDEXCEL GCSE (9-1) COMPUTER SCIENCE (4CP0) — INTERACTIVE STUDY BOOK
 ====================================================================
 
 A complete offline-capable study website for the Pearson Edexcel
-GCSE (9-1) Computer Science specification (1CP2):
+GCSE (9-1) Computer Science specification (4CP0):
 
-  Paper 1 (1CP2/01) Principles of Computer Science
-    - written exam, 1h30, 75 marks, Topics 1-5  (Chapters 1-11)
-  Paper 2 (1CP2/02) Application of Computational Thinking
-    - onscreen Python exam, 2h, 75 marks, Topic 6  (Chapter 12)
+  Paper 1 (4CP0/01) Principles of Computer Science
+    - written exam, 2 hours, 80 marks, Topics 1-5  (Chapters 1-11)
+  Paper 2 (4CP0/02) Application of Computational Thinking
+    - 3-hour practical exam, 80 marks, Topic 6  (Chapter 12)
 
 GETTING STARTED
 ---------------

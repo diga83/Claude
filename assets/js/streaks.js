@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   GCSE Computer Science 1CP2 — STREAKS & DAILY GOALS
+   International GCSE Computer Science 4CP0 — STREAKS & DAILY GOALS
    Tracks daily study activity, computes streaks, awards badges
    ═══════════════════════════════════════════════════════════════════════════ */
 

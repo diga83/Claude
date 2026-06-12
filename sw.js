@@ -2,7 +2,7 @@
    Caches all site files so the app works offline once installed.
 */
 
-const CACHE_NAME = 'gcse-cs-v1';
+const CACHE_NAME = 'gcse-cs-v2';
 const ASSETS = [
   './',
   './index.html',
