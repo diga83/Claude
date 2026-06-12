@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Maps — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.mm-hero {
+  background: linear-gradient(135deg, #6D28D9 0%, #0F766E 100%);
+  color: white;
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.75rem;
+}
+.mm-hero h1 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+.mm-chip-bar {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: sticky;
+  top: calc(var(--header-h) + 8px);
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.92);
+}
+[data-theme="dark"] .mm-chip-bar { background: rgba(17,24,39,0.92); }
+
+.mm-chip {
+  padding: 0.45rem 0.9rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: all 0.15s;
+}
+.mm-chip:hover { border-color: var(--border-strong); }
+.mm-chip.active { background: var(--ch-color); color: white; border-color: var(--ch-color); font-weight: 600; }
+
+.mm-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.mm-card .header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--ch-color);
+}
+.mm-card .num {
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px;
+  background: var(--ch-color);
+  color: white;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.mm-card .title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.mm-card .subtitle {
+  font-size: 0.85rem;
+  color: var(--mid);
+  margin-top: 0.2rem;
+}
+
+.mm-svg-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--surface-2);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+.mm-svg-wrap svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  min-width: 600px;
+}
+
+.mm-tip {
+  margin-top: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: var(--amber-light);
+  border-left: 4px solid var(--amber);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+.mm-tip strong { color: var(--amber); }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="mm-hero">
+      <span class="hero-tag">Visual revision</span>
+      <h1>🗺️ Mind Maps</h1>
+      <p>One mind map per chapter showing how every spec point connects. Use these to see the big picture, spot gaps in your understanding, and consolidate before the exam.</p>
+    </div>
+
+    <div class="mm-chip-bar" id="chipBar"></div>
+
+    <div id="mmContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const MINDMAPS = {
+  1: {
+    title: "Digital Devices",
+    subtitle: "Types · Features · Convergence · GPS",
+    tip: "Memorise the 9 features (P-P-S-U-C-M-E-E-S). For any 'choose a device' question, identify which 2-3 features matter most for that scenario.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs>
+    <filter id="sh1"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
+  </defs>
+  <!-- Central node -->
+  <circle cx="450" cy="300" r="65" fill="#064E3B" filter="url(#sh1)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="15">Digital</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="15">Devices</text>
+
+  <!-- Connections -->
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 Q 600 130 750 100"/>
+    <path d="M385 300 Q 200 300 80 300"/>
+    <path d="M515 300 Q 700 300 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 600 470 750 500"/>
+  </g>
+
+  <!-- Device Types branch -->
+  <rect x="40" y="65" width="160" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="120" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">Device Types</text>
+  <text x="120" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Mainframe · Desktop</text>
+  <text x="120" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Laptop · Phone · Tablet</text>
+
+  <!-- Features -->
+  <rect x="690" y="65" width="170" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="775" y="90" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">9 Features</text>
+  <text x="775" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Portability · Performance</text>
+  <text x="775" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Storage · UI · Connectivity</text>
+
+  <!-- Multifunctional -->
+  <rect x="10" y="265" width="160" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="90" y="290" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Multifunctional</text>
+  <text x="90" y="308" text-anchor="middle" fill="#064E3B" font-size="10">ONE device,</text>
+  <text x="90" y="322" text-anchor="middle" fill="#064E3B" font-size="10">MANY functions</text>
+
+  <!-- Convergence -->
+  <rect x="730" y="265" width="160" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="810" y="290" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Convergence</text>
+  <text x="810" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Different types</text>
+  <text x="810" y="322" text-anchor="middle" fill="#064E3B" font-size="10">becoming similar</text>
+
+  <!-- GPS -->
+  <rect x="40" y="465" width="160" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="120" y="490" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">GPS</text>
+  <text x="120" y="508" text-anchor="middle" fill="#064E3B" font-size="10">RECEIVE ONLY</text>
+  <text x="120" y="522" text-anchor="middle" fill="#064E3B" font-size="10">from 3+ satellites</text>
+
+  <!-- Scenario choice -->
+  <rect x="690" y="465" width="170" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="775" y="490" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Scenario Choice</text>
+  <text x="775" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Device + 2 features</text>
+  <text x="775" y="522" text-anchor="middle" fill="#064E3B" font-size="10">justified in context</text>
+</svg>`
+  },
+
+  2: {
+    title: "Software",
+    subtitle: "System vs Application · OS Functions · Licensing",
+    tip: "Remember the hierarchy: System software (OS + utility) sits BELOW Application software, which is what you directly use.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs>
+    <filter id="sh2"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter>
+  </defs>
+  <circle cx="450" cy="300" r="65" fill="#1D4ED8" filter="url(#sh2)"/>
+  <text x="450" y="305" text-anchor="middle" fill="white" font-weight="700" font-size="15">Software</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 350 150 150 100"/>
+    <path d="M450 235 Q 550 150 750 100"/>
+    <path d="M450 365 Q 350 450 150 500"/>
+    <path d="M450 365 Q 550 450 750 500"/>
+    <path d="M515 300 L 740 300"/>
+  </g>
+
+  <!-- System software -->
+  <rect x="50" y="50" width="220" height="90" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="160" y="75" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="14">System Software</text>
+  <text x="160" y="95" text-anchor="middle" fill="#064E3B" font-size="11">Operating System</text>
+  <text x="160" y="112" text-anchor="middle" fill="#064E3B" font-size="11">Utility (antivirus,</text>
+  <text x="160" y="126" text-anchor="middle" fill="#064E3B" font-size="11">backup, compression)</text>
+
+  <!-- Application software -->
+  <rect x="630" y="50" width="220" height="90" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="740" y="75" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="14">Application Software</text>
+  <text x="740" y="95" text-anchor="middle" fill="#064E3B" font-size="11">Word · Excel · Browser</text>
+  <text x="740" y="112" text-anchor="middle" fill="#064E3B" font-size="11">Games · Photo editor</text>
+  <text x="740" y="126" text-anchor="middle" fill="#064E3B" font-size="11">What user interacts with</text>
+
+  <!-- OS functions -->
+  <rect x="50" y="460" width="220" height="100" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="160" y="485" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">5 OS Functions</text>
+  <text x="160" y="503" text-anchor="middle" fill="#064E3B" font-size="10">1. Manage hardware</text>
+  <text x="160" y="518" text-anchor="middle" fill="#064E3B" font-size="10">2. Memory management</text>
+  <text x="160" y="533" text-anchor="middle" fill="#064E3B" font-size="10">3. Security · 4. Resources</text>
+  <text x="160" y="548" text-anchor="middle" fill="#064E3B" font-size="10">5. Print spooling</text>
+
+  <!-- Licensing -->
+  <rect x="630" y="460" width="220" height="100" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="740" y="485" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Licensing</text>
+  <text x="740" y="503" text-anchor="middle" fill="#064E3B" font-size="11">Open Source: free,</text>
+  <text x="740" y="518" text-anchor="middle" fill="#064E3B" font-size="11">modifiable (Linux)</text>
+  <text x="740" y="535" text-anchor="middle" fill="#064E3B" font-size="11">Proprietary: paid,</text>
+  <text x="740" y="550" text-anchor="middle" fill="#064E3B" font-size="11">closed (Windows)</text>
+
+  <!-- Updates -->
+  <rect x="745" y="265" width="130" height="70" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="810" y="288" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="12">Updates</text>
+  <text x="810" y="305" text-anchor="middle" fill="#064E3B" font-size="10">Fix bugs</text>
+  <text x="810" y="318" text-anchor="middle" fill="#064E3B" font-size="10">Patch security</text>
+  <text x="810" y="331" text-anchor="middle" fill="#064E3B" font-size="10">Add features</text>
+</svg>`
+  },
+
+  3: {
+    title: "Peripherals, Storage & Capacity",
+    subtitle: "Input · Output · Storage media · Capacity units",
+    tip: "Distinguish 'storage device' (the hardware reader, e.g. DVD drive) from 'storage media' (what holds data, e.g. the DVD). Capacity uses binary units: 1 KiB = 1024 bytes.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh3"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#0F766E" filter="url(#sh3)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Peripherals</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">&amp; Storage</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 Q 600 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="170" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="105" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">Input Devices</text>
+  <text x="105" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Keyboard · Mouse · OMR</text>
+  <text x="105" y="122" text-anchor="middle" fill="#064E3B" font-size="10">OCR · Sensor · Biometric</text>
+
+  <rect x="710" y="65" width="170" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="795" y="90" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">Output Devices</text>
+  <text x="795" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Monitor · Printer · Speaker</text>
+  <text x="795" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Plotter · Actuator</text>
+
+  <rect x="20" y="265" width="160" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="100" y="290" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Storage Types</text>
+  <text x="100" y="308" text-anchor="middle" fill="#064E3B" font-size="10">HDD · SSD · Optical</text>
+  <text x="100" y="322" text-anchor="middle" fill="#064E3B" font-size="10">Flash · Magnetic tape</text>
+
+  <rect x="720" y="265" width="160" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="800" y="290" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Capacity Units</text>
+  <text x="800" y="308" text-anchor="middle" fill="#064E3B" font-size="10">bit · byte · KiB · MiB</text>
+  <text x="800" y="322" text-anchor="middle" fill="#064E3B" font-size="10">GiB · TiB (×1024)</text>
+
+  <rect x="20" y="465" width="160" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="100" y="490" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Optical</text>
+  <text x="100" y="508" text-anchor="middle" fill="#064E3B" font-size="10">CD/DVD/Blu-ray</text>
+  <text x="100" y="522" text-anchor="middle" fill="#064E3B" font-size="10">R = once, RW = many</text>
+
+  <rect x="720" y="465" width="160" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="800" y="490" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">SSD vs HDD</text>
+  <text x="800" y="508" text-anchor="middle" fill="#064E3B" font-size="10">SSD = faster, durable</text>
+  <text x="800" y="522" text-anchor="middle" fill="#064E3B" font-size="10">HDD = cheaper per GB</text>
+</svg>`
+  },
+
+  4: {
+    title: "Memory, Processors & ICT Systems",
+    subtitle: "RAM · ROM · Flash · CPU · Fetch-Decode-Execute",
+    tip: "Volatility is the key concept. RAM forgets when power off; ROM doesn't. Flash memory is the best of both: non-volatile AND rewritable.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh4"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#6D28D9" filter="url(#sh4)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Memory &amp;</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">Processors</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 L 450 70"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="160" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="100" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">RAM</text>
+  <text x="100" y="108" text-anchor="middle" fill="#064E3B" font-size="10">VOLATILE · read/write</text>
+  <text x="100" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Running programs</text>
+
+  <rect x="370" y="40" width="160" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">ROM</text>
+  <text x="450" y="83" text-anchor="middle" fill="#064E3B" font-size="10">NON-volatile · read only</text>
+  <text x="450" y="97" text-anchor="middle" fill="#064E3B" font-size="10">BIOS / boot code</text>
+
+  <rect x="720" y="65" width="160" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="800" y="90" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Flash Memory</text>
+  <text x="800" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Non-volatile · rewritable</text>
+  <text x="800" y="122" text-anchor="middle" fill="#064E3B" font-size="10">SSD · USB · SD card</text>
+
+  <rect x="20" y="265" width="160" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="100" y="290" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">CPU</text>
+  <text x="100" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Brain · processes</text>
+  <text x="100" y="322" text-anchor="middle" fill="#064E3B" font-size="10">instructions</text>
+
+  <rect x="720" y="265" width="160" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="800" y="290" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">CPU Speed Factors</text>
+  <text x="800" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Clock (GHz) · Cores</text>
+  <text x="800" y="322" text-anchor="middle" fill="#064E3B" font-size="10">Cache · RAM size</text>
+
+  <rect x="20" y="465" width="160" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="100" y="490" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Fetch-Decode-</text>
+  <text x="100" y="503" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Execute</text>
+  <text x="100" y="520" text-anchor="middle" fill="#064E3B" font-size="10">Fetch → Decode →</text>
+  <text x="100" y="534" text-anchor="middle" fill="#064E3B" font-size="10">Execute → Store</text>
+
+  <rect x="720" y="465" width="160" height="65" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="2"/>
+  <text x="800" y="490" text-anchor="middle" fill="#334155" font-weight="700" font-size="13">ICT Systems</text>
+  <text x="800" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Justify CPU + RAM</text>
+  <text x="800" y="522" text-anchor="middle" fill="#064E3B" font-size="10">+ storage in context</text>
+</svg>`
+  },
+
+  5: {
+    title: "Connectivity & Networks",
+    subtitle: "LAN/WAN/PAN · Wireless tech · Bandwidth · Components",
+    tip: "Bandwidth = capacity (Mbps, higher better). Latency = delay (ms, LOWER better). They are different — examiners love to test this distinction.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh5"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#C2410C" filter="url(#sh5)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Networks</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">&amp; Connectivity</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 L 450 70"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="160" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="100" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">LAN</text>
+  <text x="100" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Local · single site</text>
+  <text x="100" y="122" text-anchor="middle" fill="#064E3B" font-size="10">e.g. school</text>
+
+  <rect x="370" y="40" width="160" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">WAN</text>
+  <text x="450" y="83" text-anchor="middle" fill="#064E3B" font-size="10">Wide · multi-site</text>
+  <text x="450" y="97" text-anchor="middle" fill="#064E3B" font-size="10">e.g. internet</text>
+
+  <rect x="720" y="65" width="160" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="800" y="90" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">PAN</text>
+  <text x="800" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Personal · 1 user</text>
+  <text x="800" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Bluetooth headphones</text>
+
+  <rect x="20" y="265" width="160" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="100" y="290" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Wireless Tech</text>
+  <text x="100" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Wi-Fi · Bluetooth</text>
+  <text x="100" y="322" text-anchor="middle" fill="#064E3B" font-size="10">NFC · 4G/5G · IR</text>
+
+  <rect x="720" y="265" width="160" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="800" y="290" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Bandwidth vs</text>
+  <text x="800" y="303" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Latency</text>
+  <text x="800" y="319" text-anchor="middle" fill="#064E3B" font-size="10">BW = Mbps (higher better)</text>
+  <text x="800" y="332" text-anchor="middle" fill="#064E3B" font-size="10">Latency = ms (lower better)</text>
+
+  <rect x="20" y="465" width="160" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="100" y="490" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Components</text>
+  <text x="100" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Router · Switch · WAP</text>
+  <text x="100" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Hub · Modem</text>
+
+  <rect x="720" y="465" width="160" height="65" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="2"/>
+  <text x="800" y="490" text-anchor="middle" fill="#334155" font-weight="700" font-size="13">Broadband</text>
+  <text x="800" y="508" text-anchor="middle" fill="#064E3B" font-size="10">ADSL · Cable</text>
+  <text x="800" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Fibre · Mobile (4G/5G)</text>
+</svg>`
+  },
+
+  6: {
+    title: "Network Benefits & Security",
+    subtitle: "P2P vs Client-Server · Threats · Security methods",
+    tip: "Pharming (silent DNS attack) and Phishing (user mistake) get confused often. Pharming = NO user mistake needed.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh6"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#B91C1C" filter="url(#sh6)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Network</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">Security</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="170" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="105" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">Client-Server</text>
+  <text x="105" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Dedicated server</text>
+  <text x="105" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Central admin/backup</text>
+
+  <rect x="710" y="65" width="170" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="795" y="90" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Peer-to-Peer</text>
+  <text x="795" y="108" text-anchor="middle" fill="#064E3B" font-size="10">No dedicated server</text>
+  <text x="795" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Cheap, small networks</text>
+
+  <rect x="20" y="265" width="170" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="105" y="290" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Threats</text>
+  <text x="105" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Malware · Phishing</text>
+  <text x="105" y="322" text-anchor="middle" fill="#064E3B" font-size="10">Pharming · DoS · Hacking</text>
+
+  <rect x="710" y="265" width="170" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="795" y="290" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Security Methods</text>
+  <text x="795" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Firewall · Encryption</text>
+  <text x="795" y="322" text-anchor="middle" fill="#064E3B" font-size="10">MFA · Biometrics · VPN</text>
+
+  <rect x="20" y="465" width="170" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="105" y="490" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">Server Types</text>
+  <text x="105" y="508" text-anchor="middle" fill="#064E3B" font-size="10">File · Print · Web</text>
+  <text x="105" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Email · Auth</text>
+
+  <rect x="710" y="465" width="170" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="795" y="490" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Wi-Fi Security</text>
+  <text x="795" y="508" text-anchor="middle" fill="#064E3B" font-size="10">WPA2/WPA3 (strong)</text>
+  <text x="795" y="522" text-anchor="middle" fill="#064E3B" font-size="10">WEP = broken</text>
+</svg>`
+  },
+
+  7: {
+    title: "Operating Online",
+    subtitle: "Risks · Security · Impact · Law · Health",
+    tip: "Always read carefully whether a 'discuss WFH' question is for the individual OR the employer — answer requirements differ.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh7"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#15803D" filter="url(#sh7)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Operating</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">Online</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="170" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="105" y="90" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Online Risks</text>
+  <text x="105" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Phishing · Pharming</text>
+  <text x="105" y="122" text-anchor="middle" fill="#064E3B" font-size="10">ID theft · Bullying</text>
+
+  <rect x="710" y="65" width="170" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="795" y="90" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Security Methods</text>
+  <text x="795" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Strong passwords</text>
+  <text x="795" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Anti-malware · MFA</text>
+
+  <rect x="20" y="265" width="170" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="105" y="290" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">WFH Impact</text>
+  <text x="105" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Individual: commute,</text>
+  <text x="105" y="322" text-anchor="middle" fill="#064E3B" font-size="10">isolation · Employer: ↓cost</text>
+
+  <rect x="710" y="265" width="170" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="795" y="290" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">Digital Divide</text>
+  <text x="795" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Gap: access vs no access</text>
+  <text x="795" y="322" text-anchor="middle" fill="#064E3B" font-size="10">to internet/devices</text>
+
+  <rect x="20" y="465" width="170" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="105" y="490" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">GDPR / DPA</text>
+  <text x="105" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Right to access</text>
+  <text x="105" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Right to erasure</text>
+
+  <rect x="710" y="465" width="170" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="795" y="490" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Health Risks</text>
+  <text x="795" y="508" text-anchor="middle" fill="#064E3B" font-size="10">RSI · Eye strain</text>
+  <text x="795" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Back pain · Stress</text>
+</svg>`
+  },
+
+  8: {
+    title: "Online Communities & Information",
+    subtitle: "Community types · Safety · CRAAB · Copyright",
+    tip: "Memorise CRAAB: Currency, Relevance, Authority, Accuracy, Bias. This is the gold standard framework for evaluating online sources.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh8"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#3730A3" filter="url(#sh8)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Online</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">Communities</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="170" height="65" rx="10" fill="#E0E7FF" stroke="#3730A3" stroke-width="2"/>
+  <text x="105" y="90" text-anchor="middle" fill="#3730A3" font-weight="700" font-size="13">Community Types</text>
+  <text x="105" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Social · Gaming · VLE</text>
+  <text x="105" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Wikis · Blogs · Forums</text>
+
+  <rect x="710" y="65" width="170" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="795" y="90" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Online Safety</text>
+  <text x="795" y="108" text-anchor="middle" fill="#064E3B" font-size="10">No personal info</text>
+  <text x="795" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Strong passwords</text>
+
+  <rect x="20" y="265" width="170" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="105" y="290" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">AUP</text>
+  <text x="105" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Acceptable Use Policy</text>
+  <text x="105" y="322" text-anchor="middle" fill="#064E3B" font-size="10">Behaviour rules</text>
+
+  <rect x="710" y="265" width="170" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="795" y="285" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">CRAAB</text>
+  <text x="795" y="302" text-anchor="middle" fill="#064E3B" font-size="9">Currency · Relevance</text>
+  <text x="795" y="315" text-anchor="middle" fill="#064E3B" font-size="9">Authority · Accuracy</text>
+  <text x="795" y="328" text-anchor="middle" fill="#064E3B" font-size="9">Bias</text>
+
+  <rect x="20" y="465" width="170" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="105" y="490" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Copyright</text>
+  <text x="105" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Auto on creation</text>
+  <text x="105" y="522" text-anchor="middle" fill="#064E3B" font-size="10">~70 yrs after death</text>
+
+  <rect x="710" y="465" width="170" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="795" y="490" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">Plagiarism</text>
+  <text x="795" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Copy = plagiarism</text>
+  <text x="795" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Paraphrase + cite</text>
+</svg>`
+  },
+
+  9: {
+    title: "Online Goods, Services & Cloud",
+    subtitle: "Services · Cookies · Targeting · Cloud (SaaS/PaaS/IaaS)",
+    tip: "Memorise the SaaS/PaaS/IaaS distinction — and a real example for each (Google Docs/Heroku/AWS EC2).",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh9"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#334155" filter="url(#sh9)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Online Goods</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">&amp; Cloud</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="170" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="105" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">Online Services</text>
+  <text x="105" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Shopping · Banking</text>
+  <text x="105" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Booking · News · Edu</text>
+
+  <rect x="710" y="65" width="170" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="795" y="90" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Cookies</text>
+  <text x="795" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Session · Persistent</text>
+  <text x="795" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Third-party</text>
+
+  <rect x="20" y="265" width="170" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="105" y="290" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Targeted Marketing</text>
+  <text x="105" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Browsing data</text>
+  <text x="105" y="322" text-anchor="middle" fill="#064E3B" font-size="10">→ personalised ads</text>
+
+  <rect x="710" y="265" width="170" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="795" y="290" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">Cloud Computing</text>
+  <text x="795" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Storage + apps over</text>
+  <text x="795" y="322" text-anchor="middle" fill="#064E3B" font-size="10">the internet</text>
+
+  <rect x="20" y="465" width="170" height="85" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="105" y="488" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Cloud Types</text>
+  <text x="105" y="505" text-anchor="middle" fill="#064E3B" font-size="10">SaaS = Google Docs</text>
+  <text x="105" y="520" text-anchor="middle" fill="#064E3B" font-size="10">PaaS = Heroku</text>
+  <text x="105" y="535" text-anchor="middle" fill="#064E3B" font-size="10">IaaS = AWS EC2</text>
+
+  <rect x="710" y="465" width="170" height="65" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="795" y="490" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Cloud vs Local</text>
+  <text x="795" y="508" text-anchor="middle" fill="#064E3B" font-size="10">Cloud: scalable, remote</text>
+  <text x="795" y="522" text-anchor="middle" fill="#064E3B" font-size="10">Local: faster, no internet</text>
+</svg>`
+  },
+
+  10: {
+    title: "Software Skills Reference",
+    subtitle: "Documents · Databases · Spreadsheets · Web · Graphics",
+    tip: "Validation checks FORMAT (rules); Verification checks CORRECTNESS (compare to source). Don't mix them up.",
+    svg: `<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <defs><filter id="sh10"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/></filter></defs>
+  <circle cx="450" cy="300" r="65" fill="#065F46" filter="url(#sh10)"/>
+  <text x="450" y="295" text-anchor="middle" fill="white" font-weight="700" font-size="14">Software</text>
+  <text x="450" y="315" text-anchor="middle" fill="white" font-weight="700" font-size="14">Skills</text>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none">
+    <path d="M450 235 Q 250 130 100 100"/>
+    <path d="M450 235 L 450 70"/>
+    <path d="M450 235 Q 650 130 800 100"/>
+    <path d="M385 300 L 80 300"/>
+    <path d="M515 300 L 820 300"/>
+    <path d="M450 365 Q 250 470 100 500"/>
+    <path d="M450 365 Q 650 470 800 500"/>
+  </g>
+
+  <rect x="20" y="65" width="160" height="65" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="100" y="90" text-anchor="middle" fill="#1D4ED8" font-weight="700" font-size="13">Documents</text>
+  <text x="100" y="108" text-anchor="middle" fill="#064E3B" font-size="10">Word processing</text>
+  <text x="100" y="122" text-anchor="middle" fill="#064E3B" font-size="10">Mail merge · Templates</text>
+
+  <rect x="370" y="40" width="160" height="65" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" fill="#6D28D9" font-weight="700" font-size="13">Databases</text>
+  <text x="450" y="83" text-anchor="middle" fill="#064E3B" font-size="10">Field · Record · Key</text>
+  <text x="450" y="97" text-anchor="middle" fill="#064E3B" font-size="10">Validation · Verification</text>
+
+  <rect x="720" y="65" width="160" height="65" rx="10" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/>
+  <text x="800" y="90" text-anchor="middle" fill="#0F766E" font-weight="700" font-size="13">Spreadsheets</text>
+  <text x="800" y="108" text-anchor="middle" fill="#064E3B" font-size="10">SUM · AVG · COUNTIF</text>
+  <text x="800" y="122" text-anchor="middle" fill="#064E3B" font-size="10">IF · VLOOKUP · $</text>
+
+  <rect x="20" y="265" width="160" height="65" rx="10" fill="#FFEDD5" stroke="#C2410C" stroke-width="2"/>
+  <text x="100" y="290" text-anchor="middle" fill="#C2410C" font-weight="700" font-size="13">Web Authoring</text>
+  <text x="100" y="308" text-anchor="middle" fill="#064E3B" font-size="10">HTML · CSS</text>
+  <text x="100" y="322" text-anchor="middle" fill="#064E3B" font-size="10">Page structure</text>
+
+  <rect x="720" y="265" width="160" height="65" rx="10" fill="#FEE2E2" stroke="#B91C1C" stroke-width="2"/>
+  <text x="800" y="290" text-anchor="middle" fill="#B91C1C" font-weight="700" font-size="13">Presentations</text>
+  <text x="800" y="308" text-anchor="middle" fill="#064E3B" font-size="10">Slides · Transitions</text>
+  <text x="800" y="322" text-anchor="middle" fill="#064E3B" font-size="10">Animations · Audio</text>
+
+  <rect x="20" y="465" width="160" height="85" rx="10" fill="#DCFCE7" stroke="#15803D" stroke-width="2"/>
+  <text x="100" y="488" text-anchor="middle" fill="#15803D" font-weight="700" font-size="13">Graphics</text>
+  <text x="100" y="505" text-anchor="middle" fill="#064E3B" font-size="10">Bitmap (JPG/PNG)</text>
+  <text x="100" y="520" text-anchor="middle" fill="#064E3B" font-size="10">Vector (SVG)</text>
+  <text x="100" y="535" text-anchor="middle" fill="#064E3B" font-size="10">Pixels vs shapes</text>
+
+  <rect x="720" y="465" width="160" height="85" rx="10" fill="#F1F5F9" stroke="#334155" stroke-width="2"/>
+  <text x="800" y="488" text-anchor="middle" fill="#334155" font-weight="700" font-size="13">Charts</text>
+  <text x="800" y="505" text-anchor="middle" fill="#064E3B" font-size="10">Pie = parts of whole</text>
+  <text x="800" y="520" text-anchor="middle" fill="#064E3B" font-size="10">Line = time trend</text>
+  <text x="800" y="535" text-anchor="middle" fill="#064E3B" font-size="10">Bar = compare</text>
+</svg>`
+  }
+};
+
+let currentMM = 1;
+
+function renderChips() {
+  document.getElementById('chipBar').innerHTML = CHAPTERS.map(ch => `
+    <div class="mm-chip ${currentMM === ch.id ? 'active' : ''}"
+         style="--ch-color:${ch.color};"
+         onclick="goToMM(${ch.id})">Ch ${ch.id}: ${ch.title.split(' ')[0]}</div>
+  `).join('');
+}
+
+function goToMM(chId) {
+  currentMM = chId;
+  renderChips();
+  renderMindMap();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.recordActivity) window.recordActivity('mindmap');
+}
+
+function renderMindMap() {
+  const mm = MINDMAPS[currentMM];
+  const ch = CHAPTERS.find(c => c.id === currentMM);
+  if (!mm) {
+    document.getElementById('mmContainer').innerHTML = '<p>Mind map not available.</p>';
+    return;
+  }
+  document.getElementById('mmContainer').innerHTML = `
+    <div class="mm-card" style="--ch-color:${ch.color};">
+      <div class="header">
+        <div class="num">${ch.id}</div>
+        <div>
+          <div class="title">${mm.title}</div>
+          <div class="subtitle">${mm.subtitle}</div>
+        </div>
+      </div>
+      <div class="mm-svg-wrap">${mm.svg}</div>
+      <div class="mm-tip"><strong>💡 Exam tip:</strong> ${mm.tip}</div>
+      <div style="display:flex; justify-content:space-between; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border); flex-wrap:wrap; gap:0.5rem;">
+        <a class="btn" href="chapters/chapter-${currentMM}.html">📖 Read full chapter</a>
+        <a class="btn btn-primary" href="mcq.html">⚡ Practice questions →</a>
+      </div>
+    </div>
+  `;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderChips();
+  renderMindMap();
+});
+</script>
+</body>
+</html>

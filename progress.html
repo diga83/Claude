@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Progress — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div id="progressContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+function scoreLabel(s) {
+  if (s >= 90) return 'Outstanding';
+  if (s >= 70) return 'Strong';
+  if (s >= 50) return 'Getting there';
+  return 'Needs review';
+}
+
+function resetProgress() {
+  if (!confirm('Reset all your progress (read chapters, quiz scores, spec checklist)? This cannot be undone.')) return;
+  state.readChapters = new Set();
+  state.quizScores = {};
+  state.specProgress = {};
+  saveState();
+  renderSidebar();
+  renderProgressPage();
+}
+
+function renderProgressPage() {
+  const el = document.getElementById('progressContainer');
+  const total = CHAPTERS.length;
+  const read = state.readChapters.size;
+  const pct = total ? Math.round((read / total) * 100) : 0;
+  const scores = Object.values(state.quizScores);
+  const avgQuiz = scores.length ? Math.round(scores.reduce((s, v) => s + v, 0) / scores.length) : null;
+  const quizzesTaken = scores.length;
+
+  // Spec checklist progress
+  let specChecked = 0, specTotal = 0;
+  CHAPTERS.forEach(ch => {
+    // Roughly 10 spec points per chapter, but uses progress data
+    const checked = (state.specProgress[ch.id] || []).length;
+    specChecked += checked;
+    // We don't track total exactly here, but assume 10 per chapter for estimate
+    specTotal += 10;
+  });
+  const specPct = specTotal ? Math.round((specChecked / specTotal) * 100) : 0;
+
+  const studentFirst = (typeof studentFirstName === 'function') ? studentFirstName() : null;
+  const pageTitle = studentFirst ? `📊 ${studentFirst}'s Progress` : '📊 My Progress';
+  el.innerHTML = `
+    <div class="hero" style="background:linear-gradient(135deg, var(--green) 0%, var(--teal) 100%);">
+      <span class="hero-tag">${studentFirst ? studentFirst + "'s study journey" : 'Your study journey'}</span>
+      <h1 style="font-size: clamp(1.8rem, 4vw, 2.6rem);">${pageTitle}</h1>
+      <p>Track what you've read, your quiz scores, and your spec checklist progress.</p>
+    </div>
+
+    <div class="progress-grid">
+      <div class="progress-stat">
+        <div class="ps-label">Chapters read</div>
+        <div class="ps-value">${read} / ${total}</div>
+        <div class="ps-sub">${pct}% complete</div>
+        <div class="progress-bar" style="margin-top:0.6rem;"><div class="progress-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Quizzes taken</div>
+        <div class="ps-value">${quizzesTaken}</div>
+        <div class="ps-sub">${quizzesTaken === 0 ? 'No quizzes yet' : `${total - quizzesTaken} chapters not yet quizzed`}</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Avg quiz score</div>
+        <div class="ps-value">${avgQuiz !== null ? avgQuiz + '%' : '—'}</div>
+        <div class="ps-sub">${avgQuiz !== null ? scoreLabel(avgQuiz) : 'Take a quiz to see scores'}</div>
+      </div>
+      <div class="progress-stat">
+        <div class="ps-label">Spec points ticked</div>
+        <div class="ps-value">${specChecked}</div>
+        <div class="ps-sub">~${specPct}% of spec covered</div>
+        <div class="progress-bar" style="margin-top:0.6rem;"><div class="progress-fill" style="width:${specPct}%; background:linear-gradient(90deg, var(--green), var(--teal));"></div></div>
+      </div>
+    </div>
+
+    <div class="chapter-progress-list">
+      <h3>Chapter by chapter</h3>
+      ${CHAPTERS.map(ch => {
+        const isRead = state.readChapters.has(ch.id);
+        const qs = state.quizScores[ch.id];
+        const specs = (state.specProgress[ch.id] || []).length;
+        return `
+          <div class="cp-item">
+            <div class="cp-num" style="background:${ch.colorLight}; color:${ch.color};">${ch.id}</div>
+            <div class="cp-info">
+              <div class="cp-title"><a href="chapters/${ch.file}" style="color:inherit; text-decoration:none;">${ch.title}</a></div>
+              <div class="cp-meta">Paper ${ch.paper} · Spec ${ch.spec}${qs !== undefined ? ' · Quiz: ' + qs + '%' : ''}${specs ? ' · ' + specs + ' spec points ticked' : ''}</div>
+            </div>
+            <div class="cp-status ${isRead ? 'read' : 'unread'}">${isRead ? '✓ Read' : '○ Not read'}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+
+    ${renderHeatmap()}
+    ${renderPredictedGrade()}
+
+    <div class="progress-reset">
+      <button class="btn" onclick="resetProgress()" style="border-color:var(--red); color:var(--red);">↻ Reset all progress</button>
+      <button class="btn" onclick="exportAllData()" style="margin-left:0.5rem;">⤓ Export my data</button>
+    </div>
+  `;
+}
+
+function renderHeatmap() {
+  // Build per-chapter mastery score
+  // Mastery = combination of: read (40%) + quiz score (30%) + MCQ correct rate from wrong-answer log (30%)
+  let wrongs = [];
+  try { wrongs = JSON.parse(localStorage.getItem('gcse_cs_wrong_mcqs_v1') || '[]'); } catch(e) {}
+  const wrongFingerprints = new Set(wrongs);
+
+  // For each chapter, count MCQs and which are in the wrong set
+  const chapterStats = CHAPTERS.map(ch => {
+    const mcqs = typeof MCQ_BANK !== 'undefined' ? MCQ_BANK.filter(q => q.ch === ch.id) : [];
+    const wrongCount = mcqs.filter(q => wrongFingerprints.has((q.q || '').slice(0, 80))).length;
+    const totalMCQs = mcqs.length;
+    const correctRate = totalMCQs > 0 ? ((totalMCQs - wrongCount) / totalMCQs) * 100 : null;
+
+    const readPts = state.readChapters.has(ch.id) ? 40 : 0;
+    const quizPts = state.quizScores[ch.id] !== undefined ? (state.quizScores[ch.id] / 100) * 30 : 0;
+    const mcqPts = correctRate !== null ? (correctRate / 100) * 30 : 0;
+    const mastery = Math.round(readPts + quizPts + mcqPts);
+
+    let status, color;
+    if (mastery >= 80) { status = 'Mastered'; color = 'var(--green)'; }
+    else if (mastery >= 60) { status = 'Strong'; color = '#15803D'; }
+    else if (mastery >= 40) { status = 'Developing'; color = 'var(--amber)'; }
+    else if (mastery > 0)   { status = 'Started'; color = '#DC2626'; }
+    else                    { status = 'Not started'; color = '#94A3B8'; }
+    return { ch, mastery, status, color, wrongCount, totalMCQs };
+  });
+
+  return `
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-bottom:1.5rem;">
+      <h3 style="font-family:var(--font-display); margin-bottom:0.5rem;">🌡 Mastery heatmap</h3>
+      <p style="color:var(--text-mid); font-size:0.88rem; margin-bottom:1rem;">Each chapter scored 0–100 based on whether you've read it (40%), quiz score (30%), and MCQ accuracy (30%).</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:0.6rem;">
+        ${chapterStats.map(s => `
+          <a href="chapters/${s.ch.file}" style="text-decoration:none; color:inherit; background:var(--surface-2); border-radius:8px; padding:0.85rem; border-left:4px solid ${s.color}; transition:transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+              <strong style="font-size:0.88rem;">Ch ${s.ch.id}</strong>
+              <span style="font-family:var(--font-mono); font-weight:700; color:${s.color}; font-size:1rem;">${s.mastery}</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text-mid); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:0.35rem;">${s.ch.title}</div>
+            <div style="font-size:0.7rem; font-weight:700; color:${s.color}; text-transform:uppercase; letter-spacing:0.04em;">${s.status}</div>
+            ${s.wrongCount > 0 ? `<div style="font-size:0.7rem; color:var(--red); margin-top:0.2rem;">${s.wrongCount} wrong</div>` : ''}
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderPredictedGrade() {
+  // Combine all signals into a predicted grade band
+  // Use mastery scores from heatmap logic
+  let wrongs = [];
+  try { wrongs = JSON.parse(localStorage.getItem('gcse_cs_wrong_mcqs_v1') || '[]'); } catch(e) {}
+  const wrongFingerprints = new Set(wrongs);
+  let totalMastery = 0, chaptersScored = 0;
+  CHAPTERS.forEach(ch => {
+    const mcqs = typeof MCQ_BANK !== 'undefined' ? MCQ_BANK.filter(q => q.ch === ch.id) : [];
+    const wrongCount = mcqs.filter(q => wrongFingerprints.has((q.q || '').slice(0, 80))).length;
+    const correctRate = mcqs.length > 0 ? ((mcqs.length - wrongCount) / mcqs.length) * 100 : null;
+    const readPts = state.readChapters.has(ch.id) ? 40 : 0;
+    const quizPts = state.quizScores[ch.id] !== undefined ? (state.quizScores[ch.id] / 100) * 30 : 0;
+    const mcqPts = correctRate !== null ? (correctRate / 100) * 30 : 0;
+    const mastery = readPts + quizPts + mcqPts;
+    totalMastery += mastery;
+    chaptersScored++;
+  });
+  const overall = chaptersScored ? Math.round(totalMastery / chaptersScored) : 0;
+
+  // Add exam history if available
+  let examBoost = 0, examMsg = '';
+  try {
+    const history = JSON.parse(localStorage.getItem('gcse_cs_exam_history_v1') || '[]');
+    if (history.length > 0) {
+      const recent = history.slice(-3); // average last 3
+      const avgPct = recent.reduce((s, h) => s + (h.mcqTotal ? (h.mcqScore / h.mcqTotal * 100) : 0), 0) / recent.length;
+      examBoost = (avgPct - 50) * 0.2; // ±10 modifier
+      examMsg = `Including your last ${recent.length} mock exam attempt${recent.length === 1 ? '' : 's'} (avg ${Math.round(avgPct)}%).`;
+    }
+  } catch(e) {}
+  const adjusted = Math.max(0, Math.min(100, overall + examBoost));
+
+  // Map to grade band
+  let grade, color, advice;
+  if (adjusted >= 80) { grade = '8 / 9 (A* / A**)'; color = 'var(--green)'; advice = 'Excellent — keep practising hard questions and timed papers.'; }
+  else if (adjusted >= 70) { grade = '7 (A)'; color = '#15803D'; advice = 'Strong work. Focus on weakest 2-3 chapters and exam technique.'; }
+  else if (adjusted >= 60) { grade = '6 (B)'; color = '#1D4ED8'; advice = 'Solid foundation. Push for top grades by tackling harder MCQs and timed mocks.'; }
+  else if (adjusted >= 50) { grade = '5 (C)'; color = 'var(--amber)'; advice = 'Pass-level work. Identify weakest chapters and target them.'; }
+  else if (adjusted >= 30) { grade = '3-4 (D-E)'; color = '#DC2626'; advice = 'More reading and basic practice needed. Start with chapter overviews.'; }
+  else                     { grade = '< 3 (U)'; color = '#94A3B8'; advice = 'Just getting started — read chapters and take initial quizzes.'; }
+
+  return `
+    <div style="background:linear-gradient(135deg, ${color}11, ${color}22); border:1px solid ${color}44; border-radius:var(--radius); padding:1.5rem; margin-bottom:1.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+        <div style="flex:1; min-width:200px;">
+          <h3 style="font-family:var(--font-display); margin-bottom:0.5rem;">🎯 Predicted grade band</h3>
+          <p style="color:var(--text-mid); font-size:0.88rem; margin-bottom:0.6rem;">Based on your reading, quiz scores, MCQ accuracy${examMsg ? ', and exam attempts' : ''}. Updates as you practice more.</p>
+          ${examMsg ? `<p style="font-size:0.78rem; color:var(--mid);">${examMsg}</p>` : ''}
+          <p style="font-size:0.85rem; margin-top:0.5rem;"><strong>💡 ${advice}</strong></p>
+        </div>
+        <div style="text-align:center; min-width:140px;">
+          <div style="font-family:var(--font-display); font-size:3rem; font-weight:800; color:${color}; line-height:1;">${grade.split(' ')[0]}</div>
+          <div style="font-size:0.85rem; color:var(--text-mid); margin-top:0.25rem;">${grade.replace(/^[^ ]+ /, '')}</div>
+          <div style="font-size:0.72rem; color:var(--mid); margin-top:0.5rem;">Confidence: ${chaptersScored < 5 ? 'Low' : chaptersScored < 9 ? 'Medium' : 'Higher'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function exportAllData() {
+  // Gather all user data from localStorage and bundle as a JSON download
+  const keys = ['gcse_cs_progress_v2', 'gcse_cs_streaks_v1', 'gcse_cs_bookmarks_v1',
+                'gcse_cs_notes_v1', 'gcse_cs_flashcards_srs_v1', 'gcse_cs_wrong_mcqs_v1',
+                'gcse_cs_mindmaps_v1', 'gcse_cs_profile_v1', 'gcse_cs_exam_history_v1',
+                'gcse_cs_features_hint_seen_v2', 'gcse_cs_tour_seen_v1'];
+  const data = { exportDate: new Date().toISOString(), version: 1 };
+  keys.forEach(k => {
+    try { const v = localStorage.getItem(k); if (v) data[k] = JSON.parse(v); } catch(e) {}
+  });
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const profile = data['gcse_cs_profile_v1'];
+  const name = profile?.name ? profile.name.replace(/[^a-z0-9]/gi, '_') : 'study_data';
+  a.download = `IGCSE_ICT_${name}_${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+}
+
+document.addEventListener('DOMContentLoaded', renderProgressPage);
+</script>
+</body>
+</html>

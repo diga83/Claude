@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Flashcards — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.srs-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.srs-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+}
+.srs-stat-card .v {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.srs-stat-card .k {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--mid);
+  letter-spacing: 0.04em;
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+.srs-stat-card.new .v { color: var(--blue); }
+.srs-stat-card.due .v { color: var(--amber); }
+.srs-stat-card.learning .v { color: var(--orange); }
+.srs-stat-card.mature .v { color: var(--green); }
+
+.flashcard-stage {
+  perspective: 1500px;
+  max-width: 580px;
+  margin: 1.5rem auto;
+  height: 360px;
+  position: relative;
+}
+.flashcard {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flashcard-front {
+  background: linear-gradient(135deg, #0F766E 0%, #1D4ED8 100%);
+  color: white;
+}
+.flashcard-back {
+  background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
+  color: white;
+  transform: rotateY(180deg);
+}
+.fc-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.fc-term {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.fc-def {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 480px;
+}
+.fc-chapter {
+  position: absolute;
+  bottom: 1rem;
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+.fc-hint {
+  position: absolute;
+  top: 1rem;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+}
+.fc-due-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255,255,255,0.2);
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+}
+
+.srs-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  max-width: 580px;
+  margin: 1rem auto;
+}
+.srs-btn {
+  padding: 0.85rem 0.6rem;
+  border-radius: 12px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-align: center;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  font-family: var(--font-body);
+}
+.srs-btn .interval {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.srs-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.srs-btn.again { background: var(--red); color: white; }
+.srs-btn.hard { background: var(--orange); color: white; }
+.srs-btn.good { background: var(--green); color: white; }
+.srs-btn.easy { background: #1D4ED8; color: white; }
+.srs-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.srs-flip-prompt {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 580px;
+  margin: 1rem auto;
+}
+.srs-flip-prompt .btn {
+  font-size: 1rem;
+  padding: 0.85rem 2rem;
+}
+
+.srs-config {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.srs-config h4 {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.chip {
+  padding: 0.4rem 0.8rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+.chip.active { background: var(--teal); color: white; border-color: var(--teal); }
+.chapter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.srs-empty {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 2px dashed var(--border);
+}
+.srs-empty .icon { font-size: 3rem; margin-bottom: 1rem; }
+.srs-empty h3 { font-family: var(--font-display); margin-bottom: 0.5rem; }
+
+.srs-info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.srs-info-bar .stat-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #0F766E 0%, #6D28D9 100%);">
+      <span class="hero-tag">Spaced repetition</span>
+      <h1>⌬ Smart Flashcards</h1>
+      <p>Powered by the SM-2 algorithm. Rate each card on how well you knew it — cards you struggle with come back sooner; cards you know well come back much later. This is the most efficient way to memorise vocabulary, proven by research.</p>
+    </div>
+
+    <div class="srs-stats" id="srsStats"></div>
+
+    <div class="srs-config">
+      <h4>📚 Filter by chapter</h4>
+      <div class="chapter-chips" id="srsChips"></div>
+      <div style="display:flex; gap:0.5rem; margin-top:0.8rem; flex-wrap:wrap;">
+        <button class="btn" onclick="resetSRS()" style="color:var(--red); border-color:var(--red);">↻ Reset all progress</button>
+        <button class="btn" onclick="showStudyHelp()">❓ How does this work?</button>
+      </div>
+    </div>
+
+    <div id="srsContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const SRS_STORAGE = 'gcse_cs_srs_v1';
+
+// SRS card state: { ef: easeFactor, interval: days, reps: count, due: timestamp, lapses: count }
+let srsState = {
+  cards: {}, // keyed by term
+  filterChapters: new Set(CHAPTERS.map(c => c.id)),
+  currentCard: null,
+  flipped: false,
+  sessionReviews: 0,
+  sessionStart: Date.now()
+};
+
+function loadSRS() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SRS_STORAGE) || '{}');
+    srsState.cards = saved.cards || {};
+  } catch(e) {}
+}
+
+function saveSRS() {
+  try { localStorage.setItem(SRS_STORAGE, JSON.stringify({ cards: srsState.cards })); } catch(e) {}
+}
+
+// Get or create card state for a term
+function getCardState(term) {
+  if (!srsState.cards[term]) {
+    srsState.cards[term] = {
+      ef: 2.5,         // Ease factor
+      interval: 0,     // Days until next review
+      reps: 0,         // Successful repetitions
+      due: Date.now(), // Due timestamp
+      lapses: 0,       // Times forgotten
+      isNew: true      // Never reviewed
+    };
+  }
+  return srsState.cards[term];
+}
+
+// SM-2 algorithm: rate quality 1-4 (Again, Hard, Good, Easy)
+function scheduleCard(term, quality) {
+  const c = getCardState(term);
+  const now = Date.now();
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  if (quality === 1) { // Again — forgot it
+    c.reps = 0;
+    c.lapses++;
+    c.interval = 0;
+    c.due = now + 60 * 1000; // 1 minute
+    c.ef = Math.max(1.3, c.ef - 0.2);
+  } else if (quality === 2) { // Hard
+    if (c.reps === 0) {
+      c.interval = 1; // 1 day
+    } else {
+      c.interval = Math.max(1, Math.round(c.interval * 1.2));
+    }
+    c.due = now + c.interval * oneDay;
+    c.ef = Math.max(1.3, c.ef - 0.15);
+    c.reps++;
+  } else if (quality === 3) { // Good
+    if (c.reps === 0) c.interval = 1;
+    else if (c.reps === 1) c.interval = 3;
+    else c.interval = Math.round(c.interval * c.ef);
+    c.due = now + c.interval * oneDay;
+    c.reps++;
+    // EF unchanged for "good"
+  } else if (quality === 4) { // Easy
+    if (c.reps === 0) c.interval = 4;
+    else if (c.reps === 1) c.interval = 6;
+    else c.interval = Math.round(c.interval * c.ef * 1.3);
+    c.due = now + c.interval * oneDay;
+    c.ef = Math.min(2.8, c.ef + 0.15);
+    c.reps++;
+  }
+  c.isNew = false;
+  saveSRS();
+}
+
+// What's the next interval for a quality choice (for button labels)
+function previewInterval(term, quality) {
+  const c = getCardState(term);
+  const oneDay = 24 * 60 * 60 * 1000;
+  if (quality === 1) return '1m';
+  let interval;
+  if (quality === 2) {
+    interval = c.reps === 0 ? 1 : Math.max(1, Math.round(c.interval * 1.2));
+  } else if (quality === 3) {
+    interval = c.reps === 0 ? 1 : c.reps === 1 ? 3 : Math.round(c.interval * c.ef);
+  } else { // 4
+    interval = c.reps === 0 ? 4 : c.reps === 1 ? 6 : Math.round(c.interval * c.ef * 1.3);
+  }
+  return formatInterval(interval);
+}
+
+function formatInterval(days) {
+  if (days < 1) return '<1d';
+  if (days === 1) return '1d';
+  if (days < 30) return days + 'd';
+  if (days < 365) return Math.round(days / 30) + 'mo';
+  return Math.round(days / 365) + 'y';
+}
+
+function getDueCards() {
+  const now = Date.now();
+  const pool = GLOSSARY.filter(g => srsState.filterChapters.has(g.ch));
+
+  const newCards = pool.filter(g => {
+    const c = srsState.cards[g.t];
+    return !c || c.isNew;
+  });
+
+  const dueCards = pool.filter(g => {
+    const c = srsState.cards[g.t];
+    return c && !c.isNew && c.due <= now;
+  });
+
+  // Mix: prioritise overdue, then new (up to 10 new per session)
+  return [...dueCards, ...newCards.slice(0, Math.max(10, dueCards.length))];
+}
+
+function calculateStats() {
+  const pool = GLOSSARY.filter(g => srsState.filterChapters.has(g.ch));
+  const now = Date.now();
+  let news = 0, due = 0, learning = 0, mature = 0;
+  pool.forEach(g => {
+    const c = srsState.cards[g.t];
+    if (!c || c.isNew) news++;
+    else if (c.due <= now) due++;
+    else if (c.reps < 3 || c.interval < 21) learning++;
+    else mature++;
+  });
+  return { news, due, learning, mature, total: pool.length };
+}
+
+function renderStats() {
+  const s = calculateStats();
+  document.getElementById('srsStats').innerHTML = `
+    <div class="srs-stat-card new"><div class="v">${s.news}</div><div class="k">New</div></div>
+    <div class="srs-stat-card due"><div class="v">${s.due}</div><div class="k">Due now</div></div>
+    <div class="srs-stat-card learning"><div class="v">${s.learning}</div><div class="k">Learning</div></div>
+    <div class="srs-stat-card mature"><div class="v">${s.mature}</div><div class="k">Known</div></div>
+    <div class="srs-stat-card"><div class="v">${s.total}</div><div class="k">Total cards</div></div>
+  `;
+}
+
+function renderChips() {
+  document.getElementById('srsChips').innerHTML =
+    `<div class="chip ${srsState.filterChapters.size === CHAPTERS.length ? 'active' : ''}" onclick="toggleAllSrs()">All</div>` +
+    CHAPTERS.map(ch => `
+      <div class="chip ${srsState.filterChapters.has(ch.id) ? 'active' : ''}"
+           onclick="toggleSrsChapter(${ch.id})">Ch ${ch.id}</div>
+    `).join('');
+}
+
+function toggleSrsChapter(id) {
+  if (srsState.filterChapters.has(id)) srsState.filterChapters.delete(id);
+  else srsState.filterChapters.add(id);
+  renderChips();
+  renderStats();
+  renderNextCard();
+}
+
+function toggleAllSrs() {
+  if (srsState.filterChapters.size === CHAPTERS.length) srsState.filterChapters = new Set();
+  else srsState.filterChapters = new Set(CHAPTERS.map(c => c.id));
+  renderChips();
+  renderStats();
+  renderNextCard();
+}
+
+function renderNextCard() {
+  const due = getDueCards();
+  if (due.length === 0) {
+    document.getElementById('srsContainer').innerHTML = `
+      <div class="srs-empty">
+        <div class="icon">🎉</div>
+        <h3>Nothing to review right now!</h3>
+        <p style="color:var(--text-mid); margin-bottom:1rem;">All your due cards are reviewed. Check back later — new cards will appear when their scheduled time arrives.</p>
+        <p style="font-size:0.85rem; color:var(--mid);">Sessions today: ${srsState.sessionReviews} cards reviewed</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Pick first due card (oldest due first)
+  due.sort((a, b) => {
+    const ca = srsState.cards[a.t];
+    const cb = srsState.cards[b.t];
+    const da = ca ? ca.due : 0;
+    const db = cb ? cb.due : 0;
+    return da - db;
+  });
+
+  srsState.currentCard = due[0];
+  srsState.flipped = false;
+  renderCard();
+}
+
+function renderCard() {
+  const card = srsState.currentCard;
+  if (!card) return;
+  const c = getCardState(card.t);
+  const ch = CHAPTERS.find(ch => ch.id === card.ch);
+  const due = getDueCards();
+  const isNew = !c || c.isNew;
+  const dueLabel = isNew ? 'NEW' : (c.reps === 0 ? 'Learning' : c.interval >= 21 ? 'Known' : 'Reviewing');
+
+  document.getElementById('srsContainer').innerHTML = `
+    <div class="srs-info-bar">
+      <span class="stat-mini">📚 <span>${due.length}</span> cards in this session</span>
+      <span class="stat-mini">✓ <span>${srsState.sessionReviews}</span> reviewed</span>
+    </div>
+
+    <div class="flashcard-stage">
+      <div class="flashcard ${srsState.flipped ? 'flipped' : ''}" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="fc-due-badge">${dueLabel}</div>
+          <div class="fc-hint">Tap to reveal definition</div>
+          <div class="fc-label">TERM</div>
+          <div class="fc-term">${card.t}</div>
+          <div class="fc-chapter">Chapter ${card.ch}: ${ch.title}</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="fc-hint">Now rate how well you knew it</div>
+          <div class="fc-label">DEFINITION</div>
+          <div class="fc-def">${card.d}</div>
+          <div class="fc-chapter">Chapter ${card.ch}</div>
+        </div>
+      </div>
+    </div>
+
+    ${!srsState.flipped ? `
+      <div class="srs-flip-prompt">
+        <button class="btn btn-primary" onclick="flipCard()">Reveal answer</button>
+      </div>
+    ` : `
+      <div class="srs-buttons">
+        <button class="srs-btn again" onclick="rate(1)">
+          <span>Again</span>
+          <span class="interval">${previewInterval(card.t, 1)}</span>
+        </button>
+        <button class="srs-btn hard" onclick="rate(2)">
+          <span>Hard</span>
+          <span class="interval">${previewInterval(card.t, 2)}</span>
+        </button>
+        <button class="srs-btn good" onclick="rate(3)">
+          <span>Good</span>
+          <span class="interval">${previewInterval(card.t, 3)}</span>
+        </button>
+        <button class="srs-btn easy" onclick="rate(4)">
+          <span>Easy</span>
+          <span class="interval">${previewInterval(card.t, 4)}</span>
+        </button>
+      </div>
+      <p style="text-align:center; font-size:0.78rem; color:var(--mid); margin-top:0.5rem;">
+        Keyboard: <strong>1</strong> Again · <strong>2</strong> Hard · <strong>3</strong> Good · <strong>4</strong> Easy
+      </p>
+    `}
+  `;
+}
+
+function flipCard() {
+  srsState.flipped = !srsState.flipped;
+  renderCard();
+}
+
+function rate(quality) {
+  if (!srsState.currentCard || !srsState.flipped) return;
+  scheduleCard(srsState.currentCard.t, quality);
+  srsState.sessionReviews++;
+  // Notify daily goal system if loaded
+  if (window.recordActivity) window.recordActivity('flashcard');
+  renderStats();
+  renderNextCard();
+}
+
+function resetSRS() {
+  if (!confirm('Reset all spaced repetition progress? This will return every card to "new" state.')) return;
+  srsState.cards = {};
+  saveSRS();
+  renderStats();
+  renderNextCard();
+}
+
+function showStudyHelp() {
+  alert(
+    "📚 How spaced repetition works:\n\n" +
+    "After looking at each card, rate how well you knew it:\n\n" +
+    "• AGAIN — forgot it. Comes back in 1 minute.\n" +
+    "• HARD — struggled. Comes back sooner than usual.\n" +
+    "• GOOD — knew it. Interval grows normally.\n" +
+    "• EASY — knew it instantly. Interval grows much longer.\n\n" +
+    "Cards you struggle with come back sooner; cards you know well come back days, then weeks, then months later. This is the most efficient way to memorise.\n\n" +
+    "Tip: do a short session every day rather than long sessions occasionally."
+  );
+}
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === ' ' || e.key === 'Enter') {
+    e.preventDefault();
+    if (!srsState.flipped) flipCard();
+  }
+  else if (e.key === '1' && srsState.flipped) rate(1);
+  else if (e.key === '2' && srsState.flipped) rate(2);
+  else if (e.key === '3' && srsState.flipped) rate(3);
+  else if (e.key === '4' && srsState.flipped) rate(4);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadSRS();
+  renderChips();
+  renderStats();
+  renderNextCard();
+});
+</script>
+</body>
+</html>

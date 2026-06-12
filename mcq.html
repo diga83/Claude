@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCQ Practice — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.mcq-config {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.config-row { margin-bottom: 1.5rem; }
+.config-row:last-child { margin-bottom: 0; }
+.config-row h4 {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.chapter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.chip {
+  padding: 0.45rem 0.85rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+.chip:hover { border-color: var(--border-strong); }
+.chip.active { background: var(--ch-color, var(--blue)); color: white; border-color: var(--ch-color, var(--blue)); }
+.chip.all { font-weight: 600; }
+
+.session-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.s-stat {
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+}
+.s-stat .v {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.s-stat .v.green { color: var(--green); }
+.s-stat .v.red { color: var(--red); }
+.s-stat .v.amber { color: var(--amber); }
+.s-stat .k {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mid);
+  margin-top: 0.2rem;
+}
+
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--amber-light);
+  color: var(--amber);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.session-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div id="mcqContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+let mcqSession = {
+  active: false,
+  filterChapters: new Set([1,2,3,4,5,6,7,8,9,10]),
+  filterDifficulty: 'all',
+  shuffleAnswers: true,
+  questionsAnswered: 0,
+  correct: 0,
+  incorrect: 0,
+  startTime: 0,
+  timerInterval: null,
+  currentQuestion: null,
+  answered: false,
+  recentSeen: [] // Track recent questions to avoid repeats
+};
+
+function renderConfig() {
+  const c = document.getElementById('mcqContainer');
+  c.innerHTML = `
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #B45309 0%, #C2410C 100%);">
+      <span class="hero-tag">Unlimited mode</span>
+      <h1>⚡ Unlimited MCQ Practice</h1>
+      <p>200+ multiple-choice questions across all chapters. Questions and answer options are shuffled — you can practice forever.</p>
+    </div>
+
+    <div class="mcq-config">
+      <div class="config-row">
+        <h4>📚 Chapters (click to toggle)</h4>
+        <div class="chapter-chips" id="chapterChips">
+          <div class="chip all" onclick="toggleAllChapters()">All</div>
+          ${CHAPTERS.map(ch => `
+            <div class="chip ${mcqSession.filterChapters.has(ch.id) ? 'active' : ''}"
+                 style="--ch-color: ${ch.color}"
+                 data-ch="${ch.id}"
+                 onclick="toggleChapter(${ch.id})">
+              Ch ${ch.id}: ${ch.title.split(' ').slice(0, 2).join(' ')}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="config-row">
+        <h4>🎯 Difficulty</h4>
+        <div class="chapter-chips">
+          <div class="chip ${mcqSession.filterDifficulty === 'all' ? 'active' : ''}" onclick="setDifficulty('all')">All levels</div>
+          <div class="chip ${mcqSession.filterDifficulty === 1 ? 'active' : ''}" onclick="setDifficulty(1)" style="--ch-color: #15803D;">Easy (recall)</div>
+          <div class="chip ${mcqSession.filterDifficulty === 2 ? 'active' : ''}" onclick="setDifficulty(2)" style="--ch-color: #B45309;">Medium (apply)</div>
+          <div class="chip ${mcqSession.filterDifficulty === 3 ? 'active' : ''}" onclick="setDifficulty(3)" style="--ch-color: #B91C1C;">Hard (analyse)</div>
+        </div>
+      </div>
+
+      <div class="config-row">
+        <h4>⚙ Options</h4>
+        <label style="display:inline-flex; align-items:center; gap:0.5rem; cursor:pointer;">
+          <input type="checkbox" id="shuffleAns" ${mcqSession.shuffleAnswers ? 'checked' : ''} onchange="mcqSession.shuffleAnswers = this.checked;">
+          <span>Shuffle answer options</span>
+        </label>
+      </div>
+
+      <div style="text-align:center; margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="startMCQ()" style="font-size:1.05rem; padding:0.85rem 1.5rem;">
+          ▶ Start unlimited practice
+        </button>
+        <p style="font-size:0.82rem; color:var(--mid); margin-top:0.6rem;">
+          ${countAvailable()} questions available with current filters
+        </p>
+      </div>
+    </div>
+
+    <div class="mcq-config" id="reviewModeBox" style="background:linear-gradient(135deg, #FEE2E2, #FFEDD5); border-color:#FCA5A5;">
+      <h4 style="font-family:var(--font-body); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:#B91C1C; font-weight:700; margin-bottom:0.6rem;">⚠ Review your mistakes</h4>
+      <p style="font-size:0.92rem; color:var(--text); margin-bottom:1rem;">
+        You have <strong id="wrongCount">${loadWrongAnswers().length}</strong> question${loadWrongAnswers().length === 1 ? '' : 's'} you've previously got wrong. 
+        Review mode shows ONLY those questions until you answer each correctly. The single most efficient way to fix gaps in your knowledge.
+      </p>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <button class="btn" onclick="startReviewMode()" style="background:#B91C1C; color:white; border-color:#B91C1C;" ${loadWrongAnswers().length === 0 ? 'disabled' : ''}>
+          ↻ Practice my mistakes only
+        </button>
+        ${loadWrongAnswers().length > 0 ? `
+          <button class="btn" onclick="clearWrongAnswers()" style="color:var(--mid);">
+            🗑 Clear mistake list
+          </button>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function clearWrongAnswers() {
+  if (!confirm('Clear all tracked wrong answers? Your mistakes list will be reset.')) return;
+  saveWrongAnswers([]);
+  renderConfig();
+}
+
+function countAvailable() {
+  return MCQ_BANK.filter(q =>
+    mcqSession.filterChapters.has(q.ch) &&
+    (mcqSession.filterDifficulty === 'all' || q.d === mcqSession.filterDifficulty)
+  ).length;
+}
+
+function toggleChapter(id) {
+  if (mcqSession.filterChapters.has(id)) mcqSession.filterChapters.delete(id);
+  else mcqSession.filterChapters.add(id);
+  renderConfig();
+}
+
+function toggleAllChapters() {
+  if (mcqSession.filterChapters.size === CHAPTERS.length) {
+    mcqSession.filterChapters = new Set();
+  } else {
+    mcqSession.filterChapters = new Set(CHAPTERS.map(c => c.id));
+  }
+  renderConfig();
+}
+
+function setDifficulty(d) {
+  mcqSession.filterDifficulty = d;
+  renderConfig();
+}
+
+function startMCQ() {
+  if (mcqSession.filterChapters.size === 0) {
+    alert('Please select at least one chapter.');
+    return;
+  }
+  if (countAvailable() === 0) {
+    alert('No questions match your current filters. Try different settings.');
+    return;
+  }
+  mcqSession.active = true;
+  mcqSession.questionsAnswered = 0;
+  mcqSession.correct = 0;
+  mcqSession.incorrect = 0;
+  mcqSession.recentSeen = [];
+  mcqSession.startTime = Date.now();
+  startTimer();
+  nextMCQ();
+}
+
+function startTimer() {
+  if (mcqSession.timerInterval) clearInterval(mcqSession.timerInterval);
+  mcqSession.timerInterval = setInterval(() => {
+    const el = document.getElementById('sessionTimer');
+    if (el) {
+      const elapsed = Math.floor((Date.now() - mcqSession.startTime) / 1000);
+      const m = Math.floor(elapsed / 60);
+      const s = elapsed % 60;
+      el.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+    }
+  }, 1000);
+}
+
+function endSession() {
+  if (mcqSession.timerInterval) clearInterval(mcqSession.timerInterval);
+  const elapsed = Math.floor((Date.now() - mcqSession.startTime) / 1000);
+  const m = Math.floor(elapsed / 60);
+  const s = elapsed % 60;
+  const total = mcqSession.questionsAnswered;
+  const pct = total ? Math.round((mcqSession.correct / total) * 100) : 0;
+
+  let msg, sub;
+  if (pct >= 90) { msg = '🌟 Outstanding!'; sub = "You're exam-ready on this material."; }
+  else if (pct >= 70) { msg = '✓ Strong work'; sub = 'Review explanations and keep practising.'; }
+  else if (pct >= 50) { msg = '↗ Getting there'; sub = 'Re-read chapters where you struggled.'; }
+  else { msg = '📖 Time to revise'; sub = 'Work through the chapter content carefully.'; }
+
+  document.getElementById('mcqContainer').innerHTML = `
+    <div class="quiz-result">
+      <div class="score-circle" style="--score:${pct}">
+        <div class="score-value">${pct}%</div>
+      </div>
+      <div class="score-label">${mcqSession.correct} of ${total} correct · ${m}m ${s}s</div>
+      <div class="score-msg">${msg}</div>
+      <p style="color:var(--text-mid); margin-bottom:1.5rem;">${sub}</p>
+      <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="startMCQ()">↻ Practice more</button>
+        <button class="btn" onclick="renderConfig()">⚙ Change filters</button>
+      </div>
+    </div>
+  `;
+  mcqSession.active = false;
+}
+
+function pickRandomQuestion() {
+  const pool = MCQ_BANK.filter(q =>
+    mcqSession.filterChapters.has(q.ch) &&
+    (mcqSession.filterDifficulty === 'all' || q.d === mcqSession.filterDifficulty)
+  );
+  if (pool.length === 0) return null;
+
+  // Avoid repeating the last min(10, pool.length-1) questions
+  const avoidCount = Math.min(10, pool.length - 1);
+  const recentSet = new Set(mcqSession.recentSeen.slice(-avoidCount));
+  const fresh = pool.filter(q => !recentSet.has(q));
+  const picked = (fresh.length > 0 ? fresh : pool)[Math.floor(Math.random() * (fresh.length > 0 ? fresh.length : pool.length))];
+  mcqSession.recentSeen.push(picked);
+  return picked;
+}
+
+function nextMCQ() {
+  const q = pickRandomQuestion();
+  if (!q) {
+    document.getElementById('mcqContainer').innerHTML = '<p>No questions available.</p>';
+    return;
+  }
+  mcqSession.currentQuestion = q;
+  mcqSession.answered = false;
+
+  // Shuffle answer options if enabled
+  let displayOptions = q.o.map((opt, idx) => ({ text: opt, originalIdx: idx }));
+  if (mcqSession.shuffleAnswers) {
+    for (let i = displayOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [displayOptions[i], displayOptions[j]] = [displayOptions[j], displayOptions[i]];
+    }
+  }
+  mcqSession.currentDisplayOptions = displayOptions;
+
+  const ch = CHAPTERS.find(c => c.id === q.ch);
+  const diffLabel = ['', 'Easy', 'Medium', 'Hard'][q.d];
+  const diffColor = ['', '#15803D', '#B45309', '#B91C1C'][q.d];
+
+  document.getElementById('mcqContainer').innerHTML = `
+    <div class="session-bar">
+      <div class="session-stats" style="margin:0; flex:1;">
+        <div class="s-stat"><div class="v">${mcqSession.questionsAnswered + 1}</div><div class="k">Question</div></div>
+        <div class="s-stat"><div class="v green">${mcqSession.correct}</div><div class="k">Correct</div></div>
+        <div class="s-stat"><div class="v red">${mcqSession.incorrect}</div><div class="k">Wrong</div></div>
+        <div class="s-stat"><div class="v amber" id="sessionTimer">0:00</div><div class="k">Time</div></div>
+      </div>
+      <button class="btn" onclick="endSession()" style="white-space:nowrap;">⏹ End session</button>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-meta">
+        <span><strong style="color:${ch.color};">Ch ${q.ch}:</strong> ${ch.title}</span>
+        <span style="background:${diffColor}20; color:${diffColor}; padding:0.2rem 0.6rem; border-radius:100px; font-weight:600; font-size:0.75rem;">${diffLabel}</span>
+      </div>
+      <div class="question">${q.q}</div>
+      <div class="answer-options">
+        ${displayOptions.map((opt, i) => `
+          <div class="answer-opt" onclick="answerMCQ(${i}, ${opt.originalIdx})">
+            <span class="letter">${String.fromCharCode(65 + i)}</span>
+            <span>${opt.text}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div id="mcqFeedback"></div>
+      <div class="quiz-actions">
+        <button class="btn" onclick="endSession()">⏹ End</button>
+        <button class="btn btn-primary" id="nextMcqBtn" onclick="nextMCQ()" style="display:none;">Next question →</button>
+      </div>
+    </div>
+  `;
+}
+
+function answerMCQ(displayIdx, originalIdx) {
+  if (mcqSession.answered) return;
+  mcqSession.answered = true;
+  const q = mcqSession.currentQuestion;
+  const isCorrect = originalIdx === q.a;
+  mcqSession.questionsAnswered++;
+  if (window.recordActivity) window.recordActivity('question');
+  if (isCorrect) mcqSession.correct++;
+  else mcqSession.incorrect++;
+
+  // Track wrong answers (or remove from mistakes if now correct in review mode)
+  trackWrongAnswer(q, isCorrect);
+
+  document.querySelectorAll('.answer-opt').forEach((el, i) => {
+    el.classList.add('locked');
+    const opt = mcqSession.currentDisplayOptions[i];
+    if (opt.originalIdx === q.a) el.classList.add('correct');
+    else if (i === displayIdx) el.classList.add('incorrect');
+  });
+
+  document.getElementById('mcqFeedback').innerHTML = `
+    <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}">
+      <div class="fb-title">${isCorrect ? '✓ Correct!' : '✕ Not quite'}</div>
+      <div class="fb-explain">${q.e}</div>
+    </div>
+  `;
+
+  // Update top stats
+  const correctEl = document.querySelector('.s-stat .v.green');
+  if (correctEl) correctEl.textContent = mcqSession.correct;
+  const wrongEl = document.querySelector('.s-stat .v.red');
+  if (wrongEl) wrongEl.textContent = mcqSession.incorrect;
+
+  document.getElementById('nextMcqBtn').style.display = 'inline-flex';
+}
+
+// ═══════════ WRONG ANSWER TRACKING ═══════════
+const WRONG_KEY = 'gcse_cs_wrong_mcqs_v1';
+
+function loadWrongAnswers() {
+  try { return JSON.parse(localStorage.getItem(WRONG_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveWrongAnswers(arr) {
+  try { localStorage.setItem(WRONG_KEY, JSON.stringify(arr)); } catch(e) {}
+}
+
+function questionFingerprint(q) {
+  // A stable string identifying a question (first 80 chars of question text)
+  return (q.q || '').slice(0, 80);
+}
+
+function trackWrongAnswer(q, isCorrect) {
+  const wrongs = loadWrongAnswers();
+  const fp = questionFingerprint(q);
+  const idx = wrongs.indexOf(fp);
+  if (isCorrect) {
+    // Remove from mistakes if user got it right (especially useful in review mode)
+    if (idx >= 0) {
+      wrongs.splice(idx, 1);
+      saveWrongAnswers(wrongs);
+    }
+  } else {
+    // Add to mistakes if not already there
+    if (idx === -1) {
+      wrongs.push(fp);
+      saveWrongAnswers(wrongs);
+    }
+  }
+}
+
+function getWrongQuestionsPool() {
+  const wrongs = new Set(loadWrongAnswers());
+  return MCQ_BANK.filter(q => wrongs.has(questionFingerprint(q)));
+}
+
+function startReviewMode() {
+  const pool = getWrongQuestionsPool();
+  if (pool.length === 0) {
+    alert("You don't have any wrong answers yet! Answer some questions in normal mode first.");
+    return;
+  }
+  mcqSession.questionsAnswered = 0;
+  mcqSession.correct = 0;
+  mcqSession.incorrect = 0;
+  mcqSession.recentSeen = [];
+  mcqSession.startTime = Date.now();
+  mcqSession.reviewMode = true;
+  mcqSession.reviewPool = pool;
+  startTimer();
+  nextReviewQuestion();
+}
+
+function nextReviewQuestion() {
+  // Pick from the locked pool of wrong questions (or end if exhausted)
+  const remaining = getWrongQuestionsPool();
+  if (remaining.length === 0) {
+    // User has fixed all their mistakes!
+    if (mcqSession.timerInterval) clearInterval(mcqSession.timerInterval);
+    const elapsed = Math.floor((Date.now() - mcqSession.startTime) / 1000);
+    const m = Math.floor(elapsed / 60);
+    const s = elapsed % 60;
+    document.getElementById('mcqContainer').innerHTML = `
+      <div class="quiz-result">
+        <div style="font-size:5rem; margin-bottom:1rem;">🎉</div>
+        <div class="score-msg" style="color:var(--green);">All mistakes fixed!</div>
+        <p style="color:var(--text-mid); margin: 1rem auto 1.5rem; max-width: 480px;">
+          You've correctly answered every question you previously got wrong. Time well spent — 
+          this is how real learning happens.
+        </p>
+        <p style="font-size:0.9rem; color:var(--mid); margin-bottom:1.5rem;">
+          You answered ${mcqSession.questionsAnswered} questions in ${m}m ${s}s.
+        </p>
+        <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="renderConfig()">⚙ Practice more</button>
+        </div>
+      </div>
+    `;
+    mcqSession.active = false;
+    return;
+  }
+  // Pick random from remaining mistakes
+  const q = remaining[Math.floor(Math.random() * remaining.length)];
+  mcqSession.currentQuestion = q;
+  mcqSession.answered = false;
+
+  // Shuffle answer options if enabled
+  let displayOptions = q.o.map((opt, idx) => ({ text: opt, originalIdx: idx }));
+  if (mcqSession.shuffleAnswers) {
+    for (let i = displayOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [displayOptions[i], displayOptions[j]] = [displayOptions[j], displayOptions[i]];
+    }
+  }
+  mcqSession.currentDisplayOptions = displayOptions;
+
+  const ch = CHAPTERS.find(c => c.id === q.ch);
+  const diffLabel = ['', 'Easy', 'Medium', 'Hard'][q.d];
+  const diffColor = ['', '#15803D', '#B45309', '#B91C1C'][q.d];
+
+  document.getElementById('mcqContainer').innerHTML = `
+    <div class="session-bar" style="background: linear-gradient(135deg, #FEE2E2, #FFEDD5);">
+      <div style="font-weight:600; color:#B91C1C;">⚠ Review mode — fixing your mistakes (${remaining.length} left)</div>
+      <button class="btn" onclick="endSession()" style="white-space:nowrap;">⏹ End session</button>
+    </div>
+
+    <div class="session-stats" style="margin-bottom:1rem;">
+      <div class="s-stat"><div class="v">${mcqSession.questionsAnswered + 1}</div><div class="k">Question</div></div>
+      <div class="s-stat"><div class="v green">${mcqSession.correct}</div><div class="k">Got right</div></div>
+      <div class="s-stat"><div class="v red">${mcqSession.incorrect}</div><div class="k">Still wrong</div></div>
+      <div class="s-stat"><div class="v amber" id="sessionTimer">0:00</div><div class="k">Time</div></div>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-meta">
+        <span><strong style="color:${ch.color};">Ch ${q.ch}:</strong> ${ch.title}</span>
+        <span style="background:${diffColor}20; color:${diffColor}; padding:0.2rem 0.6rem; border-radius:100px; font-weight:600; font-size:0.75rem;">${diffLabel}</span>
+      </div>
+      <div class="question">${q.q}</div>
+      <div class="answer-options">
+        ${displayOptions.map((opt, i) => `
+          <div class="answer-opt" onclick="answerReviewMCQ(${i}, ${opt.originalIdx})">
+            <span class="letter">${String.fromCharCode(65 + i)}</span>
+            <span>${opt.text}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div id="mcqFeedback"></div>
+      <div class="quiz-actions">
+        <button class="btn" onclick="endSession()">⏹ End</button>
+        <button class="btn btn-primary" id="nextMcqBtn" onclick="nextReviewQuestion()" style="display:none;">Next →</button>
+      </div>
+    </div>
+  `;
+}
+
+function answerReviewMCQ(displayIdx, originalIdx) {
+  if (mcqSession.answered) return;
+  mcqSession.answered = true;
+  const q = mcqSession.currentQuestion;
+  const isCorrect = originalIdx === q.a;
+  mcqSession.questionsAnswered++;
+  if (window.recordActivity) window.recordActivity('question');
+  if (isCorrect) mcqSession.correct++;
+  else mcqSession.incorrect++;
+
+  // Track — this is the key: getting it right REMOVES from mistakes
+  trackWrongAnswer(q, isCorrect);
+
+  document.querySelectorAll('.answer-opt').forEach((el, i) => {
+    el.classList.add('locked');
+    const opt = mcqSession.currentDisplayOptions[i];
+    if (opt.originalIdx === q.a) el.classList.add('correct');
+    else if (i === displayIdx) el.classList.add('incorrect');
+  });
+
+  document.getElementById('mcqFeedback').innerHTML = `
+    <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}">
+      <div class="fb-title">${isCorrect ? '✓ Correct — removed from your mistakes!' : '✕ Still wrong — stays in your mistakes'}</div>
+      <div class="fb-explain">${q.e}</div>
+    </div>
+  `;
+
+  const correctEl = document.querySelector('.s-stat .v.green');
+  if (correctEl) correctEl.textContent = mcqSession.correct;
+  const wrongEl = document.querySelector('.s-stat .v.red');
+  if (wrongEl) wrongEl.textContent = mcqSession.incorrect;
+
+  document.getElementById('nextMcqBtn').style.display = 'inline-flex';
+}
+
+document.addEventListener('DOMContentLoaded', renderConfig);
+</script>
+</body>
+</html>

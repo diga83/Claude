@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Quiz — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div id="quizContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+let quizState = { active: false, chapter: null, mixed: false, qIdx: 0, score: 0, questions: [], answered: false };
+let selectedMode = 'mixed';
+
+function renderQuizPicker() {
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = `
+    <div class="quiz-hero">
+      <h1>⚡ Practice Quiz</h1>
+      <p>Test your knowledge chapter by chapter, or take a mixed quiz pulling questions from all topics.</p>
+    </div>
+
+    <div class="quiz-picker">
+      <h3>Choose your quiz</h3>
+      <div class="quiz-options">
+        <div class="qopt active" onclick="pickMode(this, 'mixed')">
+          🎲 Mixed quiz
+          <div style="font-size:0.78rem; color:var(--mid); margin-top:0.25rem;">10 random questions</div>
+        </div>
+        ${CHAPTERS.filter(c => QUIZ[c.id]).map(c => `
+          <div class="qopt" onclick="pickMode(this, ${c.id})" style="--ch-color:${c.color}">
+            <strong>Ch ${c.id}:</strong> ${c.title}
+            <div style="font-size:0.78rem; color:var(--mid); margin-top:0.25rem;">${QUIZ[c.id].length} questions</div>
+          </div>
+        `).join('')}
+      </div>
+      <button class="btn btn-primary" onclick="beginQuiz()">▶ Start quiz</button>
+    </div>
+
+    <div class="rev-section" style="margin-top:2rem;">
+      <h2>📊 Your quiz history</h2>
+      <div id="quizHistory"></div>
+    </div>
+  `;
+  renderQuizHistory();
+}
+
+function renderQuizHistory() {
+  const history = document.getElementById('quizHistory');
+  if (!history) return;
+  const taken = CHAPTERS.filter(c => state.quizScores[c.id] !== undefined);
+  if (taken.length === 0) {
+    history.innerHTML = '<p style="color:var(--mid); font-size:0.9rem;">No quizzes completed yet. Take your first quiz above!</p>';
+    return;
+  }
+  history.innerHTML = `<div class="tbl-wrap"><table class="data-table">
+    <thead><tr><th>Chapter</th><th>Score</th><th>Action</th></tr></thead>
+    <tbody>
+      ${taken.map(c => {
+        const s = state.quizScores[c.id];
+        return `<tr>
+          <td><strong>Ch ${c.id}:</strong> ${c.title}</td>
+          <td><strong style="color:${s>=70?'var(--green)':s>=50?'var(--amber)':'var(--red)'};">${s}%</strong></td>
+          <td><button class="btn" onclick="(()=>{selectedMode=${c.id}; beginQuiz();})()">Retry</button></td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+function pickMode(el, mode) {
+  document.querySelectorAll('.qopt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  selectedMode = mode;
+}
+
+function beginQuiz() {
+  let questions, isMixed = false, chId = null;
+
+  if (selectedMode === 'mixed') {
+    isMixed = true;
+    questions = [];
+    Object.entries(QUIZ).forEach(([id, qs]) => {
+      const ch = CHAPTERS.find(c => c.id === +id);
+      qs.forEach(q => questions.push({ ...q, ch: +id, chTitle: ch.title, chColor: ch.color }));
+    });
+    questions = shuffle(questions).slice(0, 10);
+  } else {
+    chId = +selectedMode;
+    const ch = CHAPTERS.find(c => c.id === chId);
+    questions = QUIZ[chId].map(q => ({ ...q, ch: chId, chTitle: ch.title, chColor: ch.color }));
+  }
+  quizState = { active: true, chapter: chId, mixed: isMixed, qIdx: 0, score: 0, questions, answered: false };
+  renderQuestion();
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function renderQuestion() {
+  const q = quizState.questions[quizState.qIdx];
+  const pct = ((quizState.qIdx + 1) / quizState.questions.length) * 100;
+  document.getElementById('quizContainer').innerHTML = `
+    <div class="quiz-card">
+      <div class="quiz-meta">
+        <span>${quizState.mixed ? 'Mixed quiz' : 'Chapter ' + q.ch + ' — ' + q.chTitle}</span>
+        <span>Question ${quizState.qIdx + 1} of ${quizState.questions.length} · Score: ${quizState.score}</span>
+      </div>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div>
+      <div class="question">${q.q}</div>
+      <div class="answer-options">
+        ${q.o.map((opt, i) => `
+          <div class="answer-opt" onclick="selectAnswer(${i})">
+            <span class="letter">${String.fromCharCode(65 + i)}</span>
+            <span>${opt}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div id="quizFeedback"></div>
+      <div class="quiz-actions">
+        <button class="btn" onclick="renderQuizPicker()">✕ End quiz</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none;">Next →</button>
+      </div>
+    </div>
+  `;
+}
+
+function selectAnswer(idx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const q = quizState.questions[quizState.qIdx];
+  const correct = q.a;
+  document.querySelectorAll('.answer-opt').forEach((el, i) => {
+    el.classList.add('locked');
+    if (i === correct) el.classList.add('correct');
+    else if (i === idx) el.classList.add('incorrect');
+  });
+  const isCorrect = idx === correct;
+  if (isCorrect) quizState.score++;
+  document.getElementById('quizFeedback').innerHTML = `
+    <div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}">
+      <div class="fb-title">${isCorrect ? '✓ Correct!' : '✕ Not quite'}</div>
+      <div class="fb-explain">${q.e}</div>
+    </div>
+  `;
+  const next = document.getElementById('nextBtn');
+  next.style.display = 'inline-flex';
+  next.textContent = quizState.qIdx + 1 >= quizState.questions.length ? 'See results →' : 'Next →';
+}
+
+function nextQuestion() {
+  quizState.qIdx++;
+  quizState.answered = false;
+  if (quizState.qIdx >= quizState.questions.length) showResult();
+  else renderQuestion();
+}
+
+function showResult() {
+  const score = quizState.score, total = quizState.questions.length;
+  const pct = Math.round((score / total) * 100);
+  if (quizState.chapter) {
+    state.quizScores[quizState.chapter] = pct;
+    saveState();
+  }
+  let msg, sub;
+  if (pct >= 90) { msg = '🌟 Outstanding!'; sub = "You're exam-ready on this material."; }
+  else if (pct >= 70) { msg = '✓ Strong work'; sub = 'Review what you missed and try again.'; }
+  else if (pct >= 50) { msg = '↗ Getting there'; sub = 'Re-read the chapter, then retake.'; }
+  else { msg = '📖 Time to revise'; sub = 'Work through the chapter carefully and try again.'; }
+
+  document.getElementById('quizContainer').innerHTML = `
+    <div class="quiz-result">
+      <div class="score-circle" style="--score:${pct}">
+        <div class="score-value">${pct}%</div>
+      </div>
+      <div class="score-label">${score} of ${total} correct</div>
+      <div class="score-msg">${msg}</div>
+      <p style="color:var(--text-mid); margin-bottom:1.5rem;">${sub}</p>
+      <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="beginQuiz()">↻ Try again</button>
+        <button class="btn" onclick="renderQuizPicker()">← Quiz picker</button>
+        ${quizState.chapter ? `<a class="btn" href="chapters/chapter-${quizState.chapter}.html">📖 Review chapter</a>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Allow ?ch=N URL param to jump straight into a chapter quiz
+  const params = new URLSearchParams(location.search);
+  const ch = params.get('ch');
+  if (ch && QUIZ[ch]) {
+    selectedMode = +ch;
+    beginQuiz();
+  } else {
+    renderQuizPicker();
+  }
+});
+</script>
+</body>
+</html>

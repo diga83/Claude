@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Map Builder — GCSE Computer Science 1CP2</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.mmb-toolbar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  position: sticky;
+  top: calc(var(--header-h) + 0.5rem);
+  z-index: 50;
+}
+.mmb-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  touch-action: none;
+}
+.mmb-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+.mmb-canvas.panning { cursor: grabbing; }
+.mmb-svg-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.mmb-node {
+  position: absolute;
+  min-width: 100px;
+  max-width: 200px;
+  padding: 0.65rem 0.95rem;
+  background: var(--surface);
+  border: 2px solid var(--blue);
+  border-radius: 12px;
+  cursor: move;
+  user-select: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--font-display);
+  color: var(--text);
+}
+.mmb-node:hover { box-shadow: var(--shadow-lg); transform: scale(1.02); }
+.mmb-node.selected {
+  border-width: 3px;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.3), var(--shadow-lg);
+}
+.mmb-node.root {
+  background: linear-gradient(135deg, #1D4ED8, #6D28D9);
+  color: white;
+  border-color: transparent;
+  font-size: 1.05rem;
+  padding: 0.85rem 1.2rem;
+}
+.mmb-node[data-color="green"] { border-color: #15803D; }
+.mmb-node[data-color="amber"] { border-color: #B45309; }
+.mmb-node[data-color="red"] { border-color: #B91C1C; }
+.mmb-node[data-color="purple"] { border-color: #6D28D9; }
+.mmb-node[data-color="teal"] { border-color: #0F766E; }
+
+.mmb-edit-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  outline: none;
+}
+
+.mmb-sidebar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-top: 1rem;
+}
+.mmb-sidebar h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+.mmb-shortcut-list {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+.mmb-shortcut-list kbd {
+  background: var(--surface-2);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.mmb-map-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.mmb-map-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mmb-map-card:hover { border-color: var(--blue); box-shadow: var(--shadow); }
+.mmb-map-card h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.mmb-map-card .meta {
+  font-size: 0.78rem;
+  color: var(--mid);
+}
+.mmb-zoom {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 0.2rem;
+}
+.mmb-zoom button {
+  width: 26px; height: 26px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 700;
+  color: var(--text);
+}
+.mmb-zoom button:hover { background: var(--surface); }
+.mmb-zoom-level {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  min-width: 50px;
+  text-align: center;
+  color: var(--text-mid);
+}
+</style>
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #6D28D9 0%, #DC2626 100%);">
+      <span class="hero-tag">Build your own mind maps</span>
+      <h1>◈ Mind Map Builder</h1>
+      <p>Create your own concept maps for any topic. Add nodes, drag to organise, connect related ideas with branches. Saved to your browser — make one per chapter or per essay topic.</p>
+    </div>
+
+    <div id="mmbContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const MMB_KEY = 'gcse_cs_mindmaps_v1';
+
+let mmbState = {
+  view: 'list', // list | edit
+  maps: [],
+  currentMap: null,
+  selectedNodeId: null,
+  draggingId: null,
+  dragOffset: { x: 0, y: 0 },
+  pan: { x: 0, y: 0 },
+  isPanning: false,
+  panStart: { x: 0, y: 0 },
+  zoom: 1
+};
+
+function loadMaps() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MMB_KEY) || '[]');
+    mmbState.maps = saved;
+  } catch(e) { mmbState.maps = []; }
+}
+
+function saveMaps() {
+  try { localStorage.setItem(MMB_KEY, JSON.stringify(mmbState.maps)); } catch(e) {}
+}
+
+function newMap(title) {
+  const id = 'map_' + Date.now();
+  const map = {
+    id,
+    title: title || 'New Mind Map',
+    created: Date.now(),
+    updated: Date.now(),
+    nodes: [
+      { id: 'n1', text: title || 'Central topic', x: 380, y: 280, color: 'root' }
+    ],
+    edges: []
+  };
+  mmbState.maps.push(map);
+  saveMaps();
+  return map;
+}
+
+function renderList() {
+  mmbState.view = 'list';
+  document.getElementById('mmbContainer').innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+      <h2 class="section-title" style="margin:0;">📚 Your mind maps</h2>
+      <button class="btn btn-primary" onclick="createNewMap()">+ New mind map</button>
+    </div>
+
+    ${mmbState.maps.length === 0 ? `
+      <div style="background:var(--surface); border:2px dashed var(--border); border-radius:var(--radius); padding:3rem 2rem; text-align:center;">
+        <div style="font-size:3rem; margin-bottom:1rem;">◈</div>
+        <h3 style="font-family:var(--font-display); margin-bottom:0.5rem;">No mind maps yet</h3>
+        <p style="color:var(--text-mid); margin-bottom:1.5rem;">Create your first mind map to organise your thoughts on any GCSE Computer Science topic.</p>
+        <button class="btn btn-primary" onclick="createNewMap()">+ Create my first mind map</button>
+      </div>
+    ` : `
+      <div class="mmb-map-list">
+        ${mmbState.maps.map(m => `
+          <div class="mmb-map-card" onclick="openMap('${m.id}')">
+            <h4>${escapeHtml(m.title)}</h4>
+            <div class="meta">${m.nodes.length} node${m.nodes.length === 1 ? '' : 's'} · Edited ${new Date(m.updated).toLocaleDateString()}</div>
+            <div style="display:flex; gap:0.4rem; margin-top:0.7rem;">
+              <button class="btn" onclick="event.stopPropagation(); openMap('${m.id}')" style="padding:0.35rem 0.7rem; font-size:0.82rem;">Open →</button>
+              <button class="btn" onclick="event.stopPropagation(); deleteMap('${m.id}')" style="padding:0.35rem 0.7rem; font-size:0.82rem; color:var(--red);">Delete</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `}
+
+    <div class="callout note" style="margin-top:1.5rem;">
+      <div class="ct-title">💡 Why use mind maps?</div>
+      <p>Mind maps work because they mirror how the brain stores information — as connected concepts, not as lists. Use them to plan an essay, revise a chapter, or break down a complex scenario. Studies show students who mind-map a topic remember it 10-15% better than those who only re-read notes.</p>
+      <p style="margin-top:0.5rem;"><strong>Try these ideas:</strong> one map per chapter, one map for each major spec topic, or one map per essay scenario to plan your answer.</p>
+    </div>
+  `;
+}
+
+function createNewMap() {
+  const title = prompt('What is this mind map about?', 'My new topic');
+  if (!title) return;
+  const map = newMap(title);
+  openMap(map.id);
+}
+
+function openMap(id) {
+  const map = mmbState.maps.find(m => m.id === id);
+  if (!map) return;
+  mmbState.currentMap = map;
+  mmbState.view = 'edit';
+  mmbState.selectedNodeId = null;
+  mmbState.pan = { x: 0, y: 0 };
+  mmbState.zoom = 1;
+  renderEditor();
+}
+
+function deleteMap(id) {
+  if (!confirm('Delete this mind map? This cannot be undone.')) return;
+  mmbState.maps = mmbState.maps.filter(m => m.id !== id);
+  saveMaps();
+  renderList();
+}
+
+function renderEditor() {
+  const map = mmbState.currentMap;
+  document.getElementById('mmbContainer').innerHTML = `
+    <div class="mmb-toolbar">
+      <button class="btn" onclick="renderList()">← Back to maps</button>
+      <input type="text" value="${escapeHtml(map.title)}" 
+             oninput="updateMapTitle(this.value)"
+             style="flex:1; min-width:140px; padding:0.5rem 0.85rem; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; font-weight:600; color:var(--text);">
+      <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="addNode()" title="Add new node (or press N)">+ Node</button>
+        <button class="btn" onclick="addChildNode()" title="Add child to selected node (or press C)" id="addChildBtn">+ Child</button>
+        <button class="btn" onclick="changeNodeColor()" title="Cycle through colors" id="colorBtn">🎨</button>
+        <button class="btn" onclick="deleteSelectedNode()" title="Delete selected node (or press Del)" id="delBtn" style="color:var(--red);">🗑</button>
+      </div>
+      <div class="mmb-zoom">
+        <button onclick="zoomOut()" title="Zoom out">−</button>
+        <span class="mmb-zoom-level" id="zoomLevel">${Math.round(mmbState.zoom * 100)}%</span>
+        <button onclick="zoomIn()" title="Zoom in">+</button>
+        <button onclick="resetView()" title="Reset view">⌂</button>
+      </div>
+    </div>
+
+    <div class="mmb-canvas-wrap" id="canvasWrap">
+      <div class="mmb-canvas" id="canvas">
+        <svg class="mmb-svg-bg" id="edges"></svg>
+        <div id="nodes"></div>
+      </div>
+    </div>
+
+    <div class="mmb-sidebar">
+      <h3>How to use</h3>
+      <div class="mmb-shortcut-list">
+        • <strong>Click</strong> a node to select it · <strong>Double-click</strong> to edit its text<br>
+        • <strong>Drag</strong> nodes to move them around · <strong>Drag empty canvas</strong> to pan<br>
+        • Click <strong>+ Child</strong> to add a connected node beneath the selected one<br>
+        • Keyboard: <kbd>N</kbd> add node · <kbd>C</kbd> add child · <kbd>Del</kbd> delete · <kbd>Esc</kbd> deselect
+      </div>
+    </div>
+  `;
+
+  renderCanvas();
+  setupCanvasEvents();
+}
+
+function updateMapTitle(t) {
+  mmbState.currentMap.title = t || 'Untitled';
+  mmbState.currentMap.updated = Date.now();
+  saveMaps();
+}
+
+function renderCanvas() {
+  const nodesContainer = document.getElementById('nodes');
+  const edgesSvg = document.getElementById('edges');
+  if (!nodesContainer || !edgesSvg) return;
+  const map = mmbState.currentMap;
+
+  // Compute transform: translate then scale
+  const t = mmbState.pan;
+  const z = mmbState.zoom;
+  const transform = `translate(${t.x}px, ${t.y}px) scale(${z})`;
+  nodesContainer.style.transform = transform;
+  nodesContainer.style.transformOrigin = '0 0';
+
+  // Render nodes
+  nodesContainer.innerHTML = map.nodes.map(n => `
+    <div class="mmb-node ${n.color === 'root' ? 'root' : ''} ${mmbState.selectedNodeId === n.id ? 'selected' : ''}"
+         data-id="${n.id}"
+         data-color="${n.color && n.color !== 'root' ? n.color : ''}"
+         style="left: ${n.x}px; top: ${n.y}px;"
+         onmousedown="onNodeMouseDown(event, '${n.id}')"
+         ontouchstart="onNodeMouseDown(event, '${n.id}')"
+         ondblclick="editNodeText('${n.id}')"
+         onclick="selectNode('${n.id}', event)">
+      ${escapeHtml(n.text)}
+    </div>
+  `).join('');
+
+  // Render edges as lines on SVG (in screen coords matching the canvas)
+  // SVG covers the whole canvas; we draw lines between transformed positions
+  const w = nodesContainer.parentElement.clientWidth;
+  const h = nodesContainer.parentElement.clientHeight;
+  edgesSvg.setAttribute('width', w);
+  edgesSvg.setAttribute('height', h);
+  edgesSvg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+  const lines = map.edges.map(e => {
+    const a = map.nodes.find(n => n.id === e.from);
+    const b = map.nodes.find(n => n.id === e.to);
+    if (!a || !b) return '';
+    // Compute center points after pan/zoom (rough estimate using node sizes)
+    const ax = (a.x + 70) * z + t.x;
+    const ay = (a.y + 22) * z + t.y;
+    const bx = (b.x + 70) * z + t.x;
+    const by = (b.y + 22) * z + t.y;
+    return `<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>`;
+  }).join('');
+  edgesSvg.innerHTML = lines;
+}
+
+function selectNode(id, event) {
+  if (event) event.stopPropagation();
+  mmbState.selectedNodeId = id;
+  renderCanvas();
+}
+
+function editNodeText(id) {
+  const map = mmbState.currentMap;
+  const node = map.nodes.find(n => n.id === id);
+  if (!node) return;
+  const newText = prompt('Edit node text:', node.text);
+  if (newText !== null && newText.trim().length > 0) {
+    node.text = newText.trim();
+    map.updated = Date.now();
+    saveMaps();
+    renderCanvas();
+  }
+}
+
+function addNode() {
+  const map = mmbState.currentMap;
+  const text = prompt('New node text:', 'Idea');
+  if (!text) return;
+  const id = 'n' + Date.now();
+  map.nodes.push({
+    id, text,
+    x: 300 + Math.random() * 200,
+    y: 200 + Math.random() * 100,
+    color: ''
+  });
+  map.updated = Date.now();
+  saveMaps();
+  mmbState.selectedNodeId = id;
+  renderCanvas();
+}
+
+function addChildNode() {
+  if (!mmbState.selectedNodeId) {
+    alert('Select a parent node first by clicking it.');
+    return;
+  }
+  const map = mmbState.currentMap;
+  const parent = map.nodes.find(n => n.id === mmbState.selectedNodeId);
+  if (!parent) return;
+  const text = prompt('Child node text:', 'Sub-idea');
+  if (!text) return;
+  const id = 'n' + Date.now();
+  // Position offset from parent
+  map.nodes.push({
+    id, text,
+    x: parent.x + 180 + Math.random() * 60 - 30,
+    y: parent.y + 60 + Math.random() * 60,
+    color: ''
+  });
+  map.edges.push({ from: parent.id, to: id });
+  map.updated = Date.now();
+  saveMaps();
+  mmbState.selectedNodeId = id;
+  renderCanvas();
+}
+
+function changeNodeColor() {
+  if (!mmbState.selectedNodeId) {
+    alert('Select a node first.');
+    return;
+  }
+  const map = mmbState.currentMap;
+  const node = map.nodes.find(n => n.id === mmbState.selectedNodeId);
+  if (!node) return;
+  const colors = ['', 'green', 'amber', 'red', 'purple', 'teal'];
+  const idx = colors.indexOf(node.color || '');
+  node.color = colors[(idx + 1) % colors.length];
+  map.updated = Date.now();
+  saveMaps();
+  renderCanvas();
+}
+
+function deleteSelectedNode() {
+  if (!mmbState.selectedNodeId) return;
+  const map = mmbState.currentMap;
+  const node = map.nodes.find(n => n.id === mmbState.selectedNodeId);
+  if (!node) return;
+  if (node.color === 'root' && map.nodes.length > 1) {
+    alert('Cannot delete the root node while other nodes exist. Delete other nodes first.');
+    return;
+  }
+  if (!confirm('Delete this node? Connected edges will also be removed.')) return;
+  map.nodes = map.nodes.filter(n => n.id !== mmbState.selectedNodeId);
+  map.edges = map.edges.filter(e => e.from !== mmbState.selectedNodeId && e.to !== mmbState.selectedNodeId);
+  map.updated = Date.now();
+  saveMaps();
+  mmbState.selectedNodeId = null;
+  renderCanvas();
+}
+
+// ───── Canvas interaction (drag, pan, zoom) ─────
+function onNodeMouseDown(e, id) {
+  e.stopPropagation();
+  const evt = e.touches ? e.touches[0] : e;
+  mmbState.draggingId = id;
+  const map = mmbState.currentMap;
+  const node = map.nodes.find(n => n.id === id);
+  if (!node) return;
+  // Compute offset between cursor and node origin (account for pan/zoom)
+  const canvas = document.getElementById('canvas');
+  const rect = canvas.getBoundingClientRect();
+  const localX = (evt.clientX - rect.left - mmbState.pan.x) / mmbState.zoom;
+  const localY = (evt.clientY - rect.top - mmbState.pan.y) / mmbState.zoom;
+  mmbState.dragOffset = { x: localX - node.x, y: localY - node.y };
+  selectNode(id);
+}
+
+function onCanvasMouseDown(e) {
+  // Only pan if click on empty area
+  if (e.target.classList.contains('mmb-node')) return;
+  const evt = e.touches ? e.touches[0] : e;
+  mmbState.isPanning = true;
+  mmbState.panStart = { x: evt.clientX - mmbState.pan.x, y: evt.clientY - mmbState.pan.y };
+  document.getElementById('canvas').classList.add('panning');
+  mmbState.selectedNodeId = null;
+  renderCanvas();
+}
+
+function onMouseMove(e) {
+  const evt = e.touches ? e.touches[0] : e;
+  if (mmbState.draggingId) {
+    e.preventDefault();
+    const canvas = document.getElementById('canvas');
+    const rect = canvas.getBoundingClientRect();
+    const localX = (evt.clientX - rect.left - mmbState.pan.x) / mmbState.zoom;
+    const localY = (evt.clientY - rect.top - mmbState.pan.y) / mmbState.zoom;
+    const node = mmbState.currentMap.nodes.find(n => n.id === mmbState.draggingId);
+    if (node) {
+      node.x = localX - mmbState.dragOffset.x;
+      node.y = localY - mmbState.dragOffset.y;
+      renderCanvas();
+    }
+  } else if (mmbState.isPanning) {
+    e.preventDefault();
+    mmbState.pan.x = evt.clientX - mmbState.panStart.x;
+    mmbState.pan.y = evt.clientY - mmbState.panStart.y;
+    renderCanvas();
+  }
+}
+
+function onMouseUp() {
+  if (mmbState.draggingId) {
+    mmbState.currentMap.updated = Date.now();
+    saveMaps();
+    mmbState.draggingId = null;
+  }
+  if (mmbState.isPanning) {
+    mmbState.isPanning = false;
+    document.getElementById('canvas')?.classList.remove('panning');
+  }
+}
+
+function setupCanvasEvents() {
+  const canvas = document.getElementById('canvas');
+  if (!canvas) return;
+  canvas.addEventListener('mousedown', onCanvasMouseDown);
+  canvas.addEventListener('touchstart', onCanvasMouseDown, { passive: false });
+  // Document-level for drag continuation outside canvas
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('touchmove', onMouseMove, { passive: false });
+  document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('touchend', onMouseUp);
+}
+
+function zoomIn() {
+  mmbState.zoom = Math.min(mmbState.zoom * 1.2, 3);
+  document.getElementById('zoomLevel').textContent = Math.round(mmbState.zoom * 100) + '%';
+  renderCanvas();
+}
+function zoomOut() {
+  mmbState.zoom = Math.max(mmbState.zoom / 1.2, 0.3);
+  document.getElementById('zoomLevel').textContent = Math.round(mmbState.zoom * 100) + '%';
+  renderCanvas();
+}
+function resetView() {
+  mmbState.zoom = 1;
+  mmbState.pan = { x: 0, y: 0 };
+  document.getElementById('zoomLevel').textContent = '100%';
+  renderCanvas();
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (mmbState.view !== 'edit') return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'n' || e.key === 'N') { e.preventDefault(); addNode(); }
+  else if (e.key === 'c' || e.key === 'C') { e.preventDefault(); addChildNode(); }
+  else if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); deleteSelectedNode(); }
+  else if (e.key === 'Escape') {
+    mmbState.selectedNodeId = null;
+    renderCanvas();
+  }
+});
+
+function escapeHtml(s) {
+  return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadMaps();
+  renderList();
+});
+</script>
+</body>
+</html>

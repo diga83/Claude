@@ -1,0 +1,26 @@
+{
+  "name": "GCSE Computer Science 1CP2 Study Book",
+  "short_name": "GCSE Computer Science",
+  "description": "Interactive study book and practice system for Edexcel GCSE Computer Science 1CP2",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#064E3B",
+  "background_color": "#F6FAF8",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "books"]
+}

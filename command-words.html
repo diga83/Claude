@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command Word Drills — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.cw-hero {
+  background: linear-gradient(135deg, #B91C1C 0%, #B45309 100%);
+  color: white;
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.75rem;
+}
+.cw-hero h1 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+.cw-reference {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.cw-table-wrap { overflow-x: auto; }
+.cw-table { width: 100%; border-collapse: collapse; }
+.cw-table th {
+  background: var(--surface-2);
+  font-weight: 700;
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  border-bottom: 2px solid var(--border);
+}
+.cw-table td {
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 0.9rem;
+}
+.cw-table .word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ch-color, var(--red));
+}
+
+.cw-drill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+.cw-drill-card .scenario {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+[data-theme="dark"] .cw-drill-card .scenario { background: rgba(96,165,250,0.1); }
+.cw-drill-card .scenario strong { color: var(--blue); }
+
+.cw-variants { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+.cw-variant {
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  transition: all 0.15s;
+}
+.cw-variant:hover { border-color: var(--border-strong); }
+.cw-variant.expanded { border-color: var(--ch-color); background: var(--surface); }
+
+.cw-variant-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+}
+.cw-variant-header .cmd-label {
+  background: var(--ch-color);
+  color: white;
+  padding: 0.25rem 0.7rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.cw-variant-header .marks {
+  margin-left: auto;
+  background: var(--amber);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+.cw-variant-question { font-size: 1rem; line-height: 1.45; flex: 1; }
+
+.cw-variant-body {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+.cw-variant.expanded .cw-variant-body { display: block; }
+
+.cw-section { margin-bottom: 1rem; }
+.cw-section:last-child { margin-bottom: 0; }
+.cw-section h5 {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--mid);
+  margin-bottom: 0.5rem;
+}
+.cw-answer {
+  background: var(--green-light);
+  border-left: 3px solid var(--green);
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-mid);
+}
+[data-theme="dark"] .cw-answer { background: rgba(34,197,94,0.1); }
+.cw-watchout {
+  background: var(--red-light);
+  border-left: 3px solid var(--red);
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: var(--text-mid);
+}
+[data-theme="dark"] .cw-watchout { background: rgba(239,68,68,0.1); }
+.cw-watchout strong { color: var(--red); }
+
+.cw-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cw-progress {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+.cw-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--mid);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cw-dot.current { background: var(--blue); color: white; border-color: var(--blue); }
+.cw-dot.viewed { background: var(--green); color: white; border-color: var(--green); }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="cw-hero">
+      <span class="hero-tag">Exam technique</span>
+      <h1>🎯 Command Word Drills</h1>
+      <p>The same scenario, asked with different command words. See how your answer must change for each one. This is where most marks are won or lost in GCSE Computer Science.</p>
+    </div>
+
+    <details class="cw-reference">
+      <summary style="cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:1.05rem;">📋 Command word reference (click to expand)</summary>
+      <div class="cw-table-wrap" style="margin-top:1rem;">
+        <table class="cw-table">
+          <thead><tr><th>Command word</th><th>What it asks for</th><th>Mark scheme</th><th>Typical marks</th></tr></thead>
+          <tbody>
+            <tr><td class="word" style="--ch-color:#1D4ED8;">State / Name / Give</td><td>One short fact</td><td>1 mark per point listed</td><td>1–2</td></tr>
+            <tr><td class="word" style="--ch-color:#1D4ED8;">Define</td><td>Precise meaning of a term</td><td>1–2 marks for accuracy</td><td>1–2</td></tr>
+            <tr><td class="word" style="--ch-color:#0F766E;">Describe</td><td>What it is + how it works</td><td>1–2 per point with detail</td><td>2–4</td></tr>
+            <tr><td class="word" style="--ch-color:#0F766E;">Identify</td><td>Pick out specific things from given info</td><td>1 mark each, no explanation needed</td><td>1–3</td></tr>
+            <tr><td class="word" style="--ch-color:#6D28D9;">Explain</td><td>Reasons WHY — use "because", "so that"</td><td>2 marks per point: feature + reason</td><td>2–6</td></tr>
+            <tr><td class="word" style="--ch-color:#6D28D9;">Compare</td><td>Similarities AND differences</td><td>1–2 per comparison point</td><td>2–6</td></tr>
+            <tr><td class="word" style="--ch-color:#B45309;">Justify</td><td>Reasons supporting a choice + link to scenario</td><td>2 marks: choice + scenario-specific reason</td><td>2–4</td></tr>
+            <tr><td class="word" style="--ch-color:#B45309;">Discuss</td><td>BOTH sides — pros and cons</td><td>One-sided answers cap at 50%</td><td>4–8</td></tr>
+            <tr><td class="word" style="--ch-color:#B91C1C;">Evaluate</td><td>Pros + cons + your conclusion</td><td>Must reach a conclusion to score top band</td><td>4–8</td></tr>
+            <tr><td class="word" style="--ch-color:#B91C1C;">Analyse</td><td>Break down + show relationships</td><td>Logical structure + technical depth</td><td>4–8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <div id="drillContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+// Each drill: a single scenario asked with multiple command words
+const DRILLS = [
+  {
+    id: 1,
+    chapter: 1,
+    color: '#064E3B',
+    scenario: "A nurse moves between hospital wards and needs to access digital patient records.",
+    variants: [
+      {
+        cmd: 'State',
+        question: 'State one digital device suitable for the nurse.',
+        marks: 1,
+        answer: 'A tablet (1)',
+        watchout: 'For "State", you ONLY need to name the device. Do NOT add reasons — they earn no marks here. One word can score full marks.'
+      },
+      {
+        cmd: 'Describe',
+        question: 'Describe one feature of a tablet that makes it useful for the nurse.',
+        marks: 2,
+        answer: 'A tablet is lightweight and portable (1) so the nurse can carry it easily between wards during a shift without it weighing them down (1).',
+        watchout: '"Describe" needs WHAT the feature is AND HOW it works/applies. Just saying "it is portable" without development scores only 1 of 2 marks.'
+      },
+      {
+        cmd: 'Explain',
+        question: 'Explain TWO reasons why a tablet is suitable for the nurse.',
+        marks: 4,
+        answer: 'Firstly, a tablet has high portability (1) — being lightweight, the nurse can carry it easily between wards without it slowing them down (1). Secondly, a tablet has a touchscreen interface (1) which allows the nurse to navigate patient records quickly even while wearing medical gloves (1).',
+        watchout: '"Explain" needs feature (1) + reason linked to scenario (1) for each point. Generic reasons (e.g. "it is easy to use") score 0 — must connect to THIS nurse in THIS hospital.'
+      },
+      {
+        cmd: 'Justify',
+        question: 'A tablet has been chosen for the nurse. Justify this choice using TWO device features.',
+        marks: 4,
+        answer: 'A tablet is justified because it is portable (1), letting the nurse carry it efficiently between wards which a desktop could not (1). It also has Wi-Fi connectivity (1), letting the nurse retrieve up-to-date patient records from the hospital network anywhere on the ward (1).',
+        watchout: '"Justify" is similar to Explain BUT must defend the choice — show WHY tablet is better than alternatives. Compare implicitly: "a desktop could not...".'
+      },
+      {
+        cmd: 'Discuss',
+        question: "Discuss the suitability of providing every nurse on a ward with a tablet device.",
+        marks: 6,
+        answer: 'Advantages: tablets are portable so nurses can update records at the bedside (1+1); touchscreens are quick to use even with medical gloves (1+1). Disadvantages: tablets can be dropped or damaged in busy wards; battery may run out during a long shift; cost of equipping every nurse may be high (1+1).',
+        watchout: '"Discuss" needs BOTH sides. A one-sided answer (all positive or all negative) is capped at 3/6 marks. Aim for a balance: 2 pros and 2 cons minimum.'
+      }
+    ]
+  },
+  {
+    id: 2,
+    chapter: 6,
+    color: '#B91C1C',
+    scenario: "A small primary school has 30 computers in a single building, used by students aged 5–11.",
+    variants: [
+      {
+        cmd: 'State',
+        question: 'State the type of network most suitable for this school.',
+        marks: 1,
+        answer: 'A LAN (1) using client-server architecture (1) — either point earns the mark.',
+        watchout: 'State asks for the NAME of the network type. No explanation needed for 1 mark.'
+      },
+      {
+        cmd: 'Describe',
+        question: 'Describe what a client-server network is.',
+        marks: 2,
+        answer: 'In a client-server network, a dedicated central server provides services such as files, login authentication, and printing (1) to multiple client computers connected to the same network (1).',
+        watchout: 'Describe = WHAT + HOW. Both halves must be present. "A server controls everything" is not enough — say WHAT the server does.'
+      },
+      {
+        cmd: 'Explain',
+        question: 'Explain TWO benefits of a client-server network for this school.',
+        marks: 4,
+        answer: 'Firstly, centralised security and login means each student has their own account (1), so teachers can control what students access and protect young children from inappropriate content (1). Secondly, all student work is stored centrally on the server (1) and backed up automatically, so a student can log in to any classroom computer and access their files (1).',
+        watchout: 'Explain needs WHY each benefit matters TO THIS SCHOOL specifically. "Better security" is generic; "young children can be protected from inappropriate content" links to the scenario.'
+      },
+      {
+        cmd: 'Compare',
+        question: 'Compare client-server and peer-to-peer networks.',
+        marks: 6,
+        answer: 'Client-server has dedicated server hardware; peer-to-peer has no dedicated server — all devices are equal (1+1). Client-server is more secure with centralised admin and access rights; peer-to-peer has weaker, distributed security (1+1). Client-server has higher upfront cost (server hardware); peer-to-peer is cheaper to set up (1+1).',
+        watchout: '"Compare" must address BOTH sides for EACH point. "Client-server is secure" alone is incomplete — must contrast with peer-to-peer. Use linking words: "whereas", "but", "by comparison".'
+      },
+      {
+        cmd: 'Evaluate',
+        question: 'Evaluate whether a client-server network is the best choice for this school.',
+        marks: 6,
+        answer: 'For: centralised security protects young children (1+1); central backups protect student work (1+1); easier IT admin (1). Against: requires server hardware = higher upfront cost (1); needs technical staff to maintain (1). Conclusion: despite higher cost, the security and management benefits make client-server the best choice for a primary school with young pupils needing protection (1).',
+        watchout: '"Evaluate" needs pros + cons + A CONCLUSION. Without a clear final judgement, the top band cannot be reached. State your verdict explicitly: "Therefore...", "Overall..."'
+      }
+    ]
+  },
+  {
+    id: 3,
+    chapter: 9,
+    color: '#334155',
+    scenario: "A small startup company with 5 employees is choosing between cloud storage (e.g. Google Drive) and a local file server for their business documents.",
+    variants: [
+      {
+        cmd: 'Name',
+        question: 'Name TWO advantages of cloud storage.',
+        marks: 2,
+        answer: 'Accessibility from any device with internet (1); automatic backups handled by the provider (1). Other valid: scalability, lower upfront cost, no need for on-premise hardware.',
+        watchout: 'Name = list. Two short points = 2 marks. Don\'t pad with explanation — wasted effort.'
+      },
+      {
+        cmd: 'Describe',
+        question: 'Describe ONE disadvantage of cloud storage for this startup.',
+        marks: 2,
+        answer: 'Cloud storage requires an internet connection to access files (1), so if the office internet fails, employees cannot work on their documents until connectivity returns (1).',
+        watchout: 'Describe needs the disadvantage AND its consequence. "Needs internet" alone = 1/2. Add the impact: "so they cannot work when internet is down".'
+      },
+      {
+        cmd: 'Explain',
+        question: 'Explain TWO reasons why cloud storage might be more suitable than a local server for a startup.',
+        marks: 4,
+        answer: 'Firstly, cloud storage has no upfront hardware cost (1) — a startup with limited capital does not have to buy or maintain server equipment (1). Secondly, cloud scales easily (1) — as the company grows from 5 to 50 employees, storage can be increased without buying more hardware (1).',
+        watchout: 'Explain = feature + reason tied to context. The phrase "a startup with limited capital" makes the reason scenario-specific — generic "cheaper" alone gets fewer marks.'
+      },
+      {
+        cmd: 'Discuss',
+        question: 'Discuss whether the startup should use cloud storage or a local server.',
+        marks: 6,
+        answer: 'Cloud advantages: lower upfront cost — important for a startup; scalable; automatic backups; access from anywhere — useful if employees work remotely (1+1+1). Cloud disadvantages: needs constant internet; ongoing subscription cost; some control given to provider; possible privacy concerns (1+1+1).',
+        watchout: 'Discuss = BOTH sides. With 6 marks aim for 3 cloud pros and 3 cloud cons. Don\'t need a conclusion (that\'s "Evaluate") but balance is essential.'
+      },
+      {
+        cmd: 'Evaluate',
+        question: 'Evaluate whether cloud storage is the best choice for the startup.',
+        marks: 6,
+        answer: 'Cloud benefits the startup: low upfront cost suits limited capital (1+1); scales as company grows; automatic backups remove IT overhead (1+1). Drawbacks: depends on internet — if office connection fails work stops; ongoing subscription adds up over time (1+1). Conclusion: cloud storage is well-suited to a 5-person startup with limited capital and changing needs — switching to a local server later remains an option if the firm grows large (1).',
+        watchout: 'Evaluate goes beyond Discuss by REACHING A CONCLUSION. Top band requires "therefore", "overall", or "on balance" — and the conclusion must follow from the evidence given.'
+      }
+    ]
+  },
+  {
+    id: 4,
+    chapter: 7,
+    color: '#15803D',
+    scenario: "An employee has just started working from home full-time after working in an office for 10 years.",
+    variants: [
+      {
+        cmd: 'State',
+        question: 'State ONE advantage of working from home for the employee.',
+        marks: 1,
+        answer: 'No commute (1) / flexible hours (1) / better work-life balance (1) — any one of these scores.',
+        watchout: 'For 1 mark just state one advantage. Adding explanation wastes time but doesn\'t lose marks.'
+      },
+      {
+        cmd: 'Describe',
+        question: 'Describe TWO disadvantages the employee may experience.',
+        marks: 4,
+        answer: 'Distractions at home — family members, household tasks, or pets may interrupt concentration (1+1). Isolation — the employee may miss the social contact and informal collaboration of being in an office with colleagues (1+1).',
+        watchout: 'Describe = name + develop. "Distractions" alone scores 1 of 2 — explain what kind and the impact.'
+      },
+      {
+        cmd: 'Explain',
+        question: 'Explain TWO health risks the employee may face working from home.',
+        marks: 4,
+        answer: 'RSI (repetitive strain injury) from long typing without proper ergonomics (1), as home setups often lack adjustable chairs and proper desk height like the office had (1). Eye strain from staring at a screen for long periods (1), worsened if home lighting is inadequate or the screen position is poor (1).',
+        watchout: 'Explain = risk + reason linked to context. The phrase "home setups often lack" links generic health risks to THIS employee\'s situation.'
+      },
+      {
+        cmd: 'Discuss',
+        question: 'Discuss whether working from home is better for the employee than working in the office.',
+        marks: 6,
+        answer: 'WFH advantages: no commute saves time and money; flexible hours improve work-life balance; can work in a comfortable environment (1+1+1). WFH disadvantages: distractions; isolation from colleagues; harder to separate work and home life; potential for longer hours; physical health risks if home setup is poor (1+1+1).',
+        watchout: 'Discuss needs balance. Spec specifically distinguishes individual vs employer perspective — read the question carefully. "For the employee" = focus on individual factors only.'
+      },
+      {
+        cmd: 'Evaluate',
+        question: 'Evaluate the impact of working from home on this employee.',
+        marks: 8,
+        answer: 'Positive impacts: time and money saved on commuting (1+1); ability to work in comfort and set own schedule (1+1); easier to balance family responsibilities (1+1). Negative impacts: isolation may affect mental health (1+1); distractions can reduce productivity (1+1); reduced career visibility may slow promotion (1+1). Conclusion: working from home benefits autonomy and time but requires the employee to actively manage isolation, distractions, and visibility. Whether it is better overall depends on their personality and situation (1+1).',
+        watchout: 'For 8 marks, expand to 6+ developed points across BOTH sides and reach a nuanced conclusion. "It depends on..." conclusions are valid for Evaluate — they show analytical thinking.'
+      }
+    ]
+  },
+  {
+    id: 5,
+    chapter: 3,
+    color: '#0F766E',
+    scenario: "A supermarket needs to choose between SSD and HDD storage for the till computers at every checkout.",
+    variants: [
+      {
+        cmd: 'Define',
+        question: 'Define what an SSD is.',
+        marks: 2,
+        answer: 'An SSD (Solid State Drive) is a storage device that uses flash memory chips with no moving parts (1) to read and write data faster and more durably than a traditional hard disk drive (1).',
+        watchout: 'Define needs the precise meaning. Include: what it is + key characteristic. "A fast drive" is incomplete.'
+      },
+      {
+        cmd: 'State',
+        question: 'State TWO differences between an SSD and an HDD.',
+        marks: 2,
+        answer: 'SSDs use flash memory; HDDs use spinning magnetic platters (1). SSDs are faster; HDDs are slower (1). Other valid: SSDs more durable; HDDs cheaper per GB.',
+        watchout: 'State = list, no explanation. Two short points = full marks. Don\'t pad.'
+      },
+      {
+        cmd: 'Compare',
+        question: 'Compare SSDs and HDDs on THREE features.',
+        marks: 6,
+        answer: 'Speed: SSDs much faster (no moving parts); HDDs slower (mechanical access) (1+1). Durability: SSDs more durable (no moving parts to break); HDDs fragile when knocked (1+1). Cost: HDDs cheaper per GB; SSDs more expensive but prices have fallen sharply (1+1).',
+        watchout: 'Compare = BOTH sides for EACH feature. "SSD is faster" is not a comparison. Use "whereas", "while", "in contrast" — every sentence should address both.'
+      },
+      {
+        cmd: 'Justify',
+        question: 'The supermarket has chosen SSDs for all till computers. Justify this choice.',
+        marks: 4,
+        answer: 'SSDs are faster than HDDs (1), so the till boots up quickly and transactions process without delay — vital for keeping checkout queues short (1). SSDs are also more durable (1), important in a busy retail environment where till computers are knocked frequently and shaken by customer scanning equipment (1).',
+        watchout: 'Justify = defend the choice in CONTEXT. Always tie reasons back to "supermarket till" — generic "faster is better" is weak. Mention queue speed, durability in retail.'
+      },
+      {
+        cmd: 'Evaluate',
+        question: 'Evaluate the decision to install SSDs in all till computers.',
+        marks: 6,
+        answer: 'For: SSDs are faster, keeping checkout queues moving — directly affects customer satisfaction (1+1); more durable in a busy retail environment (1+1); lower power use slightly reduces electricity bills across many tills (1). Against: SSDs cost more per GB than HDDs — significant when buying 50–100 tills (1); tills don\'t need huge storage capacity that HDDs offer cheaply (1). Conclusion: although SSDs have a higher unit cost, the speed and reliability gains outweigh this for a supermarket where till downtime directly loses sales (1).',
+        watchout: 'Evaluate must REACH A CONCLUSION. Top band requires this final judgement, supported by the evidence. Be specific about WHY your conclusion holds.'
+      }
+    ]
+  }
+];
+
+let currentDrillIdx = 0;
+let viewedDrills = new Set();
+
+function renderDrill() {
+  const drill = DRILLS[currentDrillIdx];
+  viewedDrills.add(currentDrillIdx);
+  if (window.recordActivity) window.recordActivity('question');
+  if (window.recordActivity) window.recordActivity('drill');
+
+  document.getElementById('drillContainer').innerHTML = `
+    <div class="cw-progress">
+      ${DRILLS.map((_, i) => `
+        <div class="cw-dot ${i === currentDrillIdx ? 'current' : viewedDrills.has(i) ? 'viewed' : ''}"
+             onclick="goToDrill(${i})">${i+1}</div>
+      `).join('')}
+    </div>
+
+    <div class="cw-drill-card" style="margin-top:1.25rem;">
+      <div style="font-size:0.78rem; color:var(--mid); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.04em; font-weight:700;">
+        Scenario ${currentDrillIdx + 1} of ${DRILLS.length} · Chapter ${drill.chapter}
+      </div>
+      <div class="scenario"><strong>Scenario:</strong> ${drill.scenario}</div>
+
+      <p style="font-size:0.9rem; color:var(--text-mid); margin-bottom:0.5rem;">
+        Below: the same scenario, asked with different command words. Click each to expand and see how the answer must change.
+      </p>
+
+      <div class="cw-variants">
+        ${drill.variants.map((v, i) => `
+          <div class="cw-variant" id="variant-${i}" style="--ch-color:${drill.color};">
+            <div class="cw-variant-header" onclick="toggleVariant(${i})">
+              <span class="cmd-label">${v.cmd}</span>
+              <span class="cw-variant-question">${v.question}</span>
+              <span class="marks">${v.marks} mark${v.marks !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="cw-variant-body">
+              <div class="cw-section">
+                <h5>✓ Model answer</h5>
+                <div class="cw-answer">${v.answer}</div>
+              </div>
+              <div class="cw-section">
+                <h5>⚠ Watch out — common mistake</h5>
+                <div class="cw-watchout">${v.watchout}</div>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="cw-nav">
+        <button class="btn" onclick="prevDrill()" ${currentDrillIdx === 0 ? 'disabled' : ''}>← Previous scenario</button>
+        <span style="color:var(--mid); font-size:0.85rem;">Scenario ${currentDrillIdx + 1} of ${DRILLS.length}</span>
+        <button class="btn btn-primary" onclick="nextDrill()" ${currentDrillIdx >= DRILLS.length - 1 ? 'disabled' : ''}>Next scenario →</button>
+      </div>
+    </div>
+  `;
+}
+
+function toggleVariant(i) {
+  const el = document.getElementById(`variant-${i}`);
+  el.classList.toggle('expanded');
+}
+
+function nextDrill() {
+  if (currentDrillIdx < DRILLS.length - 1) {
+    currentDrillIdx++;
+    renderDrill();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function prevDrill() {
+  if (currentDrillIdx > 0) {
+    currentDrillIdx--;
+    renderDrill();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function goToDrill(i) {
+  currentDrillIdx = i;
+  renderDrill();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', renderDrill);
+</script>
+</body>
+</html>

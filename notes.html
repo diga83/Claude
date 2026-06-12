@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Notes — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.notes-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.notes-chapters {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  height: fit-content;
+  position: sticky;
+  top: calc(var(--header-h) + 1rem);
+}
+.note-ch-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+.note-ch-item:hover { background: var(--surface-2); }
+.note-ch-item.active {
+  background: var(--surface-2);
+  border-left-color: var(--ch-color);
+  color: var(--text);
+  font-weight: 600;
+}
+.note-ch-num {
+  display: inline-grid;
+  place-items: center;
+  width: 24px; height: 24px;
+  background: var(--ch-light);
+  color: var(--ch-color);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+.note-ch-info { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.note-has-content { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+.notes-editor {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+}
+.notes-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.notes-editor-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.notes-textarea {
+  width: 100%;
+  min-height: 420px;
+  padding: 1.25rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  resize: vertical;
+}
+.notes-textarea:focus { outline: none; border-color: var(--blue); }
+.notes-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--mid);
+}
+.save-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+.save-indicator.saved { color: var(--green); }
+.save-indicator.saving { color: var(--amber); }
+
+@media (max-width: 900px) {
+  .notes-layout { grid-template-columns: 1fr; }
+  .notes-chapters { position: static; }
+}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #6D28D9 0%, #1D4ED8 100%);">
+      <span class="hero-tag">Your study notes</span>
+      <h1>📝 My Notes</h1>
+      <p>Take and keep notes per chapter. Everything saves automatically to your browser. Export all your notes as a single text file anytime.</p>
+    </div>
+
+    <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="exportAllNotes()">📥 Export all notes (.txt)</button>
+      <button class="btn" onclick="clearCurrentChapter()" style="color:var(--red); border-color:var(--red);">🗑 Clear this chapter</button>
+    </div>
+
+    <div class="notes-layout">
+      <aside class="notes-chapters" id="notesChapters"></aside>
+
+      <div class="notes-editor">
+        <div class="notes-editor-header">
+          <h2 id="notesEditorTitle">Select a chapter</h2>
+          <span class="save-indicator saved" id="saveIndicator">✓ Saved</span>
+        </div>
+        <textarea class="notes-textarea" id="notesTextarea"
+          placeholder="Pick a chapter from the left and start writing your notes here..."
+          oninput="onNoteInput()"></textarea>
+        <div class="notes-meta">
+          <span><span id="noteWordCount">0</span> words · <span id="noteCharCount">0</span> characters</span>
+          <span id="noteLastEdited"></span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+// NOTES_KEY is declared in app.js — don't redeclare
+let notesState = { byChapter: {}, currentCh: null, saveTimer: null };
+
+function loadNotes() {
+  try {
+    notesState.byChapter = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
+  } catch(e) { notesState.byChapter = {}; }
+}
+
+function saveNotes() {
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(notesState.byChapter)); } catch(e) {}
+}
+
+function getNote(chId) {
+  return notesState.byChapter[chId] || { text: '', edited: null };
+}
+
+function setNote(chId, text) {
+  notesState.byChapter[chId] = { text, edited: Date.now() };
+  saveNotes();
+}
+
+function renderChaptersList() {
+  document.getElementById('notesChapters').innerHTML = CHAPTERS.map(ch => {
+    const note = getNote(ch.id);
+    const hasContent = note.text && note.text.trim().length > 0;
+    const isActive = notesState.currentCh === ch.id;
+    return `
+      <div class="note-ch-item ${isActive ? 'active' : ''}"
+           style="--ch-color:${ch.color}; --ch-light:${ch.colorLight};"
+           onclick="selectChapter(${ch.id})">
+        <span class="note-ch-num">${ch.id}</span>
+        <span class="note-ch-info">${ch.title}</span>
+        ${hasContent ? '<span class="note-has-content"></span>' : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function selectChapter(chId) {
+  // Save current first
+  if (notesState.currentCh !== null) {
+    setNote(notesState.currentCh, document.getElementById('notesTextarea').value);
+  }
+  notesState.currentCh = chId;
+  const ch = CHAPTERS.find(c => c.id === chId);
+  const note = getNote(chId);
+  document.getElementById('notesEditorTitle').innerHTML = `
+    <span style="display:inline-grid; place-items:center; width:36px; height:36px; background:${ch.colorLight}; color:${ch.color}; border-radius:8px; font-family:var(--font-display); font-weight:700; font-size:0.95rem;">${chId}</span>
+    Chapter ${chId}: ${ch.title}
+  `;
+  document.getElementById('notesTextarea').value = note.text;
+  document.getElementById('notesTextarea').placeholder = `Write your notes for Chapter ${chId} (${ch.title}) here...`;
+  document.getElementById('notesTextarea').focus();
+  updateMeta();
+  renderChaptersList();
+}
+
+function onNoteInput() {
+  if (notesState.currentCh === null) return;
+  const ind = document.getElementById('saveIndicator');
+  ind.className = 'save-indicator saving';
+  ind.textContent = '◌ Saving...';
+
+  if (notesState.saveTimer) clearTimeout(notesState.saveTimer);
+  notesState.saveTimer = setTimeout(() => {
+    setNote(notesState.currentCh, document.getElementById('notesTextarea').value);
+    ind.className = 'save-indicator saved';
+    ind.textContent = '✓ Saved';
+    updateMeta();
+    renderChaptersList();
+  }, 600);
+}
+
+function updateMeta() {
+  const text = document.getElementById('notesTextarea').value;
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+  document.getElementById('noteWordCount').textContent = words;
+  document.getElementById('noteCharCount').textContent = text.length;
+  if (notesState.currentCh !== null) {
+    const note = getNote(notesState.currentCh);
+    if (note.edited) {
+      const d = new Date(note.edited);
+      document.getElementById('noteLastEdited').textContent = `Last edited: ${d.toLocaleString()}`;
+    } else {
+      document.getElementById('noteLastEdited').textContent = '';
+    }
+  }
+}
+
+function clearCurrentChapter() {
+  if (notesState.currentCh === null) return;
+  if (!confirm('Clear all notes for this chapter? This cannot be undone.')) return;
+  document.getElementById('notesTextarea').value = '';
+  setNote(notesState.currentCh, '');
+  updateMeta();
+  renderChaptersList();
+}
+
+function exportAllNotes() {
+  const studentName = (typeof studentFullName === 'function') ? studentFullName() : null;
+  const studentFirst = (typeof studentFirstName === 'function') ? studentFirstName() : null;
+  let header = `GCSE Computer Science 1CP2 — STUDY NOTES\n`;
+  if (studentName) header += `Student: ${studentName}\n`;
+  header += `Exported: ${new Date().toLocaleString()}\n${'='.repeat(60)}\n\n`;
+  let content = header;
+  let anyNotes = false;
+  CHAPTERS.forEach(ch => {
+    const note = getNote(ch.id);
+    if (note.text && note.text.trim().length > 0) {
+      anyNotes = true;
+      content += `\n${'─'.repeat(60)}\nCHAPTER ${ch.id}: ${ch.title.toUpperCase()}\n${'─'.repeat(60)}\n\n${note.text}\n\n`;
+    }
+  });
+  if (!anyNotes) {
+    alert('No notes to export yet. Write some notes first!');
+    return;
+  }
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  // Personalised filename if name available — sanitised for filesystem
+  const safeFirst = studentFirst ? studentFirst.replace(/[^a-zA-Z0-9_-]/g, '') : '';
+  const prefix = safeFirst ? `${safeFirst}_` : '';
+  a.download = `${prefix}IGCSE_ICT_Notes_${new Date().toISOString().slice(0,10)}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Save on page leave
+window.addEventListener('beforeunload', () => {
+  if (notesState.currentCh !== null) {
+    setNote(notesState.currentCh, document.getElementById('notesTextarea').value);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadNotes();
+  renderChaptersList();
+  // Auto-pick chapter 1 or from URL hash
+  const hash = window.location.hash.replace('#ch', '');
+  const chId = hash && /^\d+$/.test(hash) ? parseInt(hash, 10) : 1;
+  selectChapter(chId);
+});
+</script>
+</body>
+</html>

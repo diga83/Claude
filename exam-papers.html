@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Papers — GCSE Computer Science 1CP2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.paper-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.2s;
+}
+.paper-card:hover { box-shadow: var(--shadow); }
+.paper-icon {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--ch-color), var(--ch-color-dark));
+  color: white;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.paper-info { flex: 1; }
+.paper-info h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+.paper-info p { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 0.4rem; }
+.paper-info .meta { font-size: 0.78rem; color: var(--mid); }
+
+.exam-timer-bar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 60;
+  background: linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
+.exam-timer { display: flex; align-items: center; gap: 1.5rem; }
+.timer-block { display: flex; flex-direction: column; align-items: center; }
+.timer-block .v {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.timer-block .k {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+
+.exam-question {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1rem;
+}
+.exam-question .q-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.q-num {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ch-color, var(--blue));
+}
+.q-marks {
+  margin-left: auto;
+  background: var(--amber);
+  color: white;
+  padding: 0.2rem 0.7rem;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.q-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.exam-answer-options { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.section-divider {
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ch-color, var(--blue));
+}
+.section-divider h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.section-divider p { font-size: 0.85rem; color: var(--mid); margin-top: 0.25rem; }
+
+.exam-results-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.mark-bar {
+  height: 24px;
+  background: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0.5rem 0 1rem;
+  position: relative;
+}
+.mark-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--teal));
+  border-radius: 12px;
+  transition: width 0.6s ease;
+}
+.mark-bar-fill.low { background: linear-gradient(90deg, var(--red), var(--orange)); }
+.mark-bar-fill.mid { background: linear-gradient(90deg, var(--amber), var(--orange)); }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div id="examContainer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/question-bank.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+let examSession = {
+  active: false,
+  paperId: null,
+  questions: [],
+  answers: {},
+  startTime: 0,
+  duration: 90 * 60, // 90 min Paper 1
+  timerInterval: null,
+  submitted: false
+};
+
+// Generate Paper 1 mock — mix of MCQs and essays
+function generatePaper(paperId, seed) {
+  // Use a seeded random so the same paper is reproducible
+  let s = seed || paperId;
+  const random = () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+  const pickN = (pool, n) => {
+    const a = [...pool];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a.slice(0, n);
+  };
+
+  // Get MCQs by chapter, ~3-4 per chapter (Ch1-9, paper 1)
+  const mcqs = [];
+  for (let ch = 1; ch <= 9; ch++) {
+    const chPool = MCQ_BANK.filter(q => q.ch === ch);
+    mcqs.push(...pickN(chPool, 3));
+  }
+
+  // Essay questions: pick ~7-8 covering different chapters
+  const essays = [];
+  for (let ch = 1; ch <= 9; ch += 2) { // Ch 1, 3, 5, 7, 9
+    const chPool = ESSAY_BANK.filter(q => q.ch === ch);
+    if (chPool.length > 0) essays.push(...pickN(chPool, 1));
+  }
+  // Add some more from other chapters
+  for (let ch = 2; ch <= 8; ch += 2) {
+    const chPool = ESSAY_BANK.filter(q => q.ch === ch);
+    if (chPool.length > 0) essays.push(...pickN(chPool, 1));
+  }
+
+  return {
+    id: paperId,
+    title: `Paper 1 — Mock ${paperId}`,
+    mcqs: mcqs.slice(0, 27),  // 27 MCQs x 1 mark = 27 marks
+    essays: essays.slice(0, 7), // 7 essays of varying marks
+    duration: 90 * 60
+  };
+}
+
+function renderAttemptHistory() {
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem('gcse_cs_exam_history_v1') || '[]'); } catch(e) {}
+  if (history.length === 0) return '';
+  const recent = history.slice(-5).reverse();
+  const mcqPcts = history.map(h => h.mcqTotal ? Math.round(h.mcqScore / h.mcqTotal * 100) : 0);
+  const avgPct = Math.round(mcqPcts.reduce((s,x) => s+x, 0) / mcqPcts.length);
+  const bestPct = Math.max(...mcqPcts);
+  const chErrorTotals = {};
+  history.forEach(h => {
+    Object.entries(h.chapterErrors || {}).forEach(([ch, n]) => {
+      chErrorTotals[ch] = (chErrorTotals[ch] || 0) + n;
+    });
+  });
+  const weakestCh = Object.entries(chErrorTotals).sort((a,b) => b[1] - a[1])[0];
+
+  return `
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; margin-bottom:1.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.6rem;">
+        <h3 style="font-family:var(--font-display); margin:0;">📊 Your exam attempt history</h3>
+        <button class="btn" onclick="clearExamHistory()" style="font-size:0.78rem; padding:0.35rem 0.75rem;">Clear history</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem; margin-bottom:1rem;">
+        <div style="background:var(--surface-2); padding:0.85rem; border-radius:8px; text-align:center;">
+          <div style="font-size:1.6rem; font-family:var(--font-display); font-weight:700; color:var(--blue);">${history.length}</div>
+          <div style="font-size:0.78rem; color:var(--mid);">attempts</div>
+        </div>
+        <div style="background:var(--surface-2); padding:0.85rem; border-radius:8px; text-align:center;">
+          <div style="font-size:1.6rem; font-family:var(--font-display); font-weight:700; color:var(--green);">${avgPct}%</div>
+          <div style="font-size:0.78rem; color:var(--mid);">avg MCQ score</div>
+        </div>
+        <div style="background:var(--surface-2); padding:0.85rem; border-radius:8px; text-align:center;">
+          <div style="font-size:1.6rem; font-family:var(--font-display); font-weight:700; color:var(--purple);">${bestPct}%</div>
+          <div style="font-size:0.78rem; color:var(--mid);">best score</div>
+        </div>
+        ${weakestCh ? `
+          <div style="background:var(--surface-2); padding:0.85rem; border-radius:8px; text-align:center;">
+            <div style="font-size:1.6rem; font-family:var(--font-display); font-weight:700; color:var(--red);">Ch ${weakestCh[0]}</div>
+            <div style="font-size:0.78rem; color:var(--mid);">weakest topic</div>
+          </div>
+        ` : ''}
+      </div>
+      <div style="display:grid; gap:0.45rem;">
+        ${recent.map(h => {
+          const date = new Date(h.date);
+          const pct = h.mcqTotal ? Math.round(h.mcqScore / h.mcqTotal * 100) : 0;
+          const usedMin = Math.floor(h.durationUsed / 60);
+          const completed = h.answersCount === h.totalQ;
+          return `
+            <div style="background:var(--surface-2); padding:0.65rem 0.85rem; border-radius:6px; border-left:3px solid ${pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--amber)' : 'var(--red)'}; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div style="font-size:0.88rem;">
+                <strong>Paper ${h.paperId}</strong> · ${date.toLocaleDateString()} ${date.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-mid);">
+                MCQ: <strong style="color:${pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--amber)' : 'var(--red)'}">${h.mcqScore}/${h.mcqTotal} (${pct}%)</strong>
+                · ${usedMin}min · ${completed ? 'complete' : `${h.answersCount}/${h.totalQ} answered`}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function clearExamHistory() {
+  if (!confirm('Clear all exam attempt history? This cannot be undone.')) return;
+  try { localStorage.removeItem('gcse_cs_exam_history_v1'); } catch(e) {}
+  renderPaperList();
+}
+
+function renderPaperList() {
+  document.getElementById('examContainer').innerHTML = `
+    <div class="quiz-hero" style="background: linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);">
+      <span class="hero-tag">Full mock exams</span>
+      <h1>📝 Practice Exam Papers</h1>
+      <p>Full-length exam papers with realistic timing, varied question types, and self-marking after submission. Each paper has a different selection of questions.</p>
+    </div>
+
+    ${renderAttemptHistory()}
+
+    <h2 class="section-title">Paper 1 — Written Theory (1h 30min, 100 marks)</h2>
+
+    ${PAPER_SETS.map(p => `
+    <a class="paper-card" onclick="startPaper(${p.id}); return false;" href="#" style="--ch-color:${p.color}; --ch-color-dark:${p.dark}; text-decoration:none; color:inherit;">
+      <div class="paper-icon">P1<sub style="font-size:0.7em">${p.set}</sub></div>
+      <div class="paper-info">
+        <h3>Mock Paper 1 — Set ${p.set}</h3>
+        <p>${p.desc}</p>
+        <div class="meta">⏱ 90 minutes · 27 MCQs + 7 written · ~100 marks</div>
+      </div>
+      <div style="font-size:1.5rem; color:var(--mid);">→</div>
+    </a>`).join('')}
+
+    <h2 class="section-title">Paper 2 — Practical (Reference)</h2>
+
+    <a class="paper-card" href="chapters/chapter-10.html" style="--ch-color:#065F46; --ch-color-dark:#064E3B; text-decoration:none; color:inherit;">
+      <div class="paper-icon">P2</div>
+      <div class="paper-info">
+        <h3>Paper 2 Software Skills Reference</h3>
+        <p>The practical paper requires hands-on computer skills. Use the Chapter 10 reference for database, spreadsheet, presentation and graphics skills.</p>
+        <div class="meta">⏱ 3 hours · 100 marks · Scenario-based tasks</div>
+      </div>
+      <div style="font-size:1.5rem; color:var(--mid);">→</div>
+    </a>
+
+    <div class="callout note" style="margin-top:1.5rem;">
+      <div class="ct-title">💡 Exam strategy</div>
+      <p><strong>Paper 1 timing:</strong> 90 min for 100 marks ≈ 1 minute per mark. Save 5-10 min at the end to check.</p>
+      <p><strong>Underline the command word</strong> in each question (state / describe / explain / discuss).</p>
+      <p><strong>Match length to marks:</strong> a 6-mark question needs 6 distinct developed points.</p>
+      <p><strong>"Discuss/Evaluate" questions need BOTH sides</strong> — one-sided answers cap at 50%.</p>
+    </div>
+  `;
+}
+
+// 10 mock paper sets — each uses a different seed, so each draws a different
+// selection of questions from the bank.
+const PAPER_SETS = [
+  { id: 1,  set: 'A', color: '#1D4ED8', dark: '#1E3A8A', desc: 'Mixed MCQs and extended response questions across all Paper 1 topics. Designed to feel like the real exam.' },
+  { id: 2,  set: 'B', color: '#0F766E', dark: '#134E4A', desc: 'Different selection of questions — practise more breadth and challenge yourself again.' },
+  { id: 3,  set: 'C', color: '#6D28D9', dark: '#4C1D95', desc: 'Third variant with a fresh draw of questions from every chapter.' },
+  { id: 4,  set: 'D', color: '#B45309', dark: '#78350F', desc: 'Fourth full mock — keep your exam timing sharp with new questions.' },
+  { id: 5,  set: 'E', color: '#15803D', dark: '#14532D', desc: 'Fifth variant. By now you should be hitting your target grade consistently.' },
+  { id: 6,  set: 'F', color: '#B91C1C', dark: '#7F1D1D', desc: 'Sixth full mock with another unique mix of theory questions.' },
+  { id: 7,  set: 'G', color: '#3730A3', dark: '#312E81', desc: 'Seventh variant — ideal for a timed weekly mock in the run-up to the exam.' },
+  { id: 8,  set: 'H', color: '#C2410C', dark: '#7C2D12', desc: 'Eighth full mock. Focus on command words: state, describe, explain, discuss.' },
+  { id: 9,  set: 'I', color: '#0E7490', dark: '#155E75', desc: 'Ninth variant with yet another draw from the 650-question bank.' },
+  { id: 10, set: 'J', color: '#A21CAF', dark: '#701A75', desc: 'Final full mock — sit it the week before the real exam as your dress rehearsal.' }
+];
+
+function startPaper(paperId) {
+  const setName = (PAPER_SETS.find(p => p.id === paperId) || {}).set || paperId;
+  if (!confirm(`Start Mock Paper ${setName}? You'll have 90 minutes.`)) return;
+  const paper = generatePaper(paperId, paperId * 7919);
+  examSession = {
+    active: true,
+    paperId,
+    paper,
+    answers: {},
+    startTime: Date.now(),
+    duration: paper.duration,
+    timerInterval: null,
+    submitted: false
+  };
+  renderExam();
+  startTimer();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startTimer() {
+  if (examSession.timerInterval) clearInterval(examSession.timerInterval);
+  examSession.warnings = examSession.warnings || { ten: false, five: false, one: false };
+  examSession.timerInterval = setInterval(() => {
+    if (examSession.submitted) { clearInterval(examSession.timerInterval); return; }
+    const elapsed = Math.floor((Date.now() - examSession.startTime) / 1000);
+    const remaining = Math.max(0, examSession.duration - elapsed);
+    const el = document.getElementById('examTimer');
+    if (el) {
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      el.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      if (remaining < 300) el.style.color = '#FECACA';
+      else if (remaining < 600) el.style.color = '#FEF08A';
+      // Time milestone warnings
+      if (remaining <= 600 && remaining > 599 && !examSession.warnings.ten) {
+        showExamWarning('⏰ 10 minutes remaining', 'amber');
+        examSession.warnings.ten = true;
+      }
+      if (remaining <= 300 && remaining > 299 && !examSession.warnings.five) {
+        showExamWarning('⏰ 5 minutes remaining — start finishing up!', 'amber');
+        examSession.warnings.five = true;
+      }
+      if (remaining <= 60 && remaining > 59 && !examSession.warnings.one) {
+        showExamWarning('⚠️ 1 MINUTE LEFT', 'red');
+        examSession.warnings.one = true;
+      }
+      if (remaining === 0) {
+        clearInterval(examSession.timerInterval);
+        alert('⏰ Time is up! Submitting your paper now.');
+        submitExam();
+      }
+    }
+    const ans = Object.keys(examSession.answers).length;
+    const totalQ = examSession.paper.mcqs.length + examSession.paper.essays.length;
+    const aEl = document.getElementById('examAnswered');
+    if (aEl) aEl.textContent = `${ans} / ${totalQ}`;
+  }, 1000);
+}
+
+function showExamWarning(msg, color) {
+  const toast = document.createElement('div');
+  toast.style.cssText = `position:fixed; top:30%; left:50%; transform:translate(-50%, -50%); background:${color === 'red' ? '#DC2626' : color === 'amber' ? '#B45309' : '#1D4ED8'}; color:white; padding:1.5rem 2.5rem; border-radius:14px; font-family:var(--font-display); font-size:1.5rem; font-weight:700; z-index:99999; box-shadow:0 20px 60px rgba(0,0,0,0.5); animation:examWarnPulse 0.4s ease;`;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+function renderExam() {
+  const paper = examSession.paper;
+  let html = `
+    <div class="exam-timer-bar">
+      <div class="exam-timer">
+        <div class="timer-block">
+          <span class="v" id="examTimer">${Math.floor(paper.duration/60)}:00</span>
+          <span class="k">Time left</span>
+        </div>
+        <div class="timer-block">
+          <span class="v" id="examAnswered">0 / ${paper.mcqs.length + paper.essays.length}</span>
+          <span class="k">Answered</span>
+        </div>
+        <div class="timer-block">
+          <span class="v">${100}</span>
+          <span class="k">Marks total</span>
+        </div>
+      </div>
+      <button class="btn" onclick="submitExam()" style="background:white; color:var(--red); font-weight:700;">📤 Submit paper</button>
+    </div>
+
+    <div class="section-divider" style="--ch-color:${getChColor(paper.id)};">
+      <h2>Section A — Multiple Choice (${paper.mcqs.length} marks)</h2>
+      <p>Choose one answer for each question. Each correct answer = 1 mark.</p>
+    </div>
+  `;
+
+  paper.mcqs.forEach((q, i) => {
+    const qId = `mcq-${i}`;
+    const ch = CHAPTERS.find(c => c.id === q.ch);
+    html += `
+      <div class="exam-question" style="--ch-color:${ch.color};">
+        <div class="q-header">
+          <span class="q-num">${i + 1}</span>
+          <span style="flex:1; font-weight:500;">${q.q}</span>
+          <span class="q-marks">1 mark</span>
+        </div>
+        <div class="exam-answer-options">
+          ${q.o.map((opt, oi) => `
+            <label style="display:flex; align-items:center; gap:0.75rem; padding:0.7rem 0.9rem; background:var(--surface-2); border:1.5px solid var(--border); border-radius:8px; cursor:pointer;">
+              <input type="radio" name="${qId}" value="${oi}" onchange="setMCQAnswer('${qId}', ${oi})" style="accent-color:${ch.color};">
+              <span><strong style="font-family:var(--font-display); margin-right:0.4em;">${String.fromCharCode(65 + oi)}.</strong> ${opt}</span>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `
+    <div class="section-divider" style="--ch-color:${getChColor(paper.id)}; margin-top:3rem;">
+      <h2>Section B — Extended Response (${paper.essays.reduce((s, e) => s + e.marks, 0)} marks)</h2>
+      <p>Answer in full sentences. Develop each point. Match the length of your answer to the marks available.</p>
+    </div>
+  `;
+
+  paper.essays.forEach((q, i) => {
+    const qId = `essay-${i}`;
+    const ch = CHAPTERS.find(c => c.id === q.ch);
+    html += `
+      <div class="exam-question" style="--ch-color:${ch.color};">
+        <div class="q-header">
+          <span class="q-num">${paper.mcqs.length + i + 1}</span>
+          <span style="flex:1; font-weight:500; font-family:var(--font-display);">${q.q}</span>
+          <span class="q-marks">${q.marks} marks</span>
+        </div>
+        <textarea class="essay-textarea" id="${qId}" oninput="setEssayAnswer('${qId}', this.value)"
+          placeholder="Type your answer here..."
+          style="width:100%; min-height:${Math.max(120, q.marks * 28)}px; padding:1rem; background:var(--surface-2); border:1.5px solid var(--border); border-radius:8px; font-family:var(--font-body); font-size:0.95rem; line-height:1.55; color:var(--text); resize:vertical;"></textarea>
+      </div>
+    `;
+  });
+
+  html += `
+    <div style="text-align:center; padding:2rem 0;">
+      <button class="btn btn-primary" onclick="submitExam()" style="font-size:1.05rem; padding:0.85rem 2rem;">📤 Submit paper for marking</button>
+      <p style="font-size:0.85rem; color:var(--mid); margin-top:0.5rem;">Submitting will end the timer and reveal mark schemes.</p>
+    </div>
+  `;
+
+  document.getElementById('examContainer').innerHTML = html;
+}
+
+function getChColor(paperId) {
+  const colors = ['', '#1D4ED8', '#0F766E', '#6D28D9'];
+  return colors[paperId] || colors[1];
+}
+
+function setMCQAnswer(id, idx) {
+  examSession.answers[id] = idx;
+}
+
+function setEssayAnswer(id, text) {
+  examSession.answers[id] = text;
+}
+
+function submitExam() {
+  if (examSession.submitted) return;
+  const answered = Object.keys(examSession.answers).length;
+  const total = examSession.paper.mcqs.length + examSession.paper.essays.length;
+  if (answered < total) {
+    if (!confirm(`You've answered ${answered} of ${total} questions. Submit anyway?`)) return;
+  }
+  examSession.submitted = true;
+  if (examSession.timerInterval) clearInterval(examSession.timerInterval);
+  // Save attempt to history
+  saveExamAttempt();
+  renderResults();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function saveExamAttempt() {
+  try {
+    const history = JSON.parse(localStorage.getItem('gcse_cs_exam_history_v1') || '[]');
+    const paper = examSession.paper;
+    let mcqMarks = 0;
+    paper.mcqs.forEach((q, i) => {
+      if (examSession.answers[`mcq-${i}`] === q.a) mcqMarks++;
+    });
+    const essayMaxMarks = paper.essays.reduce((s, q) => s + q.marks, 0);
+    const elapsed = Math.floor((Date.now() - examSession.startTime) / 1000);
+    history.push({
+      paperId: paper.id,
+      date: Date.now(),
+      durationUsed: elapsed,
+      durationMax: paper.duration,
+      mcqScore: mcqMarks,
+      mcqTotal: paper.mcqs.length,
+      essayTotal: essayMaxMarks,
+      answersCount: Object.keys(examSession.answers).length,
+      totalQ: paper.mcqs.length + paper.essays.length,
+      // Track per-chapter weakness from MCQs
+      chapterErrors: paper.mcqs.reduce((acc, q, i) => {
+        if (examSession.answers[`mcq-${i}`] !== q.a) {
+          acc[q.ch] = (acc[q.ch] || 0) + 1;
+        }
+        return acc;
+      }, {})
+    });
+    // Cap at most recent 50 attempts
+    const trimmed = history.slice(-50);
+    localStorage.setItem('gcse_cs_exam_history_v1', JSON.stringify(trimmed));
+  } catch(e) {}
+}
+
+function renderResults() {
+  const paper = examSession.paper;
+
+  // Mark MCQs
+  let mcqMarks = 0;
+  const mcqResults = paper.mcqs.map((q, i) => {
+    const userAns = examSession.answers[`mcq-${i}`];
+    const correct = userAns === q.a;
+    if (correct) mcqMarks++;
+    return { q, userAns, correct };
+  });
+
+  // Essay total marks possible
+  const essayMaxMarks = paper.essays.reduce((s, q) => s + q.marks, 0);
+  const totalMaxMarks = paper.mcqs.length + essayMaxMarks;
+  const mcqPct = paper.mcqs.length ? Math.round((mcqMarks / paper.mcqs.length) * 100) : 0;
+
+  let html = `
+    <div class="exam-results-summary">
+      <h2 style="font-family:var(--font-display); font-size:1.8rem; margin-bottom:1rem;">📊 Your Results</h2>
+      <p style="color:var(--text-mid); margin-bottom:1.5rem;">Your MCQ score is auto-marked. For written questions, use the mark schemes below to self-mark your answers.</p>
+
+      <div class="progress-grid" style="margin-bottom:1rem;">
+        <div class="progress-stat">
+          <div class="ps-label">Section A (MCQ)</div>
+          <div class="ps-value">${mcqMarks} / ${paper.mcqs.length}</div>
+          <div class="ps-sub">${mcqPct}% on auto-marked section</div>
+        </div>
+        <div class="progress-stat">
+          <div class="ps-label">Section B (Essays)</div>
+          <div class="ps-value" id="essaySelfMark">— / ${essayMaxMarks}</div>
+          <div class="ps-sub">Self-mark using schemes below</div>
+        </div>
+        <div class="progress-stat">
+          <div class="ps-label">Estimated total</div>
+          <div class="ps-value" id="totalEstimate">${mcqMarks} / ${totalMaxMarks}</div>
+          <div class="ps-sub" id="totalPct">${Math.round((mcqMarks/totalMaxMarks)*100)}% so far</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // MCQ results in detail
+  html += `<div class="section-divider"><h2>Section A — Your MCQ answers</h2></div>`;
+
+  mcqResults.forEach((r, i) => {
+    const ch = CHAPTERS.find(c => c.id === r.q.ch);
+    const userLabel = r.userAns !== undefined ? String.fromCharCode(65 + r.userAns) + '. ' + r.q.o[r.userAns] : 'Not answered';
+    const correctLabel = String.fromCharCode(65 + r.q.a) + '. ' + r.q.o[r.q.a];
+    html += `
+      <div class="exam-question" style="--ch-color:${ch.color}; border-left:4px solid ${r.correct ? 'var(--green)' : 'var(--red)'};">
+        <div class="q-header">
+          <span class="q-num">${i + 1}</span>
+          <span style="flex:1; font-weight:500;">${r.q.q}</span>
+          <span class="q-marks" style="background:${r.correct ? 'var(--green)' : 'var(--red)'};">${r.correct ? '1/1' : '0/1'}</span>
+        </div>
+        <p style="font-size:0.9rem;"><strong style="color:${r.correct ? 'var(--green)' : 'var(--red)'};">Your answer:</strong> ${userLabel}</p>
+        ${!r.correct ? `<p style="font-size:0.9rem;"><strong style="color:var(--green);">Correct answer:</strong> ${correctLabel}</p>` : ''}
+        <p style="font-size:0.85rem; color:var(--text-mid); margin-top:0.5rem;"><em>${r.q.e}</em></p>
+      </div>
+    `;
+  });
+
+  // Essay results — show user answer + mark scheme + self-mark checklist
+  html += `<div class="section-divider" style="margin-top:2rem;"><h2>Section B — Self-mark your essays</h2></div>`;
+
+  paper.essays.forEach((q, i) => {
+    const userAns = examSession.answers[`essay-${i}`] || '(Not answered)';
+    const ch = CHAPTERS.find(c => c.id === q.ch);
+    const textLower = userAns.toLowerCase();
+    const foundKws = q.keywords.filter(kw => textLower.includes(kw.toLowerCase()));
+
+    html += `
+      <div class="exam-question" style="--ch-color:${ch.color};">
+        <div class="q-header">
+          <span class="q-num">${paper.mcqs.length + i + 1}</span>
+          <span style="flex:1; font-family:var(--font-display);">${q.q}</span>
+          <span class="q-marks">${q.marks} marks</span>
+        </div>
+
+        <details>
+          <summary style="cursor:pointer; font-weight:600; padding:0.5rem 0; color:var(--text-mid);">📝 Your answer (${userAns.split(/\s+/).filter(w=>w).length} words)</summary>
+          <div style="background:var(--surface-2); padding:1rem 1.2rem; border-radius:10px; margin-top:0.5rem; white-space:pre-wrap; line-height:1.6;">${escapeHtml(userAns)}</div>
+        </details>
+
+        <div style="margin-top:1rem; padding:0.85rem 1rem; background:var(--blue-light); border-radius:8px; border-left:4px solid var(--blue);">
+          <strong style="color:var(--blue); font-size:0.85rem;">🔍 Key terms detected: ${foundKws.length}/${q.keywords.length}</strong>
+          <div class="keyword-pills" style="margin-top:0.5rem; display:flex; flex-wrap:wrap; gap:0.3rem;">
+            ${q.keywords.map(kw => {
+              const found = textLower.includes(kw.toLowerCase());
+              return `<span style="padding:0.2rem 0.6rem; border-radius:100px; font-size:0.78rem; ${found ? 'background:var(--green-light); color:var(--green); border:1px solid var(--green);' : 'background:var(--surface); color:var(--mid); border:1px solid var(--border);'}">${found ? '✓' : '○'} ${kw}</span>`;
+            }).join('')}
+          </div>
+        </div>
+
+        <div class="callout model" style="margin-top:1rem;">
+          <div class="ct-title">✎ MARK SCHEME — Tick what your answer covered</div>
+          <ul class="mark-scheme-points">
+            ${q.mark_scheme.map((point, pi) => `
+              <li>
+                <input type="checkbox" id="exam-mp-${i}-${pi}" data-essay-id="${i}" data-marks-per-point="${q.marks/q.mark_scheme.length}" onchange="recalculateSelfMark()">
+                <label for="exam-mp-${i}-${pi}">${point}</label>
+              </li>
+            `).join('')}
+          </ul>
+          <p style="font-size:0.82rem; color:var(--mid); margin-top:0.5rem;">Self-marked: <strong id="essayMark-${i}">0</strong> / ${q.marks} marks</p>
+        </div>
+      </div>
+    `;
+  });
+
+  html += `
+    <div class="exam-results-summary" style="text-align:center;">
+      <h3 style="font-family:var(--font-display); margin-bottom:1rem;">Final score</h3>
+      <div style="font-family:var(--font-display); font-size:3rem; font-weight:800; color:var(--blue);" id="finalScore">${mcqMarks} / ${totalMaxMarks}</div>
+      <div style="font-size:1rem; color:var(--text-mid); margin-bottom:1rem;" id="finalPct">${Math.round((mcqMarks/totalMaxMarks)*100)}% — keep self-marking essays above</div>
+      <div class="mark-bar"><div class="mark-bar-fill" id="finalBar" style="width:${(mcqMarks/totalMaxMarks)*100}%"></div></div>
+      <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="renderPaperList()">← Back to papers</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('examContainer').innerHTML = html;
+}
+
+function recalculateSelfMark() {
+  let essayTotal = 0;
+  examSession.paper.essays.forEach((q, i) => {
+    const checked = document.querySelectorAll(`input[data-essay-id="${i}"]:checked`).length;
+    const total = q.mark_scheme.length;
+    const earnedMarks = total === q.marks ? checked : Math.round((checked / total) * q.marks);
+    document.getElementById(`essayMark-${i}`).textContent = earnedMarks;
+    essayTotal += earnedMarks;
+  });
+
+  const paper = examSession.paper;
+  let mcqMarks = 0;
+  paper.mcqs.forEach((q, i) => {
+    if (examSession.answers[`mcq-${i}`] === q.a) mcqMarks++;
+  });
+  const essayMax = paper.essays.reduce((s, q) => s + q.marks, 0);
+  const totalMax = paper.mcqs.length + essayMax;
+  const finalScore = mcqMarks + essayTotal;
+  const finalPct = Math.round((finalScore / totalMax) * 100);
+
+  document.getElementById('essaySelfMark').textContent = `${essayTotal} / ${essayMax}`;
+  document.getElementById('totalEstimate').textContent = `${finalScore} / ${totalMax}`;
+  document.getElementById('totalPct').textContent = `${finalPct}%`;
+  document.getElementById('finalScore').textContent = `${finalScore} / ${totalMax}`;
+
+  let grade = '';
+  if (finalPct >= 90) grade = '🌟 Outstanding — grade 9 territory!';
+  else if (finalPct >= 80) grade = '✓ Excellent — grade 8/9';
+  else if (finalPct >= 70) grade = '✓ Strong — grade 7';
+  else if (finalPct >= 60) grade = 'Good — grade 6';
+  else if (finalPct >= 50) grade = 'Solid pass — grade 5';
+  else if (finalPct >= 40) grade = 'Pass — grade 4';
+  else grade = 'Below pass — review chapters';
+  document.getElementById('finalPct').textContent = `${finalPct}% — ${grade}`;
+
+  const bar = document.getElementById('finalBar');
+  bar.style.width = finalPct + '%';
+  bar.className = 'mark-bar-fill ' + (finalPct >= 70 ? '' : finalPct >= 50 ? 'mid' : 'low');
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+document.addEventListener('DOMContentLoaded', renderPaperList);
+</script>
+</body>
+</html>

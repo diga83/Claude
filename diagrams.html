@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Diagrams — GCSE Computer Science 1CP2</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+/* ───── Hub view ───── */
+.diagram-hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.diagram-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 4px solid var(--ch-color, var(--blue));
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.diagram-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.diagram-card .icon { font-size: 2rem; margin-bottom: 0.4rem; }
+.diagram-card h4 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0; }
+.diagram-card .meta { font-size: 0.72rem; color: var(--mid); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+.diagram-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; margin: 0; }
+.diagram-type-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: var(--surface-2);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.4rem;
+  align-self: flex-start;
+}
+
+/* ───── Back button (top & bottom) ───── */
+.diagram-back-bar {
+  margin-bottom: 0.85rem;
+}
+.diagram-footer-bar {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.back-btn:hover {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: white;
+  transform: translateX(-2px);
+}
+.back-btn span { transition: transform 0.15s; }
+.back-btn:hover span { transform: translateX(-3px); }
+
+/* ───── Viewer shell ───── */
+.diagram-viewer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+.diagram-viewer-header {
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--ch-color, #1D4ED8) 0%, var(--ch-light, #6D28D9) 100%);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.diagram-viewer-header h2 { font-family: var(--font-display); margin: 0; font-size: 1.4rem; }
+.diagram-viewer-header .close { background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; }
+.diagram-viewer-header .close:hover { background: rgba(255,255,255,0.3); }
+
+/* ───── Two-pane layout (used by concept explorers) ───── */
+.two-pane {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 0;
+}
+.two-pane .svg-area {
+  background: var(--surface-2);
+  padding: 1.5rem;
+  display: grid;
+  place-items: center;
+  min-height: 500px;
+  position: relative;
+}
+.two-pane .info-area {
+  padding: 1.5rem;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  overflow-y: auto;
+  max-height: 700px;
+}
+@media (max-width: 800px) {
+  .two-pane { grid-template-columns: 1fr; }
+  .two-pane .info-area { border-left: none; border-top: 1px solid var(--border); }
+}
+
+.interactive-svg { width: 100%; height: auto; max-width: 540px; }
+.dev { cursor: pointer; transition: transform 0.15s; }
+.dev:hover { transform: scale(1.08); transform-origin: center; }
+.dev.selected .device-body { stroke: var(--blue) !important; stroke-width: 4 !important; }
+.connection { stroke: #94A3B8; stroke-width: 2; fill: none; }
+.connection.active { stroke: var(--blue); stroke-width: 3; stroke-dasharray: 5,3; animation: dashFlow 1s linear infinite; }
+@keyframes dashFlow { to { stroke-dashoffset: -16; } }
+
+/* ───── Tabs (for multi-variant diagrams) ───── */
+.diag-tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding: 0.85rem 1.5rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.diag-tab {
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  transition: all 0.15s;
+}
+.diag-tab:hover { border-color: var(--blue); }
+.diag-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+/* ───── Info panel shared styles ───── */
+.info-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; }
+.info-section { margin-bottom: 1.25rem; }
+.info-section h4 { font-family: var(--font-body); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mid); font-weight: 700; margin-bottom: 0.45rem; }
+.info-section ul { padding-left: 1.2rem; margin: 0; }
+.info-section li { margin-bottom: 0.35rem; line-height: 1.5; font-size: 0.92rem; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.pros-box, .cons-box { padding: 0.85rem; border-radius: 8px; font-size: 0.85rem; }
+.pros-box { background: var(--green-light); border-left: 3px solid var(--green); }
+.cons-box { background: #FEE2E2; border-left: 3px solid var(--red); }
+[data-theme="dark"] .pros-box { background: rgba(34,197,94,0.1); }
+[data-theme="dark"] .cons-box { background: rgba(239,68,68,0.1); }
+.pros-box strong, .cons-box strong { display: block; margin-bottom: 0.3rem; font-size: 0.78rem; }
+.pros-box ul, .cons-box ul { padding-left: 1rem; margin: 0; }
+.pros-box li, .cons-box li { font-size: 0.82rem; line-height: 1.4; }
+.example-scenario { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.9rem; line-height: 1.55; margin-top: 1rem; }
+[data-theme="dark"] .example-scenario { background: rgba(59,130,246,0.1); }
+.click-prompt { text-align: center; color: var(--mid); font-size: 0.85rem; margin-top: 1rem; padding: 0.85rem; background: var(--surface-2); border-radius: 8px; font-style: italic; }
+.action-btn { padding: 0.55rem 1.1rem; background: var(--green); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.88rem; margin-top: 0.6rem; }
+.action-btn:hover { filter: brightness(1.1); }
+.action-btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+
+/* ───── Comparison slider ───── */
+.compare-slider-wrap {
+  padding: 2rem 1.5rem;
+  background: var(--surface-2);
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.compare-row .label-cell {
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.compare-row .label-cell .icon { font-size: 1.2rem; }
+.compare-bars {
+  display: grid;
+  grid-template-columns: repeat(var(--bar-count, 3), 1fr);
+  gap: 0.5rem;
+  height: 32px;
+}
+.compare-bar {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+  z-index: 1;
+}
+.compare-bar-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--bar-color, var(--blue)) 0%, var(--bar-color, var(--blue)) 100%);
+  opacity: 0.85;
+  border-radius: 7px 0 0 7px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+.compare-bar-text { position: relative; z-index: 2; padding: 0 0.5rem; mix-blend-mode: difference; color: white; }
+.compare-row.winner .compare-bar.is-winner { border-color: var(--green); border-width: 2.5px; }
+.compare-row.winner .compare-bar.is-winner::after {
+  content: '★'; position: absolute; top: -8px; right: 6px;
+  background: var(--green); color: white; width: 22px; height: 22px;
+  border-radius: 50%; display: grid; place-items: center;
+  font-size: 0.8rem; font-weight: 700;
+}
+.compare-options {
+  display: grid;
+  grid-template-columns: repeat(var(--bar-count, 3), 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.compare-option-header {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  font-size: 1rem;
+}
+.scenario-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding: 1rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+.scenario-btn {
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+.scenario-btn:hover { border-color: var(--blue); }
+.scenario-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+.compare-conclusion {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* ───── Step-by-step animation ───── */
+.step-stage {
+  padding: 1.5rem;
+  background: var(--surface-2);
+  min-height: 460px;
+  position: relative;
+}
+.step-svg { width: 100%; height: auto; max-width: 760px; display: block; margin: 0 auto; }
+.step-controls {
+  display: flex;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.step-progress {
+  flex: 1;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--mid);
+}
+.step-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.step-progress-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border-radius: 100px;
+  transition: width 0.4s;
+}
+.step-info {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.step-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.step-info p { color: var(--text-mid); line-height: 1.55; }
+.step-info .step-num {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+/* ───── Drag-and-drop quiz ───── */
+.dnd-stage {
+  padding: 1.5rem;
+  background: var(--surface-2);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  min-height: 520px;
+}
+@media (max-width: 800px) {
+  .dnd-stage { grid-template-columns: 1fr; }
+}
+.dnd-bank {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  min-height: 200px;
+}
+.dnd-bank h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.dnd-label {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: white;
+  padding: 0.55rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: grab;
+  user-select: none;
+  text-align: center;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.dnd-label:hover { transform: scale(1.03); }
+.dnd-label.dragging { opacity: 0.5; cursor: grabbing; }
+.dnd-label.placed { display: none; }
+.dnd-targets {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  position: relative;
+}
+.dnd-target {
+  background: var(--surface-2);
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.15s;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.dnd-target.drag-over {
+  border-color: var(--blue);
+  background: var(--blue-light);
+  border-style: solid;
+}
+.dnd-target.correct { border-color: var(--green); border-style: solid; background: var(--green-light); }
+.dnd-target.incorrect { border-color: var(--red); border-style: solid; background: #FEE2E2; }
+[data-theme="dark"] .dnd-target.correct { background: rgba(34,197,94,0.15); }
+[data-theme="dark"] .dnd-target.incorrect { background: rgba(239,68,68,0.15); }
+.dnd-target .target-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.5; }
+.dnd-target .placed-label {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: white;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+.dnd-target.correct .placed-label { background: var(--green); }
+.dnd-target.incorrect .placed-label { background: var(--red); }
+.dnd-result-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+}
+.dnd-result-badge.correct { background: var(--green); color: white; }
+.dnd-result-badge.incorrect { background: var(--red); color: white; }
+.dnd-toolbar {
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dnd-score {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-left: auto;
+}
+
+/* ───── Database (Ch 10) ───── */
+.db-table {
+  background: var(--surface);
+  border: 2px solid var(--ch-color, var(--blue));
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.db-table:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.db-table-header {
+  background: var(--ch-color, var(--blue));
+  color: white;
+  padding: 0.55rem 0.85rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.db-table-fields { padding: 0.5rem 0.85rem; font-size: 0.82rem; }
+.db-field { padding: 0.2rem 0; }
+.db-field.pk { color: var(--amber); font-weight: 700; }
+.db-field.fk { color: var(--purple); font-style: italic; }
+.db-relations-svg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.db-relation-line { stroke: var(--mid); stroke-width: 2; fill: none; }
+</style>
+</head>
+<body>
+
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main fade-in">
+    <div class="quiz-hero" style="background: linear-gradient(135deg, #3730A3 0%, #1D4ED8 100%);">
+      <span class="hero-tag">Visual learning</span>
+      <h1>🔬 Interactive Diagrams</h1>
+      <p>Click, drag and explore. Each diagram lets you interact with the parts to learn how they fit together. Ten diagrams across all chapters of the spec — one for every major visual concept.</p>
+    </div>
+
+    <div id="diagramHub"></div>
+    <div id="diagramViewer"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM HUB
+   ═══════════════════════════════════════════════════════════════════ */
+
+const DIAGRAMS = [
+  { id: 'pc_anatomy',   chapter: 1, type: 'Concept explorer',       icon: '🖥', title: 'Anatomy of a Computer',
+    summary: 'Click each component (CPU, RAM, motherboard, storage) to see what it does and why it matters.', color: '#B45309' },
+  { id: 'software_stack', chapter: 2, type: 'Concept explorer',     icon: '💿', title: 'The Software Stack',
+    summary: 'Click each layer (firmware, OS, system software, applications) to see how they relate and depend on each other.', color: '#0F766E' },
+  { id: 'storage_compare', chapter: 3, type: 'Comparison slider',   icon: '💾', title: 'HDD vs SSD vs Cloud',
+    summary: 'Compare three storage technologies on speed, capacity, durability, cost and reliability. See which wins for each scenario.', color: '#0F766E' },
+  { id: 'fde_cycle',    chapter: 4, type: 'Step-by-step animation', icon: '⚙', title: 'CPU Fetch-Decode-Execute Cycle',
+    summary: 'Walk through how the CPU runs an instruction. Step through each stage to see registers, ALU, and memory bus in action.', color: '#1D4ED8' },
+  { id: 'topologies',   chapter: 5, type: 'Concept explorer',       icon: '🌐', title: 'Network Topologies',
+    summary: 'Compare bus, star, ring, and mesh networks. Click any device to learn its role.', color: '#1D4ED8' },
+  { id: 'security_quiz',chapter: 6, type: 'Drag-and-drop quiz',     icon: '🛡', title: 'Label the Security Threats',
+    summary: 'Drag each threat (phishing, malware, ransomware…) to its correct description. Get scored on accuracy.', color: '#B91C1C' },
+  { id: 'page_load',    chapter: 7, type: 'Step-by-step animation', icon: '📡', title: 'How a Web Page Loads',
+    summary: 'Trace a request from your browser through DNS, routers, the server, and back — one step at a time.', color: '#7C3AED' },
+  { id: 'craab_quiz',   chapter: 8, type: 'Drag-and-drop quiz',     icon: '🔍', title: 'CRAAB: Evaluate a Source',
+    summary: 'Match each evaluation criterion (Currency, Relevance, Authority, Accuracy, Bias) to its definition.', color: '#15803D' },
+  { id: 'cloud_compare',chapter: 9, type: 'Comparison slider',      icon: '☁', title: 'On-premises vs Cloud',
+    summary: 'Compare hosting your own server vs using cloud services on cost, scalability, security, and control. See which fits each scenario.', color: '#0F766E' },
+  { id: 'db_relations', chapter:10, type: 'Concept explorer',       icon: '🗃', title: 'Database Relationships',
+    summary: 'Explore tables, primary keys, foreign keys, and one-to-many relationships in a real club membership database.', color: '#6D28D9' }
+];
+
+function renderHub() {
+  document.getElementById('diagramViewer').innerHTML = '';
+  document.getElementById('diagramHub').innerHTML = `
+    <h2 class="section-title">📚 All 10 diagrams</h2>
+    <div class="diagram-hub">
+      ${DIAGRAMS.map(d => `
+        <div class="diagram-card" style="--ch-color:${d.color};" onclick="openDiagram('${d.id}')">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div class="icon">${d.icon}</div>
+            <span style="font-size:0.7rem; background:var(--green); color:white; padding:0.2rem 0.55rem; border-radius:100px; font-weight:700; text-transform:uppercase;">Available</span>
+          </div>
+          <div class="meta">Chapter ${d.chapter}</div>
+          <h4>${d.title}</h4>
+          <p>${d.summary}</p>
+          <span class="diagram-type-tag">${d.type}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function openDiagram(id) {
+  document.getElementById('diagramHub').innerHTML = '';
+  if (window.recordActivity) window.recordActivity('mindmap');
+  const renderers = {
+    pc_anatomy: renderPCAnatomy,
+    software_stack: renderSoftwareStack,
+    storage_compare: renderStorageCompare,
+    fde_cycle: renderFDECycle,
+    topologies: renderTopologies,
+    security_quiz: renderSecurityQuiz,
+    page_load: renderPageLoad,
+    craab_quiz: renderCraabQuiz,
+    cloud_compare: renderCloudCompare,
+    db_relations: renderDbRelations
+  };
+  (renderers[id] || (() => {}))();
+}
+
+function closeDiagram() {
+  document.getElementById('diagramViewer').innerHTML = '';
+  renderHub();
+}
+
+function diagramShell(diagId, color, title, subtitle, bodyHtml) {
+  const d = DIAGRAMS.find(d => d.id === diagId);
+  return `
+    <div class="diagram-back-bar">
+      <button class="back-btn" onclick="closeDiagram()">
+        <span style="font-size:1.1em;">←</span> All diagrams
+      </button>
+    </div>
+    <div class="diagram-viewer" style="--ch-color: ${color}; --ch-light: ${color}DD;">
+      <div class="diagram-viewer-header">
+        <div>
+          <h2>${d?.icon || ''} ${title}</h2>
+          <div style="font-size:0.82rem; opacity:0.9; margin-top:0.3rem;">${subtitle}</div>
+        </div>
+        <button class="close" onclick="closeDiagram()" title="Back to all diagrams">✕</button>
+      </div>
+      ${bodyHtml}
+      <div class="diagram-footer-bar">
+        <button class="back-btn" onclick="closeDiagram()">
+          <span style="font-size:1.1em;">←</span> Back to all diagrams
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 1: PC ANATOMY (Ch 1 — Concept explorer)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const PC_COMPONENTS = {
+  cpu: {
+    name: 'CPU (Processor)',
+    description: 'The central processing unit — the "brain" of the computer. Executes instructions billions of times per second to run all software.',
+    role: 'Performs calculations, decisions, and instruction execution.',
+    keyFacts: [
+      'Measured in GHz (clock speed) — higher = faster',
+      'Modern CPUs have multiple cores (2, 4, 8, or more) for parallel work',
+      'Common manufacturers: Intel, AMD, Apple Silicon, ARM'
+    ],
+    example: 'When you click a button, the CPU runs the code that responds to your click. When a 3D game renders a frame, the CPU calculates positions of every object 60+ times per second.'
+  },
+  ram: {
+    name: 'RAM (Memory)',
+    description: 'Random Access Memory — fast temporary storage that holds programs and data the CPU is currently using. Volatile: contents lost when power off.',
+    role: 'Provides fast working memory for running programs.',
+    keyFacts: [
+      'Measured in GB (8GB, 16GB, 32GB typical)',
+      'Much faster than HDD/SSD storage',
+      'More RAM = run more programs at once without slowdown'
+    ],
+    example: 'When you open Chrome with 15 tabs, all those tabs live in RAM. Close them and RAM is freed. Restart the computer and RAM is wiped.'
+  },
+  storage: {
+    name: 'Storage (HDD/SSD)',
+    description: 'Permanent storage where files, programs, and the operating system are saved. Non-volatile: keeps data even when powered off.',
+    role: 'Long-term storage of all files and programs.',
+    keyFacts: [
+      'HDD: cheaper, larger capacity, slower (spinning disks)',
+      'SSD: faster, more reliable, more expensive per GB',
+      'Measured in GB or TB'
+    ],
+    example: 'Photos, documents, the operating system, installed apps — everything that survives a restart lives here.'
+  },
+  motherboard: {
+    name: 'Motherboard',
+    description: 'The main circuit board that connects all components together. Has slots for CPU, RAM, GPU, and ports for keyboards, USB devices etc.',
+    role: 'Allows all parts to communicate and shares power between them.',
+    keyFacts: [
+      'Contains the chipset that controls data flow',
+      'Has expansion slots (PCIe) for graphics cards, network cards',
+      'Different sizes: ATX (desktop), Mini-ITX (small builds), proprietary (laptops)'
+    ],
+    example: 'When you press a key, the signal goes through the motherboard to the CPU. When the CPU sends an image to the screen, it travels through the motherboard to the graphics card.'
+  },
+  gpu: {
+    name: 'GPU (Graphics Card)',
+    description: 'Graphics Processing Unit — specialised processor for rendering images, videos, and 3D graphics. Has thousands of small cores for parallel work.',
+    role: 'Renders all visuals on screen — especially heavy for games, video editing, 3D modelling, AI.',
+    keyFacts: [
+      'Can be integrated (in CPU) or dedicated (separate card)',
+      'Dedicated GPUs have their own VRAM (video memory)',
+      'Common: Nvidia GeForce, AMD Radeon, Intel Arc'
+    ],
+    example: 'A modern game uses the GPU to render millions of polygons per frame. Video editing software uses it to apply real-time effects.'
+  },
+  psu: {
+    name: 'Power Supply (PSU)',
+    description: 'Converts mains electricity (240V AC) into low-voltage DC power for computer components. Rated in watts.',
+    role: 'Provides reliable power to every component.',
+    keyFacts: [
+      'Measured in watts (300W typical office PC, 800W+ for gaming)',
+      'Quality matters: cheap PSUs can damage components',
+      'In laptops, replaced by battery + AC adapter'
+    ],
+    example: 'When you press the power button, the PSU delivers electricity to the motherboard, CPU, drives, and GPU in the right voltages.'
+  },
+  cooling: {
+    name: 'Cooling System',
+    description: 'Fans and heatsinks (or liquid cooling) that prevent the CPU and GPU from overheating. Without cooling, modern processors would melt themselves.',
+    role: 'Removes heat generated by hard-working components.',
+    keyFacts: [
+      'CPU usually has a heatsink + fan',
+      'High-end systems use liquid (water) cooling for better performance',
+      'Overheating causes thermal throttling — CPU slows itself to cool down'
+    ],
+    example: 'During a long video render, the CPU heats up; the fans spin faster to maintain safe temperatures.'
+  }
+};
+
+let selectedPCComponent = null;
+
+function renderPCAnatomy() {
+  selectedPCComponent = null;
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'pc_anatomy', '#B45309',
+    'Anatomy of a Computer',
+    'Chapter 1 · Click any component to see what it does',
+    `<div class="two-pane">
+      <div class="svg-area" id="pcSvgArea"></div>
+      <div class="info-area" id="pcInfoArea"></div>
+    </div>`
+  );
+  drawPCAnatomy();
+}
+
+function drawPCAnatomy() {
+  const sel = selectedPCComponent;
+  const isSel = id => sel === id ? 'selected' : '';
+
+  const svg = `
+    <svg class="interactive-svg" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+      <!-- Case outline -->
+      <rect x="20" y="20" width="460" height="380" rx="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
+      <text x="250" y="42" text-anchor="middle" fill="#475569" font-size="12" font-weight="700">COMPUTER CASE</text>
+
+      <!-- Motherboard -->
+      <g class="dev ${isSel('motherboard')}" onclick="selectPCComponent('motherboard')">
+        <rect class="device-body" x="60" y="60" width="380" height="320" rx="8" fill="#15803D" stroke="white" stroke-width="3" opacity="0.85"/>
+        <text x="80" y="78" fill="white" font-size="11" font-weight="700">MOTHERBOARD</text>
+      </g>
+
+      <!-- CPU -->
+      <g class="dev ${isSel('cpu')}" onclick="event.stopPropagation(); selectPCComponent('cpu')">
+        <rect class="device-body" x="180" y="100" width="80" height="80" rx="6" fill="#B45309" stroke="white" stroke-width="3"/>
+        <text x="220" y="138" text-anchor="middle" fill="white" font-size="14" font-weight="800">CPU</text>
+        <text x="220" y="160" text-anchor="middle" fill="white" font-size="9">Processor</text>
+      </g>
+
+      <!-- Cooling fan over CPU -->
+      <g class="dev ${isSel('cooling')}" onclick="event.stopPropagation(); selectPCComponent('cooling')">
+        <circle class="device-body" cx="220" cy="140" r="35" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 3"/>
+        <text x="220" y="92" text-anchor="middle" fill="white" font-size="9" font-weight="600">↻ Fan</text>
+      </g>
+
+      <!-- RAM slots -->
+      <g class="dev ${isSel('ram')}" onclick="event.stopPropagation(); selectPCComponent('ram')">
+        <rect class="device-body" x="290" y="100" width="14" height="90" fill="#1D4ED8" stroke="white" stroke-width="2"/>
+        <rect x="308" y="100" width="14" height="90" fill="#1D4ED8" stroke="white" stroke-width="2" opacity="0.7"/>
+        <rect x="326" y="100" width="14" height="90" fill="#1D4ED8" stroke="white" stroke-width="2" opacity="0.7"/>
+        <rect x="344" y="100" width="14" height="90" fill="#1D4ED8" stroke="white" stroke-width="2" opacity="0.7"/>
+        <text x="324" y="210" text-anchor="middle" fill="white" font-size="11" font-weight="700">RAM</text>
+      </g>
+
+      <!-- GPU -->
+      <g class="dev ${isSel('gpu')}" onclick="event.stopPropagation(); selectPCComponent('gpu')">
+        <rect class="device-body" x="80" y="230" width="200" height="50" rx="4" fill="#7C3AED" stroke="white" stroke-width="3"/>
+        <text x="180" y="260" text-anchor="middle" fill="white" font-size="12" font-weight="700">GPU / Graphics Card</text>
+      </g>
+
+      <!-- Storage drives -->
+      <g class="dev ${isSel('storage')}" onclick="event.stopPropagation(); selectPCComponent('storage')">
+        <rect class="device-body" x="80" y="300" width="120" height="50" rx="4" fill="#6D28D9" stroke="white" stroke-width="3"/>
+        <text x="140" y="322" text-anchor="middle" fill="white" font-size="11" font-weight="700">SSD</text>
+        <text x="140" y="338" text-anchor="middle" fill="white" font-size="9">Storage</text>
+      </g>
+
+      <!-- PSU -->
+      <g class="dev ${isSel('psu')}" onclick="event.stopPropagation(); selectPCComponent('psu')">
+        <rect class="device-body" x="320" y="300" width="120" height="60" rx="4" fill="#DC2626" stroke="white" stroke-width="3"/>
+        <text x="380" y="328" text-anchor="middle" fill="white" font-size="11" font-weight="700">PSU</text>
+        <text x="380" y="344" text-anchor="middle" fill="white" font-size="9">Power Supply</text>
+      </g>
+    </svg>
+  `;
+  document.getElementById('pcSvgArea').innerHTML = svg;
+  renderPCInfo();
+}
+
+function selectPCComponent(id) {
+  selectedPCComponent = id;
+  drawPCAnatomy();
+}
+
+function renderPCInfo() {
+  const id = selectedPCComponent;
+  const info = document.getElementById('pcInfoArea');
+  if (!id) {
+    info.innerHTML = `
+      <div class="info-title">A modern computer</div>
+      <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55;">A computer is a collection of specialised components, each with a specific job, all coordinated by the motherboard and powered by the PSU. Click any component on the left to learn what it does.</p>
+      <div class="click-prompt">👆 Click a component to explore</div>
+    `;
+    return;
+  }
+  const c = PC_COMPONENTS[id];
+  info.innerHTML = `
+    <div class="info-title">${c.name}</div>
+    <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55; margin-bottom:1rem;">${c.description}</p>
+    <div class="info-section">
+      <h4>What it does</h4>
+      <p style="font-size:0.92rem; line-height:1.55;">${c.role}</p>
+    </div>
+    <div class="info-section">
+      <h4>Key facts</h4>
+      <ul>${c.keyFacts.map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="example-scenario">
+      <strong>💡 Real example:</strong> ${c.example}
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 2: SOFTWARE STACK (Ch 2 — Concept explorer)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const SOFTWARE_LAYERS = {
+  user: {
+    name: 'You (The User)',
+    description: 'The human at the keyboard. You interact with software through the application layer.',
+    examples: 'Clicking buttons, typing text, opening apps.',
+    depends: 'Depends on every layer below to make any action work.'
+  },
+  app: {
+    name: 'Application Software',
+    description: 'Programs you use directly to get tasks done. Word processors, browsers, games, photo editors. Without these, the computer doesn\'t do anything useful for you.',
+    examples: 'Microsoft Word, Google Chrome, Spotify, Photoshop, Roblox',
+    depends: 'Depends on the OS to access files, draw windows, and reach hardware.'
+  },
+  systemSoftware: {
+    name: 'System / Utility Software',
+    description: 'Tools that keep the computer running smoothly. Antivirus, disk cleanup, backup software, file compression. Most users rarely open these directly.',
+    examples: 'Antivirus, disk defragmenter, file compressor (WinRAR), backup tool',
+    depends: 'Depends on the OS to do its job.'
+  },
+  os: {
+    name: 'Operating System (OS)',
+    description: 'The master program that manages everything. Handles files, memory, multiple programs at once, security, networking, and translates between apps and hardware.',
+    examples: 'Windows, macOS, Linux, iOS, Android, ChromeOS',
+    depends: 'Depends on firmware/BIOS to start up; uses CPU/RAM/storage directly.'
+  },
+  firmware: {
+    name: 'Firmware (BIOS/UEFI)',
+    description: 'Low-level software permanently stored on chips. Runs before the OS to test hardware, then loads the OS. Sometimes called "the software inside the hardware".',
+    examples: 'PC BIOS, UEFI, router firmware, smart TV firmware',
+    depends: 'Built into the hardware. Always present, always runs first.'
+  },
+  hardware: {
+    name: 'Hardware',
+    description: 'The physical components — CPU, RAM, storage, motherboard, screen, keyboard. The actual electronics that everything else runs on top of.',
+    examples: 'Processor, memory chips, hard drive, screen, fans',
+    depends: 'The foundation. Doesn\'t depend on anything — but is useless without software to drive it.'
+  }
+};
+
+let selectedSWLayer = null;
+
+function renderSoftwareStack() {
+  selectedSWLayer = null;
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'software_stack', '#0F766E',
+    'The Software Stack',
+    'Chapter 2 · Click any layer to see how it fits',
+    `<div class="two-pane">
+      <div class="svg-area" id="swSvgArea"></div>
+      <div class="info-area" id="swInfoArea"></div>
+    </div>`
+  );
+  drawSoftwareStack();
+}
+
+function drawSoftwareStack() {
+  const sel = selectedSWLayer;
+  const isSel = id => sel === id ? 'selected' : '';
+  const layers = [
+    { id: 'user', label: '👤 You (The User)', y: 50,  color: '#6D28D9' },
+    { id: 'app',  label: '📱 Application Software', y: 110, color: '#0F766E' },
+    { id: 'systemSoftware', label: '🛠 System / Utility Software', y: 170, color: '#1D4ED8' },
+    { id: 'os',   label: '⚙ Operating System', y: 230, color: '#B45309' },
+    { id: 'firmware', label: '🔧 Firmware (BIOS/UEFI)', y: 290, color: '#7C3AED' },
+    { id: 'hardware', label: '🖥 Hardware', y: 350, color: '#DC2626' }
+  ];
+  const svg = `
+    <svg class="interactive-svg" viewBox="0 0 500 410" xmlns="http://www.w3.org/2000/svg">
+      ${layers.map((l, i) => `
+        <g class="dev ${isSel(l.id)}" onclick="selectSWLayer('${l.id}')">
+          <rect class="device-body" x="${60 + i * 6}" y="${l.y}" width="${380 - i * 12}" height="48" rx="8" fill="${l.color}" stroke="white" stroke-width="3" opacity="${1 - i*0.04}"/>
+          <text x="${250}" y="${l.y + 30}" text-anchor="middle" fill="white" font-size="14" font-weight="700">${l.label}</text>
+        </g>
+      `).join('')}
+      <!-- Arrow showing dependency -->
+      <text x="20" y="80" font-size="10" fill="var(--mid)" transform="rotate(-90, 20, 80)">↓ closer to hardware</text>
+    </svg>
+  `;
+  document.getElementById('swSvgArea').innerHTML = svg;
+  renderSWInfo();
+}
+
+function selectSWLayer(id) {
+  selectedSWLayer = id;
+  drawSoftwareStack();
+}
+
+function renderSWInfo() {
+  const id = selectedSWLayer;
+  const info = document.getElementById('swInfoArea');
+  if (!id) {
+    info.innerHTML = `
+      <div class="info-title">Software runs in layers</div>
+      <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55;">Every action you take flows down through these layers: from your finger on the screen, through the app, OS, firmware, and finally to the actual silicon hardware. Each layer hides complexity from the one above.</p>
+      <div class="click-prompt">👆 Click a layer to learn more</div>
+    `;
+    return;
+  }
+  const l = SOFTWARE_LAYERS[id];
+  info.innerHTML = `
+    <div class="info-title">${l.name}</div>
+    <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55; margin-bottom:1rem;">${l.description}</p>
+    <div class="info-section">
+      <h4>Examples</h4>
+      <p style="font-size:0.92rem;">${l.examples}</p>
+    </div>
+    <div class="example-scenario">
+      <strong>🔗 Depends on:</strong> ${l.depends}
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 3: STORAGE COMPARISON (Ch 3 — Comparison slider)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const STORAGE_OPTIONS = ['HDD', 'SSD', 'Cloud'];
+const STORAGE_DATA = {
+  general: {
+    name: 'General balance',
+    metrics: [
+      { label: 'Read/Write speed', icon: '⚡', values: { HDD: 30, SSD: 90, Cloud: 50 }, unit: '/100' },
+      { label: 'Cost per GB',      icon: '💷', values: { HDD: 95, SSD: 60, Cloud: 70 }, unit: '/100 (higher = cheaper)' },
+      { label: 'Capacity ceiling', icon: '📦', values: { HDD: 85, SSD: 60, Cloud: 100 }, unit: '/100' },
+      { label: 'Durability',       icon: '🛡', values: { HDD: 40, SSD: 75, Cloud: 95 }, unit: '/100' },
+      { label: 'Accessibility',    icon: '🌐', values: { HDD: 50, SSD: 50, Cloud: 100 }, unit: '/100 (anywhere?)' },
+      { label: 'Works offline',    icon: '✈',  values: { HDD: 100, SSD: 100, Cloud: 0 }, unit: '/100' }
+    ],
+    conclusion: 'No single winner. <strong>SSD</strong> for daily working storage (fast, durable). <strong>HDD</strong> for large cheap archives. <strong>Cloud</strong> for access from anywhere and disaster recovery.'
+  },
+  gaming: {
+    name: 'Gaming PC',
+    metrics: [
+      { label: 'Load times',       icon: '⚡', values: { HDD: 20, SSD: 95, Cloud: 30 }, unit: '/100' },
+      { label: 'Streaming assets', icon: '🎮', values: { HDD: 30, SSD: 90, Cloud: 40 }, unit: '/100' },
+      { label: 'Capacity for many games', icon: '📦', values: { HDD: 90, SSD: 65, Cloud: 75 }, unit: '/100' },
+      { label: 'Cost',             icon: '💷', values: { HDD: 95, SSD: 60, Cloud: 50 }, unit: '/100 (cheaper)' }
+    ],
+    conclusion: '<strong>SSD wins for gaming.</strong> Modern games load assets continuously — slow storage causes texture pop-in and stutter. Many gamers use an SSD for active games + a large HDD for archives.'
+  },
+  business: {
+    name: 'Small business backups',
+    metrics: [
+      { label: 'Off-site safety',  icon: '🔥', values: { HDD: 10, SSD: 10, Cloud: 100 }, unit: '/100' },
+      { label: 'Cost per TB',      icon: '💷', values: { HDD: 95, SSD: 40, Cloud: 70 }, unit: '/100 (cheaper)' },
+      { label: 'Ease of restore',  icon: '↻',  values: { HDD: 70, SSD: 75, Cloud: 95 }, unit: '/100' },
+      { label: 'No staff needed',  icon: '👥', values: { HDD: 30, SSD: 30, Cloud: 100 }, unit: '/100' }
+    ],
+    conclusion: '<strong>Cloud wins for backups.</strong> Survives fire, theft, ransomware. Best practice: cloud + local backup for redundancy (3-2-1 rule).'
+  },
+  archive: {
+    name: 'Long-term photo archive',
+    metrics: [
+      { label: 'Capacity per £',   icon: '💷', values: { HDD: 100, SSD: 40, Cloud: 60 }, unit: '/100 (higher = better)' },
+      { label: 'Long-term reliability', icon: '⏳', values: { HDD: 60, SSD: 70, Cloud: 95 }, unit: '/100' },
+      { label: 'Easy to access',   icon: '🔎', values: { HDD: 60, SSD: 70, Cloud: 90 }, unit: '/100' },
+      { label: 'Energy use',       icon: '🌱', values: { HDD: 30, SSD: 80, Cloud: 50 }, unit: '/100' }
+    ],
+    conclusion: '<strong>HDDs are still king for big archives</strong> — cheapest per TB. But add a cloud copy for fire/theft protection.'
+  }
+};
+
+let currentStorageScenario = 'general';
+
+function renderStorageCompare() {
+  currentStorageScenario = 'general';
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'storage_compare', '#0F766E',
+    'HDD vs SSD vs Cloud',
+    'Chapter 3 · See which storage wins for each scenario',
+    `<div class="scenario-buttons" id="storageScenarios"></div>
+     <div class="compare-slider-wrap" id="storageCompareBody"></div>
+     <div class="compare-conclusion" id="storageConclusion"></div>`
+  );
+  drawStorageCompare();
+}
+
+function drawStorageCompare() {
+  const data = STORAGE_DATA[currentStorageScenario];
+  // Scenario buttons
+  document.getElementById('storageScenarios').innerHTML = Object.entries(STORAGE_DATA).map(([k, v]) => `
+    <button class="scenario-btn ${k === currentStorageScenario ? 'active' : ''}" onclick="setStorageScenario('${k}')">${v.name}</button>
+  `).join('');
+
+  // Find winner for each metric (highest value)
+  const body = document.getElementById('storageCompareBody');
+  body.innerHTML = `
+    <div class="compare-options" style="--bar-count: ${STORAGE_OPTIONS.length};">
+      ${STORAGE_OPTIONS.map(o => `<div class="compare-option-header">${o}</div>`).join('')}
+    </div>
+    ${data.metrics.map(m => {
+      const maxVal = Math.max(...Object.values(m.values));
+      return `
+        <div class="compare-row winner">
+          <div class="label-cell"><span class="icon">${m.icon}</span> ${m.label}</div>
+          <div class="compare-bars" style="--bar-count: ${STORAGE_OPTIONS.length};">
+            ${STORAGE_OPTIONS.map(o => {
+              const v = m.values[o] || 0;
+              const isWinner = v === maxVal && v > 0;
+              const color = o === 'HDD' ? '#B45309' : o === 'SSD' ? '#1D4ED8' : '#0F766E';
+              return `
+                <div class="compare-bar ${isWinner ? 'is-winner' : ''}" style="--bar-color:${color};">
+                  <div class="compare-bar-fill" style="width:${v}%; background:${color};"></div>
+                  <span class="compare-bar-text">${v}${m.unit.split(' ')[0]}</span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }).join('')}
+  `;
+  // Animate bars from 0
+  setTimeout(() => {
+    document.querySelectorAll('.compare-bar-fill').forEach(el => {
+      const target = el.style.width;
+      el.style.width = '0%';
+      setTimeout(() => { el.style.width = target; }, 50);
+    });
+  }, 50);
+
+  document.getElementById('storageConclusion').innerHTML = `<strong>💡 Verdict:</strong> ${data.conclusion}`;
+}
+
+function setStorageScenario(s) {
+  currentStorageScenario = s;
+  drawStorageCompare();
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 4: CPU FETCH-DECODE-EXECUTE (Ch 4 — Step-by-step animation)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const FDE_STEPS = [
+  { title: 'Step 1: Fetch address',
+    body: 'The Program Counter (PC) holds the memory address of the next instruction. This address is sent to the Memory Address Register (MAR) so the CPU knows where to look.',
+    highlight: ['pc', 'mar', 'pc-to-mar']
+  },
+  { title: 'Step 2: Read from memory',
+    body: 'The MAR sends the address to RAM via the address bus. RAM looks up the value at that address and sends the instruction back on the data bus.',
+    highlight: ['mar', 'ram', 'address-bus', 'data-bus']
+  },
+  { title: 'Step 3: Fetch instruction',
+    body: 'The instruction arrives at the Memory Data Register (MDR), then is copied into the Current Instruction Register (CIR). The PC is incremented so it points at the next instruction.',
+    highlight: ['mdr', 'cir', 'pc-incr']
+  },
+  { title: 'Step 4: Decode',
+    body: 'The Control Unit reads the instruction in the CIR and figures out what operation to perform (e.g. ADD, LOAD, STORE) and which registers or memory locations to use.',
+    highlight: ['cir', 'cu']
+  },
+  { title: 'Step 5: Execute',
+    body: 'The Control Unit signals the Arithmetic Logic Unit (ALU) or other components to perform the operation. Results may be written back to a register or to memory.',
+    highlight: ['cu', 'alu', 'registers']
+  },
+  { title: 'Step 6: Repeat',
+    body: 'The cycle starts over with the new value of the Program Counter. Modern CPUs do this billions of times per second — multiple instructions in flight at once via pipelining.',
+    highlight: ['pc']
+  }
+];
+
+let fdeStep = 0;
+
+function renderFDECycle() {
+  fdeStep = 0;
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'fde_cycle', '#1D4ED8',
+    'CPU Fetch-Decode-Execute Cycle',
+    'Chapter 4 · Step through how the CPU runs an instruction',
+    `<div class="step-stage" id="fdeStage"></div>
+     <div class="step-info" id="fdeInfo"></div>
+     <div class="step-controls">
+       <button class="action-btn secondary" onclick="fdePrev()" id="fdePrevBtn">← Previous</button>
+       <button class="action-btn" onclick="fdeNext()" id="fdeNextBtn">Next →</button>
+       <div class="step-progress">
+         <span id="fdeStepLabel">Step 1 of ${FDE_STEPS.length}</span>
+         <div class="step-progress-bar"><div class="step-progress-fill" id="fdeProgressFill"></div></div>
+       </div>
+       <button class="action-btn secondary" onclick="fdeReset()">↻ Restart</button>
+     </div>`
+  );
+  drawFDE();
+}
+
+function drawFDE() {
+  const step = FDE_STEPS[fdeStep];
+  const hi = id => step.highlight.includes(id);
+  const boxColor = id => hi(id) ? '#1D4ED8' : '#94A3B8';
+  const boxOpacity = id => hi(id) ? '1' : '0.5';
+  const lineColor = id => hi(id) ? '#1D4ED8' : '#CBD5E1';
+  const lineW = id => hi(id) ? '3' : '2';
+
+  const svg = `
+    <svg class="step-svg" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+      <!-- CPU container -->
+      <rect x="20" y="20" width="500" height="340" rx="12" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="270" y="42" text-anchor="middle" fill="#64748B" font-size="12" font-weight="700">CPU</text>
+
+      <!-- Registers section -->
+      <rect x="40" y="60" width="220" height="140" rx="8" fill="${hi('registers') ? '#1D4ED8' : '#E2E8F0'}" opacity="${hi('registers') ? '0.15' : '0.4'}"/>
+      <text x="150" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">REGISTERS</text>
+
+      <!-- PC -->
+      <rect x="60" y="95" width="80" height="34" rx="4" fill="${boxColor('pc')}" opacity="${boxOpacity('pc')}"/>
+      <text x="100" y="115" text-anchor="middle" fill="white" font-size="11" font-weight="700">PC</text>
+      <text x="100" y="142" text-anchor="middle" fill="#475569" font-size="9">Program Counter</text>
+
+      <!-- MAR -->
+      <rect x="160" y="95" width="80" height="34" rx="4" fill="${boxColor('mar')}" opacity="${boxOpacity('mar')}"/>
+      <text x="200" y="115" text-anchor="middle" fill="white" font-size="11" font-weight="700">MAR</text>
+      <text x="200" y="142" text-anchor="middle" fill="#475569" font-size="9">Mem Addr Reg</text>
+
+      <!-- MDR -->
+      <rect x="60" y="155" width="80" height="34" rx="4" fill="${boxColor('mdr')}" opacity="${boxOpacity('mdr')}"/>
+      <text x="100" y="175" text-anchor="middle" fill="white" font-size="11" font-weight="700">MDR</text>
+      <text x="100" y="200" text-anchor="middle" fill="#475569" font-size="9">Mem Data Reg</text>
+
+      <!-- CIR -->
+      <rect x="160" y="155" width="80" height="34" rx="4" fill="${boxColor('cir')}" opacity="${boxOpacity('cir')}"/>
+      <text x="200" y="175" text-anchor="middle" fill="white" font-size="11" font-weight="700">CIR</text>
+      <text x="200" y="200" text-anchor="middle" fill="#475569" font-size="9">Curr Instr Reg</text>
+
+      <!-- Control Unit -->
+      <rect x="290" y="80" width="100" height="60" rx="6" fill="${boxColor('cu')}" opacity="${boxOpacity('cu')}"/>
+      <text x="340" y="115" text-anchor="middle" fill="white" font-size="13" font-weight="700">CU</text>
+      <text x="340" y="150" text-anchor="middle" fill="#475569" font-size="9">Control Unit</text>
+
+      <!-- ALU -->
+      <polygon points="290,180 390,180 410,220 270,220" fill="${boxColor('alu')}" opacity="${boxOpacity('alu')}"/>
+      <text x="340" y="205" text-anchor="middle" fill="white" font-size="13" font-weight="700">ALU</text>
+      <text x="340" y="240" text-anchor="middle" fill="#475569" font-size="9">Arithmetic/Logic</text>
+
+      <!-- Address bus arrow CPU → RAM -->
+      <line x1="240" y1="112" x2="540" y2="112" stroke="${lineColor('address-bus')}" stroke-width="${lineW('address-bus')}"
+            marker-end="url(#arrowFDE)"/>
+      <text x="395" y="105" text-anchor="middle" font-size="9" fill="${hi('address-bus') ? '#1D4ED8' : '#94A3B8'}" font-weight="${hi('address-bus') ? '700' : '500'}">Address Bus</text>
+
+      <!-- Data bus arrow RAM → CPU -->
+      <line x1="540" y1="172" x2="140" y2="172" stroke="${lineColor('data-bus')}" stroke-width="${lineW('data-bus')}"
+            marker-end="url(#arrowFDE)"/>
+      <text x="395" y="166" text-anchor="middle" font-size="9" fill="${hi('data-bus') ? '#1D4ED8' : '#94A3B8'}" font-weight="${hi('data-bus') ? '700' : '500'}">Data Bus</text>
+
+      <!-- PC-to-MAR arrow -->
+      <line x1="140" y1="112" x2="160" y2="112" stroke="${lineColor('pc-to-mar')}" stroke-width="${lineW('pc-to-mar')}" marker-end="url(#arrowFDE)"/>
+
+      <!-- PC increment indicator -->
+      ${hi('pc-incr') ? `<text x="100" y="88" text-anchor="middle" font-size="10" fill="#1D4ED8" font-weight="700">+1 ↑</text>` : ''}
+
+      <!-- RAM -->
+      <rect x="555" y="80" width="120" height="200" rx="8" fill="${hi('ram') ? '#0F766E' : '#94A3B8'}" opacity="${hi('ram') ? '0.85' : '0.4'}"/>
+      <text x="615" y="105" text-anchor="middle" fill="white" font-size="13" font-weight="700">RAM</text>
+      <text x="615" y="125" text-anchor="middle" fill="white" font-size="9">(memory)</text>
+      <!-- Memory cells -->
+      ${[0,1,2,3,4].map(i => `
+        <rect x="565" y="${135 + i * 28}" width="100" height="22" rx="3" fill="white" opacity="${hi('ram') ? '0.95' : '0.7'}"/>
+        <text x="615" y="${150 + i * 28}" text-anchor="middle" fill="#475569" font-size="9" font-family="monospace">0x${(i * 4).toString(16).padStart(2,'0')}: ${['LOAD R1, 5','ADD R1, R2','STORE R3','JMP 0x10','...'][i]}</text>
+      `).join('')}
+
+      <!-- Arrowhead def -->
+      <defs>
+        <marker id="arrowFDE" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="currentColor"/>
+        </marker>
+      </defs>
+    </svg>
+  `;
+  document.getElementById('fdeStage').innerHTML = svg;
+  document.getElementById('fdeInfo').innerHTML = `
+    <span class="step-num">Step ${fdeStep + 1} / ${FDE_STEPS.length}</span>
+    <h3>${step.title}</h3>
+    <p>${step.body}</p>
+  `;
+  document.getElementById('fdeStepLabel').textContent = `Step ${fdeStep + 1} of ${FDE_STEPS.length}`;
+  document.getElementById('fdeProgressFill').style.width = `${((fdeStep + 1) / FDE_STEPS.length) * 100}%`;
+  document.getElementById('fdePrevBtn').disabled = fdeStep === 0;
+  document.getElementById('fdeNextBtn').disabled = fdeStep === FDE_STEPS.length - 1;
+}
+
+function fdeNext() { if (fdeStep < FDE_STEPS.length - 1) { fdeStep++; drawFDE(); } }
+function fdePrev() { if (fdeStep > 0) { fdeStep--; drawFDE(); } }
+function fdeReset() { fdeStep = 0; drawFDE(); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 5: NETWORK TOPOLOGIES (Ch 5 — Concept explorer)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const TOPOLOGIES = {
+  star: {
+    name: 'Star Topology',
+    description: 'All devices connect to a central hub or switch. The hub controls all communication; if it fails, the whole network goes down.',
+    pros: ['Easy to add or remove devices', 'If one device fails, others keep working', 'Easier to troubleshoot — problems isolated to one cable'],
+    cons: ['Central hub is a single point of failure', 'Uses more cable than bus topology', 'Hub failure brings down entire network'],
+    example: 'Most home and office Wi-Fi networks are star topologies — every laptop, phone and printer connects through a central router.',
+    devices: [
+      { id: 'hub', x: 200, y: 175, type: 'switch', label: 'Switch', isCenter: true },
+      { id: 'c1', x: 60, y: 60, type: 'pc', label: 'PC 1' },
+      { id: 'c2', x: 340, y: 60, type: 'pc', label: 'PC 2' },
+      { id: 'c3', x: 60, y: 290, type: 'pc', label: 'PC 3' },
+      { id: 'c4', x: 340, y: 290, type: 'pc', label: 'PC 4' },
+      { id: 'c5', x: 50, y: 175, type: 'pc', label: 'Printer' },
+      { id: 'c6', x: 350, y: 175, type: 'pc', label: 'Server' }
+    ],
+    connections: [
+      { from: 'c1', to: 'hub' }, { from: 'c2', to: 'hub' },
+      { from: 'c3', to: 'hub' }, { from: 'c4', to: 'hub' },
+      { from: 'c5', to: 'hub' }, { from: 'c6', to: 'hub' }
+    ]
+  },
+  bus: {
+    name: 'Bus Topology',
+    description: 'All devices share a single common cable (the "bus"). Data travels along the bus and devices listen for messages addressed to them.',
+    pros: ['Cheap — uses less cable than other topologies', 'Easy to install for small networks', 'Good for temporary setups'],
+    cons: ['If the main cable breaks, the whole network fails', 'Performance drops as more devices added (collisions)', 'Hard to troubleshoot', 'Largely obsolete'],
+    example: 'Older Ethernet networks (10BASE2/10BASE5) used bus topology. Rarely used today except in some industrial control systems.',
+    devices: [
+      { id: 'c1', x: 50, y: 100, type: 'pc', label: 'PC 1' }, { id: 'c2', x: 150, y: 100, type: 'pc', label: 'PC 2' },
+      { id: 'c3', x: 250, y: 100, type: 'pc', label: 'PC 3' }, { id: 'c4', x: 350, y: 100, type: 'pc', label: 'PC 4' },
+      { id: 'c5', x: 100, y: 280, type: 'pc', label: 'PC 5' }, { id: 'c6', x: 200, y: 280, type: 'pc', label: 'PC 6' },
+      { id: 'c7', x: 300, y: 280, type: 'pc', label: 'Server' }
+    ],
+    connections: [],
+    busLine: { x1: 20, y1: 200, x2: 380, y2: 200 },
+    stubs: [
+      { device: 'c1', y: 200 }, { device: 'c2', y: 200 }, { device: 'c3', y: 200 },
+      { device: 'c4', y: 200 }, { device: 'c5', y: 200 }, { device: 'c6', y: 200 }, { device: 'c7', y: 200 }
+    ]
+  },
+  ring: {
+    name: 'Ring Topology',
+    description: 'Devices are connected in a circular loop. Data travels in one direction, passing through each device until it reaches its destination.',
+    pros: ['Performance stays consistent under load (no collisions)', 'No single device dominates the network', 'Predictable timing'],
+    cons: ['If one device fails, the whole network can break', 'Adding or removing devices disrupts the network', 'Slow when many devices added'],
+    example: 'Token Ring networks were common in older office IBM environments. FDDI uses a dual-ring topology for fault tolerance.',
+    devices: [
+      { id: 'c1', x: 200, y: 50,  type: 'pc', label: 'PC 1' }, { id: 'c2', x: 340, y: 130, type: 'pc', label: 'PC 2' },
+      { id: 'c3', x: 340, y: 270, type: 'pc', label: 'PC 3' }, { id: 'c4', x: 200, y: 350, type: 'pc', label: 'PC 4' },
+      { id: 'c5', x: 60,  y: 270, type: 'pc', label: 'PC 5' }, { id: 'c6', x: 60,  y: 130, type: 'pc', label: 'PC 6' }
+    ],
+    connections: [
+      { from: 'c1', to: 'c2' }, { from: 'c2', to: 'c3' }, { from: 'c3', to: 'c4' },
+      { from: 'c4', to: 'c5' }, { from: 'c5', to: 'c6' }, { from: 'c6', to: 'c1' }
+    ]
+  },
+  mesh: {
+    name: 'Mesh Topology',
+    description: 'Every device connects directly to many or all other devices. Provides multiple paths for data, so failure of one link doesn\'t stop communication.',
+    pros: ['Very reliable — multiple paths', 'No single point of failure', 'High performance — shortest route', 'Excellent for mission-critical networks'],
+    cons: ['Very expensive — needs lots of cable and ports', 'Complex to set up and maintain', 'Most cables/ports are rarely used', 'Overkill for small networks'],
+    example: 'The internet backbone uses a mesh-like topology for redundancy. Wireless mesh networks extend Wi-Fi coverage where any node can route data.',
+    devices: [
+      { id: 'c1', x: 200, y: 60,  type: 'pc', label: 'Router 1' }, { id: 'c2', x: 340, y: 175, type: 'pc', label: 'Router 2' },
+      { id: 'c3', x: 280, y: 320, type: 'pc', label: 'Router 3' }, { id: 'c4', x: 120, y: 320, type: 'pc', label: 'Router 4' },
+      { id: 'c5', x: 60,  y: 175, type: 'pc', label: 'Router 5' }
+    ],
+    connections: [
+      { from: 'c1', to: 'c2' }, { from: 'c1', to: 'c3' }, { from: 'c1', to: 'c4' }, { from: 'c1', to: 'c5' },
+      { from: 'c2', to: 'c3' }, { from: 'c2', to: 'c4' }, { from: 'c2', to: 'c5' },
+      { from: 'c3', to: 'c4' }, { from: 'c3', to: 'c5' }, { from: 'c4', to: 'c5' }
+    ]
+  }
+};
+
+let currentTopology = 'star', selectedTopologyDevice = null, topologySimActive = false;
+
+function renderTopologies() {
+  currentTopology = 'star'; selectedTopologyDevice = null; topologySimActive = false;
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'topologies', '#1D4ED8',
+    'Network Topologies',
+    'Chapter 5 · Click devices to learn how each topology works',
+    `<div class="diag-tabs" id="topoTabs"></div>
+     <div class="two-pane">
+       <div class="svg-area" id="topoSvg"></div>
+       <div class="info-area" id="topoInfo"></div>
+     </div>`
+  );
+  drawTopology();
+}
+
+function drawTopology() {
+  const t = TOPOLOGIES[currentTopology];
+  document.getElementById('topoTabs').innerHTML = Object.keys(TOPOLOGIES).map(k => `
+    <button class="diag-tab ${k === currentTopology ? 'active' : ''}" onclick="switchTopology('${k}')">${TOPOLOGIES[k].name}</button>
+  `).join('');
+
+  const isSel = id => selectedTopologyDevice === id ? 'selected' : '';
+  const dev = (d) => {
+    const isCentre = d.isCenter;
+    const colour = isCentre ? '#1D4ED8' : '#0F766E';
+    return `
+      <g class="dev ${isSel(d.id)}" data-id="${d.id}" onclick="selectTopologyDevice('${d.id}')">
+        <circle class="device-body" cx="${d.x}" cy="${d.y}" r="${isCentre ? 28 : 22}" fill="${colour}" stroke="white" stroke-width="3"/>
+        <text x="${d.x}" y="${d.y + 4}" text-anchor="middle" fill="white" font-size="${isCentre ? 12 : 10}" font-weight="700">${isCentre ? 'HUB' : d.label.split(' ')[1] || ''}</text>
+        <text x="${d.x}" y="${d.y + (isCentre ? 50 : 40)}" text-anchor="middle" fill="var(--text)" font-size="11" font-weight="600">${d.label}</text>
+      </g>
+    `;
+  };
+
+  let connLines = '';
+  if (currentTopology === 'bus') {
+    connLines += `<line class="connection ${topologySimActive ? 'active' : ''}" x1="${t.busLine.x1}" y1="${t.busLine.y1}" x2="${t.busLine.x2}" y2="${t.busLine.y2}"/>`;
+    t.stubs.forEach(s => {
+      const d = t.devices.find(dv => dv.id === s.device);
+      if (d) connLines += `<line class="connection" x1="${d.x}" y1="${d.y}" x2="${d.x}" y2="${s.y}"/>`;
+    });
+  } else {
+    t.connections.forEach(c => {
+      const a = t.devices.find(d => d.id === c.from);
+      const b = t.devices.find(d => d.id === c.to);
+      if (a && b) {
+        const isActive = topologySimActive && currentTopology === 'star' && c.from === selectedTopologyDevice;
+        connLines += `<line class="connection ${isActive ? 'active' : ''}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`;
+      }
+    });
+  }
+
+  document.getElementById('topoSvg').innerHTML = `
+    <svg class="interactive-svg" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg">
+      ${connLines}
+      ${t.devices.map(dev).join('')}
+    </svg>
+  `;
+  document.getElementById('topoInfo').innerHTML = renderTopologyInfo(t);
+}
+
+function switchTopology(k) { currentTopology = k; selectedTopologyDevice = null; topologySimActive = false; drawTopology(); }
+function selectTopologyDevice(id) { selectedTopologyDevice = id; drawTopology(); }
+
+function renderTopologyInfo(t) {
+  let deviceDetail = '';
+  if (selectedTopologyDevice) {
+    const d = t.devices.find(dv => dv.id === selectedTopologyDevice);
+    if (d) {
+      const role = d.isCenter
+        ? 'This is the central hub/switch. All communication in a star topology passes through this device. If it fails, the entire network goes down.'
+        : `This is a connected node. ${currentTopology === 'star' ? 'It can only communicate by sending data through the central hub.' : currentTopology === 'bus' ? 'It shares the same cable as every other device. Only one device can transmit at a time.' : currentTopology === 'ring' ? 'Data passes through this device on its way around the ring. If this device fails, the ring breaks.' : 'This router has direct connections to multiple others, providing alternative paths if any single connection fails.'}`;
+      deviceDetail = `
+        <div class="info-section" style="background:var(--blue-light); padding:0.85rem 1rem; border-radius:8px; border-left:3px solid var(--blue);">
+          <h4 style="color:var(--blue);">Selected: ${d.label}</h4>
+          <p style="font-size:0.88rem; margin:0;">${role}</p>
+        </div>
+      `;
+    }
+  }
+  return `
+    <div class="info-title">${t.name}</div>
+    <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55; margin-bottom:1rem;">${t.description}</p>
+    ${deviceDetail}
+    <div class="pros-cons">
+      <div class="pros-box"><strong>✓ ADVANTAGES</strong><ul>${t.pros.map(p => `<li>${p}</li>`).join('')}</ul></div>
+      <div class="cons-box"><strong>✕ DISADVANTAGES</strong><ul>${t.cons.map(c => `<li>${c}</li>`).join('')}</ul></div>
+    </div>
+    <div class="example-scenario"><strong>💡 Real-world example:</strong> ${t.example}</div>
+    ${!selectedTopologyDevice ? `<div class="click-prompt">👆 Click any device above to learn about its role</div>` : ''}
+    <button class="action-btn" onclick="toggleTopologySim()">${topologySimActive ? '⏸ Stop simulation' : '▶ Simulate data flow'}</button>
+  `;
+}
+
+function toggleTopologySim() {
+  topologySimActive = !topologySimActive;
+  drawTopology();
+  if (topologySimActive) setTimeout(() => { topologySimActive = false; drawTopology(); }, 6000);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 6: SECURITY THREATS (Ch 6 — Drag-and-drop quiz)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const SECURITY_QUIZ = {
+  title: 'Label the Security Threats',
+  instructions: 'Drag each threat from the bank on the left to its correct description on the right. Get scored on accuracy.',
+  threats: [
+    { id: 'phishing', label: 'Phishing' },
+    { id: 'pharming', label: 'Pharming' },
+    { id: 'malware', label: 'Malware' },
+    { id: 'ransomware', label: 'Ransomware' },
+    { id: 'spyware', label: 'Spyware' },
+    { id: 'ddos', label: 'DDoS attack' },
+    { id: 'sql_injection', label: 'SQL injection' },
+    { id: 'brute_force', label: 'Brute force' }
+  ],
+  descriptions: [
+    { id: 'phishing', text: 'Fake emails or messages tricking users into giving up passwords or personal data, often by clicking a link to a fake login page.' },
+    { id: 'pharming', text: 'Silently redirects users from a legitimate website to a fake one via DNS manipulation — the user types the right URL but lands on a fraudulent site.' },
+    { id: 'malware', text: 'A catch-all term for any malicious software designed to harm, steal data, or take control of a computer.' },
+    { id: 'ransomware', text: 'Encrypts the victim\'s files and demands payment (usually cryptocurrency) for the decryption key.' },
+    { id: 'spyware', text: 'Hides on a device and secretly monitors activity, recording keystrokes, browsing history, or login details.' },
+    { id: 'ddos', text: 'Floods a website or service with so much traffic from many sources that legitimate users can\'t access it.' },
+    { id: 'sql_injection', text: 'Attacker inserts malicious SQL code into a website\'s input fields, tricking the database into revealing or modifying data.' },
+    { id: 'brute_force', text: 'Tries every possible password combination until one works. Slowed by lockouts, defeated by long random passwords.' }
+  ]
+};
+
+let dndState = { placements: {}, dragging: null, scored: false };
+
+function renderSecurityQuiz() {
+  dndState = { placements: {}, dragging: null, scored: false };
+  window._activeDndData = SECURITY_QUIZ;
+  // Shuffle descriptions so the order doesn't give it away
+  const shuffled = [...SECURITY_QUIZ.descriptions].sort(() => Math.random() - 0.5);
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'security_quiz', '#B91C1C',
+    SECURITY_QUIZ.title,
+    'Chapter 6 · Drag threats to their descriptions',
+    `<div style="padding:1rem 1.5rem; background:var(--surface); border-bottom:1px solid var(--border); font-size:0.92rem; color:var(--text-mid);">${SECURITY_QUIZ.instructions}</div>
+     <div class="dnd-stage">
+       <div class="dnd-bank" id="dndBank">
+         <h3>🏷 Threats</h3>
+         ${SECURITY_QUIZ.threats.map(t => `
+           <div class="dnd-label" draggable="true" data-id="${t.id}"
+                ondragstart="dndDragStart(event, '${t.id}')"
+                ondragend="dndDragEnd(event)">${t.label}</div>
+         `).join('')}
+       </div>
+       <div class="dnd-targets" id="dndTargets">
+         ${shuffled.map(d => `
+           <div class="dnd-target" data-target="${d.id}"
+                ondragover="dndDragOver(event)"
+                ondragleave="dndDragLeave(event)"
+                ondrop="dndDrop(event, '${d.id}')">
+             <div class="target-desc">${d.text}</div>
+           </div>
+         `).join('')}
+       </div>
+     </div>
+     <div class="dnd-toolbar">
+       <button class="action-btn" onclick="dndScore()" id="dndScoreBtn">✓ Check my answers</button>
+       <button class="action-btn secondary" onclick="dndReset()">↻ Reset</button>
+       <div class="dnd-score" id="dndScoreText"></div>
+     </div>`
+  );
+}
+
+function dndDragStart(e, id) { dndState.dragging = id; e.target.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+function dndDragEnd(e) { e.target.classList.remove('dragging'); }
+function dndDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function dndDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function dndDrop(e, targetId) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (!dndState.dragging) return;
+  const draggedId = dndState.dragging;
+  // Remove the dragged threat from any existing placement
+  Object.keys(dndState.placements).forEach(tid => {
+    if (dndState.placements[tid] === draggedId) delete dndState.placements[tid];
+  });
+  dndState.placements[targetId] = draggedId;
+  dndState.dragging = null;
+  dndScored = false;
+  redrawDnD();
+}
+
+function redrawDnD() {
+  const activeData = window._activeDndData || SECURITY_QUIZ;
+  // Update bank — hide placed labels
+  const placedIds = Object.values(dndState.placements);
+  document.querySelectorAll('#dndBank .dnd-label').forEach(el => {
+    el.classList.toggle('placed', placedIds.includes(el.dataset.id));
+  });
+  // Update targets
+  document.querySelectorAll('#dndTargets .dnd-target').forEach(t => {
+    t.classList.remove('correct', 'incorrect');
+    const placed = dndState.placements[t.dataset.target];
+    // Remove old label and badge, keep description
+    t.querySelectorAll('.placed-label, .dnd-result-badge').forEach(el => el.remove());
+    if (placed) {
+      const threat = activeData.threats.find(x => x.id === placed);
+      if (!threat) return;
+      const lbl = document.createElement('div');
+      lbl.className = 'placed-label';
+      lbl.textContent = threat.label;
+      lbl.draggable = true;
+      lbl.dataset.id = threat.id;
+      lbl.addEventListener('dragstart', e => dndDragStart(e, threat.id));
+      lbl.addEventListener('dragend', dndDragEnd);
+      t.insertBefore(lbl, t.firstChild);
+    }
+  });
+}
+
+function dndScore() {
+  const data = window._activeDndData || SECURITY_QUIZ;
+  let correct = 0;
+  document.querySelectorAll('#dndTargets .dnd-target').forEach(t => {
+    const tid = t.dataset.target;
+    const placed = dndState.placements[tid];
+    if (placed === tid) {
+      t.classList.add('correct');
+      correct++;
+      // Add badge after label
+      const lbl = t.querySelector('.placed-label');
+      if (lbl) {
+        const badge = document.createElement('span');
+        badge.className = 'dnd-result-badge correct';
+        badge.textContent = '✓ correct';
+        lbl.appendChild(badge);
+      }
+    } else if (placed) {
+      t.classList.add('incorrect');
+      const lbl = t.querySelector('.placed-label');
+      if (lbl) {
+        const badge = document.createElement('span');
+        badge.className = 'dnd-result-badge incorrect';
+        const correctName = data.threats.find(x => x.id === tid)?.label || '?';
+        badge.textContent = `✕ should be ${correctName}`;
+        lbl.appendChild(badge);
+      }
+    }
+  });
+  dndState.scored = true;
+  const total = data.threats.length;
+  document.getElementById('dndScoreText').innerHTML = `Score: <span style="color:${correct === total ? 'var(--green)' : correct >= total/2 ? 'var(--amber)' : 'var(--red)'};">${correct} / ${total}</span>`;
+  if (window.recordActivity) window.recordActivity('question');
+}
+
+function dndReset() {
+  dndState = { placements: {}, dragging: null, scored: false };
+  renderSecurityQuiz();
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 7: PAGE LOAD (Ch 7 — Step-by-step animation)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const PAGE_LOAD_STEPS = [
+  { title: 'Step 1: You type a URL',
+    body: 'You type "www.example.com" in your browser. The browser needs to convert that human-readable name into an IP address it can actually contact.',
+    highlight: ['browser', 'browser-glow'] },
+  { title: 'Step 2: DNS lookup',
+    body: 'Your browser asks a DNS server: "what IP address belongs to www.example.com?" The DNS server responds with the IP (e.g. 93.184.216.34).',
+    highlight: ['browser', 'dns', 'b-dns'] },
+  { title: 'Step 3: Request travels',
+    body: 'The browser builds an HTTP request and sends it to that IP. The packet hops through your home router, your ISP, and across the internet backbone.',
+    highlight: ['browser', 'router', 'isp', 'b-r', 'r-i', 'i-s'] },
+  { title: 'Step 4: Server processes',
+    body: 'The web server receives the request. It looks up the page, possibly queries a database, and assembles an HTML response.',
+    highlight: ['server', 'server-glow', 'db'] },
+  { title: 'Step 5: Response returns',
+    body: 'The server sends back the HTML, CSS, JavaScript, and images. These travel back through the internet to your browser.',
+    highlight: ['server', 'i-s', 'r-i', 'b-r', 'router', 'isp'] },
+  { title: 'Step 6: Browser renders',
+    body: 'Your browser parses the HTML, downloads any extra files (CSS, JS, images), runs scripts, and finally displays the page on your screen.',
+    highlight: ['browser', 'browser-glow'] }
+];
+
+let pageStep = 0;
+
+function renderPageLoad() {
+  pageStep = 0;
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'page_load', '#7C3AED',
+    'How a Web Page Loads',
+    'Chapter 7 · Trace a request from browser to server and back',
+    `<div class="step-stage" id="plStage"></div>
+     <div class="step-info" id="plInfo"></div>
+     <div class="step-controls">
+       <button class="action-btn secondary" onclick="plPrev()" id="plPrevBtn">← Previous</button>
+       <button class="action-btn" onclick="plNext()" id="plNextBtn">Next →</button>
+       <div class="step-progress">
+         <span id="plStepLabel">Step 1 of ${PAGE_LOAD_STEPS.length}</span>
+         <div class="step-progress-bar"><div class="step-progress-fill" id="plProgressFill"></div></div>
+       </div>
+       <button class="action-btn secondary" onclick="plReset()">↻ Restart</button>
+     </div>`
+  );
+  drawPageLoad();
+}
+
+function drawPageLoad() {
+  const step = PAGE_LOAD_STEPS[pageStep];
+  const hi = id => step.highlight.includes(id);
+  const color = id => hi(id) ? '#7C3AED' : '#94A3B8';
+  const opacity = id => hi(id) ? '1' : '0.45';
+
+  const svg = `
+    <svg class="step-svg" viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrowPL" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="currentColor"/>
+        </marker>
+      </defs>
+
+      <!-- Browser -->
+      <g>
+        <rect x="20" y="100" width="110" height="80" rx="8" fill="${color('browser')}" opacity="${opacity('browser')}"/>
+        <text x="75" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="700">Browser</text>
+        <text x="75" y="155" text-anchor="middle" fill="white" font-size="9">(you)</text>
+        ${hi('browser-glow') ? `<rect x="14" y="94" width="122" height="92" rx="12" fill="none" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5 4"/>` : ''}
+      </g>
+
+      <!-- Router -->
+      <g>
+        <rect x="180" y="50" width="90" height="60" rx="8" fill="${color('router')}" opacity="${opacity('router')}"/>
+        <text x="225" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="700">Router</text>
+        <text x="225" y="100" text-anchor="middle" fill="white" font-size="9">(home)</text>
+      </g>
+
+      <!-- DNS -->
+      <g>
+        <rect x="180" y="170" width="90" height="60" rx="8" fill="${color('dns')}" opacity="${opacity('dns')}"/>
+        <text x="225" y="200" text-anchor="middle" fill="white" font-size="12" font-weight="700">DNS</text>
+        <text x="225" y="220" text-anchor="middle" fill="white" font-size="9">server</text>
+      </g>
+
+      <!-- ISP -->
+      <g>
+        <rect x="320" y="100" width="90" height="80" rx="8" fill="${color('isp')}" opacity="${opacity('isp')}"/>
+        <text x="365" y="135" text-anchor="middle" fill="white" font-size="12" font-weight="700">ISP</text>
+        <text x="365" y="155" text-anchor="middle" fill="white" font-size="9">internet provider</text>
+      </g>
+
+      <!-- Server -->
+      <g>
+        <rect x="500" y="100" width="100" height="80" rx="8" fill="${color('server')}" opacity="${opacity('server')}"/>
+        <text x="550" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="700">Server</text>
+        <text x="550" y="155" text-anchor="middle" fill="white" font-size="9">www.example.com</text>
+        ${hi('server-glow') ? `<rect x="494" y="94" width="112" height="92" rx="12" fill="none" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5 4"/>` : ''}
+      </g>
+
+      <!-- Database -->
+      <g>
+        <ellipse cx="680" cy="120" rx="40" ry="14" fill="${color('db')}" opacity="${opacity('db')}"/>
+        <rect x="640" y="120" width="80" height="40" fill="${color('db')}" opacity="${opacity('db')}"/>
+        <ellipse cx="680" cy="160" rx="40" ry="14" fill="${color('db')}" opacity="${opacity('db')}"/>
+        <text x="680" y="145" text-anchor="middle" fill="white" font-size="12" font-weight="700">DB</text>
+      </g>
+
+      <!-- Lines -->
+      <line x1="130" y1="140" x2="180" y2="80"  stroke="${color('b-r')}" stroke-width="${hi('b-r')?'3':'2'}" marker-end="url(#arrowPL)"/>
+      <line x1="130" y1="140" x2="180" y2="200" stroke="${color('b-dns')}" stroke-width="${hi('b-dns')?'3':'2'}" marker-end="url(#arrowPL)"/>
+      <line x1="270" y1="80" x2="320" y2="140" stroke="${color('r-i')}" stroke-width="${hi('r-i')?'3':'2'}" marker-end="url(#arrowPL)"/>
+      <line x1="410" y1="140" x2="500" y2="140" stroke="${color('i-s')}" stroke-width="${hi('i-s')?'3':'2'}" marker-end="url(#arrowPL)"/>
+      <line x1="600" y1="140" x2="640" y2="140" stroke="${color('db')}" stroke-width="${hi('db')?'3':'2'}" stroke-dasharray="4 3"/>
+    </svg>
+  `;
+  document.getElementById('plStage').innerHTML = svg;
+  document.getElementById('plInfo').innerHTML = `
+    <span class="step-num">Step ${pageStep + 1} / ${PAGE_LOAD_STEPS.length}</span>
+    <h3>${step.title}</h3>
+    <p>${step.body}</p>
+  `;
+  document.getElementById('plStepLabel').textContent = `Step ${pageStep + 1} of ${PAGE_LOAD_STEPS.length}`;
+  document.getElementById('plProgressFill').style.width = `${((pageStep + 1) / PAGE_LOAD_STEPS.length) * 100}%`;
+  document.getElementById('plPrevBtn').disabled = pageStep === 0;
+  document.getElementById('plNextBtn').disabled = pageStep === PAGE_LOAD_STEPS.length - 1;
+}
+
+function plNext() { if (pageStep < PAGE_LOAD_STEPS.length - 1) { pageStep++; drawPageLoad(); } }
+function plPrev() { if (pageStep > 0) { pageStep--; drawPageLoad(); } }
+function plReset() { pageStep = 0; drawPageLoad(); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 8: CRAAB (Ch 8 — Drag-and-drop quiz)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const CRAAB_QUIZ = {
+  title: 'CRAAB: How to Evaluate a Source',
+  instructions: 'Match each letter of the CRAAB framework to its correct meaning. Useful for evaluating online sources for your research and exam case studies.',
+  threats: [
+    { id: 'currency', label: 'C — Currency' },
+    { id: 'relevance', label: 'R — Relevance' },
+    { id: 'authority', label: 'A — Authority' },
+    { id: 'accuracy', label: 'A — Accuracy' },
+    { id: 'bias', label: 'B — Bias' }
+  ],
+  descriptions: [
+    { id: 'currency',  text: 'When was the source written or last updated? In fast-moving fields like tech, a 10-year-old source is probably out of date.' },
+    { id: 'relevance', text: 'Does the source actually relate to your topic at the right depth? A children\'s site won\'t help in an advanced essay; a research paper might be overkill for a basic question.' },
+    { id: 'authority', text: 'Who wrote it? Are they an expert? Is it published on a trustworthy domain (.gov, .edu, well-known organisation)? Anonymous blogs score lower.' },
+    { id: 'accuracy',  text: 'Can the claims be verified? Are facts cited with sources? Do other reliable sites agree? Lots of typos can be a warning sign of low accuracy.' },
+    { id: 'bias',      text: 'Does the author have an agenda? A site selling a product will praise it; a political site may misrepresent its rivals. Look for balanced viewpoints.' }
+  ]
+};
+
+function renderCraabQuiz() {
+  // Re-use the security quiz machinery, but with different content
+  const data = CRAAB_QUIZ;
+  // Shuffle descriptions
+  const shuffled = [...data.descriptions].sort(() => Math.random() - 0.5);
+  dndState = { placements: {}, dragging: null, scored: false };
+  // Store globally so dnd machinery uses CRAAB data
+  window._activeDndData = data;
+
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'craab_quiz', '#15803D',
+    data.title,
+    'Chapter 8 · Drag letters to their meanings',
+    `<div style="padding:1rem 1.5rem; background:var(--surface); border-bottom:1px solid var(--border); font-size:0.92rem; color:var(--text-mid);">${data.instructions}</div>
+     <div class="dnd-stage">
+       <div class="dnd-bank" id="dndBank">
+         <h3>🏷 Criteria</h3>
+         ${data.threats.map(t => `
+           <div class="dnd-label" draggable="true" data-id="${t.id}"
+                ondragstart="dndDragStart(event, '${t.id}')"
+                ondragend="dndDragEnd(event)">${t.label}</div>
+         `).join('')}
+       </div>
+       <div class="dnd-targets" id="dndTargets">
+         ${shuffled.map(d => `
+           <div class="dnd-target" data-target="${d.id}"
+                ondragover="dndDragOver(event)"
+                ondragleave="dndDragLeave(event)"
+                ondrop="dndDrop(event, '${d.id}')">
+             <div class="target-desc">${d.text}</div>
+           </div>
+         `).join('')}
+       </div>
+     </div>
+     <div class="dnd-toolbar">
+       <button class="action-btn" onclick="dndScore()">✓ Check my answers</button>
+       <button class="action-btn secondary" onclick="renderCraabQuiz()">↻ Reset</button>
+       <div class="dnd-score" id="dndScoreText"></div>
+     </div>`
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 9: CLOUD VS ON-PREMISES (Ch 9 — Comparison slider)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const CLOUD_OPTIONS = ['On-premises', 'Cloud'];
+const CLOUD_DATA = {
+  general: {
+    name: 'General comparison',
+    metrics: [
+      { label: 'Setup cost',       icon: '💷', values: { 'On-premises': 20, 'Cloud': 95 }, unit: '/100 (cheaper)' },
+      { label: 'Scalability',      icon: '📈', values: { 'On-premises': 30, 'Cloud': 100 } },
+      { label: 'Data control',     icon: '🔐', values: { 'On-premises': 95, 'Cloud': 55 } },
+      { label: 'Reliability',      icon: '✅', values: { 'On-premises': 60, 'Cloud': 95 } },
+      { label: 'Maintenance work', icon: '🔧', values: { 'On-premises': 20, 'Cloud': 95 }, unit: '/100 (less work)' },
+      { label: 'Works offline',    icon: '✈',  values: { 'On-premises': 100, 'Cloud': 10 } }
+    ],
+    conclusion: 'Neither is universally better. <strong>Cloud</strong> suits most modern businesses — cheaper to start, scales automatically, less maintenance. <strong>On-premises</strong> still wins for sensitive data control or offline-required systems.'
+  },
+  startup: {
+    name: 'New startup',
+    metrics: [
+      { label: 'Start-up cost',    icon: '💷', values: { 'On-premises': 10, 'Cloud': 100 } },
+      { label: 'Time to launch',   icon: '⚡', values: { 'On-premises': 20, 'Cloud': 95 } },
+      { label: 'Scale fast',       icon: '📈', values: { 'On-premises': 25, 'Cloud': 100 } },
+      { label: 'Need IT staff',    icon: '👥', values: { 'On-premises': 20, 'Cloud': 90 }, unit: '/100 (fewer)' }
+    ],
+    conclusion: '<strong>Cloud wins for startups.</strong> No upfront hardware cost, instant scale-up if you get popular, and a single founder can manage it without an IT team.'
+  },
+  bank: {
+    name: 'Bank with sensitive data',
+    metrics: [
+      { label: 'Data sovereignty', icon: '🌍', values: { 'On-premises': 95, 'Cloud': 60 } },
+      { label: 'Compliance ease',  icon: '📋', values: { 'On-premises': 90, 'Cloud': 70 } },
+      { label: 'Custom security',  icon: '🛡', values: { 'On-premises': 100, 'Cloud': 75 } },
+      { label: 'Cost predictable', icon: '💷', values: { 'On-premises': 80, 'Cloud': 60 } }
+    ],
+    conclusion: 'Closer call. Major banks usually run <strong>hybrid</strong>: customer-facing apps in cloud (scalable), core systems on-premises (full control, regulatory compliance).'
+  },
+  school: {
+    name: 'A medium-sized school',
+    metrics: [
+      { label: 'Initial cost',     icon: '💷', values: { 'On-premises': 25, 'Cloud': 90 } },
+      { label: 'Year-on-year cost',icon: '📆', values: { 'On-premises': 75, 'Cloud': 60 } },
+      { label: 'Easy for staff',   icon: '👥', values: { 'On-premises': 50, 'Cloud': 90 } },
+      { label: 'Works at home',    icon: '🏠', values: { 'On-premises': 30, 'Cloud': 100 } }
+    ],
+    conclusion: '<strong>Cloud wins for schools.</strong> Google Workspace / Microsoft 365 give students and teachers access from home, on phones, on Chromebooks — without expensive in-school servers or specialised IT staff.'
+  }
+};
+
+let currentCloudScenario = 'general';
+
+function renderCloudCompare() {
+  currentCloudScenario = 'general';
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'cloud_compare', '#0F766E',
+    'On-premises vs Cloud',
+    'Chapter 9 · Pick the right hosting strategy for each scenario',
+    `<div class="scenario-buttons" id="cloudScenarios"></div>
+     <div class="compare-slider-wrap" id="cloudCompareBody"></div>
+     <div class="compare-conclusion" id="cloudConclusion"></div>`
+  );
+  drawCloudCompare();
+}
+
+function drawCloudCompare() {
+  const data = CLOUD_DATA[currentCloudScenario];
+  document.getElementById('cloudScenarios').innerHTML = Object.entries(CLOUD_DATA).map(([k, v]) => `
+    <button class="scenario-btn ${k === currentCloudScenario ? 'active' : ''}" onclick="setCloudScenario('${k}')">${v.name}</button>
+  `).join('');
+
+  const body = document.getElementById('cloudCompareBody');
+  body.innerHTML = `
+    <div class="compare-options" style="--bar-count: ${CLOUD_OPTIONS.length};">
+      ${CLOUD_OPTIONS.map(o => `<div class="compare-option-header">${o}</div>`).join('')}
+    </div>
+    ${data.metrics.map(m => {
+      const maxVal = Math.max(...Object.values(m.values));
+      return `
+        <div class="compare-row winner">
+          <div class="label-cell"><span class="icon">${m.icon}</span> ${m.label}</div>
+          <div class="compare-bars" style="--bar-count: ${CLOUD_OPTIONS.length};">
+            ${CLOUD_OPTIONS.map(o => {
+              const v = m.values[o] || 0;
+              const isWinner = v === maxVal && v > 0;
+              const color = o === 'On-premises' ? '#B45309' : '#0F766E';
+              return `
+                <div class="compare-bar ${isWinner ? 'is-winner' : ''}" style="--bar-color:${color};">
+                  <div class="compare-bar-fill" style="width:${v}%; background:${color};"></div>
+                  <span class="compare-bar-text">${v}/100</span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }).join('')}
+  `;
+  setTimeout(() => {
+    document.querySelectorAll('.compare-bar-fill').forEach(el => {
+      const target = el.style.width;
+      el.style.width = '0%';
+      setTimeout(() => { el.style.width = target; }, 50);
+    });
+  }, 50);
+  document.getElementById('cloudConclusion').innerHTML = `<strong>💡 Verdict:</strong> ${data.conclusion}`;
+}
+
+function setCloudScenario(s) { currentCloudScenario = s; drawCloudCompare(); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DIAGRAM 10: DATABASE RELATIONSHIPS (Ch 10 — Concept explorer)
+   ═══════════════════════════════════════════════════════════════════ */
+
+const DB_TABLES = {
+  members: {
+    name: 'Members',
+    color: '#1D4ED8',
+    fields: [
+      { name: 'MemberID', type: 'INT', key: 'pk' },
+      { name: 'FirstName', type: 'VARCHAR(50)' },
+      { name: 'LastName', type: 'VARCHAR(50)' },
+      { name: 'DOB', type: 'DATE' },
+      { name: 'Email', type: 'VARCHAR(100)' }
+    ],
+    description: 'Stores one row per club member. Each row has a unique MemberID — the primary key. No two members can share an ID.',
+    rules: [
+      'Primary key (PK): MemberID — uniquely identifies each row',
+      'No duplicates: same person can\'t exist twice',
+      'No empty PK: every member must have an ID'
+    ],
+    examples: 'MemberID: 1001, John Smith, 12/03/2007, john@example.com'
+  },
+  memberships: {
+    name: 'Memberships',
+    color: '#0F766E',
+    fields: [
+      { name: 'MembershipID', type: 'INT', key: 'pk' },
+      { name: 'MemberID', type: 'INT', key: 'fk', refs: 'members' },
+      { name: 'StartDate', type: 'DATE' },
+      { name: 'EndDate', type: 'DATE' },
+      { name: 'Type', type: 'VARCHAR(20)' }
+    ],
+    description: 'Stores each membership period. One member can have many memberships over the years — that\'s a one-to-many relationship.',
+    rules: [
+      'Primary key: MembershipID',
+      'Foreign key: MemberID — links back to the Members table',
+      'Foreign key enforces referential integrity: you can\'t add a membership for a member that doesn\'t exist'
+    ],
+    examples: 'MembershipID: 501, MemberID: 1001 (John), StartDate: 01/01/2025, Type: Annual'
+  },
+  payments: {
+    name: 'Payments',
+    color: '#B45309',
+    fields: [
+      { name: 'PaymentID', type: 'INT', key: 'pk' },
+      { name: 'MembershipID', type: 'INT', key: 'fk', refs: 'memberships' },
+      { name: 'Amount', type: 'DECIMAL(10,2)' },
+      { name: 'PaymentDate', type: 'DATETIME' },
+      { name: 'Method', type: 'VARCHAR(20)' }
+    ],
+    description: 'Stores each payment. One membership can have multiple payments (e.g. monthly instalments). Another one-to-many relationship.',
+    rules: [
+      'Primary key: PaymentID',
+      'Foreign key: MembershipID — links to the Memberships table',
+      'Querying joins Payments → Memberships → Members to find "all payments made by John Smith"'
+    ],
+    examples: 'PaymentID: 9001, MembershipID: 501, Amount: £25.00, Method: Card'
+  }
+};
+
+let selectedDBTable = null;
+
+function renderDbRelations() {
+  selectedDBTable = null;
+  document.getElementById('diagramViewer').innerHTML = diagramShell(
+    'db_relations', '#6D28D9',
+    'Database Relationships',
+    'Chapter 10 · Click any table to learn about keys and relationships',
+    `<div class="two-pane">
+      <div class="svg-area" id="dbSvgArea"></div>
+      <div class="info-area" id="dbInfoArea"></div>
+    </div>`
+  );
+  drawDBRelations();
+}
+
+function drawDBRelations() {
+  const tables = [
+    { id: 'members',     x: 30,  y: 30 },
+    { id: 'memberships', x: 250, y: 30 },
+    { id: 'payments',    x: 470, y: 30 }
+  ];
+
+  const tableHtml = tables.map(t => {
+    const td = DB_TABLES[t.id];
+    const selected = selectedDBTable === t.id;
+    return `
+      <div class="db-table" style="--ch-color: ${td.color}; position:absolute; left:${t.x}px; top:${t.y}px; width:170px; ${selected ? 'box-shadow: 0 0 0 3px ' + td.color + '; transform: translateY(-3px);' : ''}"
+           onclick="selectDBTable('${t.id}')">
+        <div class="db-table-header" style="background:${td.color};">${td.name}</div>
+        <div class="db-table-fields">
+          ${td.fields.map(f => `
+            <div class="db-field ${f.key || ''}">
+              ${f.key === 'pk' ? '🔑 ' : f.key === 'fk' ? '🔗 ' : ''}
+              <strong>${f.name}</strong>
+              <span style="color:var(--mid); font-size:0.75rem;">${f.type}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Draw relation lines connecting the tables (1 → many)
+  // Members → Memberships (via MemberID)
+  // Memberships → Payments (via MembershipID)
+  const relationLines = `
+    <svg class="db-relations-svg" viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg">
+      <!-- Members → Memberships -->
+      <line x1="200" y1="100" x2="250" y2="100" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="225" y="92" text-anchor="middle" font-size="10" fill="#475569" font-weight="700">1</text>
+      <text x="225" y="115" text-anchor="middle" font-size="14" fill="#475569" font-weight="700">∞</text>
+
+      <!-- Memberships → Payments -->
+      <line x1="420" y1="100" x2="470" y2="100" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="445" y="92" text-anchor="middle" font-size="10" fill="#475569" font-weight="700">1</text>
+      <text x="445" y="115" text-anchor="middle" font-size="14" fill="#475569" font-weight="700">∞</text>
+    </svg>
+  `;
+
+  document.getElementById('dbSvgArea').innerHTML = `
+    <div style="position:relative; width:640px; height:260px; max-width:100%;">
+      ${relationLines}
+      ${tableHtml}
+    </div>
+    <div style="text-align:center; color:var(--mid); font-size:0.85rem; margin-top:1.5rem; max-width:600px;">
+      <p style="margin-bottom:0.5rem;">🔑 Primary key  ·  🔗 Foreign key  ·  1 → ∞ One-to-many relationship</p>
+      <p>Each member can have many memberships (over time); each membership can have many payments.</p>
+    </div>
+  `;
+  renderDBInfo();
+}
+
+function selectDBTable(id) { selectedDBTable = id; drawDBRelations(); }
+
+function renderDBInfo() {
+  const info = document.getElementById('dbInfoArea');
+  if (!selectedDBTable) {
+    info.innerHTML = `
+      <div class="info-title">A relational database</div>
+      <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55;">This is a typical 3-table design for a club management system. Tables connect via foreign keys, allowing you to ask questions like "what did John Smith pay in March?" without storing duplicate data.</p>
+      <div class="info-section">
+        <h4>Key concepts</h4>
+        <ul>
+          <li><strong>Primary key (PK)</strong>: uniquely identifies each row</li>
+          <li><strong>Foreign key (FK)</strong>: references a primary key in another table</li>
+          <li><strong>One-to-many</strong>: one parent row links to many child rows</li>
+          <li><strong>Normalisation</strong>: split data into multiple tables to avoid duplication</li>
+        </ul>
+      </div>
+      <div class="click-prompt">👆 Click any table to explore its fields and relationships</div>
+    `;
+    return;
+  }
+  const td = DB_TABLES[selectedDBTable];
+  info.innerHTML = `
+    <div class="info-title" style="color:${td.color};">${td.name} table</div>
+    <p style="color:var(--text-mid); font-size:0.92rem; line-height:1.55; margin-bottom:1rem;">${td.description}</p>
+    <div class="info-section">
+      <h4>Rules</h4>
+      <ul>${td.rules.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>
+    <div class="example-scenario">
+      <strong>💡 Example row:</strong> ${td.examples}
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', renderHub);
+</script>
+</body>
+</html>

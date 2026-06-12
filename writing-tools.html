@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Tools — GCSE Computer Science 1CP2</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+.tool-tab-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+.tool-tab { padding: 0.55rem 1.1rem; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 100px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
+.tool-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+.comparison-grid { display:grid; gap: 0.4rem; margin-top: 1rem; padding: 1.25rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+.comp-row { display:grid; gap: 0.4rem; align-items: stretch; }
+.comp-cell {
+  padding: 0.6rem 0.85rem; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 0.9rem; min-height: 38px; outline: none; font-family: var(--font-body); color: var(--text);
+}
+.comp-cell:focus { border-color: var(--blue); }
+.comp-cell.header { background: var(--blue); color: white; font-weight: 700; }
+.comp-cell.aspect { background: var(--surface); font-weight: 600; }
+.comp-toolbar { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
+.comp-output { margin-top: 1.5rem; padding: 1.5rem 2rem; background: white; color: black; border-radius: var(--radius); border: 1px solid var(--border); font-family: 'Inter', sans-serif; }
+[data-theme="dark"] .comp-output { background: white; color: black; }
+.comp-output table { width: 100%; border-collapse: collapse; }
+.comp-output th, .comp-output td { padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; text-align: left; font-size: 0.9rem; }
+.comp-output th { background: #064E3B; color: white; }
+.comp-output td:first-child { background: #f1f5f9; font-weight: 700; }
+
+.cite-source-list { margin-top: 1.25rem; }
+.cite-source {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.25rem; margin-bottom: 0.6rem; display: grid; grid-template-columns: 1fr auto; gap: 0.5rem;
+}
+.cite-source .source-title { font-weight: 700; }
+.cite-source .source-meta { font-size: 0.82rem; color: var(--text-mid); margin-top: 0.2rem; }
+.cite-source .source-link { font-size: 0.78rem; color: var(--blue); word-break: break-all; }
+.cite-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
+.cite-form label { display:block; margin-bottom: 0.75rem; font-size: 0.85rem; font-weight: 600; }
+.cite-form input, .cite-form textarea {
+  width: 100%; padding: 0.5rem 0.85rem; margin-top: 0.3rem;
+  background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 0.92rem; color: var(--text); font-family: var(--font-body);
+}
+.cite-output {
+  margin-top: 1.5rem; padding: 1.5rem; background: white; color: black;
+  border-radius: var(--radius); border: 1px solid var(--border);
+  font-family: 'Inter', sans-serif; line-height: 1.65; font-size: 0.92rem;
+}
+[data-theme="dark"] .cite-output { background: white; color: black; }
+.cite-output p { margin-bottom: 0.6rem; }
+.cite-output em { font-style: italic; }
+@media print {
+  .tool-tab-row, .comp-toolbar, .cite-form, #addCiteBtn, .no-print { display: none !important; }
+  .topbar, .sidebar, .backdrop { display: none !important; }
+  .app { grid-template-columns: 1fr !important; margin-top: 0 !important; }
+  .main { padding: 0 !important; max-width: 100% !important; }
+  body { background: white !important; }
+}
+</style>
+</head>
+<body>
+<div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main fade-in">
+    <div class="quiz-hero no-print" style="background: linear-gradient(135deg, #15803D 0%, #0F766E 100%);">
+      <span class="hero-tag">Writing helpers</span>
+      <h1>✏ Writing Tools</h1>
+      <p>Build comparison tables for essay answers, manage source citations for Paper 2 coursework. Format-ready for printing or copying into your work.</p>
+    </div>
+
+    <div class="tool-tab-row no-print">
+      <div class="tool-tab active" onclick="showTool('compare', event)">📊 Comparison Table</div>
+      <div class="tool-tab" onclick="showTool('citation', event)">📚 Citation Manager</div>
+    </div>
+
+    <div id="toolContent"></div>
+  </main>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/streaks.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+
+let activeTool = 'compare';
+function showTool(t, e) {
+  activeTool = t;
+  document.querySelectorAll('.tool-tab').forEach(x => x.classList.remove('active'));
+  if (e?.target) e.target.classList.add('active');
+  if (t === 'compare') renderCompare();
+  else renderCitation();
+}
+
+// ═══════════ COMPARISON TABLE ═══════════
+
+let compareState = { items: ['Option A', 'Option B'], aspects: ['Speed', 'Cost', 'Reliability', 'Ease of use'], cells: {} };
+
+function renderCompare() {
+  document.getElementById('toolContent').innerHTML = `
+    <div class="comp-toolbar no-print">
+      <button class="btn" onclick="addItem()">+ Add column</button>
+      <button class="btn" onclick="addAspect()">+ Add row</button>
+      <button class="btn btn-primary" onclick="renderCompareOutput()">📄 Generate clean table</button>
+      <button class="btn" onclick="loadTemplate('hdd')" style="font-size:0.82rem;">📋 Template: HDD vs SSD</button>
+      <button class="btn" onclick="loadTemplate('cloud')" style="font-size:0.82rem;">📋 Template: Cloud vs On-prem</button>
+      <button class="btn" onclick="loadTemplate('lan')" style="font-size:0.82rem;">📋 Template: LAN vs WAN</button>
+    </div>
+
+    <div class="comparison-grid">
+      ${renderCompareEditor()}
+    </div>
+
+    <div id="compareOutput"></div>
+  `;
+}
+
+function renderCompareEditor() {
+  const cols = compareState.items.length;
+  // Make the grid: first column is "aspect" label, then one column per item
+  const colTemplate = `200px ${'1fr '.repeat(cols).trim()}`;
+  return `
+    <div class="comp-row" style="grid-template-columns: ${colTemplate};">
+      <div class="comp-cell aspect"><em>Aspect ↓ / Item →</em></div>
+      ${compareState.items.map((item, i) => `
+        <div style="display:flex; gap:0.3rem; align-items:stretch;">
+          <input class="comp-cell header" value="${escapeHtml(item)}" style="flex:1;" oninput="setItem(${i}, this.value)">
+          <button class="comp-cell" style="width:30px; padding:0; background:var(--red); color:white; border-color:var(--red); cursor:pointer;" onclick="removeItem(${i})" title="Remove column">×</button>
+        </div>
+      `).join('')}
+    </div>
+    ${compareState.aspects.map((asp, ai) => `
+      <div class="comp-row" style="grid-template-columns: ${colTemplate};">
+        <div style="display:flex; gap:0.3rem; align-items:stretch;">
+          <input class="comp-cell aspect" value="${escapeHtml(asp)}" style="flex:1;" oninput="setAspect(${ai}, this.value)">
+          <button class="comp-cell" style="width:30px; padding:0; background:var(--red); color:white; border-color:var(--red); cursor:pointer;" onclick="removeAspect(${ai})" title="Remove row">×</button>
+        </div>
+        ${compareState.items.map((_, ci) => `
+          <textarea class="comp-cell" oninput="setCell(${ai}, ${ci}, this.value)" placeholder="...">${escapeHtml(compareState.cells[ai + '_' + ci] || '')}</textarea>
+        `).join('')}
+      </div>
+    `).join('')}
+  `;
+}
+
+function setItem(i, v) { compareState.items[i] = v; }
+function setAspect(i, v) { compareState.aspects[i] = v; }
+function setCell(ai, ci, v) { compareState.cells[ai + '_' + ci] = v; }
+function addItem() { compareState.items.push('New option'); renderCompare(); }
+function addAspect() { compareState.aspects.push('New aspect'); renderCompare(); }
+function removeItem(i) {
+  if (compareState.items.length <= 1) return alert('Need at least one column.');
+  compareState.items.splice(i, 1);
+  // Shift cells
+  const newCells = {};
+  Object.keys(compareState.cells).forEach(k => {
+    const [ai, ci] = k.split('_').map(Number);
+    if (ci < i) newCells[k] = compareState.cells[k];
+    else if (ci > i) newCells[ai + '_' + (ci - 1)] = compareState.cells[k];
+  });
+  compareState.cells = newCells;
+  renderCompare();
+}
+function removeAspect(i) {
+  if (compareState.aspects.length <= 1) return alert('Need at least one row.');
+  compareState.aspects.splice(i, 1);
+  const newCells = {};
+  Object.keys(compareState.cells).forEach(k => {
+    const [ai, ci] = k.split('_').map(Number);
+    if (ai < i) newCells[k] = compareState.cells[k];
+    else if (ai > i) newCells[(ai - 1) + '_' + ci] = compareState.cells[k];
+  });
+  compareState.cells = newCells;
+  renderCompare();
+}
+
+const TEMPLATES = {
+  hdd: {
+    items: ['HDD', 'SSD'],
+    aspects: ['Speed', 'Capacity', 'Cost per GB', 'Durability', 'Power use', 'Noise'],
+    cells: {
+      '0_0': 'Slow (~100 MB/s)', '0_1': 'Fast (500+ MB/s)',
+      '1_0': 'Large (up to 20+ TB)', '1_1': 'Smaller but increasing',
+      '2_0': 'Cheap', '2_1': 'More expensive',
+      '3_0': 'Vulnerable to drops', '3_1': 'No moving parts, more resilient',
+      '4_0': 'Higher (spinning motor)', '4_1': 'Lower',
+      '5_0': 'Audible', '5_1': 'Silent'
+    }
+  },
+  cloud: {
+    items: ['On-premises', 'Cloud'],
+    aspects: ['Initial cost', 'Scalability', 'Maintenance', 'Data control', 'Reliability', 'Internet dependency'],
+    cells: {
+      '0_0': 'High (servers, setup)', '0_1': 'Low (pay-as-you-go)',
+      '1_0': 'Limited; need new hardware', '1_1': 'Near-instant scaling',
+      '2_0': 'Done by company IT staff', '2_1': 'Provider handles it',
+      '3_0': 'Full control over data', '3_1': 'Less control; trust provider',
+      '4_0': 'Depends on company\'s IT', '4_1': 'High SLAs (99.9%+)',
+      '5_0': 'Works without internet', '5_1': 'Requires internet'
+    }
+  },
+  lan: {
+    items: ['LAN', 'WAN'],
+    aspects: ['Geographic area', 'Speed', 'Ownership', 'Cost to set up', 'Typical example'],
+    cells: {
+      '0_0': 'Small (1 building/site)', '0_1': 'Large (cities, countries)',
+      '1_0': 'Very fast (1+ Gbps)', '1_1': 'Slower (limited by long-haul)',
+      '2_0': 'Owned by one organisation', '2_1': 'Uses third-party infrastructure',
+      '3_0': 'Cheap (cables, switch)', '3_1': 'Expensive (leased lines, equipment)',
+      '4_0': 'Office or school network', '4_1': 'The internet itself'
+    }
+  }
+};
+
+function loadTemplate(t) {
+  const tpl = TEMPLATES[t];
+  if (!tpl) return;
+  compareState = JSON.parse(JSON.stringify(tpl));
+  renderCompare();
+}
+
+function renderCompareOutput() {
+  const html = `
+    <div class="comp-output">
+      <table>
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            ${compareState.items.map(i => `<th>${escapeHtml(i)}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${compareState.aspects.map((asp, ai) => `
+            <tr>
+              <td>${escapeHtml(asp)}</td>
+              ${compareState.items.map((_, ci) => `<td>${escapeHtml(compareState.cells[ai + '_' + ci] || '—')}</td>`).join('')}
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+      <div style="margin-top:1rem;" class="no-print">
+        <button class="btn" onclick="window.print()">🖨 Print</button>
+        <button class="btn" onclick="copyTableText()">📋 Copy as text</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('compareOutput').innerHTML = html;
+  setTimeout(() => document.getElementById('compareOutput').scrollIntoView({ behavior: 'smooth' }), 100);
+}
+
+function copyTableText() {
+  // Build pipe-separated text version
+  let txt = ['Aspect | ' + compareState.items.join(' | ')];
+  txt.push('-'.repeat(40));
+  compareState.aspects.forEach((asp, ai) => {
+    const row = [asp];
+    compareState.items.forEach((_, ci) => row.push(compareState.cells[ai + '_' + ci] || '—'));
+    txt.push(row.join(' | '));
+  });
+  navigator.clipboard.writeText(txt.join('\n')).then(() => alert('Copied!'), () => alert('Could not copy.'));
+}
+
+// ═══════════ CITATION MANAGER ═══════════
+
+const CITES_KEY = 'gcse_cs_citations_v1';
+let citations = [];
+
+function loadCitations() {
+  try { citations = JSON.parse(localStorage.getItem(CITES_KEY) || '[]'); } catch(e) { citations = []; }
+}
+function saveCitations() {
+  try { localStorage.setItem(CITES_KEY, JSON.stringify(citations)); } catch(e) {}
+}
+
+function renderCitation() {
+  loadCitations();
+  document.getElementById('toolContent').innerHTML = `
+    <div class="cite-form no-print">
+      <h3 style="font-family:var(--font-display); margin-bottom:1rem;">Add a source</h3>
+      <label>Title <em>(required)</em>
+        <input type="text" id="citeTitle" placeholder="e.g. How HTTPS works">
+      </label>
+      <label>Author / Organisation
+        <input type="text" id="citeAuthor" placeholder="e.g. Mozilla Developer Network">
+      </label>
+      <label>URL or location
+        <input type="text" id="citeUrl" placeholder="e.g. https://developer.mozilla.org/...">
+      </label>
+      <label>Year published (or "n.d." if unknown)
+        <input type="text" id="citeYear" placeholder="e.g. 2023">
+      </label>
+      <label>Notes (what you used this for)
+        <textarea id="citeNotes" rows="2" placeholder="e.g. Used for the encryption section"></textarea>
+      </label>
+      <button class="btn btn-primary" id="addCiteBtn" onclick="addCitation()">+ Add to bibliography</button>
+    </div>
+
+    <div class="cite-source-list" id="citeList"></div>
+    <div id="citeOutput"></div>
+  `;
+  renderCitationsList();
+}
+
+function addCitation() {
+  const title = document.getElementById('citeTitle').value.trim();
+  if (!title) { alert('Title is required.'); return; }
+  citations.push({
+    id: Date.now(),
+    title,
+    author: document.getElementById('citeAuthor').value.trim() || 'Unknown author',
+    url: document.getElementById('citeUrl').value.trim() || '',
+    year: document.getElementById('citeYear').value.trim() || 'n.d.',
+    notes: document.getElementById('citeNotes').value.trim() || '',
+    accessed: new Date().toISOString().slice(0, 10)
+  });
+  saveCitations();
+  ['citeTitle','citeAuthor','citeUrl','citeYear','citeNotes'].forEach(id => document.getElementById(id).value = '');
+  renderCitationsList();
+}
+
+function removeCitation(id) {
+  citations = citations.filter(c => c.id !== id);
+  saveCitations();
+  renderCitationsList();
+}
+
+function renderCitationsList() {
+  const list = document.getElementById('citeList');
+  if (citations.length === 0) {
+    list.innerHTML = `<div style="text-align:center; padding:2rem; background:var(--surface); border:2px dashed var(--border); border-radius:var(--radius); color:var(--text-mid);">
+      No sources added yet. Add your first source above.
+    </div>`;
+    document.getElementById('citeOutput').innerHTML = '';
+    return;
+  }
+  list.innerHTML = `
+    <h3 style="font-family:var(--font-display); margin-bottom:1rem;">Your sources (${citations.length})</h3>
+    ${citations.map(c => `
+      <div class="cite-source">
+        <div>
+          <div class="source-title">${escapeHtml(c.title)}</div>
+          <div class="source-meta">${escapeHtml(c.author)} · ${escapeHtml(c.year)}${c.notes ? ' · <em>' + escapeHtml(c.notes) + '</em>' : ''}</div>
+          ${c.url ? `<div class="source-link"><a href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(c.url)}</a></div>` : ''}
+        </div>
+        <div>
+          <button class="btn no-print" onclick="removeCitation(${c.id})" style="color:var(--red); border-color:var(--red); font-size:0.78rem; padding:0.35rem 0.7rem;">Remove</button>
+        </div>
+      </div>
+    `).join('')}
+  `;
+  renderBibliography();
+}
+
+function renderBibliography() {
+  const sorted = citations.slice().sort((a,b) => {
+    return (a.author.split(' ').pop() || '').localeCompare(b.author.split(' ').pop() || '');
+  });
+  document.getElementById('citeOutput').innerHTML = `
+    <div class="cite-output">
+      <h2 style="font-family:'Space Grotesk',sans-serif; color:#064E3B; border-bottom:2px solid #064E3B; padding-bottom:0.4rem; margin-bottom:1rem;">References / Bibliography</h2>
+      ${sorted.map(c => `
+        <p>${escapeHtml(c.author)} (${escapeHtml(c.year)}). <em>${escapeHtml(c.title)}</em>.${c.url ? ` Available at: ${escapeHtml(c.url)}` : ''} [Accessed: ${escapeHtml(c.accessed)}].</p>
+      `).join('')}
+      <div style="margin-top:1rem;" class="no-print">
+        <button class="btn" onclick="window.print()">🖨 Print bibliography</button>
+        <button class="btn" onclick="copyBibliographyText()">📋 Copy as text</button>
+      </div>
+    </div>
+  `;
+}
+
+function copyBibliographyText() {
+  const sorted = citations.slice().sort((a,b) => (a.author.split(' ').pop() || '').localeCompare(b.author.split(' ').pop() || ''));
+  const text = 'REFERENCES / BIBLIOGRAPHY\n\n' + sorted.map(c =>
+    `${c.author} (${c.year}). ${c.title}.${c.url ? ' Available at: ' + c.url : ''} [Accessed: ${c.accessed}].`
+  ).join('\n\n');
+  navigator.clipboard.writeText(text).then(() => alert('Copied!'), () => alert('Could not copy.'));
+}
+
+function escapeHtml(s) {
+  return (s || '').toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', renderCompare);
+</script>
+</body>
+</html>
