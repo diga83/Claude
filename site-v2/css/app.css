@@ -487,3 +487,82 @@ html[data-theme="dark"] .theme-btn .moon{display:block}
   background:var(--bg-3);border:1px solid var(--line);padding:.12rem .5rem;border-radius:999px;flex-shrink:0}
 .cmdk-empty{padding:1.6rem;text-align:center;color:var(--muted);font-size:.9rem}
 .cmdk-foot{display:flex;gap:1rem;padding:.6rem 1rem;border-top:1px solid var(--line);font-size:.7rem;color:var(--faint)}
+
+/* ============================================================
+   REFINEMENT LAYER — v2.1 "editorial polish"
+   Additive only. Elevates typography, depth and micro-detail.
+   Motion stays gated behind prefers-reduced-motion elsewhere.
+   ============================================================ */
+
+/* Softer, more layered elevation (light). Dark keeps its own below. */
+:root{
+  --shadow-sm:0 1px 2px rgba(15,23,42,.05),0 2px 6px rgba(15,23,42,.045);
+  --shadow:0 8px 24px -6px rgba(15,23,42,.1),0 2px 8px -2px rgba(15,23,42,.06);
+  --shadow-lg:0 32px 64px -16px rgba(15,23,42,.2),0 10px 24px -10px rgba(15,23,42,.12);
+}
+html[data-theme="dark"]{
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5);
+  --shadow:0 10px 28px -8px rgba(0,0,0,.65),0 2px 8px -2px rgba(0,0,0,.5);
+  --shadow-lg:0 36px 70px -16px rgba(0,0,0,.75);
+}
+
+/* Precise, premium numerals wherever a figure carries weight */
+.stat-num,.metric .n,.pub-cite .n,.rg-tile .n,.ac-hero .n,.donut-c .n,
+.qf-value,.stat-band .n,.quals td,.hero-stats .n,.pcard .n{
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+
+/* Newsreader rewards optical sizing; headlines balance, body rags prettily */
+h1,h2,h3,h4{font-optical-sizing:auto}
+.phead-title,.article-title,.sec-title,.post-featured h2,.hero h1,
+.related-title,.post-title,.bk-title,.pub-title{text-wrap:balance}
+.phead-sub,.sec-lead,.hero-lead,.post-excerpt,
+.prose p,.prose .lead,.article-body p,.article-body .lead{text-wrap:pretty}
+
+/* The accent rule reads as a drawn gradient bar, not a flat block */
+.rule{background:linear-gradient(90deg,var(--blue),var(--blue-700))}
+
+/* Eyebrows gain a short leading tick — a quiet masthead signal */
+.eyebrow::before{content:"";display:inline-block;width:16px;height:2px;
+  margin:0 .55rem .28em 0;vertical-align:middle;border-radius:2px;
+  background:linear-gradient(90deg,var(--blue),transparent)}
+
+/* Cards: a hairline accent edge joins the lift on hover */
+.card-hover,.bk,.post-card,.related-card{transition:box-shadow .25s ease,transform .25s ease,border-color .25s ease}
+.card-hover:hover,.bk:hover,.post-card:hover,.related-card:hover{
+  border-color:var(--tint-2);box-shadow:var(--shadow)}
+
+/* Metric tiles settle into a soft lift */
+.metric{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.metric:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+
+/* Primary button: subtle top-light gradient + crisper press feedback */
+.btn-primary{background:linear-gradient(180deg,var(--blue),var(--blue-dark));
+  box-shadow:0 6px 16px -2px rgba(37,99,235,.32),inset 0 1px 0 rgba(255,255,255,.14)}
+.btn-primary:hover{background:linear-gradient(180deg,var(--blue-dark),var(--blue-700));
+  box-shadow:0 12px 26px -4px rgba(37,99,235,.4),inset 0 1px 0 rgba(255,255,255,.14)}
+.btn:active{transform:translateY(0) scale(.985)}
+html[data-theme="dark"] .btn-primary{background:linear-gradient(180deg,var(--blue),var(--blue-dark))}
+
+/* Editorial drop-cap opens each article & long-form lead */
+.article-body > .lead::first-letter,.prose > .lead::first-letter{
+  float:left;font-family:var(--serif);font-weight:600;color:var(--blue);
+  font-size:3.3rem;line-height:.78;padding:.02em .14em 0 0;margin-top:.02em}
+
+/* Inline prose links: persistent hairline underline that deepens on hover
+   (keeps a non-colour cue for accessibility) */
+.prose p a,.prose li a,.article-body p a,.article-body li a{
+  text-decoration-color:var(--tint-2);text-decoration-thickness:1.5px;
+  text-underline-offset:3px;transition:text-decoration-color .2s,color .2s}
+.prose p a:hover,.prose li a:hover,.article-body p a:hover,.article-body li a:hover{
+  text-decoration-color:var(--blue)}
+
+/* Section titles get a touch more air and tighter tracking */
+.sec-title,.phead-title,.article-title{letter-spacing:-.018em}
+
+/* Smoother programmatic scrolling offset so anchors clear the fixed nav */
+html{scroll-padding-top:88px}
+
+@media (max-width:600px){
+  .article-body > .lead::first-letter,.prose > .lead::first-letter{font-size:2.8rem}
+  .eyebrow::before{width:12px;margin-right:.45rem}
+}

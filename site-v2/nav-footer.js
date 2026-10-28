@@ -1,4 +1,4 @@
-/* nav-footer.js — v2 modern-academic chrome, injected on every page */
+/* nav-footer.js: v2 modern-academic chrome, injected on every page */
 (function () {
   const path = window.location.pathname.split('/').pop() || 'index.html';
 
@@ -20,7 +20,7 @@
   document.body.insertAdjacentHTML('afterbegin', `
     <nav aria-label="Main navigation">
       <div class="nav-inner">
-        <a href="index.html" class="nav-logo" aria-label="Dinesh Deckker — home">
+        <a href="index.html" class="nav-logo" aria-label="Dinesh Deckker home">
           <span class="nm">Dinesh <b>Deckker</b></span>
           <span class="rl">Author · Researcher</span>
         </a>
@@ -107,7 +107,7 @@
 /* ============================================================
    Dynamic effects: scroll progress, reactive nav, back-to-top,
    scroll-reveal entrances, count-up stats, portrait tilt.
-   Progressive enhancement — gated behind prefers-reduced-motion.
+   Progressive enhancement, gated behind prefers-reduced-motion.
    ============================================================ */
 (function () {
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -197,7 +197,10 @@
       const pre = m[1], suf = m[3], target = parseInt(m[2].replace(/,/g, ''), 10);
       if (!isFinite(target) || target === 0) return;
       const dur = 1100; let start = null;
-      const fmt = (n) => n.toLocaleString('en-US');
+      /* keep the source's own grouping: "70,197" stays grouped, a plain
+         year like "2025" must not pick up a thousands separator */
+      const grouped = /,/.test(m[2]);
+      const fmt = (n) => grouped ? n.toLocaleString('en-US') : String(n);
       function step(ts) {
         if (!start) start = ts;
         const p = Math.min((ts - start) / dur, 1);
