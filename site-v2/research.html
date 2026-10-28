@@ -83,6 +83,20 @@
     .ac-row .k{color:var(--muted)}.ac-row .v{color:var(--ink);font-weight:600}
     .reach-note{font-size:.72rem;color:var(--faint);margin-top:1rem}
     @media (max-width:860px){.reach-grid{grid-template-columns:1fr}.rg-split{grid-template-columns:1fr;justify-items:center;text-align:center}}
+
+    /* Web of Science peer-review section */
+    .metric .sub{font-size:.6rem;color:var(--faint);margin-top:.35rem;letter-spacing:.02em;line-height:1.35}
+    .wos-metrics{grid-template-columns:repeat(3,1fr)}
+    .wos{margin-top:1.6rem;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow-sm);overflow:hidden}
+    .wos-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1rem 1.3rem;border-bottom:1px solid var(--line);background:var(--bg-2)}
+    .wos-head h3{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink)}
+    .wos-head .meta{font-size:.74rem;color:var(--muted)}
+    .wos-list{display:grid;grid-template-columns:1fr 1fr;gap:0 2.6rem;padding:.4rem 1.3rem 1rem}
+    .wos-row{display:flex;align-items:center;gap:.85rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
+    .wos-row .c{flex-shrink:0;width:30px;padding:.18rem 0;text-align:center;font-family:var(--serif);font-weight:700;font-size:.88rem;color:var(--blue);background:var(--tint);border:1px solid var(--tint-2);border-radius:7px;line-height:1.1}
+    .wos-row .j{font-size:.85rem;color:var(--body);line-height:1.4}
+    .wos-foot{font-size:.72rem;color:var(--faint);margin-top:1rem}
+    @media (max-width:760px){.wos-metrics{grid-template-columns:1fr}.wos-list{grid-template-columns:1fr;gap:0}}
   </style>
 </head>
 <body>
@@ -159,6 +173,48 @@
 
         </div>
         <p class="reach-note">Figures self-reported by ResearchGate and Academia.edu and updated periodically.</p>
+      </div>
+
+      <div style="margin-bottom:3rem">
+        <span class="eyebrow sec-eyebrow">Peer Review</span>
+        <h2 class="sec-title">Web of Science verified reviews</h2>
+        <div class="rule"></div>
+        <p class="sec-lead" style="margin-bottom:1.6rem">Alongside his own publishing, Dinesh contributes to academic quality control as a Web of Science&ndash;verified peer reviewer, with 36 verified reviews across 19 journals in computing, education, economics, and the social sciences.</p>
+
+        <div class="metric-grid wos-metrics">
+          <div class="metric"><div class="n">36</div><div class="l">Verified Peer Reviews</div><div class="sub">91st percentile · median 4</div></div>
+          <div class="metric"><div class="n">29</div><div class="l">Reviews, Last 12 Months</div><div class="sub">99th percentile · median 0</div></div>
+          <div class="metric"><div class="n">1.1:1</div><div class="l">Review-to-Publication Ratio</div><div class="sub">median 0.3:1</div></div>
+        </div>
+
+        <div class="wos">
+          <div class="wos-head">
+            <h3>Reviews by journal</h3>
+            <span class="meta">36 reviews across 19 journals</span>
+          </div>
+          <div class="wos-list">
+            <div class="wos-row"><span class="c">5</span><span class="j">International Journal of Human-Computer Interaction</span></div>
+            <div class="wos-row"><span class="c">4</span><span class="j">Asian Journal of Economics, Business and Accounting</span></div>
+            <div class="wos-row"><span class="c">4</span><span class="j">Current Journal of Applied Science and Technology</span></div>
+            <div class="wos-row"><span class="c">3</span><span class="j">Asian Journal of Research in Computer Science</span></div>
+            <div class="wos-row"><span class="c">2</span><span class="j">Asian Journal of Education and Social Studies</span></div>
+            <div class="wos-row"><span class="c">2</span><span class="j">Cogent Business &amp; Management</span></div>
+            <div class="wos-row"><span class="c">2</span><span class="j">Industry and Higher Education</span></div>
+            <div class="wos-row"><span class="c">2</span><span class="j">International Journal of Disability, Development and Education</span></div>
+            <div class="wos-row"><span class="c">2</span><span class="j">Journal of Engineering Research and Reports</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Applied Economics</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Asian Journal of Agricultural and Horticultural Research</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Asian Research Journal of Current Science</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">F1000Research</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">International Information &amp; Library Review</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Journal of Economics and Trade</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Journal of Education, Society and Behavioural Science</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Journal of Experimental and Theoretical Artificial Intelligence</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">Journal of Scientific Research and Reports</span></div>
+            <div class="wos-row"><span class="c">1</span><span class="j">South Asian Journal of Social Studies and Economics</span></div>
+          </div>
+        </div>
+        <p class="wos-foot">Source: Web of Science reviewer recognition. Percentiles compare against all Web of Science reviewers.</p>
       </div>
 
       <div class="grid-side">
