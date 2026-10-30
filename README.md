@@ -3,6 +3,7 @@
 An astrology website that computes real planetary positions for your birth moment and reads them through the main predictive systems:
 
 - **Western (tropical):** natal chart wheel, Placidus or Whole Sign houses, aspects, transits of Jupiter–Pluto for the next 12 months with exact dates, secondary progressions (progressed Moon and lunar phase), and the solar return.
+- **KP (Krishnamurti Paddhati):** cuspal sub lords, four-level significators, event promise and dasha–bhukti–antara timing, ruling planets and 1–249 horary.
 - **Vedic (sidereal, Lahiri):** South-Indian rāśi chart, nakshatras and padas, and a full Vimshottari dasha timeline with antardashas.
 
 ## Accuracy
@@ -27,6 +28,8 @@ npm run build   # static site in dist/
 - `src/astro/core.js` — positions, angles, Placidus/Whole Sign houses
 - `src/astro/vedic.js` — Lahiri ayanamsa, nakshatras, Vimshottari dasha
 - `src/astro/chart.js` — chart assembly, aspects, transits, progressions, solar return
+- `src/astro/life.js` — Parashari life-area analysis, yogas, Saturn cycles, timing
+- `src/astro/kp.js` — Krishnamurti Paddhati: sub lords, significators, event rules, horary
 - `src/astro/interpret.js` — interpretive texts
 - `src/astro/time.js` — local time → UTC
 - `src/ui/wheel.js` — SVG wheel and South-Indian chart

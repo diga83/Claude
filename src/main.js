@@ -10,6 +10,7 @@ import {
 import { renderWheel, renderSouthIndian } from './ui/wheel.js';
 import { searchCities } from './cities.js';
 import { lifePanel } from './ui/life.js';
+import { kpPanel } from './ui/kp.js';
 import { vedicContext, dashaLevels, navamsaSign, dasamsaSign, periodThemes, LIFE_AREAS, analyseArea } from './astro/life.js';
 import { signOf } from './astro/core.js';
 
@@ -139,6 +140,7 @@ function show(data) {
     forecast: forecastPanel(chart, now),
     natal: natalPanel(chart),
     vedic: vedicPanel(chart, now),
+    kp: kpPanel(chart, now),
     methods: methodsPanel(),
   };
   for (const [name, content] of Object.entries(panels)) {
@@ -411,6 +413,7 @@ function methodsPanel() {
       <li><strong>Life-area analysis (Parashari):</strong> each area of life is judged from its house, the lord of that house (dignity, placement, combustion, retrogression), planets in or aspecting the house, its natural significator, and the divisional charts: D9 for marriage and D10 for career. The strength rating is a weighted tally of these classical factors.</li>
       <li><strong>Three-level dasha + double transit:</strong> an event is "promised" when the running dasha, sub-period and third-level period lords are tied to that house, and "triggered" when Jupiter and Saturn both influence it by transit. This is a well-known timing rule taught by K. N. Rao.</li>
       <li><strong>Yogas, doshas and Saturn cycles:</strong> Raja, Dhana, Gaja Kesari, Pancha Mahapurusha, Viparita and Neecha Bhanga yogas; Manglik, Kala Sarpa and Kemadruma; Sade Sati, Ashtama and Kantaka Shani.</li>
+      <li><strong>Krishnamurti Paddhati (KP):</strong> uses the KP ayanamsa and Placidus cusps, and divides each nakshatra into 9 "subs" in Vimshottari proportions (249 divisions in total). An event is judged by the sub lord of the relevant cusp (for example, the 7th cusp sub lord signifying houses 2, 7 and 11 promises marriage). It is timed by dasha–bhukti–antara lords that signify the same houses and confirmed with ruling planets. KP horary casts the question chart from a number between 1 and 249.</li>
       <li><strong>Solar return:</strong> the exact moment the Sun comes back to its birth position each year.</li>
     </ul>
     <p>Professional astrologers give the most weight to themes that come up in several techniques at once. For example, a Saturn transit to your Midheaven during a Saturn dasha would be read as a strong signal about your career.</p>

@@ -269,3 +269,15 @@ details summary { cursor: pointer; }
 }
 
 .cycles .pill { align-self: flex-start; }
+
+/* KP */
+.kp-event { display: flex; flex-direction: column; gap: 8px; }
+.kp-event p { margin: 0; }
+.h-good { color: var(--good); font-weight: 700; }
+.h-bad { color: var(--hard); font-weight: 700; }
+.kp-windows { margin: 0; font-size: 0.9rem; }
+.table-scroll { overflow-x: auto; }
+.kp-table { font-size: 0.86rem; min-width: 420px; }
+.kp-table td, .kp-table th { white-space: nowrap; }
+.kp-horary { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+.kp-answer .window p { margin: 0 0 6px; }

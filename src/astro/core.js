@@ -72,9 +72,10 @@ export function ramc(date, lonDeg) {
 // Ecliptic longitude of the point with the given right ascension.
 const raToLon = (ra, eps) => norm360(Math.atan2(Math.sin(ra * DEG), Math.cos(ra * DEG) * Math.cos(eps * DEG)) / DEG);
 
-export function angles(date, latDeg, lonDeg) {
+// `ramcOverride` (degrees) lets horary charts set the sidereal time directly.
+export function angles(date, latDeg, lonDeg, ramcOverride) {
   const eps = obliquity(date);
-  const R = ramc(date, lonDeg) * DEG;
+  const R = (ramcOverride ?? ramc(date, lonDeg)) * DEG;
   const e = eps * DEG;
   const phi = latDeg * DEG;
   const mc = raToLon(R / DEG, eps);
@@ -84,8 +85,8 @@ export function angles(date, latDeg, lonDeg) {
 
 // Placidus: each intermediate cusp trisects the diurnal / nocturnal semi-arc
 // of its own degree. Solved iteratively; undefined inside the polar circles.
-function placidus(date, latDeg, lonDeg) {
-  const { asc, mc, ramc: RAMC, eps } = angles(date, latDeg, lonDeg);
+function placidus(date, latDeg, lonDeg, ramcOverride) {
+  const { asc, mc, ramc: RAMC, eps } = angles(date, latDeg, lonDeg, ramcOverride);
   const tanPhi = Math.tan(latDeg * DEG);
   const sinE = Math.sin(eps * DEG);
   const cusp = (fraction, below) => {
@@ -116,10 +117,10 @@ function wholeSign(asc) {
   return Array.from({ length: 12 }, (_, i) => norm360(start + 30 * i));
 }
 
-export function houses(date, latDeg, lonDeg, system = 'placidus') {
-  const { asc } = angles(date, latDeg, lonDeg);
+export function houses(date, latDeg, lonDeg, system = 'placidus', ramcOverride) {
+  const { asc } = angles(date, latDeg, lonDeg, ramcOverride);
   if (system === 'placidus') {
-    const p = placidus(date, latDeg, lonDeg);
+    const p = placidus(date, latDeg, lonDeg, ramcOverride);
     if (p) return { system: 'placidus', cusps: p };
   }
   return { system: 'whole', cusps: wholeSign(asc) };
