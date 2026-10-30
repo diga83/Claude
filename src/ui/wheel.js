@@ -111,7 +111,7 @@ const SOUTH_GRID = [
 const VEDIC_ABBR = { Sun: 'Su', Moon: 'Mo', Mercury: 'Me', Venus: 'Ve', Mars: 'Ma', Jupiter: 'Ju', Saturn: 'Sa', Rahu: 'Ra', Ketu: 'Ke', Uranus: 'Ur', Neptune: 'Ne', Pluto: 'Pl' };
 const SIGN_ABBR = ['Ari', 'Tau', 'Gem', 'Can', 'Leo', 'Vir', 'Lib', 'Sco', 'Sag', 'Cap', 'Aqu', 'Pis'];
 
-export function renderSouthIndian(vedic) {
+export function renderSouthIndian(vedic, label = 'Rāśi (D1)') {
   const grid = document.createElement('div');
   grid.className = 'south-chart';
   const traditional = vedic.planets.filter((p) => !['Uranus', 'Neptune', 'Pluto'].includes(p.name));
@@ -134,7 +134,7 @@ export function renderSouthIndian(vedic) {
   }));
   const centre = document.createElement('div');
   centre.className = 'sc-centre';
-  centre.textContent = 'Rāśi (D1)';
+  centre.textContent = label;
   grid.append(centre);
   return grid;
 }

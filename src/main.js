@@ -9,6 +9,9 @@ import {
 } from './astro/interpret.js';
 import { renderWheel, renderSouthIndian } from './ui/wheel.js';
 import { searchCities } from './cities.js';
+import { lifePanel } from './ui/life.js';
+import { vedicContext, dashaLevels, navamsaSign, dasamsaSign, periodThemes, LIFE_AREAS, analyseArea } from './astro/life.js';
+import { signOf } from './astro/core.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const form = $('#birth-form');
@@ -132,6 +135,7 @@ function show(data) {
 
   const panels = {
     overview: overviewPanel(chart, now),
+    life: lifePanel(chart, now),
     forecast: forecastPanel(chart, now),
     natal: natalPanel(chart),
     vedic: vedicPanel(chart, now),
@@ -196,11 +200,25 @@ function overviewPanel(chart, now) {
     </div>
 
     <article class="card">
+      <h3>Life areas</h3>
+      <div class="mini-areas">${lifeTeaser(chart)}</div>
+      <button class="link" type="button" onclick="document.querySelector('[data-tab=life]').click()">Open the full life reading →</button>
+    </article>
+
+    <article class="card">
       <h3>Strongest aspects in your chart</h3>
       <ul class="aspect-list">
         ${chart.aspects.slice(0, 5).map((a) => `<li><span class="asp ${a.nature}">${PLANET_INFO[a.a].glyph} ${a.name} ${PLANET_INFO[a.b].glyph}</span> ${aspectText(a.a, a.name, a.b)} <small>orb ${a.orb.toFixed(1)}°</small></li>`).join('')}
       </ul>
     </article>`;
+}
+
+function lifeTeaser(chart) {
+  const ctx = vedicContext(chart);
+  return LIFE_AREAS.map((a) => {
+    const r = analyseArea(ctx, a);
+    return `<div class="mini"><span>${a.name}</span><div class="meter"><i class="${r.band}" style="width:${r.pct}%"></i></div><b class="band ${r.band}">${r.band}</b></div>`;
+  }).join('');
 }
 
 function forecastPanel(chart, now) {
@@ -212,6 +230,9 @@ function forecastPanel(chart, now) {
   const d = dashaAt(chart, now);
   const lordHouse = (lord) => chart.vedic.planets.find((p) => p.name === lord)?.house;
   const major = (e) => ['Saturn', 'Uranus', 'Neptune', 'Pluto'].includes(e.planet) && ['Sun', 'Moon', 'Ascendant', 'Midheaven'].includes(e.target);
+  const levels = dashaLevels(vedicContext(chart), now);
+  const praty = levels?.praty;
+  const pratyNext = levels ? levels.pratyantars[levels.pratyantars.indexOf(praty) + 1] : null;
   const nextAntars = d ? [...d.maha.sub, ...(chart.vedic.dashas[chart.vedic.dashas.indexOf(d.maha) + 1]?.sub || [])]
     .filter((p) => p.start > now).slice(0, 4) : [];
 
@@ -224,6 +245,7 @@ function forecastPanel(chart, now) {
         <p class="deg">${d.maha.lord} / ${d.antar.lord} · ${fmtMonth(d.antar.start)} – ${fmtMonth(d.antar.end)}</p>
         <p>${dashaText(d.maha.lord, chart.timeKnown ? lordHouse(d.maha.lord) : null)}</p>
         <p>Within it, the <strong>${d.antar.lord}</strong> sub-period colours events with ${dashaText(d.antar.lord, chart.timeKnown ? lordHouse(d.antar.lord) : null).replace(/^The \w+ period brings themes of /, '')}</p>
+        ${praty ? `<p>Fine timing: <strong>${praty.lord}</strong> pratyantar (third level) runs ${fmtDate(praty.start)} – ${fmtDate(praty.end)}, then ${pratyNext ? `<strong>${pratyNext.lord}</strong> until ${fmtDate(pratyNext.end)}` : 'the next sub-period begins'}.</p>` : ''}
         <p class="small">Mahadasha runs ${fmtMonth(d.maha.start)} – ${fmtMonth(d.maha.end)}.</p>` : '<p>Dasha unavailable.</p>'}
         ${nextAntars.length ? `<h4>Coming sub-periods</h4><ul class="compact">${nextAntars.map((p) => `<li>${fmtMonth(p.start)}: <strong>${p.lord}</strong> — ${dashaLine(p.lord)}</li>`).join('')}</ul>` : ''}
       </article>
@@ -320,6 +342,17 @@ function vedicPanel(chart, now) {
   note.textContent = `Sidereal zodiac, Lahiri ayanamsa ${v.ayanamsa.toFixed(4)}°. ${v.lagna ? `Lagna ${formatDegree(v.lagna.lon)}.` : 'Lagna needs a birth time.'}`;
   chartCard.append(note);
   top.append(chartCard);
+  const vargas = document.createElement('article');
+  vargas.className = 'card';
+  vargas.innerHTML = '<h3>Navamsa (D9) & Dasamsa (D10)</h3><p class="small">D9 shows marriage and the inner strength of each planet; D10 shows career. A planet in the same sign in D1 and D9 is vargottama (strong).</p>';
+  const varga = (fn) => ({
+    planets: v.planets.filter((p) => !['Uranus', 'Neptune', 'Pluto'].includes(p.name)).map((p) => ({ ...p, sign: signOf(fn(p.lon) * 30 + 1) })),
+    lagna: v.lagna ? { sign: signOf(fn(v.lagna.lon) * 30 + 1) } : null,
+  });
+  const vg = document.createElement('div');
+  vg.className = 'varga-grid';
+  vg.append(renderSouthIndian(varga(navamsaSign), 'Navamsa D9'), renderSouthIndian(varga(dasamsaSign), 'Dasamsa D10'));
+  vargas.append(vg);
 
   const nk = v.moonNakshatra;
   const info = document.createElement('article');
@@ -337,17 +370,22 @@ function vedicPanel(chart, now) {
     </table>`;
   top.append(info);
   wrap.append(top);
+  wrap.append(vargas);
 
+  const vctx = vedicContext(chart);
+  const themeCache = {};
+  const themes = (lord) => (themeCache[lord] ||= periodThemes(vctx, lord, 2));
   const dashas = document.createElement('article');
   dashas.className = 'card';
   dashas.innerHTML = `
     <h3>Vimshottari dasha timeline</h3>
+    <p class="small">Each period lists the life areas it emphasises most. Comparing past periods with what actually happened is the best way to judge how well this reading fits you. Astrologers use the same check to fine-tune an uncertain birth time.</p>
     <div class="dashas">${v.dashas.filter((m) => m.end > chart.date && m.start < new Date(chart.date.getTime() + 110 * 365.25 * 86400000)).map((m) => {
       const current = m.start <= now && now < m.end;
       return `<details ${current ? 'open' : ''} class="${current ? 'current' : ''}">
-        <summary><strong>${m.lord}</strong> mahadasha <span>${fmtMonth(m.start < chart.date ? chart.date : m.start)} – ${fmtMonth(m.end)}</span></summary>
+        <summary><strong>${m.lord}</strong> mahadasha <em>${themes(m.lord).join(', ')}</em> <span>${fmtMonth(m.start < chart.date ? chart.date : m.start)} – ${fmtMonth(m.end)}</span></summary>
         <p class="small">${dashaText(m.lord, chart.timeKnown ? v.planets.find((p) => p.name === m.lord)?.house : null)}</p>
-        <ul class="antars">${m.sub.filter((s) => s.end > chart.date).map((s) => `<li class="${s.start <= now && now < s.end ? 'current' : ''}">${m.lord}–${s.lord} <span>${fmtMonth(s.start < chart.date ? chart.date : s.start)} – ${fmtMonth(s.end)}</span></li>`).join('')}</ul>
+        <ul class="antars">${m.sub.filter((s) => s.end > chart.date).map((s) => `<li class="${s.start <= now && now < s.end ? 'current' : ''}">${m.lord}–${s.lord} <span>${fmtMonth(s.start < chart.date ? chart.date : s.start)} – ${fmtMonth(s.end)}</span><em>${themes(s.lord).join(', ')}</em></li>`).join('')}</ul>
       </details>`;
     }).join('')}</div>`;
   wrap.append(dashas);
@@ -370,6 +408,9 @@ function methodsPanel() {
       <li><strong>Transits:</strong> where the slow planets (Jupiter to Pluto) are now, compared with your birth chart. This is the most widely used Western forecasting method. Exact dates are found to within minutes, including the repeated passes caused by retrograde motion.</li>
       <li><strong>Secondary progressions:</strong> one day after birth stands for one year of life. The progressed Moon moves through a sign about every 2.5 years and is read as your shifting emotional focus.</li>
       <li><strong>Vimshottari dasha:</strong> the main timing system of Vedic astrology. It splits a 120-year cycle into planetary periods, starting from the Moon's nakshatra at birth.</li>
+      <li><strong>Life-area analysis (Parashari):</strong> each area of life is judged from its house, the lord of that house (dignity, placement, combustion, retrogression), planets in or aspecting the house, its natural significator, and the divisional charts: D9 for marriage and D10 for career. The strength rating is a weighted tally of these classical factors.</li>
+      <li><strong>Three-level dasha + double transit:</strong> an event is "promised" when the running dasha, sub-period and third-level period lords are tied to that house, and "triggered" when Jupiter and Saturn both influence it by transit. This is a well-known timing rule taught by K. N. Rao.</li>
+      <li><strong>Yogas, doshas and Saturn cycles:</strong> Raja, Dhana, Gaja Kesari, Pancha Mahapurusha, Viparita and Neecha Bhanga yogas; Manglik, Kala Sarpa and Kemadruma; Sade Sati, Ashtama and Kantaka Shani.</li>
       <li><strong>Solar return:</strong> the exact moment the Sun comes back to its birth position each year.</li>
     </ul>
     <p>Professional astrologers give the most weight to themes that come up in several techniques at once. For example, a Saturn transit to your Midheaven during a Saturn dasha would be read as a strong signal about your career.</p>

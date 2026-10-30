@@ -208,3 +208,64 @@ details summary { cursor: pointer; }
   .card { padding: 18px; }
   .antars, ol.cusps { columns: 1; }
 }
+
+/* Life areas */
+.area-card { display: flex; flex-direction: column; gap: 10px; }
+.area-card p { margin: 0; }
+.area-head { display: flex; align-items: center; gap: 10px; }
+.area-head h3 { margin: 0; flex: 1; font-size: 1.35rem; }
+.area-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: rgba(232, 199, 123, 0.14); color: var(--gold); font-size: 1.05rem; flex: none; }
+.band { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 2px 9px; border-radius: 999px; font-weight: 600; }
+.band.strong { background: rgba(111, 207, 151, 0.2); color: var(--good); }
+.band.good { background: rgba(157, 200, 120, 0.18); color: #b8d98a; }
+.band.mixed { background: rgba(232, 199, 123, 0.18); color: var(--gold); }
+.band.challenged { background: rgba(239, 127, 127, 0.2); color: var(--hard); }
+.meter { height: 6px; border-radius: 99px; background: rgba(255, 255, 255, 0.07); overflow: hidden; }
+.meter i { display: block; height: 100%; border-radius: 99px; }
+.meter i.strong { background: var(--good); } .meter i.good { background: #b8d98a; }
+.meter i.mixed { background: var(--gold); } .meter i.challenged { background: var(--hard); }
+.window { padding: 10px 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--gold); }
+.window.favourable { border-left-color: var(--good); }
+.window.challenging { border-left-color: var(--hard); }
+.reasons { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; }
+.reasons li { padding-left: 22px; position: relative; }
+.reasons li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+.reasons li.plus::before { content: '+'; color: var(--good); }
+.reasons li.minus::before { content: '−'; color: var(--hard); }
+.reasons li.even::before { content: '•'; color: var(--muted); }
+.area-card details h4 { font-size: 1.05rem; margin-top: 10px; }
+.area-card .compact { font-size: 0.88rem; }
+
+.mini-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 28px; margin-bottom: 12px; }
+.mini { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(60px, 1fr) 92px; align-items: center; gap: 10px; font-size: 0.9rem; }
+.mini .band { text-align: center; }
+
+.heat-scroll { overflow-x: auto; margin: 0 -4px; }
+.heat { border-collapse: separate; border-spacing: 3px; font-size: 0.75rem; width: 100%; min-width: 760px; }
+.heat th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+.heat thead th { text-align: center; min-width: 30px; vertical-align: bottom; }
+.heat thead th b { display: block; color: var(--gold); font-weight: 600; }
+.heat tbody th { text-align: left; padding-right: 8px; font-size: 0.82rem; color: var(--text); position: sticky; left: 0; background: var(--bg-2); z-index: 1; }
+.heat td { min-width: 22px; height: 26px; border-radius: 5px; cursor: help; }
+.heat-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 12px; font-size: 0.8rem; color: var(--muted); }
+.heat-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+.yogas, .cycles { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.yogas li, .cycles li { display: flex; flex-direction: column; gap: 2px; padding-left: 12px; border-left: 3px solid var(--violet); font-size: 0.92rem; }
+.yogas li.good { border-left-color: var(--good); }
+.yogas li.bad { border-left-color: var(--hard); }
+.yogas li.neutral { border-left-color: var(--gold); }
+.cycles li.now { border-left-color: var(--hard); }
+.cycles li.past { opacity: 0.65; }
+
+.varga-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.varga-grid .sc-planets { font-size: 0.8rem; }
+.dashas summary em, .antars em { font-style: normal; color: var(--violet); font-size: 0.8rem; margin-left: 8px; }
+.antars { columns: 1; }
+.antars li { margin-bottom: 2px; }
+
+@media (max-width: 700px) {
+  .mini-areas, .varga-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.cycles .pill { align-self: flex-start; }
