@@ -8,6 +8,7 @@ import {
   HOUSE_TRANSIT, PROGRESSED_MOON_SIGN, lunarPhaseName, dashaText, ord,
 } from './astro/interpret.js';
 import { renderWheel, renderSouthIndian } from './ui/wheel.js';
+import { searchCities } from './cities.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const form = $('#birth-form');
@@ -53,23 +54,23 @@ form.place.addEventListener('input', () => {
 
 async function searchPlaces(q) {
   const seq = ++searchSeq;
+  let results;
   try {
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=6&language=en&format=json`);
-    const data = await res.json();
-    if (seq !== searchSeq) return;
-    const results = data.results || [];
-    suggestions.innerHTML = results.map((r, i) => `<li role="option" data-i="${i}">${esc(r.name)}<small>${esc([r.admin1, r.country].filter(Boolean).join(', '))}</small></li>`).join('')
-      || '<li class="none">No matches — try another spelling or enter coordinates manually.</li>';
-    suggestions.hidden = false;
-    suggestions.onclick = (ev) => {
-      const li = ev.target.closest('li[data-i]');
-      if (!li) return;
-      choosePlace(results[Number(li.dataset.i)]);
-    };
+    results = (await res.json()).results || [];
   } catch {
-    placeStatus.textContent = 'Place search is unavailable right now — enter coordinates manually below.';
-    $('#manual').open = true;
+    // Online search unreachable: fall back to the built-in list of major cities.
+    results = searchCities(q);
+    placeStatus.textContent = 'Online place search is unavailable, showing major cities only. For other places, enter coordinates manually.';
   }
+  if (seq !== searchSeq) return;
+  suggestions.innerHTML = results.map((r, i) => `<li role="option" data-i="${i}">${esc(r.name)}<small>${esc([r.admin1, r.country].filter(Boolean).join(', '))}</small></li>`).join('')
+    || '<li class="none">No matches. Try another spelling or enter coordinates manually.</li>';
+  suggestions.hidden = false;
+  suggestions.onclick = (ev) => {
+    const li = ev.target.closest('li[data-i]');
+    if (li) choosePlace(results[Number(li.dataset.i)]);
+  };
 }
 
 function choosePlace(r) {
