@@ -1,0 +1,139 @@
+[
+ {
+  "id": "v01",
+  "text": "Three questions, as old as the world.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v02",
+  "text": "Who makes it? Who keeps it? And who, in the end, lets it go?",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v03",
+  "text": "The first answer is Brahma, the creator, born on a lotus, with four faces that look out in four directions.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "From him came the Vedas, the oldest sacred knowledge, and from his thought, the world itself.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v05",
+  "text": "A single day of Brahma lasts four billion, three hundred and twenty million years.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A single day of Brahma lasts 4 billion, 320 million years."
+ },
+ {
+  "id": "v06",
+  "text": "The second answer is Vishnu, the preserver, at rest on the coils of the serpent Shesha, on the ocean between the worlds.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "The second answer is Vishnu, the preserver, at rest on the coils of the serpent Shasha, on the ocean between the worlds."
+ },
+ {
+  "id": "v07",
+  "text": "Whenever the world falls out of balance, he returns, in a new form for each age.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a01",
+  "text": "A fish.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a02",
+  "text": "A great tortoise.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a03",
+  "text": "A wild boar.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a04",
+  "text": "Half man, half lion.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a05",
+  "text": "A dwarf.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a06",
+  "text": "A warrior.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a07",
+  "text": "A prince.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a08",
+  "text": "A cowherd.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A cow herd"
+ },
+ {
+  "id": "a09",
+  "text": "A teacher.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a10",
+  "text": "And a horseman, still to come.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v10",
+  "text": "The third answer is Shiva, the destroyer, the ascetic of Mount Kailash, who caught the falling river Gunga in his hair.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "The third answer is Shiva, the destroyer, the ascetic of Mount Kailash, who caught the falling river Gungo in his hair."
+ },
+ {
+  "id": "v11",
+  "text": "His dance keeps the rhythm of the cosmos: in one hand, the drum of creation; in another, the fire that ends it.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v12",
+  "text": "Four ages turn, each shorter and darker than the last. At the end of the last, he dances the world away.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v13",
+  "text": "Creator, preserver, destroyer. Not three gods apart, but three faces of one reality.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v14",
+  "text": "The Tri-moor-tee. And when the last page is turned, the first is painted again.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "The Trimurti. And when the last page is turned, the first is painted again."
+ }
+]
