@@ -1,0 +1,23 @@
+THE CREATOR'S HOUR (Brahma, 2:50 cut, 170 s): third-party assets in this film
+
+Voice
+  Kokoro-82M TTS (kokoro-onnx), voice "af_bella": Apache-2.0 (model by hexgrad; github.com/thewh1teagle/kokoro-onnx)
+  Speech check: Whisper base.en via sherpa-onnx (MIT / Apache-2.0); not in the film
+
+Music samples (CC0 1.0)
+  VS Chamber Orchestra: Community Edition, Versilian Studios / Sam Gossner (github.com/sgossner/VSCO-2-CE): cellos, flute
+  Versilian Community Sample Library, Versilian Studios (github.com/sgossner/VCSL): harp, glockenspiel, bowed vibraphone, Nepalese bells, tubular bells
+
+Fonts (SIL Open Font License 1.1, via Google Fonts)
+  Cormorant Garamond (Christian Thalmann), Caveat (Impallari Type), IBM Plex Mono (IBM)
+
+Content follows the common Puranic telling: Hiranyagarbha; four faces and the four Vedas (face-to-Veda pairing as usually given);
+the water pot, rosary, Vedas and lotus; the hamsa (shared with Saraswati); a day of Brahma = 4.32 billion years, a life of
+100 such years = 311.04 trillion years; the Brahma temple and lake at Pushkar, Rajasthan (painted from imagination, not a survey);
+Brahma muhurta, the period before dawn (commonly reckoned to begin 96 minutes before sunrise).
+The seven sages (Saptarishi) as mind-born sons of Brahma, and their usual pairing with the stars of the Big Dipper (Ursa Major);
+star positions are approximate J2000 coordinates. The Brahma kamal, Saussurea obvallata: a high-Himalayan plant blooming in
+the monsoon, commonly given an altitude range of about 3,000-4,800 m; it is traditionally said to bloom at night.
+Pushkar: 52 ghats; the Pushkar fair and bathing at the Kartik full moon (Kartik Purnima).
+Everything else (score, foley, paper, all painting) is original and generated in code for this film.
+Rendering and tools: the Lemo-Opuscar style library (Watercolor Brush style) and its core/ tools.

@@ -1,0 +1,139 @@
+[
+ {
+  "id": "v01",
+  "text": "In the beginning, the old stories say, there was only dark water, and on it, a golden egg.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v02",
+  "text": "Hiranya-garbha. The golden womb.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Haranigarpa, the Golden Womb"
+ },
+ {
+  "id": "v03",
+  "text": "When it broke, one half became the sky, and the other, the earth. And the one who woke inside was Brahma, the creator.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "He has four faces, so that he sees in every direction at once. From each of his four mouths came one of the four Vaydas.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "He has four faces, so that he sees in every direction at once. From each of his four mouths came one of the four Vedas."
+ },
+ {
+  "id": "v05",
+  "text": "In his four hands, he holds what a world needs to begin.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "In his forehands, he holds what a world needs to begin."
+ },
+ {
+  "id": "h1",
+  "text": "A water pot, for the waters of life.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "h2",
+  "text": "A string of beads, to count out time.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "h3",
+  "text": "The sacred Vaydas, for knowledge.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "The sacred Vedas, for knowledge."
+ },
+ {
+  "id": "h4",
+  "text": "And a lotus, for all that grows pure from the mud.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v06",
+  "text": "His mount is the swan, which is said to separate milk from water: the gift of telling the true from the false.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "His mount is the swan, which is said to separate milk from water: the gift of telling the true from the falls."
+ },
+ {
+  "id": "v07",
+  "text": "Saraswati, goddess of knowledge and music, rides the same white swan.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Sarah Swati, goddess of knowledge and music, rides the same white swan."
+ },
+ {
+  "id": "v08",
+  "text": "One day of Brahma lasts four billion, three hundred and twenty million years, and his night is just as long.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "One day of Brahma lasts 4 billion, 320 million years, and his night is just as long."
+ },
+ {
+  "id": "v09",
+  "text": "He lives for a hundred such years. And then the universe rests.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v10",
+  "text": "Few temples are built for him. The best known stands at Pushkar, in Rajasthan, beside a lake said to have formed where his lotus fell.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v11",
+  "text": "And the hour before dawn still carries his name: Brahma muhurta, the creator's hour, when the world is about to begin again.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "And the hour before dawn still carries his name: Brahma Muherda, the creator's hour, when the world is about to begin again."
+ },
+ {
+  "id": "s1",
+  "text": "From his mind, he brought forth sons. Among them were the seven great sages, the Saptarishi.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "s2",
+  "text": "Their light still turns above us, in the seven stars of the Great Bear.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "k1",
+  "text": "One flower carries his name. High in the Himalaya, the Brahma kuh-mull opens at night, in the brief summer of the mountains.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "One flower carries his name. High in the Himalaya, the Brahma Kamal opens at night, in the brief summer of the mountains."
+ },
+ {
+  "id": "k2",
+  "text": "It grows between three thousand and four thousand eight hundred metres, where little else can bloom.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "It grows between 3,000 and 4,800 meters, where little else can bloom."
+ },
+ {
+  "id": "p1",
+  "text": "Pilgrims come to bathe at its fifty-two ghats, most of all at the full moon of Kartik, in the autumn.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Pilgrims come to bathe at its 52 gats, most of all at the full moon of kartic in the autumn."
+ },
+ {
+  "id": "m1",
+  "text": "It begins about an hour and a half before sunrise: a time kept for quiet, for study, and for prayer.",
+  "voice": "af_bella",
+  "speed": 0.88
+ }
+]
