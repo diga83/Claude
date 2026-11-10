@@ -1,0 +1,81 @@
+[
+ {
+  "id": "v01",
+  "text": "Long ago, the gods had grown weak, and they turned to Vishnu for help.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v02",
+  "text": "Go and churn the ocean of milk, he told them, and it will give you the nectar of immortality.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v03",
+  "text": "So they made a mountain their churning rod, and the serpent Vasuki their rope. Gods on one side, demons on the other, they pulled.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "But the mountain began to sink.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v05",
+  "text": "So Vishnu became Kurma, a great tortoise, and carried the mountain on his back.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "So Vishnu became Kirma, a great tortoise, and carried the mountain on his back."
+ },
+ {
+  "id": "v06",
+  "text": "The ocean turned, and gave up its treasures.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "i1",
+  "text": "The moon.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "i2",
+  "text": "A white elephant.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "i3",
+  "text": "A tree that grants every wish.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "i4",
+  "text": "A cow of plenty.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v07",
+  "text": "Then, standing on a lotus, came Lakshmi, the goddess of fortune. She looked at the gods and the demons, and she chose Vishnu.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v08",
+  "text": "Last of all rose the healer of the gods, holding a pot of amrita, the nectar.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v09",
+  "text": "This is the churning of the ocean: how the world was steadied, on the patient back of a tortoise.",
+  "voice": "af_bella",
+  "speed": 0.88
+ }
+]

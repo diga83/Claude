@@ -1,0 +1,21 @@
+THE PATIENT TORTOISE (Vishnu and the churning of the ocean, Ukiyo-e, 120 s): third-party assets in this film
+
+Voice
+  Kokoro-82M TTS (kokoro-onnx), voice "af_bella": Apache-2.0 (model by hexgrad; github.com/thewh1teagle/kokoro-onnx)
+  Speech check: Whisper base.en via sherpa-onnx (MIT / Apache-2.0); not in the film
+
+Music
+  Shamisen and koto: physically modelled (Lemo-Opuscar core/audio/pluck.py), no samples
+  Shakuhachi-like line: recorder and flute samples reshaped (VCSL, VSCO 2 CE, CC0 1.0)
+  Taiko / shime-daiko / hyoshigi: synthesised, layered with CC0 samples (VCSL gran cassa, toms, frame drum, woodblock; VSCO 2 CE claves)
+  Small bell: VCSL Nepalese bells (CC0 1.0)
+  Instrument recipes adapted from the Lemo-Opuscar Ukiyo-e demo's score
+
+Fonts (SIL Open Font License 1.1, via Google Fonts)
+  Shippori Mincho B1 (FONTDASU), Yuji Syuku (Kinuta Font Factory), subset to the characters used
+
+Print engine: adapted from the Lemo-Opuscar Ukiyo-e demo (print.js): paper, woodgrain, baren, specks, reveal masks, cartouches, seals.
+Story: the Samudra Manthan as commonly told: Mount Mandara and the serpent Vasuki, gods and demons, Vishnu as Kurma, the treasures
+(the moon, Airavata, the Kalpavriksha, Kamadhenu), Lakshmi choosing Vishnu, Dhanvantari with the amrita. Japanese titles: 乳海攪拌
+(the churning of the sea of milk), 吉祥天 (Kichijoten, Lakshmi's name in Japan), 甘露 (kanro, amrita), 毘紐 (Bichu, Vishnu).
+All six prints are original compositions; no historical print is reproduced.
