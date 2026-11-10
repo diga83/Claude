@@ -1,0 +1,99 @@
+[
+ {
+  "id": "v01",
+  "text": "In the beginning, the old stories say, there was only dark water, and on it, a golden egg.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v02",
+  "text": "Hiranya-garbha. The golden womb.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Hiranyagarpa, the Golden Womb"
+ },
+ {
+  "id": "v03",
+  "text": "When it broke, one half became the sky, and the other, the earth. And the one who woke inside was Brahma, the creator.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "He has four faces, so that he sees in every direction at once. From each of his four mouths came one of the four Vaydas.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "He has four faces, so that he sees in every direction at once. From each of his four mouths came one of the four Vedas."
+ },
+ {
+  "id": "v05",
+  "text": "In his four hands, he holds what a world needs to begin.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "In his forehands, he holds what a world needs to begin."
+ },
+ {
+  "id": "h1",
+  "text": "A water pot, for the waters of life.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "h2",
+  "text": "A string of beads, to count out time.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "h3",
+  "text": "The sacred Vaydas, for knowledge.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "h4",
+  "text": "And a lotus, for all that grows pure from the mud.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v06",
+  "text": "His mount is the swan, which is said to separate milk from water: the gift of telling the true from the false.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "His mount is the swan, which is said to separate milk from water: the gift of telling the true from the falls."
+ },
+ {
+  "id": "v07",
+  "text": "Saraswati, goddess of knowledge and music, rides the same white swan.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Sarah Swati, goddess of knowledge and music, rides the same white swan."
+ },
+ {
+  "id": "v08",
+  "text": "One day of Brahma lasts four billion, three hundred and twenty million years, and his night is just as long.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "One day of Brahma lasts 4 billion, 320 million years, and his night is just as long."
+ },
+ {
+  "id": "v09",
+  "text": "He lives for a hundred such years. And then the universe rests.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v10",
+  "text": "Few temples are built for him. The best known stands at Pushkar, in Rajasthan, beside a lake said to have formed where his lotus fell.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v11",
+  "text": "And the hour before dawn still carries his name: Brahma muhurta, the creator's hour, when the world is about to begin again.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "And the hour before dawn still carries his name: Brahma Muherda, the creator's hour, when the world is about to begin again."
+ }
+]

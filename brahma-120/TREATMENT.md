@@ -1,0 +1,56 @@
+# The Creator's Hour: Brahma (treatment)
+
+**Format:** 1080×1920 (9:16, like the two Trimurti films), 30 fps, ~120 s · English voice-over, warm female narrator (Kokoro `af_bella`, speed 0.88), burned-in subtitles + `.srt` · −14 LUFS
+**Style:** Watercolor Brush.
+**Approach:** symbols, not portraits: the golden egg, the lotus, the four directions, the four objects in his hands, the hamsa, a painted Pushkar at dawn. Facts follow the common Puranic telling: Hiranyagarbha; four faces and the four Vedas (by the usual pairing: east Rig, south Yajur, west Sama, north Atharva); the water pot, rosary, Vedas and lotus; the hamsa shared with Saraswati; a day of Brahma = 4.32 billion years, a life of 100 such years ≈ 311 trillion years; the Pushkar temple and lake; Brahma muhurta, the hour before dawn.
+
+## 1. Three candidate structures
+
+1. **A cosmic day as a clock** (dawn, creation; dusk, dissolution). Strong data, but the sun-arc and day-number beat were already used in *The Three Answers*.
+2. **Anatomy of one figure:** the four hands as four specimen plates. Clear and native to the style, but static on its own.
+3. **From the golden egg to the hour before dawn (chosen):** gold pigment on paper becomes the cosmic egg, which breaks into sky and earth. Brahma wakes and looks in four directions. A vertical tilt passes through four specimen plates (his hands), then the swan, the scale of his time, and finally one real place, Pushkar, painted before sunrise as the sky turns to gold. The opening gold returns as dawn light.
+
+## 2. Logline and arc
+
+*Gold spreads on blank paper and becomes an egg; from it wakes the creator, and the world he made still keeps an hour in his name.*
+Setup: egg, its breaking, the four faces. Development: the four hands, the swan. Turn: the scale of his time, the universe at rest (a dark wash). Ending: Pushkar by its lake in the blue hour; the sky warms to gold just before the sun.
+
+## 3. Benchmark
+
+- **Pichhwai and Kangra miniature skies** (grammar only): layered dawn washes, lotus-dotted water, temple silhouettes. *Don't take:* any figure, composition or specific work.
+- **Specimen plates / museum labels:** one object, one number, one note.
+
+## 4. Shot list
+
+| # | t (s) | Framing | Camera | Why |
+|---|---|---|---|---|
+| 1 | 0–6 | Insert: wet gold pigment blooming | locked macro, **pull back** | Hook: colour becomes the cosmos |
+| 2 | 6–14 | Wide: the egg floating on dark water | slow **push in** | The golden womb |
+| 3 | 14–24 | Wide | the egg splits; the top half lifts and becomes the sky washes, the bottom half becomes the earth; a lotus rises (**painted transformation**) | Creation as a change of matter |
+| 4 | 24–36 | Medium on the lotus | **push in**, then four gold gazes paint outward to N/E/S/W with their Vedas | Four faces, four directions |
+| 5 | 36–40 | — | **brush-edge wipe** to a tall sheet | New chapter |
+| 6 | 40–70 | Four specimen plates stacked down one sheet | **vertical tilt** plate by plate, holding on each | The four hands |
+| 7 | 70–84 | Medium | locked; the swan, then milk and water separating in a bowl | Discernment |
+| 8 | 84–100 | Wide | **pull back** over a 10×10 grid of gold dabs (100 years), then a dark wash | Scale of his time; rest |
+| 9 | 100–110 | Wide landscape | brush wipe; the lake, ghats and temple of Pushkar under an indigo sky | One real place |
+| 10 | 110–120 | Wide → close | **slow push** toward the horizon as the sky turns from indigo to gold; the last stroke unfinished | The creator's hour |
+
+## 5. Cue map
+
+75 BPM, 4/4 (beat 0.8 s, bar 3.2 s). Key D. Instruments: soft pad + cello drone, harp, flute; glockenspiel for gold (the egg, the gazes, the beads); tubular bell at the dawn title; temple bells (Nepalese) at Pushkar. The beads of the rosary are painted on beats.
+
+## 6. Sound design
+
+| Section | Ambience | Foley | Music |
+|---|---|---|---|
+| Egg | deep water | wet bloom, a crack | drone + glock |
+| Faces | — | four brush sweeps | harp rises |
+| Hands | room tone | brush per plate; pour (water), bead clicks | harp + flute |
+| Swan | water lap | wing, liquid swirl | flute |
+| Time | — | a quick burst of dabs; then near silence | pad only, then silence |
+| Pushkar | birds at dawn, water | — | flute, bells |
+| Dawn | birds swell | — | bell; flute ends |
+
+## 7. Type
+
+Caveat for the notes, IBM Plex Mono for the labels and numbers ("01 / 04", directions), Cormorant Garamond for the title and figures, subtitles in Cormorant italic over a soft paper wash. Accent: **vermilion** for the temple spire and the dot at the lotus heart.
