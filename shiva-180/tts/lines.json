@@ -1,0 +1,132 @@
+[
+ {
+  "id": "v01",
+  "text": "When the gods and the demons churned the ocean of milk, the first thing it gave up was poison.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v02",
+  "text": "Halahala: dark enough to end every world.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Hala Hala, dark enough to end every world."
+ },
+ {
+  "id": "v03",
+  "text": "Shiva took it in his hands, and drank it. He held it in his throat, and his throat turned blue.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "So he is called Neelakantha, the blue-throated one: the destroyer who saved the world from destruction.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "So he is called Nila Kanta, the blue-throated one. The destroyer who saved the world from destruction."
+ },
+ {
+  "id": "v05",
+  "text": "He is the ascetic of Mount Kailash, the first of all yogis, and the dancer whose steps undo the world, so that it can begin again.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "He is the ascetic of Mount Kailash, the first of all yogas, and the dancer who steps undo the world so that it can begin again."
+ },
+ {
+  "id": "v06",
+  "text": "In the south of India, five great temples honour him as the five elements of which everything is made.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "In the south of India, five great temples honor him as the five elements of which everything is made."
+ },
+ {
+  "id": "e1",
+  "text": "Earth, at Kanchipuram, where he is worshipped in a lingam of sand, beneath an ancient mango tree.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Earth at Kanchapuram, where he has worshipped in a lingam of sand beneath an ancient mango tree."
+ },
+ {
+  "id": "e2",
+  "text": "Water, at Thiruvanaikaval, where a spring rises in the sanctum, and the shrine is never fully dry.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "water at Thiruvannakaval, where a spring rises in the sanctum and the shrine is never fully dry."
+ },
+ {
+  "id": "e3",
+  "text": "Fire, at Tiruvannamalai. Each year, at the festival of Karthigai, a great flame is lit on the summit of the hill.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Fire at Taru Van Amalai. Each year at the Festival of Karthagai, a great flame is lit on the summit of the hill."
+ },
+ {
+  "id": "e4",
+  "text": "Air, at Srikalahasti, where a lamp in the inner shrine is said to flicker, though no wind can reach it.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "air at Srikkel-A-Hasty, where a lamp in the inner shrine is said to flicker, though no wind can reach it."
+ },
+ {
+  "id": "e5",
+  "text": "And space, at Chidambaram, where he dances as Nataraja.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v07",
+  "text": "Behind a curtain there, the secret of Chidambaram is revealed: an empty space. Nothing to see, because the formless has no form.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Behind a curtain there, the secret of Chit Embaram is revealed. An empty space. Nothing to see because the formless has no form."
+ },
+ {
+  "id": "v08",
+  "text": "His mantra has five syllables, one for each element.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "y1",
+  "text": "Nah.",
+  "voice": "af_bella",
+  "speed": 0.8
+ },
+ {
+  "id": "y2",
+  "text": "Mah.",
+  "voice": "af_bella",
+  "speed": 0.8
+ },
+ {
+  "id": "y3",
+  "text": "Shee.",
+  "voice": "af_bella",
+  "speed": 0.8
+ },
+ {
+  "id": "y4",
+  "text": "Vah.",
+  "voice": "af_bella",
+  "speed": 0.8
+ },
+ {
+  "id": "y5",
+  "text": "Yah.",
+  "voice": "af_bella",
+  "speed": 0.8
+ },
+ {
+  "id": "v09",
+  "text": "Aum. Namah Shivaya.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Ome Namashiveya"
+ },
+ {
+  "id": "v10",
+  "text": "The world is painted, kept, and washed away. And the paper beneath it was always there.",
+  "voice": "af_bella",
+  "speed": 0.88
+ }
+]
