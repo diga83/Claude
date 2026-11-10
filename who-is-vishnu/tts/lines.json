@@ -1,0 +1,107 @@
+[
+ {
+  "id": "v01",
+  "text": "Who is Vishnu? Ask, and you may be given ten answers.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Who is Vishnu? Ask and you may be given 10 answers."
+ },
+ {
+  "id": "v02",
+  "text": "He is the preserver of the world, the keeper of its balance, often painted blue: the colour of the sky and the sea.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "He is the preserver of the world. The keeper of its balance often painted blue. The color of the sky and the sea."
+ },
+ {
+  "id": "v03",
+  "text": "And whenever that balance fails, he comes down into the world, each time in a new form. These are his avatars.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a1",
+  "text": "First, a fish. In a great flood, Matsya towed the boat of Manu, the first man, to safety.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "First a fish. In a great flood, Matzia towed the boat of Manu, the first man to safety."
+ },
+ {
+  "id": "a2",
+  "text": "A tortoise. Kurma held a mountain on his back, while the ocean was churned.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A tortoise. Karma held a mountain on his back while the ocean was churned."
+ },
+ {
+  "id": "a3",
+  "text": "A boar. Varaha dived to the bottom of the sea, and lifted the drowned earth on his tusks.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A bore. Viraha dived to the bottom of the sea and lifted the drowned earth on his tusks."
+ },
+ {
+  "id": "a4",
+  "text": "A man-lion. A demon king could not be killed by man or beast, by day or by night, inside or out. So Narasimha came at dusk, on a doorstep.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A man lying. A demon king could not be killed by man or beast, by day or by night, inside or out. So Narasimha came at dusk on a doorstep."
+ },
+ {
+  "id": "a5",
+  "text": "A dwarf. Vamana asked for three steps of land, and covered the universe in two.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A dwarf. Vaimana asked for three steps of land and covered the universe in two."
+ },
+ {
+  "id": "a6",
+  "text": "A warrior with an axe: Parashurama.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "A warrior with an axe. Perishurama."
+ },
+ {
+  "id": "a7",
+  "text": "A prince with a bow: Rama, hero of the Ramayana.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a8",
+  "text": "A cowherd with a flute: Krishna, who taught the Bhagavad Gita.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "a cow heard with a flute. Krishna, who taught the Bhagavad Gita."
+ },
+ {
+  "id": "a9",
+  "text": "A teacher of peace. In many lists, the Buddha. In some others, Balarama.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "a10",
+  "text": "And one still to come: Kalki, on a white horse, at the end of this age.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "Some readers see a pattern in them: from the water, to the shore, to the land; from animal, to human, to sage.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v05",
+  "text": "So who is Vishnu? Perhaps the answer is in the word itself. Avatar means a descent. He is the one who keeps coming down to help.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v06",
+  "text": "Again, and again.",
+  "voice": "af_bella",
+  "speed": 0.88
+ }
+]
