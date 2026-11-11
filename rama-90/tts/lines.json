@@ -1,0 +1,53 @@
+[
+ {
+  "id": "v01",
+  "text": "Rama was a prince of Ayodhya, heir to its throne, and known for keeping his word.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Rama was a prince of Iodia, heir to its throne, and known for keeping his word."
+ },
+ {
+  "id": "v02",
+  "text": "To keep his father's promise, he gave up the crown and walked into the forest for fourteen years, with his wife Sita and his brother Lakshmana.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "To keep his father's promise, he gave up the crown and walked into the forest for 14 years, with his wife Sida and his brother Lakshmana."
+ },
+ {
+  "id": "v03",
+  "text": "There, a golden deer lured him away, and the demon king Ravana carried Sita off to his island, Lanka. As she flew, she dropped her jewels, to leave a trail.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "Searching for her, Rama found friends: an army of monkeys, and Hanuman, who leapt across the sea to find her.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v05",
+  "text": "Then the army built a bridge of floating stones, each one marked with Rama's name.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v06",
+  "text": "In the battle that followed, Ravana fell, and Sita was free at last.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "In the battle that followed, Ravana fell, and Sito was free at last."
+ },
+ {
+  "id": "v07",
+  "text": "When they came home, the people lit their way with lamps. Many still do, every autumn, at Diwali.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v08",
+  "text": "Rama: the one who kept his word.",
+  "voice": "af_bella",
+  "speed": 0.88
+ }
+]
