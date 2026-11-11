@@ -1,0 +1,202 @@
+{
+ "title": "Rama Avatar: The Prince Who Chose What Was Right",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 2.2,
+ "gap": 0.3,
+ "music": "myth",
+ "sources": [
+  "Valmiki Ramayana: Bala Kanda (birth, Shiva's bow, marriage to Sita), Ayodhya Kanda (Kaikeyi's boons, fourteen-year exile), Aranya Kanda (golden deer, abduction), Kishkindha and Sundara Kanda (Hanuman, the leap, the ring, burning of Lanka), Yuddha Kanda (the bridge, the war, Ravana's fall, return in the Pushpaka, coronation)",
+  "Later tradition (e.g. Ramcharitmanas and popular retellings): stones inscribed with Rama's name floating; the lamps of Ayodhya as the origin of Diwali"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, in the golden city of Ayodhya,",
+   "caps": "LONG *AGO | THE *GOLDEN CITY | OF *AYODHYA",
+   "say": "Long ago, in the golden city of Uh-yoh-dhya,"
+  },
+  {
+   "text": "a prince was born to King Dasharatha, and his name was Rama.",
+   "caps": "A *PRINCE | WAS *BORN | TO KING *DASHARATHA | HIS NAME WAS *RAMA",
+   "say": "a prince was born to King Dusha-rutha, and his name was Rahma."
+  },
+  {
+   "text": "He was Vishnu himself, the seventh avatar,",
+   "caps": "HE WAS *VISHNU | THE *SEVENTH | *AVATAR"
+  },
+  {
+   "text": "born to end the terror of Ravana, the ten headed king of Lanka.",
+   "caps": "BORN TO *END | THE TERROR OF *RAVANA | THE *TEN HEADED | KING OF *LANKA",
+   "say": "born to end the terror of Rah-vuna, the ten headed king of Lunka."
+  },
+  {
+   "text": "Rama grew up brave and gentle, and when he lifted the mighty bow of Shiva,",
+   "caps": "*RAMA GREW UP | *BRAVE | AND *GENTLE | HE *LIFTED | THE MIGHTY *BOW | OF *SHIVA",
+   "say": "Rahma grew up brave and gentle, and when he lifted the mighty bow of Shiva,"
+  },
+  {
+   "text": "it snapped in two,",
+   "caps": "IT *SNAPPED | IN *TWO"
+  },
+  {
+   "text": "and he won the hand of Princess Sita.",
+   "caps": "HE *WON | THE HAND OF | PRINCESS *SITA",
+   "say": "and he won the hand of Princess Seeta."
+  },
+  {
+   "text": "But on the eve of his crowning, his stepmother claimed an old promise from the king,",
+   "caps": "BUT ON THE *EVE | OF HIS *CROWNING | *STEPMOTHER | AN OLD *PROMISE | FROM THE *KING"
+  },
+  {
+   "text": "fourteen years of exile in the forest.",
+   "caps": "*FOURTEEN YEARS | OF *EXILE | IN THE *FOREST"
+  },
+  {
+   "text": "Rama simply smiled and obeyed,",
+   "caps": "RAMA SIMPLY *SMILED | AND *OBEYED",
+   "say": "Rahma simply smiled and obeyed,"
+  },
+  {
+   "text": "and Sita and his brother Lakshmana walked beside him.",
+   "caps": "AND *SITA | HIS BROTHER *LAKSHMANA | WALKED *BESIDE HIM",
+   "say": "and Seeta and his brother Luksh-mun walked beside him."
+  },
+  {
+   "text": "One day, a dazzling golden deer lured Rama away,",
+   "caps": "ONE *DAY | A DAZZLING *GOLDEN DEER | LURED RAMA *AWAY",
+   "say": "One day, a dazzling golden deer lured Rahma away,"
+  },
+  {
+   "text": "and Ravana swooped down in his flying chariot,",
+   "caps": "AND *RAVANA | *SWOOPED DOWN | HIS *FLYING CHARIOT",
+   "say": "and Rah-vuna swooped down in his flying chariot,"
+  },
+  {
+   "text": "and carried Sita off across the sea.",
+   "caps": "*CARRIED SITA OFF | ACROSS THE *SEA",
+   "say": "and carried Seeta off across the sea."
+  },
+  {
+   "text": "The brave old eagle Jatayu fought to stop him, but could not.",
+   "caps": "THE BRAVE OLD *EAGLE | *JATAYU | FOUGHT TO *STOP HIM | BUT *COULD NOT",
+   "say": "The brave old eagle Juh-tah-yoo fought to stop him, but could not."
+  },
+  {
+   "text": "Heartbroken, Rama searched the forests,",
+   "caps": "*HEARTBROKEN | RAMA *SEARCHED | THE *FORESTS",
+   "say": "Heartbroken, Rahma searched the forests,"
+  },
+  {
+   "text": "until he met Hanuman, the mighty monkey hero, who vowed to find her.",
+   "caps": "UNTIL HE *MET | *HANUMAN | THE MIGHTY *MONKEY HERO | WHO *VOWED | TO *FIND HER",
+   "say": "until he met Hunoo-mahn, the mighty monkey hero, who vowed to find her."
+  },
+  {
+   "text": "With one giant leap, Hanuman crossed the ocean,",
+   "caps": "ONE *GIANT LEAP | HANUMAN *CROSSED | THE *OCEAN",
+   "say": "With one giant leap, Hunoo-mahn crossed the ocean,"
+  },
+  {
+   "text": "found Sita in a garden in Lanka, and gave her Rama's ring.",
+   "caps": "*FOUND SITA | IN A *GARDEN | IN *LANKA | GAVE HER | RAMA'S *RING",
+   "say": "found Seeta in a garden in Lunka, and gave her Rahma's ring."
+  },
+  {
+   "text": "Then he set the demon city ablaze with his burning tail.",
+   "caps": "THEN HE *SET | THE DEMON CITY *ABLAZE | HIS *BURNING TAIL"
+  },
+  {
+   "text": "Back on the shore, an army of monkeys built a bridge of floating stones,",
+   "caps": "BACK ON THE *SHORE | AN *ARMY | OF *MONKEYS | BUILT A *BRIDGE | OF *FLOATING STONES"
+  },
+  {
+   "text": "each one carved with Rama's name.",
+   "caps": "EACH ONE *CARVED | WITH RAMA'S *NAME",
+   "say": "each one carved with Rahma's name."
+  },
+  {
+   "text": "They marched into Lanka, and a great battle shook the earth.",
+   "caps": "THEY *MARCHED | INTO *LANKA | A GREAT *BATTLE | SHOOK THE *EARTH",
+   "say": "They marched into Lunka, and a great battle shook the earth."
+  },
+  {
+   "text": "At last, Rama drew a blazing arrow,",
+   "caps": "AT *LAST | RAMA *DREW | A *BLAZING ARROW",
+   "say": "At last, Rahma drew a blazing arrow,"
+  },
+  {
+   "text": "and Ravana fell.",
+   "caps": "AND RAVANA *FELL",
+   "say": "and Rah-vuna fell."
+  },
+  {
+   "text": "Rama and Sita were together again,",
+   "caps": "RAMA AND *SITA | *TOGETHER | *AGAIN",
+   "say": "Rahma and Seeta were together again,"
+  },
+  {
+   "text": "and after fourteen long years, they flew home to Ayodhya,",
+   "caps": "AFTER *FOURTEEN | LONG *YEARS | THEY *FLEW HOME | TO *AYODHYA",
+   "say": "and after fourteen long years, they flew home to Uh-yoh-dhya,"
+  },
+  {
+   "text": "where every street glowed with tiny lamps.",
+   "caps": "WHERE EVERY *STREET | *GLOWED | WITH TINY *LAMPS"
+  },
+  {
+   "text": "That night of lights is still celebrated as Diwali.",
+   "caps": "THAT NIGHT OF *LIGHTS | IS STILL *CELEBRATED | AS *DIWALI",
+   "say": "That night of lights is still celebrated as Dee-wahlee."
+  },
+  {
+   "text": "Rama was crowned king, and his reign became an age of peace.",
+   "caps": "RAMA WAS *CROWNED | *KING | HIS *REIGN | AN AGE OF *PEACE",
+   "say": "Rahma was crowned king, and his reign became an age of peace."
+  },
+  {
+   "text": "This is Rama, the seventh avatar of Vishnu,",
+   "caps": "THIS IS *RAMA | THE *SEVENTH | *AVATAR | OF *VISHNU",
+   "say": "This is Rahma, the seventh avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder to do what is right, even when it is hard,",
+   "caps": "A *REMINDER | TO DO WHAT IS *RIGHT | EVEN WHEN | IT IS *HARD"
+  },
+  {
+   "text": "because the light always finds its way home.",
+   "caps": "BECAUSE THE *LIGHT | ALWAYS *FINDS | ITS WAY *HOME"
+  }
+ ],
+ "sections": {
+  "dark": [
+   [
+    3,
+    4
+   ],
+   [
+    7,
+    9
+   ],
+   [
+    12,
+    16
+   ]
+  ],
+  "storm": [
+   [
+    17,
+    18
+   ],
+   [
+    19,
+    20
+   ],
+   [
+    22,
+    25
+   ]
+  ],
+  "dawn": 25
+ }
+}
