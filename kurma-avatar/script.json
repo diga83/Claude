@@ -1,0 +1,146 @@
+{
+ "title": "Kurma Avatar: The Tortoise Who Held Up the World",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 2.2,
+ "gap": 0.3,
+ "music": "myth",
+ "sources": [
+  "Bhagavata Purana, Canto 8, chapters 5-12 (Durvasa's curse, the churning of the ocean of milk with Mandara and Vasuki, Kurma, Halahala and Shiva, the treasures, Lakshmi, Dhanvantari, Mohini)",
+  "Vishnu Purana, Book 1, chapter 9, and Mahabharata, Adi Parva (Astika Parva): the Samudra Manthana"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, the gods lost their strength to a sage's curse,",
+   "caps": "LONG *AGO | THE *GODS | LOST THEIR *STRENGTH | TO A SAGE'S *CURSE"
+  },
+  {
+   "text": "and the demons began to win every battle.",
+   "caps": "AND THE *DEMONS | BEGAN TO *WIN | EVERY *BATTLE"
+  },
+  {
+   "text": "Desperate, they begged Vishnu for help, and he shared a secret.",
+   "caps": "*DESPERATE | THEY BEGGED *VISHNU | FOR *HELP | HE SHARED A *SECRET"
+  },
+  {
+   "text": "Churn the ocean of milk, and the nectar of immortality will rise.",
+   "caps": "*CHURN | THE OCEAN OF *MILK | AND THE *NECTAR | OF *IMMORTALITY | WILL *RISE"
+  },
+  {
+   "text": "The task was so huge that gods and demons had to work together.",
+   "caps": "THE TASK WAS SO *HUGE | GODS AND *DEMONS | HAD TO WORK *TOGETHER"
+  },
+  {
+   "text": "They used Mount Mandara as a churning rod,",
+   "caps": "THEY USED | MOUNT *MANDARA | AS A *CHURNING ROD",
+   "say": "They used Mount Mun-dara as a churning rod,"
+  },
+  {
+   "text": "and the serpent Vasuki as the rope.",
+   "caps": "AND THE *SERPENT | *VASUKI | AS THE *ROPE",
+   "say": "and the serpent Vah-sookee as the rope."
+  },
+  {
+   "text": "with the gods at its tail, and the demons at its head.",
+   "caps": "THE *GODS | AT ITS *TAIL | THE *DEMONS | AT ITS *HEAD"
+  },
+  {
+   "text": "But as they pulled, the mountain began to sink.",
+   "caps": "BUT AS THEY *PULLED | THE *MOUNTAIN | BEGAN TO *SINK"
+  },
+  {
+   "text": "So Vishnu became Kurma, a giant tortoise,",
+   "caps": "SO VISHNU *BECAME | *KURMA | A GIANT *TORTOISE",
+   "say": "So Vishnu became Koorma, a giant tortoise,"
+  },
+  {
+   "text": "and dove beneath the waves to carry the mountain on his back.",
+   "caps": "AND *DOVE | BENEATH THE *WAVES | TO *CARRY | THE *MOUNTAIN | ON HIS *BACK"
+  },
+  {
+   "text": "Steady at last, the mountain spun, and the ocean foamed.",
+   "caps": "*STEADY | AT *LAST | THE MOUNTAIN *SPUN | THE OCEAN *FOAMED"
+  },
+  {
+   "text": "First came a deadly poison, dark enough to end the world,",
+   "caps": "FIRST CAME | A DEADLY *POISON | DARK *ENOUGH | TO END THE *WORLD"
+  },
+  {
+   "text": "but Shiva drank it, and his throat turned blue forever.",
+   "caps": "BUT *SHIVA | *DRANK IT | AND HIS *THROAT | TURNED *BLUE | *FOREVER"
+  },
+  {
+   "text": "Then the treasures rose. A wish granting cow, a white elephant, a tree of wishes, the shining moon,",
+   "caps": "THEN THE *TREASURES | *ROSE | A WISH GRANTING *COW | A WHITE *ELEPHANT | A *TREE | OF *WISHES | THE SHINING *MOON"
+  },
+  {
+   "text": "and Lakshmi, goddess of fortune, seated on a lotus.",
+   "caps": "AND *LAKSHMI | GODDESS OF *FORTUNE | SEATED ON A *LOTUS",
+   "say": "and Luckshmee, goddess of fortune, seated on a lotus."
+  },
+  {
+   "text": "At last, the healer Dhanvantari appeared, holding the pot of nectar.",
+   "caps": "AT *LAST | THE *HEALER | *DHANVANTARI | APPEARED | HOLDING THE *POT | OF *NECTAR",
+   "say": "At last, the healer Dhun-vun-tuhree appeared, holding the pot of nectar."
+  },
+  {
+   "text": "The demons snatched it,",
+   "caps": "THE DEMONS *SNATCHED IT"
+  },
+  {
+   "text": "but Vishnu, disguised as the enchanting Mohini, won it back for the gods.",
+   "caps": "BUT *VISHNU | *DISGUISED | AS THE ENCHANTING *MOHINI | *WON IT BACK | FOR THE *GODS",
+   "say": "but Vishnu, disguised as the enchanting Mo-hinee, won it back for the gods."
+  },
+  {
+   "text": "Their strength returned, and the heavens were safe again.",
+   "caps": "THEIR *STRENGTH | *RETURNED | THE *HEAVENS | WERE *SAFE AGAIN"
+  },
+  {
+   "text": "And through it all, Kurma never moved.",
+   "caps": "AND THROUGH IT *ALL | *KURMA | NEVER *MOVED",
+   "say": "And through it all, Koorma never moved."
+  },
+  {
+   "text": "This is Kurma, the second avatar of Vishnu,",
+   "caps": "THIS IS *KURMA | THE *SECOND | *AVATAR | OF *VISHNU",
+   "say": "This is Koorma, the second avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that the greatest strength is sometimes just holding steady.",
+   "caps": "A *REMINDER | THE GREATEST *STRENGTH | IS *SOMETIMES | JUST *HOLDING STEADY"
+  }
+ ],
+ "sections": {
+  "dark": [
+   [
+    1,
+    2
+   ],
+   [
+    8,
+    9
+   ],
+   [
+    12,
+    13
+   ],
+   [
+    17,
+    18
+   ]
+  ],
+  "storm": [
+   [
+    5,
+    8
+   ],
+   [
+    11,
+    12
+   ]
+  ],
+  "dawn": 19
+ }
+}
