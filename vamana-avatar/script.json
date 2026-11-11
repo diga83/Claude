@@ -1,0 +1,125 @@
+{
+ "title": "Vamana Avatar: Three Steps That Measured the Universe",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 2.2,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    1,
+    2
+   ],
+   [
+    8,
+    9
+   ]
+  ],
+  "storm": [
+   [
+    10,
+    13
+   ]
+  ],
+  "dawn": 15
+ },
+ "sources": [
+  "Bhagavata Purana, Canto 8, chapters 15-23 (Bali conquers the three worlds, Aditi's prayer, Vamana's birth, the sacrifice, the request for three paces, Shukracharya's warning, Trivikrama's two strides, Bali offers his head, Sutala, Vishnu as Bali's doorkeeper)",
+  "Vamana Purana and Rig Veda 1.154 (the three strides of Vishnu)"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, a demon king named Bali ruled so well that his power spread across all three worlds.",
+   "caps": "LONG *AGO | A *DEMON KING | NAMED *BALI | RULED SO *WELL | HIS *POWER | SPREAD ACROSS | ALL *THREE WORLDS",
+   "say": "Long ago, a demon king named Bullee ruled so well that his power spread across all three worlds."
+  },
+  {
+   "text": "Even the gods lost their heaven,",
+   "caps": "EVEN THE *GODS | LOST THEIR *HEAVEN"
+  },
+  {
+   "text": "and their mother Aditi prayed to Vishnu for help.",
+   "caps": "AND THEIR *MOTHER | *ADITI | PRAYED TO *VISHNU | FOR *HELP",
+   "say": "and their mother Uh-dee-tee prayed to Vishnu for help."
+  },
+  {
+   "text": "So Vishnu was born as her son, a small and smiling boy named Vamana.",
+   "caps": "SO *VISHNU | WAS *BORN | AS HER *SON | A *SMALL | AND *SMILING BOY | NAMED *VAMANA",
+   "say": "So Vishnu was born as her son, a small and smiling boy named Vah-muna."
+  },
+  {
+   "text": "One day, King Bali held a grand ceremony, promising a gift to anyone who asked.",
+   "caps": "ONE *DAY | KING *BALI | HELD A *GRAND CEREMONY | *PROMISING | A *GIFT | TO *ANYONE | WHO *ASKED",
+   "say": "One day, King Bullee held a grand ceremony, promising a gift to anyone who asked."
+  },
+  {
+   "text": "Vamana walked in, carrying only a little umbrella and a water pot.",
+   "caps": "*VAMANA | WALKED *IN | CARRYING *ONLY | A LITTLE *UMBRELLA | AND A *WATER POT",
+   "say": "Vah-muna walked in, carrying only a little umbrella and a water pot."
+  },
+  {
+   "text": "Bali smiled. Ask for anything, gold, elephants, a whole kingdom.",
+   "caps": "BALI *SMILED | ASK FOR *ANYTHING | *GOLD | *ELEPHANTS | A WHOLE *KINGDOM",
+   "say": "Bullee smiled. Ask for anything, gold, elephants, a whole kingdom."
+  },
+  {
+   "text": "But the boy asked only for three steps of land, measured by his own tiny feet.",
+   "caps": "BUT THE *BOY | ASKED *ONLY | FOR *THREE STEPS | OF *LAND | *MEASURED | BY HIS OWN | *TINY FEET"
+  },
+  {
+   "text": "Bali's teacher warned him, this is no ordinary child.",
+   "caps": "BALI'S *TEACHER | *WARNED HIM | THIS IS NO | *ORDINARY CHILD",
+   "say": "Bullee's teacher warned him, this is no ordinary child."
+  },
+  {
+   "text": "But Bali had given his word, and he poured the water to seal the gift.",
+   "caps": "BUT *BALI | HAD GIVEN | HIS *WORD | AND HE *POURED | THE *WATER | TO *SEAL | THE *GIFT",
+   "say": "But Bullee had given his word, and he poured the water to seal the gift."
+  },
+  {
+   "text": "The moment it touched his hands, Vamana began to grow, past the trees, past the clouds, past the stars.",
+   "caps": "THE *MOMENT | IT TOUCHED | HIS *HANDS | VAMANA | BEGAN TO *GROW | PAST THE *TREES | PAST THE *CLOUDS | PAST THE *STARS",
+   "say": "The moment it touched his hands, Vah-muna began to grow, past the trees, past the clouds, past the stars."
+  },
+  {
+   "text": "With his first step, he covered the whole earth.",
+   "caps": "WITH HIS *FIRST STEP | HE *COVERED | THE WHOLE *EARTH"
+  },
+  {
+   "text": "With his second, he covered the heavens and all the stars.",
+   "caps": "WITH HIS *SECOND | HE COVERED | THE *HEAVENS | AND ALL THE *STARS"
+  },
+  {
+   "text": "Then he asked, where shall I place my third?",
+   "caps": "THEN HE *ASKED | *WHERE | SHALL I *PLACE | MY *THIRD?"
+  },
+  {
+   "text": "The universe was his, and nothing was left to give.",
+   "caps": "THE *UNIVERSE | WAS *HIS | AND *NOTHING | WAS LEFT | TO *GIVE"
+  },
+  {
+   "text": "Bali bowed low, and offered his own head.",
+   "caps": "BALI *BOWED LOW | AND *OFFERED | HIS OWN *HEAD",
+   "say": "Bullee bowed low, and offered his own head."
+  },
+  {
+   "text": "Moved by his humility, Vishnu blessed him, made him king of the world below,",
+   "caps": "*MOVED | BY HIS *HUMILITY | VISHNU *BLESSED HIM | MADE HIM *KING | OF THE WORLD *BELOW"
+  },
+  {
+   "text": "and promised to guard his door forever.",
+   "caps": "AND *PROMISED | TO *GUARD | HIS *DOOR | *FOREVER"
+  },
+  {
+   "text": "This is Vamana, the fifth avatar of Vishnu,",
+   "caps": "THIS IS *VAMANA | THE *FIFTH | *AVATAR | OF *VISHNU",
+   "say": "This is Vah-muna, the fifth avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that true greatness is found in humility, and in keeping your word.",
+   "caps": "A *REMINDER | TRUE *GREATNESS | IS FOUND IN | *HUMILITY | AND IN *KEEPING | YOUR *WORD"
+  }
+ ]
+}
