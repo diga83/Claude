@@ -1,0 +1,71 @@
+[
+ {
+  "id": "v01",
+  "text": "Once a year, the preserver of the world goes to sleep.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v02",
+  "text": "On a night in the rainy season, Devshayani Ekadashi, Vishnu lies down on the serpent Shesha, on the cosmic ocean, and closes his eyes.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "On a night in the rainy season, Devshayani Akkadashi, Vishnu lies down on the serpent's shessa, on the cosmic ocean and closes his eyes."
+ },
+ {
+  "id": "v03",
+  "text": "For four months, the monsoon months, he sleeps. This time is called Chaturmas.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "For four months, the monsoon months he sleeps. This time is called Chattermas."
+ },
+ {
+  "id": "m1",
+  "text": "The rain comes.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "m2",
+  "text": "The rivers rise.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "m3",
+  "text": "The fields turn green, then gold.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "m4",
+  "text": "And the lamps of autumn are lit.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v04",
+  "text": "Then, on Prabodhini Ekadashi, the day of awakening, he opens his eyes.",
+  "voice": "af_bella",
+  "speed": 0.88,
+  "asr": "Then, on Prabhat Hini Akadashi, the day of awakening, he opens his eyes."
+ },
+ {
+  "id": "v05",
+  "text": "Homes celebrate by marrying a sacred basil plant, Tulsi, to Vishnu, under a canopy of sugarcane.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v06",
+  "text": "And the season of weddings begins again.",
+  "voice": "af_bella",
+  "speed": 0.88
+ },
+ {
+  "id": "v07",
+  "text": "Even asleep, he holds the world. And every year, the world waits for him to wake.",
+  "voice": "af_bella",
+  "speed": 0.88
+ }
+]
