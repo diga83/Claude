@@ -1,0 +1,142 @@
+{
+ "title": "Matsya Avatar: The Fish Who Saved the World",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 1.8,
+ "gap": 0.3,
+ "music": "myth",
+ "sources": [
+  "Bhagavata Purana, Canto 8, chapter 24 (King Satyavrata, the Kritamala river, the growing fish, the seven-day warning, the boat tied to the horn with Vasuki, Hayagriva and the Vedas)",
+  "Matsya Purana, chapters 1-2, and Shatapatha Brahmana 1.8.1 (Manu and the fish, the earliest version of the flood story)"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, a gentle king named Satyavrata",
+   "caps": "LONG *AGO | A GENTLE *KING | NAMED *SATYAVRATA",
+   "say": "Long ago, a gentle king named Suttya-vrutta"
+  },
+  {
+   "text": "knelt by a river to offer water in prayer.",
+   "caps": "BY A *RIVER | WATER IN *PRAYER"
+  },
+  {
+   "text": "A tiny fish shimmered in his cupped hands,",
+   "caps": "A TINY *FISH | IN HIS *CUPPED HANDS"
+  },
+  {
+   "text": "and whispered, please, protect me.",
+   "caps": "AND *WHISPERED | PLEASE, *PROTECT ME"
+  },
+  {
+   "text": "So the king carried it home in a water pot.",
+   "caps": "SO THE *KING | CARRIED IT *HOME | IN A *WATER POT"
+  },
+  {
+   "text": "But by morning, the fish had outgrown it.",
+   "caps": "BUT BY *MORNING | THE FISH HAD *OUTGROWN IT"
+  },
+  {
+   "text": "He moved it to a pond,",
+   "caps": "TO A *POND"
+  },
+  {
+   "text": "then a lake,",
+   "caps": "THEN A *LAKE"
+  },
+  {
+   "text": "then a mighty river,",
+   "caps": "A MIGHTY *RIVER"
+  },
+  {
+   "text": "until even the ocean could barely hold it.",
+   "caps": "EVEN THE *OCEAN | COULD *BARELY | *HOLD IT"
+  },
+  {
+   "text": "The king bowed and asked, who are you, really?",
+   "caps": "THE KING *BOWED | WHO ARE *YOU, | *REALLY?"
+  },
+  {
+   "text": "The golden fish replied, I am Vishnu, protector of the worlds.",
+   "caps": "THE *GOLDEN FISH | I AM *VISHNU | *PROTECTOR | OF THE *WORLDS"
+  },
+  {
+   "text": "In seven days, a great flood will swallow the earth.",
+   "caps": "IN *SEVEN DAYS | A GREAT *FLOOD | WILL *SWALLOW | THE *EARTH"
+  },
+  {
+   "text": "Gather the seven sages, the seeds of every plant,",
+   "caps": "GATHER THE | *SEVEN SAGES | THE *SEEDS | OF EVERY *PLANT"
+  },
+  {
+   "text": "and every creature, and wait for me.",
+   "caps": "AND EVERY *CREATURE | AND *WAIT | FOR *ME"
+  },
+  {
+   "text": "Meanwhile, a demon named Hayagriva stole the sacred Vedas,",
+   "caps": "*MEANWHILE... | A *DEMON | NAMED *HAYAGRIVA | STOLE THE *VEDAS",
+   "say": "Meanwhile, a demon named Hie-uh-greeva stole the sacred Vaydas,"
+  },
+  {
+   "text": "and hid them deep beneath the sea.",
+   "caps": "AND *HID THEM | DEEP *BENEATH | THE *SEA"
+  },
+  {
+   "text": "On the seventh day, the skies broke open,",
+   "caps": "ON THE *SEVENTH DAY | SKIES *BROKE OPEN"
+  },
+  {
+   "text": "and the oceans rose above the mountains.",
+   "caps": "THE OCEANS *ROSE | ABOVE THE *MOUNTAINS"
+  },
+  {
+   "text": "Just then, a shining boat appeared, and so did Matsya,",
+   "caps": "JUST *THEN | A *SHINING BOAT | AND SO DID *MATSYA",
+   "say": "Just then, a shining boat appeared, and so did Mutsya,"
+  },
+  {
+   "text": "now vast as a mountain, with one golden horn.",
+   "caps": "VAST AS A *MOUNTAIN | ONE *GOLDEN HORN"
+  },
+  {
+   "text": "Using the serpent Vasuki as a rope,",
+   "caps": "THE *SERPENT | *VASUKI | AS A *ROPE",
+   "say": "Using the serpent Vah-sookee as a rope,"
+  },
+  {
+   "text": "the king tied the boat to that horn.",
+   "caps": "THE KING *TIED | THE *BOAT | TO THAT *HORN"
+  },
+  {
+   "text": "All through the stormy night, Matsya pulled them across the waves.",
+   "caps": "THE *STORMY NIGHT | MATSYA *PULLED THEM | ACROSS THE *WAVES",
+   "say": "All through the stormy night, Mutsya pulled them across the waves."
+  },
+  {
+   "text": "Then he dove into the deep, defeated the demon,",
+   "caps": "THEN HE *DOVE | INTO THE *DEEP | *DEFEATED | THE *DEMON"
+  },
+  {
+   "text": "and carried the Vedas back into the light.",
+   "caps": "CARRIED THE *VEDAS | BACK INTO THE *LIGHT",
+   "say": "and carried the Vaydas back into the light."
+  },
+  {
+   "text": "When the waters settled, a new dawn rose,",
+   "caps": "THE WATERS *SETTLED | A NEW *DAWN"
+  },
+  {
+   "text": "and life began again.",
+   "caps": "AND *LIFE | BEGAN *AGAIN"
+  },
+  {
+   "text": "This is Matsya, the first avatar of Vishnu,",
+   "caps": "THIS IS *MATSYA | THE *FIRST | *AVATAR | OF *VISHNU",
+   "say": "This is Mutsya, the first avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that one small act of kindness can save the world.",
+   "caps": "A *REMINDER | ONE *SMALL ACT | OF *KINDNESS | CAN *SAVE | THE *WORLD"
+  }
+ ]
+}

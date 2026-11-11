@@ -1,0 +1,589 @@
+{
+ "duration": 89.539,
+ "cues": [
+  {
+   "t": 0.1,
+   "type": "conch",
+   "gain": 0.8
+  },
+  {
+   "t": 0.6,
+   "type": "bell"
+  },
+  {
+   "t": 1.2,
+   "type": "sparkle",
+   "dur": 1.6,
+   "gain": 0.6
+  },
+  {
+   "t": 4.24,
+   "type": "waves",
+   "dur": 3,
+   "gain": 0.5
+  },
+  {
+   "t": 5.327,
+   "type": "plop",
+   "gain": 0.6
+  },
+  {
+   "t": 5.627,
+   "type": "sparkle",
+   "dur": 1,
+   "gain": 0.5
+  },
+  {
+   "t": 6.938,
+   "type": "bubbles",
+   "dur": 1.2,
+   "gain": 0.6
+  },
+  {
+   "t": 7.671,
+   "type": "sparkle",
+   "dur": 1.2
+  },
+  {
+   "t": 7.671,
+   "type": "bell",
+   "gain": 0.5
+  },
+  {
+   "t": 9.668,
+   "type": "rumble",
+   "dur": 2.2,
+   "gain": 0.7
+  },
+  {
+   "t": 9.868,
+   "type": "bubbles",
+   "dur": 1.8,
+   "gain": 0.5
+  },
+  {
+   "t": 12.272,
+   "type": "tock",
+   "gain": 0.5
+  },
+  {
+   "t": 12.572,
+   "type": "sparkle",
+   "dur": 1.2,
+   "gain": 0.4
+  },
+  {
+   "t": 12.772,
+   "type": "tock",
+   "gain": 0.5
+  },
+  {
+   "t": 13.272,
+   "type": "tock",
+   "gain": 0.5
+  },
+  {
+   "t": 13.772,
+   "type": "tock",
+   "gain": 0.5
+  },
+  {
+   "t": 14.781,
+   "type": "bell",
+   "gain": 0.5
+  },
+  {
+   "t": 16.285,
+   "type": "boing"
+  },
+  {
+   "t": 16.485,
+   "type": "plop"
+  },
+  {
+   "t": 16.585,
+   "type": "bubbles",
+   "dur": 0.8
+  },
+  {
+   "t": 17.163,
+   "type": "plop"
+  },
+  {
+   "t": 17.263,
+   "type": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 19.093,
+   "type": "plop",
+   "gain": 1.1
+  },
+  {
+   "t": 19.093,
+   "type": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 19.603,
+   "type": "slam",
+   "gain": 0.6
+  },
+  {
+   "t": 19.603,
+   "type": "waves",
+   "dur": 1.6,
+   "gain": 0.8
+  },
+  {
+   "t": 21.373,
+   "type": "waves",
+   "dur": 2.6,
+   "gain": 1
+  },
+  {
+   "t": 21.523,
+   "type": "slam",
+   "gain": 0.7
+  },
+  {
+   "t": 21.873,
+   "type": "conch",
+   "gain": 0.5
+  },
+  {
+   "t": 24.73,
+   "type": "thud",
+   "gain": 0.4
+  },
+  {
+   "t": 25.62,
+   "type": "sparkle",
+   "dur": 1,
+   "gain": 0.6
+  },
+  {
+   "t": 26.933,
+   "type": "shimmer",
+   "dur": 1.811999999999999
+  },
+  {
+   "t": 28.545,
+   "type": "conch",
+   "gain": 1.1
+  },
+  {
+   "t": 28.545,
+   "type": "slam",
+   "gain": 0.5
+  },
+  {
+   "t": 28.745,
+   "type": "sparkle",
+   "dur": 2.2
+  },
+  {
+   "t": 28.945,
+   "type": "bell"
+  },
+  {
+   "t": 31.3,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 31.457,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 31.614,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 31.771,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 31.928,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 32.085,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 32.242,
+   "type": "tock",
+   "gain": 0.7
+  },
+  {
+   "t": 32.299,
+   "type": "rumble",
+   "dur": 2.4
+  },
+  {
+   "t": 32.599,
+   "type": "waves",
+   "dur": 2.2,
+   "gain": 1.2
+  },
+  {
+   "t": 34.862,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 0
+  },
+  {
+   "t": 35.062,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 1
+  },
+  {
+   "t": 35.262,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 2
+  },
+  {
+   "t": 35.462,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 3
+  },
+  {
+   "t": 35.662,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 4
+  },
+  {
+   "t": 35.862,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 5
+  },
+  {
+   "t": 36.062,
+   "type": "chime",
+   "gain": 0.8,
+   "note": 6
+  },
+  {
+   "t": 36.948,
+   "type": "sparkle",
+   "dur": 1
+  },
+  {
+   "t": 38.452,
+   "type": "tock",
+   "gain": 0.6
+  },
+  {
+   "t": 38.852,
+   "type": "thud",
+   "gain": 0.3
+  },
+  {
+   "t": 39.352,
+   "type": "thud",
+   "gain": 0.3
+  },
+  {
+   "t": 40.738,
+   "type": "rumble",
+   "dur": 3.6,
+   "gain": 1
+  },
+  {
+   "t": 40.871,
+   "type": "plop"
+  },
+  {
+   "t": 41.038,
+   "type": "growl"
+  },
+  {
+   "t": 43.226,
+   "type": "zip"
+  },
+  {
+   "t": 43.376,
+   "type": "slam",
+   "gain": 0.6
+  },
+  {
+   "t": 45.178,
+   "type": "bubbles",
+   "dur": 2
+  },
+  {
+   "t": 45.178,
+   "type": "slide",
+   "dur": 1.8
+  },
+  {
+   "t": 47.311,
+   "type": "rumble",
+   "dur": 2.4
+  },
+  {
+   "t": 49.408,
+   "type": "thunder"
+  },
+  {
+   "t": 49.408,
+   "type": "rain",
+   "dur": 22
+  },
+  {
+   "t": 50.571,
+   "type": "waves",
+   "dur": 2.6,
+   "gain": 1.3
+  },
+  {
+   "t": 51.871,
+   "type": "thunder",
+   "gain": 0.7
+  },
+  {
+   "t": 53.363,
+   "type": "shimmer",
+   "dur": 1.6
+  },
+  {
+   "t": 53.463,
+   "type": "bell"
+  },
+  {
+   "t": 55.741,
+   "type": "conch",
+   "gain": 0.9
+  },
+  {
+   "t": 55.741,
+   "type": "bubbles",
+   "dur": 1.6
+  },
+  {
+   "t": 57.343,
+   "type": "waves",
+   "dur": 3,
+   "gain": 1.1
+  },
+  {
+   "t": 57.643,
+   "type": "rumble",
+   "dur": 1.6
+  },
+  {
+   "t": 59.859,
+   "type": "bell",
+   "gain": 1.2
+  },
+  {
+   "t": 59.859,
+   "type": "sparkle",
+   "dur": 0.9
+  },
+  {
+   "t": 60.764,
+   "type": "hiss",
+   "dur": 1.4
+  },
+  {
+   "t": 61.164,
+   "type": "thunder",
+   "gain": 0.5
+  },
+  {
+   "t": 62.701,
+   "type": "zip",
+   "gain": 0.6
+  },
+  {
+   "t": 63.614,
+   "type": "slide",
+   "dur": 1.8660000000000054
+  },
+  {
+   "t": 65.48,
+   "type": "pop"
+  },
+  {
+   "t": 65.48,
+   "type": "bell",
+   "gain": 0.8
+  },
+  {
+   "t": 65.807,
+   "type": "waves",
+   "dur": 4,
+   "gain": 1.3
+  },
+  {
+   "t": 66.307,
+   "type": "thunder",
+   "gain": 0.8
+  },
+  {
+   "t": 67.594,
+   "type": "conch",
+   "gain": 0.6
+  },
+  {
+   "t": 68.194,
+   "type": "thunder",
+   "gain": 0.6
+  },
+  {
+   "t": 69.74,
+   "type": "plop",
+   "gain": 1.2
+  },
+  {
+   "t": 69.84,
+   "type": "slide",
+   "dur": 1.7800000000000096
+  },
+  {
+   "t": 69.84,
+   "type": "bubbles",
+   "dur": 1.7800000000000096
+  },
+  {
+   "t": 71.52,
+   "type": "whoosh"
+  },
+  {
+   "t": 71.97,
+   "type": "slam",
+   "gain": 1.2
+  },
+  {
+   "t": 71.97,
+   "type": "thunder",
+   "gain": 0.5
+  },
+  {
+   "t": 72.12,
+   "type": "sparkle",
+   "dur": 1.2
+  },
+  {
+   "t": 73.04,
+   "type": "shimmer",
+   "dur": 2
+  },
+  {
+   "t": 73.24,
+   "type": "bubbles",
+   "dur": 1.6,
+   "gain": 0.6
+  },
+  {
+   "t": 74.04,
+   "type": "conch",
+   "gain": 0.6
+  },
+  {
+   "t": 75.378,
+   "type": "waves",
+   "dur": 2.6,
+   "gain": 0.5
+  },
+  {
+   "t": 77.257,
+   "type": "bell"
+  },
+  {
+   "t": 77.257,
+   "type": "sparkle",
+   "dur": 1.4,
+   "gain": 0.7
+  },
+  {
+   "t": 78.308,
+   "type": "chime",
+   "gain": 0.6,
+   "note": 0
+  },
+  {
+   "t": 78.438,
+   "type": "chime",
+   "gain": 0.6,
+   "note": 1
+  },
+  {
+   "t": 78.568,
+   "type": "chime",
+   "gain": 0.6,
+   "note": 2
+  },
+  {
+   "t": 78.698,
+   "type": "chime",
+   "gain": 0.6,
+   "note": 3
+  },
+  {
+   "t": 78.828,
+   "type": "chime",
+   "gain": 0.6,
+   "note": 4
+  },
+  {
+   "t": 78.958,
+   "type": "chime",
+   "gain": 0.6,
+   "note": 5
+  },
+  {
+   "t": 79.686,
+   "type": "conch",
+   "gain": 1
+  },
+  {
+   "t": 81.325,
+   "type": "bell",
+   "gain": 1
+  },
+  {
+   "t": 81.325,
+   "type": "sparkle",
+   "dur": 1.2
+  },
+  {
+   "t": 83.686,
+   "type": "sparkle",
+   "dur": 1.6,
+   "gain": 0.6
+  },
+  {
+   "t": 86.425,
+   "type": "conch",
+   "gain": 0.9
+  },
+  {
+   "t": 86.625,
+   "type": "shimmer",
+   "dur": 2.5
+  },
+  {
+   "t": 87.639,
+   "type": "bell",
+   "gain": 1.1
+  },
+  {
+   "t": 87.689,
+   "type": "sparkle",
+   "dur": 1.5
+  }
+ ]
+}
