@@ -1,0 +1,129 @@
+{
+ "title": "Varaha Avatar: The Boar Who Lifted the Earth",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 2.2,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    0,
+    6
+   ],
+   [
+    12,
+    13
+   ]
+  ],
+  "storm": [
+   [
+    7,
+    8
+   ],
+   [
+    13,
+    15
+   ]
+  ],
+  "dawn": 15
+ },
+ "sources": [
+  "Bhagavata Purana, Canto 3, chapters 13 and 17-19 (the boar from Brahma's nostril, thumb-sized then vast; the Earth lifted from the Garbhodaka ocean on his tusks; the battle with Hiranyaksha)",
+  "Vishnu Purana, Book 1, chapter 4 (Varaha raises the Earth and sets her afloat on the waters)"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, a demon named Hiranyaksha grew so powerful that nothing could harm him.",
+   "caps": "LONG *AGO | A *DEMON | NAMED *HIRANYAKSHA | GREW SO *POWERFUL | *NOTHING | COULD *HARM HIM",
+   "say": "Long ago, a demon named Hirun-yahk-sha grew so powerful that nothing could harm him."
+  },
+  {
+   "text": "He stormed through the three worlds, and even the gods fled before him.",
+   "caps": "HE *STORMED | THROUGH THE *THREE WORLDS | EVEN THE *GODS | *FLED | BEFORE *HIM"
+  },
+  {
+   "text": "Drunk on his own strength, he seized the Earth herself,",
+   "caps": "*DRUNK | ON HIS OWN *STRENGTH | HE *SEIZED | THE *EARTH HERSELF"
+  },
+  {
+   "text": "and dragged her down to the bottom of the cosmic ocean.",
+   "caps": "AND *DRAGGED HER | DOWN TO THE *BOTTOM | OF THE *COSMIC OCEAN"
+  },
+  {
+   "text": "The world went dark, and the gods cried out for help.",
+   "caps": "THE WORLD WENT *DARK | AND THE *GODS | CRIED OUT | FOR *HELP"
+  },
+  {
+   "text": "Without the Earth, there was nowhere left for life to stand.",
+   "caps": "WITHOUT THE *EARTH | *NOWHERE LEFT | FOR *LIFE | TO *STAND"
+  },
+  {
+   "text": "Then, from the breath of Brahma the creator, a tiny boar appeared, no bigger than a thumb.",
+   "caps": "*THEN | FROM THE *BREATH | OF *BRAHMA | THE *CREATOR | A *TINY BOAR | *APPEARED | NO *BIGGER | THAN A *THUMB",
+   "say": "Then, from the breath of Bruhma the creator, a tiny boar appeared, no bigger than a thumb."
+  },
+  {
+   "text": "In moments it grew as large as a mountain, and its roar shook the heavens.",
+   "caps": "IN *MOMENTS | IT *GREW | AS LARGE AS A *MOUNTAIN | AND ITS *ROAR | SHOOK THE *HEAVENS"
+  },
+  {
+   "text": "This was Varaha, Vishnu in the form of a mighty boar.",
+   "caps": "THIS WAS *VARAHA | *VISHNU | IN THE FORM OF | A MIGHTY *BOAR",
+   "say": "This was Vuh-rah-ha, Vishnu in the form of a mighty boar."
+  },
+  {
+   "text": "He plunged into the dark waters, searching the deep for the lost Earth,",
+   "caps": "HE *PLUNGED | INTO THE *DARK WATERS | *SEARCHING | THE *DEEP | FOR THE LOST *EARTH"
+  },
+  {
+   "text": "and found her resting on the ocean floor, cold and silent.",
+   "caps": "AND *FOUND HER | *RESTING | ON THE OCEAN *FLOOR | *COLD | AND *SILENT"
+  },
+  {
+   "text": "Gently, he lifted her onto his shining tusks.",
+   "caps": "*GENTLY | HE *LIFTED HER | ONTO HIS | SHINING *TUSKS"
+  },
+  {
+   "text": "But Hiranyaksha blocked his path, swinging his mace.",
+   "caps": "BUT *HIRANYAKSHA | *BLOCKED | HIS *PATH | SWINGING HIS *MACE",
+   "say": "But Hirun-yahk-sha blocked his path, swinging his mace."
+  },
+  {
+   "text": "They fought a thunderous battle that shook all three worlds,",
+   "caps": "THEY *FOUGHT | A *THUNDEROUS BATTLE | THAT *SHOOK | ALL *THREE WORLDS"
+  },
+  {
+   "text": "until, with one final blow, Varaha struck the demon down.",
+   "caps": "UNTIL | WITH ONE *FINAL BLOW | *VARAHA | *STRUCK | THE DEMON *DOWN",
+   "say": "until, with one final blow, Vuh-rah-ha struck the demon down."
+  },
+  {
+   "text": "Then he rose from the sea, the Earth balanced on his tusks,",
+   "caps": "THEN HE *ROSE | FROM THE *SEA | THE *EARTH | *BALANCED | ON HIS *TUSKS"
+  },
+  {
+   "text": "and set her softly back in her place among the stars.",
+   "caps": "AND SET HER *SOFTLY | BACK IN HER *PLACE | AMONG THE *STARS"
+  },
+  {
+   "text": "The Earth goddess, Bhudevi, bowed in thanks.",
+   "caps": "THE EARTH *GODDESS | *BHUDEVI | BOWED IN *THANKS",
+   "say": "The Earth goddess, Bhoo-dayvee, bowed in thanks."
+  },
+  {
+   "text": "Forests grew, rivers ran, and life returned.",
+   "caps": "*FORESTS GREW | *RIVERS RAN | AND *LIFE | *RETURNED"
+  },
+  {
+   "text": "This is Varaha, the third avatar of Vishnu,",
+   "caps": "THIS IS *VARAHA | THE *THIRD | *AVATAR | OF *VISHNU",
+   "say": "This is Vuh-rah-ha, the third avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that no matter how deep the world sinks, it can always be lifted again.",
+   "caps": "A *REMINDER | NO MATTER | HOW *DEEP | THE WORLD *SINKS | IT CAN *ALWAYS | BE *LIFTED | *AGAIN"
+  }
+ ]
+}
