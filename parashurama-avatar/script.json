@@ -1,0 +1,127 @@
+{
+ "title": "Parashurama Avatar: The Sage Who Carried an Axe",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 1.6,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    4,
+    5
+   ],
+   [
+    7,
+    8
+   ],
+   [
+    10,
+    12
+   ]
+  ],
+  "storm": [
+   [
+    8,
+    10
+   ],
+   [
+    12,
+    14
+   ]
+  ],
+  "dawn": 14
+ },
+ "sources": [
+  "Bhagavata Purana, Canto 9, chapters 15-16 (Jamadagni, Kartavirya Arjuna and the theft of Kamadhenu, the king's defeat, the revenge of his sons, the twenty-one campaigns, the gift of the earth, Mount Mahendra)",
+  "Mahabharata, Vana Parva and Shanti Parva (Parashurama and the Kshatriyas); later tradition for Shiva's gift of the axe and the land reclaimed from the sea on the western coast"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, a boy was born to the sage Jamadagni,",
+   "caps": "LONG *AGO | A *BOY | WAS *BORN | TO THE SAGE | *JAMADAGNI",
+   "say": "Long ago, a boy was born to the sage Jumma-dugnee,"
+  },
+  {
+   "text": "with the calm of a priest, and the fire of a warrior.",
+   "caps": "THE *CALM | OF A *PRIEST | AND THE *FIRE | OF A *WARRIOR"
+  },
+  {
+   "text": "He prayed to Shiva for years, and Shiva gave him a blazing axe.",
+   "caps": "HE *PRAYED | TO *SHIVA | FOR *YEARS | AND SHIVA | *GAVE HIM | A *BLAZING AXE"
+  },
+  {
+   "text": "From that day, he was called Parashurama, Rama with the axe.",
+   "caps": "FROM THAT *DAY | HE WAS *CALLED | *PARASHURAMA | *RAMA | WITH THE *AXE",
+   "say": "From that day, he was called Puh-rushoo-rahma, Rahma with the axe."
+  },
+  {
+   "text": "In those days, a king with a thousand arms ruled without mercy.",
+   "caps": "IN THOSE *DAYS | A *KING | WITH A *THOUSAND ARMS | RULED | WITHOUT *MERCY"
+  },
+  {
+   "text": "One day he visited the sage's quiet home, and saw their wish granting cow.",
+   "caps": "ONE *DAY | HE *VISITED | THE SAGE'S | *QUIET HOME | AND *SAW | THEIR *WISH GRANTING | *COW"
+  },
+  {
+   "text": "She could conjure a feast for a whole army, out of thin air.",
+   "caps": "SHE COULD *CONJURE | A *FEAST | FOR A WHOLE *ARMY | OUT OF *THIN AIR"
+  },
+  {
+   "text": "He wanted her, so he simply took her by force.",
+   "caps": "HE *WANTED HER | SO HE *SIMPLY | *TOOK HER | BY *FORCE"
+  },
+  {
+   "text": "When Parashurama returned, he stormed the palace alone,",
+   "caps": "WHEN *PARASHURAMA | *RETURNED | HE *STORMED | THE *PALACE | *ALONE",
+   "say": "When Puh-rushoo-rahma returned, he stormed the palace alone,"
+  },
+  {
+   "text": "defeated the thousand armed king, and brought the cow home.",
+   "caps": "*DEFEATED | THE THOUSAND ARMED *KING | AND *BROUGHT | THE COW *HOME"
+  },
+  {
+   "text": "But the king's sons took a cruel revenge, and his father was lost.",
+   "caps": "BUT THE KING'S *SONS | TOOK A *CRUEL | *REVENGE | AND HIS *FATHER | WAS *LOST"
+  },
+  {
+   "text": "Heartbroken, Parashurama made a vow, to free the earth from every tyrant.",
+   "caps": "*HEARTBROKEN | PARASHURAMA | MADE A *VOW | TO *FREE | THE *EARTH | FROM EVERY *TYRANT",
+   "say": "Heartbroken, Puh-rushoo-rahma made a vow, to free the earth from every tyrant."
+  },
+  {
+   "text": "Twenty one times he crossed the land, and no cruel king could stand before his axe.",
+   "caps": "*TWENTY ONE TIMES | HE *CROSSED | THE *LAND | AND NO *CRUEL KING | COULD *STAND | BEFORE HIS *AXE"
+  },
+  {
+   "text": "His anger burned like a forest fire.",
+   "caps": "HIS *ANGER | *BURNED | LIKE A *FOREST FIRE"
+  },
+  {
+   "text": "But when it was over, he laid his anger down, and gave away everything he had won,",
+   "caps": "BUT WHEN IT WAS *OVER | HE *LAID | HIS *ANGER DOWN | AND *GAVE AWAY | *EVERYTHING | HE HAD *WON"
+  },
+  {
+   "text": "and cast his axe into the sea, where the waters drew back, and new land rose.",
+   "caps": "AND *CAST | HIS *AXE | INTO THE *SEA | WHERE THE *WATERS | DREW *BACK | AND NEW *LAND | *ROSE"
+  },
+  {
+   "text": "Then he climbed a mountain to meditate, where it is said he lives to this day,",
+   "caps": "THEN HE *CLIMBED | A *MOUNTAIN | TO *MEDITATE | WHERE IT IS *SAID | HE *LIVES | TO THIS *DAY"
+  },
+  {
+   "text": "waiting to teach the heroes yet to come.",
+   "caps": "*WAITING | TO *TEACH | THE *HEROES | YET TO *COME"
+  },
+  {
+   "text": "This is Parashurama, the sixth avatar of Vishnu,",
+   "caps": "THIS IS *PARASHURAMA | THE *SIXTH | *AVATAR | OF *VISHNU",
+   "say": "This is Puh-rushoo-rahma, the sixth avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that true strength protects the weak, and knows when to lay its weapon down.",
+   "caps": "A *REMINDER | TRUE *STRENGTH | *PROTECTS | THE *WEAK | AND *KNOWS | WHEN TO *LAY | ITS *WEAPON | *DOWN"
+  }
+ ]
+}
