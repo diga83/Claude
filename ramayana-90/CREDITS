@@ -1,0 +1,20 @@
+THE RAMAYANA IN 90 SECONDS (Rama, 90 s): third-party assets in this film
+
+Voice
+  Kokoro-82M TTS (kokoro-onnx), voice "af_bella": Apache-2.0 (model by hexgrad; github.com/thewh1teagle/kokoro-onnx)
+  Speech check: Whisper base.en via sherpa-onnx (MIT / Apache-2.0); not in the film
+
+Music samples (CC0 1.0)
+  VS Chamber Orchestra: Community Edition, Versilian Studios / Sam Gossner (github.com/sgossner/VSCO-2-CE): cellos, flute, gong, bass drum
+  Versilian Community Sample Library, Versilian Studios (github.com/sgossner/VCSL): harp, glockenspiel, bowed vibraphone, frame drum, Nepalese bells, tubular bells
+
+Fonts (SIL Open Font License 1.1, via Google Fonts)
+  Cormorant Garamond (Christian Thalmann), Caveat (Impallari Type), IBM Plex Mono (IBM)
+
+Content follows the common telling of the Ramayana (Valmiki and popular tradition), much condensed: Dasharatha's four sons;
+Shiva's bow at Janaka's court in Mithila; Kaikeyi's two boons; the 14-year exile; Bharata's rule with Rama's sandals on the
+throne; Maricha as the golden deer; Ravana's abduction of Sita and Jatayu's fight; Sugriva and Hanuman; the ring, the burning
+of Lanka; the Rama Setu (the stones marked with Rama's name are a popular tradition); Ravana's fall; the homecoming and
+coronation. The link between the homecoming and Diwali is a popular tradition in many regions.
+Everything else (score, foley, paper, all painting) is original and generated in code for this film.
+Rendering and tools: the Lemo-Opuscar style library (Watercolor Brush style) and its core/ tools.
