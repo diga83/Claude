@@ -1,0 +1,133 @@
+{
+ "title": "Narasimha Avatar: The Lion Who Stepped Out of a Pillar",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 1.5,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    1,
+    5
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    8,
+    9
+   ]
+  ],
+  "storm": [
+   [
+    10,
+    12
+   ],
+   [
+    15,
+    16
+   ]
+  ],
+  "dawn": 17
+ },
+ "sources": [
+  "Bhagavata Purana, Canto 7, chapters 2-10 (Hiranyakashipu's penance and Brahma's boon, Prahlada's devotion, the attempts on his life, the pillar, Narasimha at twilight on the threshold, Prahlada's prayers)",
+  "Vishnu Purana, Book 1, chapters 17-20 (Prahlada and Hiranyakashipu)"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, a demon king named Hiranyakashipu prayed for years, until Brahma offered him a wish.",
+   "caps": "LONG *AGO | A *DEMON KING | NAMED *HIRANYAKASHIPU | PRAYED | FOR *YEARS | UNTIL *BRAHMA | OFFERED HIM | A *WISH",
+   "say": "Long ago, a demon king named Hirun-yuh-kushipoo prayed for years, until Bruhma offered him a wish."
+  },
+  {
+   "text": "He asked that no man or beast could harm him,",
+   "caps": "HE *ASKED | THAT NO *MAN | OR *BEAST | COULD *HARM HIM"
+  },
+  {
+   "text": "by day or by night, indoors or outdoors,",
+   "caps": "BY *DAY | OR BY *NIGHT | *INDOORS | OR *OUTDOORS"
+  },
+  {
+   "text": "on the earth or in the sky, by any weapon.",
+   "caps": "ON THE *EARTH | OR IN THE *SKY | BY ANY *WEAPON"
+  },
+  {
+   "text": "Feeling invincible, he ordered the whole world to worship him alone.",
+   "caps": "FEELING *INVINCIBLE | HE *ORDERED | THE WHOLE *WORLD | TO *WORSHIP | HIM *ALONE"
+  },
+  {
+   "text": "But his own little son, Prahlada, loved Vishnu with all his heart.",
+   "caps": "BUT HIS OWN | LITTLE *SON | *PRAHLADA | LOVED *VISHNU | WITH ALL HIS *HEART",
+   "say": "But his own little son, Pruh-lahda, loved Vishnu with all his heart."
+  },
+  {
+   "text": "The furious king tried everything to break him, wild elephants, serpents, even fire.",
+   "caps": "THE *FURIOUS KING | TRIED *EVERYTHING | TO *BREAK HIM | WILD *ELEPHANTS | *SERPENTS | EVEN *FIRE"
+  },
+  {
+   "text": "Each time, the boy simply prayed, and walked away unharmed.",
+   "caps": "EACH *TIME | THE BOY | SIMPLY *PRAYED | AND WALKED AWAY | *UNHARMED"
+  },
+  {
+   "text": "At last the king roared, where is your Vishnu? Is he in this pillar?",
+   "caps": "AT *LAST | THE KING *ROARED | *WHERE | IS YOUR *VISHNU? | IS HE | IN THIS *PILLAR?"
+  },
+  {
+   "text": "He is everywhere, said Prahlada.",
+   "caps": "HE IS *EVERYWHERE | SAID *PRAHLADA",
+   "say": "He is everywhere, said Pruh-lahda."
+  },
+  {
+   "text": "The king struck the pillar, and it cracked with a sound like thunder.",
+   "caps": "THE KING *STRUCK | THE *PILLAR | AND IT *CRACKED | WITH A SOUND | LIKE *THUNDER"
+  },
+  {
+   "text": "Out stepped Narasimha, half man, half lion, neither man nor beast.",
+   "caps": "OUT *STEPPED | *NARASIMHA | HALF *MAN | HALF *LION | NEITHER MAN | NOR *BEAST",
+   "say": "Out stepped Nara-sim-ha, half man, half lion, neither man nor beast."
+  },
+  {
+   "text": "It was twilight, neither day nor night.",
+   "caps": "IT WAS *TWILIGHT | NEITHER *DAY | NOR *NIGHT"
+  },
+  {
+   "text": "He stood on the doorstep, neither indoors nor outdoors,",
+   "caps": "HE STOOD | ON THE *DOORSTEP | NEITHER *INDOORS | NOR *OUTDOORS"
+  },
+  {
+   "text": "lifted the king onto his lap, neither earth nor sky,",
+   "caps": "*LIFTED | THE KING | ONTO HIS *LAP | NEITHER *EARTH | NOR *SKY"
+  },
+  {
+   "text": "and with his claws alone, he ended the tyrant's reign.",
+   "caps": "AND WITH HIS *CLAWS | *ALONE | HE *ENDED | THE TYRANT'S *REIGN"
+  },
+  {
+   "text": "Every word of the wish was kept, and still it could not save him.",
+   "caps": "EVERY *WORD | OF THE *WISH | WAS *KEPT | AND *STILL | IT COULD NOT | *SAVE HIM"
+  },
+  {
+   "text": "Only little Prahlada was unafraid. He walked up, and the lion's fury melted into a smile.",
+   "caps": "ONLY LITTLE | *PRAHLADA | WAS *UNAFRAID | HE *WALKED UP | AND THE LION'S *FURY | *MELTED | INTO A *SMILE",
+   "say": "Only little Pruh-lahda was unafraid. He walked up, and the lion's fury melted into a smile."
+  },
+  {
+   "text": "Narasimha blessed the boy, and made him king.",
+   "caps": "NARASIMHA | *BLESSED | THE *BOY | AND MADE HIM *KING",
+   "say": "Nara-sim-ha blessed the boy, and made him king."
+  },
+  {
+   "text": "This is Narasimha, the fourth avatar of Vishnu,",
+   "caps": "THIS IS *NARASIMHA | THE *FOURTH | *AVATAR | OF *VISHNU",
+   "say": "This is Nara-sim-ha, the fourth avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that no power can shield cruelty, and that faith fears nothing.",
+   "caps": "A *REMINDER | NO *POWER | CAN *SHIELD | *CRUELTY | AND THAT *FAITH | FEARS *NOTHING"
+  }
+ ]
+}
