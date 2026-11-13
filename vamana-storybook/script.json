@@ -1,0 +1,162 @@
+{
+ "title": "Vamana Avatar (Storybook): Three Steps That Measured the Universe",
+ "label": "VAMANA  ·  THE FIFTH AVATAR",
+ "keywords": [
+  "bali",
+  "prahlada",
+  "generous",
+  "hands",
+  "heavens",
+  "home",
+  "aditi",
+  "vishnu",
+  "vamana",
+  "river",
+  "gift",
+  "umbrella",
+  "pot",
+  "child",
+  "anything",
+  "gold",
+  "elephants",
+  "kingdom",
+  "smiled",
+  "steps",
+  "feet",
+  "laughed",
+  "careful",
+  "himself",
+  "word",
+  "promise",
+  "grow",
+  "trees",
+  "clouds",
+  "stars",
+  "earth",
+  "third",
+  "head",
+  "blessing",
+  "below",
+  "forever",
+  "onam",
+  "fifth",
+  "humility",
+  "year",
+  "love",
+  "creation",
+  "nowhere",
+  "pride"
+ ],
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.7,
+ "outro": 1.3,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    2,
+    3
+   ],
+   [
+    9,
+    10
+   ]
+  ],
+  "storm": [
+   [
+    11,
+    15
+   ]
+  ],
+  "dawn": 16
+ },
+ "sources": [
+  "Bhagavata Purana, Canto 8, chapters 15-23 (Bali, grandson of Prahlada, conquers the three worlds; Aditi's prayer; Vamana's birth; the sacrifice on the Narmada; three paces; Shukracharya's warning; Trivikrama; Bali offers his head; Sutala; Vishnu as doorkeeper)",
+  "Kerala tradition: Mahabali's yearly return, celebrated as Onam"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, there lived a demon king named Bali, the grandson of gentle Prahlada.",
+   "say": "Long ago, there lived a demon king named Bullee, the grandson of gentle Pruh-lahda."
+  },
+  {
+   "text": "He was brave, and fair, and so generous that no one who asked ever left his door with empty hands."
+  },
+  {
+   "text": "But his armies conquered the earth, and then the heavens, and the gods were driven from their home."
+  },
+  {
+   "text": "Their mother, Aditi, could not bear it. She prayed to Vishnu, day after day.",
+   "say": "Their mother, Uh-dee-tee, could not bear it. She prayed to Vishnu, day after day."
+  },
+  {
+   "text": "And Vishnu answered. He was born as her own son, a small, bright eyed boy named Vamana.",
+   "say": "And Vishnu answered. He was born as her own son, a small, bright eyed boy named Vah-muna."
+  },
+  {
+   "text": "One morning, King Bali held a great ceremony by the river, promising a gift to anyone who asked.",
+   "say": "One morning, King Bullee held a great ceremony by the river, promising a gift to anyone who asked."
+  },
+  {
+   "text": "Through the crowd came Vamana, carrying only a little umbrella and a water pot.",
+   "say": "Through the crowd came Vah-muna, carrying only a little umbrella and a water pot."
+  },
+  {
+   "text": "Bali bowed to the child. Ask for anything, he said. Gold, elephants, a whole kingdom.",
+   "say": "Bullee bowed to the child. Ask for anything, he said. Gold, elephants, a whole kingdom."
+  },
+  {
+   "text": "Vamana smiled. I need only three steps of land, measured by my own feet.",
+   "say": "Vah-muna smiled. I need only three steps of land, measured by my own feet."
+  },
+  {
+   "text": "The court laughed. But Bali's teacher whispered, be careful, this is Vishnu himself.",
+   "say": "The court laughed. But Bullee's teacher whispered, be careful, this is Vishnu himself."
+  },
+  {
+   "text": "Bali answered, I have given my word. And he poured the water to seal his promise.",
+   "say": "Bullee answered, I have given my word. And he poured the water to seal his promise."
+  },
+  {
+   "text": "The moment it touched his hands, Vamana began to grow, past the trees, past the clouds, past the stars.",
+   "say": "The moment it touched his hands, Vah-muna began to grow, past the trees, past the clouds, past the stars."
+  },
+  {
+   "text": "With his first step, he covered the whole earth."
+  },
+  {
+   "text": "With his second, he covered the heavens."
+  },
+  {
+   "text": "In all creation, there was nowhere left to stand."
+  },
+  {
+   "text": "Then he looked down, and asked, where shall I place my third?"
+  },
+  {
+   "text": "Bali had nothing left, except himself. He knelt, and offered his own head.",
+   "say": "Bullee had nothing left, except himself. He knelt, and offered his own head."
+  },
+  {
+   "text": "Vishnu's foot came down as gently as a blessing, and the last of Bali's pride melted away.",
+   "say": "Vishnu's foot came down as gently as a blessing, and the last of Bullee's pride melted away."
+  },
+  {
+   "text": "He made Bali king of the world below, and promised to guard his door forever.",
+   "say": "He made Bullee king of the world below, and promised to guard his door forever."
+  },
+  {
+   "text": "And once every year, they say, Bali returns to visit the people who love him. That day is Onam.",
+   "say": "And once every year, they say, Bullee returns to visit the people who love him. That day is Oh-num."
+  },
+  {
+   "text": "This is Vamana, the fifth avatar of Vishnu,",
+   "say": "This is Vah-muna, the fifth avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that true greatness lies in humility, and in keeping your word."
+  }
+ ]
+}
