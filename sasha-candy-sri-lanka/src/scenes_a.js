@@ -26,7 +26,7 @@ function titleLogo(x, y, k, t, sub = 'Learn About Sri Lanka') {
 }
 function plane(x, y, s, rot, t) {
   at(x, y, s, rot, () => {
-    spr('c_playful', -62, -34, 128); spr('s_happy', 44, -30, 178);
+    at(-78, -84, .4, 0, () => { g.scale(-1, 1); candyHead(t, { expr: 'playful', look: [-.4, 0] }); }); sashaBust(52, -62, .36, t, { talk: true, expr: 'laughing', look: [.5, 0] });
     poly([[-250, -40], [-330, -150], [-262, -150], [-170, -52]], '#ffb627');                                   // tail fin
     g.beginPath(); g.moveTo(-270, -50); g.bezierCurveTo(-200, -78, 120, -80, 210, -52); g.bezierCurveTo(262, -30, 262, 44, 205, 62); g.bezierCurveTo(60, 100, -180, 60, -280, -8); g.closePath(); g.fillStyle = '#ff5a4f'; g.fill();
     g.beginPath(); g.moveTo(205, 62); g.bezierCurveTo(60, 100, -180, 60, -280, -8); g.bezierCurveTo(-150, 28, 60, 50, 232, 30); g.closePath(); g.fillStyle = '#d93d3d'; g.fill();
@@ -61,12 +61,16 @@ SCENES.intro = (t, sc, s) => {
   g.save(); g.translate(0, down);
   band(x => 905 + Math.sin(x * .004 + 1) * 22, '#58c46b'); band(x => 950 + Math.sin(x * .006) * 14, '#3fae62');
   for (let i = 0; i < 22; i++) { const x = 40 + i * 88 + rnd(i) * 40, y = 930 + rnd(i + 5) * 60; circ(x, y, 9, ['#ff8fb8', '#ffd23f', '#fff', '#ff6b5a'][i % 4]); circ(x, y, 4, '#ffb627'); }
-  const sk = E.back(seg(s, .7, 1.4)), ck = E.back(seg(t, Wd(0, 'this') - .1, Wd(0, 'this') + .5));
-  const hop = Math.abs(Math.sin(seg(t, L1.a - .1, L1.a + .5) * Math.PI)) * 70;
-  shadow(560, 962, 150 * sk); talker('s_wave', 560, 965 + (1 - sk) * 700 - hop, 530, t, { rot: Math.sin(t * 5) * .025 * seg(s, 1.2, 1.6) });
-  if (ck > 0) { shadow(1360, 962, 190 * ck); at(1360, 965, ck, 0, () => spr('c_front', 0, -Math.abs(Math.sin(seg(t, Wd(0, 'this'), Wd(0, 'this') + 1.2) * Math.PI * 3)) * 26 - hop, 380)); }
-  pill('Sasha', 800, 600, pop(t, Wd(0, 'Sasha')), { size: 46 }); sparks(880, 560, pop(t, Wd(0, 'Sasha') + .1));
-  pill('Candy', 1360, 520, pop(t, Wd(0, 'Candy') - .15), { size: 46 }); sparks(1445, 480, pop(t, Wd(0, 'Candy')));
+  const hop = Math.abs(Math.sin(seg(t, L1.a - .1, L1.a + .5) * Math.PI)) * 90;
+  // Sasha walks in and waves; Candy trots in from the right
+  const SH = 560, wu = seg(s, .25, 1.55), sx = lerp(-160, 560, wu), walking = wu < 1, wv = E.io(seg(s, 1.5, 1.9)) * (1 - E.io(seg(t, Wd(0, 'this') - .45, Wd(0, 'this') - .1))), pt = E.io(seg(t, Wd(0, 'this') - .3, Wd(0, 'this') + .1)) * (1 - E.io(seg(t, L0.b + .1, L0.b + .5)));
+  let armR = mixPose(mixPose(POSE.rest, [2.3, 2.95 + Math.sin(t * 10) * .35, 1], wv), POSE.show, pt); if (wv > 0.05) armR[2] = 1;
+  shadow(sx, 962, 150);
+  sasha(sx, 965 - hop, SH, t, walking ? { walk: sx / (251 * SH / 1410) * Math.PI, dir: 1, look: [.5, 0] } : { talk: true, expr: t > L0.b ? 'laughing' : 'happy', armR, armL: mixPose(POSE.rest, POSE.hip, wv), look: [pt * .7, 0], crouch: 0 });
+  const CH = 420, cu = seg(t, Wd(0, 'this') - .9, Wd(0, 'this') + .25), cx = lerp(2200, 1400, cu), cwalk = cu > 0 && cu < 1;
+  if (cu > 0) { shadow(cx, 962, 190); candy(cx, 965 - hop - (cwalk ? 0 : Math.abs(Math.sin(seg(t, Wd(0, 'Candy') - .2, Wd(0, 'Candy') + .8) * Math.PI * 2)) * 30), CH, t, cwalk ? { walk: -cx / (234 * CH / 880) * Math.PI, look: [-.5, 0] } : { expr: t > Wd(0, 'Candy') - .2 && t < L0.b + .4 ? 'playful' : 'calm', tailAmp: 70, tailSpeed: 5, look: [-.4, -.2] }); }
+  pill('Sasha', 330, 420, pop(t, Wd(0, 'Sasha')), { size: 46 }); sparks(410, 380, pop(t, Wd(0, 'Sasha') + .1));
+  pill('Candy', 1560, 470, pop(t, Wd(0, 'Candy') - .15), { size: 46 }); sparks(1650, 430, pop(t, Wd(0, 'Candy')));
   g.restore();
   const tk = seg(s, .15, 1.6) * (1 - seg(t, L1.a + .2, L1.a + .7));
   if (tk > 0) at(960, 190 - E.i2(seg(t, L1.a + .2, L1.a + .7)) * 500, 1, 0, () => titleLogo(0, 0, seg(s, .15, 1.6), t));
@@ -206,8 +210,8 @@ function train(x, y, t) {
         else rr(-310, -130, 316, 130, 22, '#2a6fe0');
         rect(-310 + (c === 0 ? 10 : 0), -52, 310, 16, '#ffc93c'); rect(-310 + (c === 0 ? 10 : 0), -30, 310, 6, '#fff');
         const n = c === 0 ? 2 : 3; for (let i = 0; i < n; i++) { const wx = -280 + i * 96 + (c === 0 ? 20 : 0); rr(wx, -112, 76, 54, 12, '#d9f3ff');
-          if (c === 1 && i === 2) { g.save(); g.beginPath(); g.roundRect(wx, -112, 76, 54, 12); g.clip(); spr('s_happy', wx + 38, -44 + Math.sin(t * 3) * 2, 84); g.restore(); }
-          if (c === 1 && i === 1) { g.save(); g.beginPath(); g.roundRect(wx, -112, 76, 54, 12); g.clip(); spr('c_curious', wx + 38, -52, 62); g.restore(); }
+          if (c === 1 && i === 2) { g.save(); g.beginPath(); g.roundRect(wx, -112, 76, 54, 12); g.clip(); sashaBust(wx + 38, -62, .145, t, { talk: true, expr: 'happy', look: [.5, 0] }); g.restore(); }
+          if (c === 1 && i === 1) { g.save(); g.beginPath(); g.roundRect(wx, -112, 76, 54, 12); g.clip(); at(wx + 38, -80, .2, 0, () => { g.scale(-1, 1); candyHead(t, { look: [-.5, 0] }); }); g.restore(); }
           rr(wx, -112, 76, 54, 12, null, '#17489e', 5); }
         for (let i = 0; i < 2; i++) { circ(-240 + i * 170, 0, 20, '#2a2140'); circ(-240 + i * 170, 0, 8, '#cfc4dd'); }
         rect(-322, -40, 14, 12, '#2a2140');

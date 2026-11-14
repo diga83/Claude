@@ -2,7 +2,8 @@
 
 **Length:** 2:00 · **Format:** 16:9, 1920×1080, 30 fps · **Audience:** ages 4–8
 **Voice:** Sasha, soft warm female narrator (local Kokoro TTS, 60% `af_heart` + 40% `af_nicole`, raised one semitone)
-**Look:** bright storybook cut-out animation. Sasha and Candy are taken directly from the two model sheets; lavender label pills, purple lettering and yellow spark lines echo the sheets. Every scene has its own bold palette.
+**Look:** bright flat-colour storybook cartoon with brown ink outlines, matching the Sasha and Candy character designs. Every scene has its own bold palette.
+**Character animation:** Sasha and Candy are jointed puppets drawn in code. Sasha walks (leg and arm cycle), waves, points, cheers and bounces; her mouth moves with the voice, she blinks, her eyes follow what she talks about and her hair sways. Candy trots, wags her fluffy tail, blinks, twitches an ear, startles, and meows.
 **Music:** original, synthesized: kalimba, bells, soft bass and shaker at 104 BPM; minor key with festival drums for the Perahera; muffled under water.
 **Transitions:** yellow / coral / purple diagonal swipe between scenes. Captions appear in a cream pill at the bottom throughout.
 
@@ -12,7 +13,7 @@
 
 > **SASHA:** Hi friends! I'm Sasha, and this is my fluffy cat, Candy.
 
-- **Sasha:** Full body, waving, happy
+- **Sasha:** Walks in from the left, stops, waves with an open hand (other hand on hip), then gestures toward Candy, who trots in from the right wagging her tail
 - **Picture:** Sunrise over a turquoise sea with slowly turning sun rays and drifting clouds. The title bounces in letter by letter. Sasha springs up onto a flowery green ledge and waves; Candy pops in beside her with three little bounces.
 - **On-screen text:** Title: SASHA & CANDY · ribbon: Learn About Sri Lanka · name tags: Sasha, Candy
 - **Sound:** Sparkle chime on the title, soft sea wash, two pops for the name tags
@@ -32,7 +33,7 @@
 
 > **SASHA:** Sri Lanka sits in the warm Indian Ocean, just below India.
 
-- **Sasha:** Presenter (bust), happy
+- **Sasha:** Presenter, lower left with Candy beside her: talks, gestures toward the map with her right arm
 - **Picture:** Top-down map: India in peach at the top, the island springs up with a glow. A dotted flight path lands on Colombo; pins drop on Colombo, Kandy, Sigiriya and Yala. Compass sways.
 - **On-screen text:** SRI LANKA · INDIA · INDIAN OCEAN · pin labels
 - **Sound:** Pop for each pin
@@ -81,7 +82,7 @@
 
 > **SASHA:** Next, a little blue train carries us into the misty green hills.
 
-- **Sasha:** In the train window with Candy
+- **Sasha:** In the train window, talking; Candy in the next window
 - **Picture:** Misty blue-green mountains. A bright blue train with a yellow stripe puffs across the stone Nine Arch Bridge; Sasha and Candy look out of the windows. Tea pickers in pink, orange, purple and coral work the striped terraces.
 - **On-screen text:** —
 - **Sound:** Train chug + toot, bouncy music
@@ -130,7 +131,7 @@
 
 > **SASHA:** On the golden beaches, fishermen balance on tall wooden stilts, and baby sea turtles scurry to the waves.
 
-- **Sasha:** Full body, walking then standing
+- **Sasha:** Walks in with Candy trotting behind; stops, points at the fishermen, then down at the turtles (Candy stares at them, startled)
 - **Picture:** Sunset beach in pink, purple and gold. Sasha strolls in with Candy trotting behind. Three stilt fishermen sit on their poles in the shallows; six baby turtles wiggle up the sand to the foam.
 - **On-screen text:** Golden Beaches · Stilt fishermen · Baby sea turtles
 - **Sound:** Slow waves, laid-back music
@@ -141,7 +142,7 @@
 
 > **SASHA:** When night falls in the city of Kandy, the Perahera festival begins.
 
-- **Sasha:** Back view, watching (dusk tint)
+- **Sasha:** Back view; raises both arms and bounces to the drums in dusk light, Candy sitting beside her with tail swishing
 - **Picture:** Night in Kandy: stars, a crescent moon, strings of twinkling coloured bulbs and the glowing white Temple of the Tooth. Sasha and Candy watch from the front of the crowd as fire dancers twirl flaming rings.
 - **On-screen text:** Esala Perahera · Kandy · Festival of lights
 - **Sound:** Music switches to minor key with festival drums; chime
@@ -181,7 +182,7 @@
 
 > **SASHA:** Sri Lanka is a small island with a very big heart.
 
-- **Sasha:** Full body, waving
+- **Sasha:** Full body: waves, then opens her arms
 - **Picture:** Pink-and-gold sunburst with confetti. The island pops into the middle and a big pink heart beats behind it; eight round "memory" badges (rock, teacup, elephant, whale, turtle, hopper, peacock, coconut) orbit around.
 - **On-screen text:** —
 - **Sound:** Chime on "heart"
@@ -199,7 +200,7 @@
 
 > **SASHA:** See you on our next adventure. Bye bye!
 
-- **Sasha:** Waving, three bounces
+- **Sasha:** Waves with both hands and jumps three times; Candy hops and meows
 - **Picture:** Badges fly away; the logo returns. Candy jumps and gets the last word. Fade to cream.
 - **On-screen text:** SASHA & CANDY · See you next time! · Sri Lanka ♥ · Meow!
 - **Sound:** Final chord and bells, Candy's meow

@@ -157,10 +157,11 @@ SCENES.beach = (t, sc, s) => {
   const tk = Wd(12, 'baby') - .8;
   for (let i = 0; i < 6; i++) { const u = seg(t, tk + i * .25, tk + i * .25 + 5.2), x = 1010 + i * 92 + Math.sin(u * 9 + i) * 14, y = lerp(945, 812, u); if (u <= 0) continue; for (let j = 0; j < 8; j++) { const yy = y + 30 + j * 22; if (yy < 960) { circ(x - 12, yy, 4, 'rgba(180,130,80,.45)'); circ(x + 12, yy + 10, 4, 'rgba(180,130,80,.45)'); } } g.save(); g.globalAlpha = 1 - seg(u, .9, 1); turtle(x, y, 1.15, Math.sin(u * 9 + i) * .2, t, i); g.restore(); }
   // Sasha and Candy stroll in
-  const wu = E.o2(seg(s, .3, 4.8)), sx = lerp(-180, 500, wu), walking = wu < 1;
-  shadow(sx - 250, 938, 120); spr('c_follow', sx - 250, 942 - (walking ? Math.abs(Math.sin(t * 9)) * 9 : Math.abs(Math.sin(t * 3)) * 3), 215, { rot: walking ? Math.sin(t * 9) * .03 : 0 });
-  shadow(sx, 938, 110);
-  if (walking) spr('s_walk', sx, 942 - Math.abs(Math.sin(t * 8)) * 14, 440, { rot: Math.sin(t * 8) * .035 }); else talker('s_34', sx, 942, 440, t);
+  const SH = 470, CH = 250, wu = seg(s, .3, 4.6), sx = lerp(-180, 520, wu), walking = wu < 1, pk = E.io(seg(t, Wd(12, 'fishermen') - .4, Wd(12, 'fishermen'))) * (1 - E.io(seg(t, Wd(12, 'baby') - .5, Wd(12, 'baby') - .1))), tk2 = E.io(seg(t, Wd(12, 'baby') - .3, Wd(12, 'baby') + .1));
+  const cx = sx - 300 + tk2 * 0;
+  shadow(cx, 938, 130); candy(cx, 942, CH, t, walking ? { flip: true, walk: cx / (234 * CH / 880) * Math.PI, look: [-.4, -.2] } : { flip: true, expr: tk2 > .5 ? 'surprised' : 'calm', look: [-.6, .3 * tk2], tilt: -.12 * tk2, tailAmp: 60, tailSpeed: 4 });
+  shadow(sx, 938, 120);
+  sasha(sx, 942, SH, t, walking ? { walk: sx / (251 * SH / 1410) * Math.PI, dir: 1, talk: true, look: [.6, 0], armR: null } : { talk: true, expr: 'happy', look: [.6, .2 * tk2], armR: mixPose(mixPose(POSE.rest, POSE.point, pk), POSE.low, tk2), tilt: .03 });
   pill('Stilt fishermen', 1120, 330, pop(t, Wd(12, 'fishermen') - .1), { size: 46, bg: '#fff' });
   pill('Baby sea turtles', 1280, 760, pop(t, Wd(12, 'baby') + .2), { size: 42, bg: '#fff' });
   pill('Golden Beaches', 470, 150, pop(s, .7), { size: 58, bg: C.yellow, fg: C.plum, rot: -.03 });
@@ -223,7 +224,7 @@ SCENES.perahera = (t, sc, s) => {
   // crowd + Sasha and Candy watching from the front
   g.fillStyle = '#12082b'; g.beginPath(); g.moveTo(0, H); for (let i = 0; i < 30; i++) { const x = 640 + i * 46, r = 34 + rnd(i) * 16; g.lineTo(x - r, 1080); g.arc(x, 1060 + rnd(i + 4) * 24 - Math.abs(Math.sin(t * 3 + i)) * 6, r, Math.PI, 0); } g.lineTo(W, H); g.fill();
   glow(330, 900, 420, 'rgba(255,170,90,.8)', .35);
-  spr('c_back_n', 590, 1125 - Math.abs(Math.sin(t * 2.4)) * 5, 330, { rot: Math.sin(t * 1.6) * .02 }); talker('s_back_n', 300, 1290, 760, t);
+  { const ch = E.io(seg(t, Wd(14, 'Drummers') - .2, Wd(14, 'Drummers') + .3)), bo = Math.abs(Math.sin(t * 6)) * 14 * ch, up = mixPose(POSE.rest, [2.5 + Math.sin(t * 6) * .12, 2.9, 1], ch); tinted(() => { candyBack(640, 1120 - Math.abs(Math.sin(t * 3)) * 5, 320, t); sasha(330, 1420 - bo, 1000, t, { back: true, armL: up, armR: up }); }, 'rgba(45,14,95,.42)'); }
   const pk = Wd(13, 'Perahera') - .15;
   if (pop(t, pk) > 0) { at(960, 150, pop(t, pk, .5), -.02, () => { txt('Esala Perahera', 0, 0, 120, C.yellow, { w: 800, stroke: '#5a1040', sw: 34 }); txt('Esala Perahera', 0, 0, 120, C.yellow, { w: 800 }); }); sparkles(960, 150, 520, 12, t, '#fff3b0', 31); }
   pill('Kandy · Festival of lights', 960, 268, pop(t, pk + .6), { size: 40, bg: '#fff' });
@@ -303,16 +304,16 @@ SCENES.outro = (t, sc, s) => {
   if (hk > 0) { glow(960, 420, 620, 'rgba(255,255,255,.9)', .6); heart(960, 440, 6.6 * hk * (1 + Math.sin(t * 5) * .03), '#ff4f7a'); heart(960, 440, 5.6 * hk * (1 + Math.sin(t * 5) * .03), '#ff7f9c'); }
   if (ik > 0) at(960, 420, ik, Math.sin(t * 1.2) * .03, () => island(0, 0, 92));
   // characters
-  shadow(330, 938, 130); talker('s_wave', 310, 946 - Math.abs(Math.sin(seg(t, Wd(19, 'Bye'), Wd(19, 'Bye') + 1.2) * Math.PI * 3)) * 40, 580, t, { rot: Math.sin(t * 5) * .03 });
-  const mw = Wd(19, 'Bye') + 1.35, mj = Math.abs(Math.sin(seg(t, mw, mw + .7) * Math.PI)) * 50;
-  shadow(1600, 938, 170); spr('c_front', 1610, 946 - mj - Math.abs(Math.sin(t * 2.2)) * 5, 390, { rot: Math.sin(t * 1.5) * .02 });
+  const bye = Wd(19, 'Bye'), jm = Math.abs(Math.sin(seg(t, bye, bye + 1.2) * Math.PI * 3)) * 50, wv = Math.max(E.io(seg(s, .3, .8)) * (1 - E.io(seg(t, LN(17).b, LN(17).b + .4))), E.io(seg(t, bye - .3, bye)));
+  const th = E.io(seg(t, Wd(18, 'Thank') - .2, Wd(18, 'Thank') + .2)) * (1 - E.io(seg(t, bye - .5, bye - .3)));
+  let aR = mixPose(mixPose(POSE.rest, [2.3, 2.95 + Math.sin(t * 10) * .35, 1], wv), POSE.show, th * (1 - wv)); if (wv > .05) aR[2] = 1;
+  shadow(310, 942, 150); sasha(310, 946 - jm, 600, t, { talk: true, expr: curLine(t, 'outro').expr, armR: aR, armL: mixPose(POSE.rest, wv > .5 && t > bye ? [2.3, 2.95 - Math.sin(t * 10) * .35, 1] : POSE.show, Math.max(th, t > bye ? wv : 0)), look: [.3, 0] });
+  const mw = bye + 1.35, mj = Math.abs(Math.sin(seg(t, mw, mw + .7) * Math.PI)) * 60, mo = Math.sin(seg(t, mw, mw + .8) * Math.PI);
+  shadow(1640, 942, 190); candy(1640, 946 - mj, 430, t, { expr: mo > .05 ? 'calm' : t > LN(17).a && t < LN(17).b ? 'happy' : 'calm', meow: mo, tailAmp: 70, tailSpeed: 4.5, look: [-.5, -.1] });
   const bb = pop(t, Wd(18, 'Bohoma') - .2, .5) * (1 - seg(t, end - .3, end));
   if (bb > 0) { bubble(700, 190, 700, 300, bb, [-.7, 1]); at(700, 190, bb, 0, () => { txt('Bohoma sthuthi!', 0, -84, 82, C.purple, { w: 800 }); txt('බොහොම ස්තුතියි', 0, 2, 64, C.coral, { f: '"Noto Sans Sinhala"', w: 700 }); txt('= Thank you very much!', 0, 86, 44, C.plum, { w: 600 }); }); sparkles(680, 210, 460, 10, t, '#fff', 77); }
   if (ek > 0) { at(960, 300, 1, 0, () => { titleLogo(0, 0, ek, t, 'See you next time!'); }); const tk = pop(t, end + .5); at(960, 580, tk, .02, () => { txt('Sri Lanka', 0, 0, 110, C.yellow, { w: 800, stroke: C.purple, sw: 34 }); txt('Sri Lanka', 0, 0, 110, C.yellow, { w: 800 }); heart(310, -6, .9, '#ff4f7a'); heart(-310, -6, .9, '#ff4f7a'); }); sparkles(960, 380, 700, 16, t, '#fff', 91); }
   const mk = pop(t, mw, .35);
-  if (mk > 0) { bubble(1650, 425, 270, 124, mk, [0, 1], '#fff'); at(1650, 425, mk, 0, () => txt('Meow!', 0, 4, 76, C.coral, { w: 800 })); sparks(1810, 370, mk, 1); }
+  if (mk > 0) { bubble(1740, 440, 300, 124, mk, [-.6, 1], '#fff'); at(1740, 440, mk, 0, () => txt('Meow!', 0, 4, 76, C.coral, { w: 800 })); sparks(1880, 380, mk, 1); }
   return { fade: E.i2(seg(t, T.dur - .7, T.dur - .05)) };
-};
-window.afterLoad = () => {
-  ['s_back', 'c_back'].forEach(n => { const im = IMG[n], c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const x = c.getContext('2d'); x.drawImage(im, 0, 0); x.globalCompositeOperation = 'source-atop'; x.fillStyle = 'rgba(40,12,90,.55)'; x.fillRect(0, 0, c.width, c.height); x.fillStyle = x.createLinearGradient(0, 0, 0, c.height * .5); x.fillStyle.addColorStop(0, 'rgba(255,170,90,.45)'); x.fillStyle.addColorStop(1, 'rgba(255,170,90,0)'); x.fillRect(0, 0, c.width, c.height); IMG[n + '_n'] = c; });
 };

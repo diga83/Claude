@@ -1,6 +1,6 @@
 // Core: canvas, timing helpers, easing, drawing kit shared by every scene.
 const W = 1920, H = 1080, TAU = Math.PI * 2;
-const cv = document.getElementById('c'), g = cv.getContext('2d');
+const cv = document.getElementById('c'); let g = cv.getContext('2d');
 const T = window.TIMING, IMG = {};
 const C = { purple: '#5b2a86', plum: '#3d1a5e', lav: '#eadcf7', cream: '#fff6e4', yellow: '#ffc93c', coral: '#ff6b5a', teal: '#12a5a0', pink: '#ff8fb8', white: '#ffffff' };
 
@@ -128,12 +128,14 @@ function caption(t, cx) {
 }
 function curLine(t, id) { const ls = T.lines.filter(l => l.scene === id); let c = ls[0]; ls.forEach(l => { if (t >= l.a - .25) c = l; }); return c; }
 // Sasha and Candy as presenters, peeking in from the bottom-left corner
-function presenter(t, sc, candy = 'c_attentive') {
-  const s = t - sc.a, up = E.back(seg(s, .25, .85)), dn = E.i2(seg(t, sc.b - .5, sc.b - .1)), off = (1 - up) * 560 + dn * 560;
-  const l = curLine(t, sc.id), e = env(t);
-  shadow(330, 1085 + off, 330, .18);
-  at(548, 1118 + off + (1 - E.back(seg(s, .45, 1.05))) * 300, 1, Math.sin(t * 1.7) * .03, () => spr(candy, 0, -Math.abs(Math.sin(t * 2.1)) * 6, 318));
-  talker('s_' + l.expr, 232, 1112 + off, 500, t);
+function presenter(t, sc, info) {
+  const s = t - sc.a, up = E.back(seg(s, .25, .85)), dn = E.i2(seg(t, sc.b - .5, sc.b - .1)), off = (1 - up) * 700 + dn * 700;
+  const l = curLine(t, sc.id), k = speaking(t), cex = { c_content: 'happy', c_surprised: 'surprised', c_playful: 'playful', c_curious: 'calm' }[info.candy] || 'calm';
+  const jump = cex === 'surprised' ? Math.abs(Math.sin(t * 9)) * 14 : 0;
+  // Sasha gestures toward the picture while she talks, and rests between sentences
+  const g1 = .5 + .5 * Math.sin(t * 1.1 + sc.a), pose = mixPose(POSE.rest, mixPose(POSE.show, POSE.point, g1), k); pose[1] += Math.sin(t * 3.1) * .12 * k;
+  sasha(400, 1490 + off, 820, t, { talk: true, expr: l.expr === 'thinking' ? 'curious' : l.expr, look: [.5 * k + .1, -.15 * k], armR: pose, tilt: .03 * k });
+  candy(-50, 1372 + off + (1 - E.back(seg(s, .45, 1.05))) * 300 - jump, 560, t, { flip: true, expr: cex, look: cex === 'surprised' ? [0, 0] : [.5, -.3], tailAmp: 30 });
 }
 function swipe(t) {
   for (const sc of T.scenes) {
@@ -159,8 +161,8 @@ function renderAt(t) {
   g.save(); const info = SCENES[sc.id](t, sc, t - sc.a) || {}; g.restore();
   g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
   grain();
-  if (info.presenter) presenter(t, sc, info.candy);
-  caption(t, info.presenter ? 1160 : info.capX || 960);
+  if (info.presenter) presenter(t, sc, info);
+  caption(t, info.presenter ? 1200 : info.capX || 960);
   swipe(t);
   if (info.fade) rect(0, 0, W, H, `rgba(255,246,228,${info.fade})`);
 }

@@ -9,7 +9,7 @@ await new Promise(r => srv.listen(0, r)); const port = srv.address().port;
 const [mode, out, ...a] = process.argv.slice(2);
 const b = await chromium.launch(); const pg = await b.newPage({ viewport: { width: 1920, height: 1080 } });
 pg.on('pageerror', e => { console.error('PAGE ERROR', e.message); }); pg.on('console', m => { if (m.type() === 'error') console.error('console:', m.text()); });
-await pg.goto(`http://localhost:${port}/index.html?capture`); await pg.evaluate(() => window.READY);
+await pg.goto(`http://localhost:${port}/${process.env.PAGE||'index.html'}?capture`); await pg.evaluate(() => window.READY);
 const grab = async (t, q = .92) => Buffer.from((await pg.evaluate(([t, q]) => { renderAt(t); return document.getElementById('c').toDataURL('image/jpeg', q).slice(23); }, [t, q])), 'base64');
 if (mode === 'frames') { for (const t of a[0].split(',').map(Number)) fs.writeFileSync(`${out}_${t.toFixed(2)}.jpg`, await grab(t)); }
 else if (mode === 'sheet') {
