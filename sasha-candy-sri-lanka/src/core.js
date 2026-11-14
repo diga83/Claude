@@ -131,11 +131,11 @@ function curLine(t, id) { const ls = T.lines.filter(l => l.scene === id); let c 
 function presenter(t, sc, info) {
   const s = t - sc.a, up = E.back(seg(s, .25, .85)), dn = E.i2(seg(t, sc.b - .5, sc.b - .1)), off = (1 - up) * 700 + dn * 700;
   const l = curLine(t, sc.id), k = speaking(t), cex = { c_content: 'happy', c_surprised: 'surprised', c_playful: 'playful', c_curious: 'calm' }[info.candy] || 'calm';
-  const jump = cex === 'surprised' ? Math.abs(Math.sin(t * 9)) * 14 : 0;
+  const CJ = cex === 'surprised' ? hopS((t * 1.6) % 1, 26) : { y: 0, sq: 1 }, jump = CJ.y, gl = glance(t);
   // Sasha gestures toward the picture while she talks, and rests between sentences
   const g1 = .5 + .5 * Math.sin(t * 1.1 + sc.a), pose = mixPose(POSE.rest, mixPose(POSE.show, POSE.point, g1), k); pose[1] += Math.sin(t * 3.1) * .12 * k;
-  sasha(400, 1490 + off, 820, t, { talk: true, expr: l.expr === 'thinking' ? 'curious' : l.expr, look: [.5 * k + .1, -.15 * k], armR: pose, tilt: .03 * k });
-  candy(-50, 1372 + off + (1 - E.back(seg(s, .45, 1.05))) * 300 - jump, 560, t, { flip: true, expr: cex, look: cex === 'surprised' ? [0, 0] : [.5, -.3], tailAmp: 30 });
+  sasha(400, 1490 + off, 820, t, { talk: true, expr: l.expr === 'thinking' ? 'curious' : l.expr, head: .6 * gl, look: [.25 * gl, -.15 * gl], armR: pose, tilt: .03 * k });
+  candy(-50, 1372 + off + (1 - E.back(seg(s, .45, 1.05))) * 300 - jump, 560, t, { flip: true, sq: CJ.sq, head: cex === 'surprised' ? 0 : -.5 * gl, expr: cex, look: cex === 'surprised' ? [0, 0] : [-.5 * gl, -.3 * gl], tailAmp: 30 });
 }
 function swipe(t) {
   for (const sc of T.scenes) {

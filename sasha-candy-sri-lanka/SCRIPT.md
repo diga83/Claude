@@ -3,7 +3,7 @@
 **Length:** 2:00 · **Format:** 16:9, 1920×1080, 30 fps · **Audience:** ages 4–8
 **Voice:** Sasha, soft warm female narrator (local Kokoro TTS, 60% `af_heart` + 40% `af_nicole`, raised one semitone)
 **Look:** bright flat-colour storybook cartoon with brown ink outlines, matching the Sasha and Candy character designs. Every scene has its own bold palette.
-**Character animation:** Sasha and Candy are jointed puppets drawn in code. Sasha walks (leg and arm cycle), waves, points, cheers and bounces; her mouth moves with the voice, she blinks, her eyes follow what she talks about and her hair sways. Candy trots, wags her fluffy tail, blinks, twitches an ear, startles, and meows.
+**Character animation:** Sasha and Candy are jointed puppets drawn in code. Sasha's head and body turn smoothly between front, three-quarter and side, so she walks in side-on, turns to face the viewer, and glances at whatever she is describing. Her mouth forms a shape for each sound in the narration (closed for m/b/p, round for oo/oh, wide for ah/ee, teeth for s/t, lip-bite for f/v, tongue for l/th). She waves, points, cheers, blinks, and her hair sways. Jumps have a crouch, a stretch in the air and a squash on landing. Candy trots, turns her head, wags her tail, blinks, twitches an ear, startles, hops and meows.
 **Music:** original, synthesized: kalimba, bells, soft bass and shaker at 104 BPM; minor key with festival drums for the Perahera; muffled under water.
 **Transitions:** yellow / coral / purple diagonal swipe between scenes. Captions appear in a cream pill at the bottom throughout.
 
