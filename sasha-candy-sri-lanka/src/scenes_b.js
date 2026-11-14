@@ -223,12 +223,10 @@ SCENES.perahera = (t, sc, s) => {
   for (let i = 0; i < 30; i++) { const u = (t * (.06 + rnd(i) * .06) + rnd(i + 3)) % 1; glow(rnd(i + 7) * W + Math.sin(u * 8 + i) * 30, 900 - u * 800, 26, ['rgba(255,210,90,.9)', 'rgba(255,140,170,.9)'][i % 2], Math.sin(u * Math.PI) * .7); }
   // crowd + Sasha and Candy watching from the front
   g.fillStyle = '#12082b'; g.beginPath(); g.moveTo(0, H); for (let i = 0; i < 30; i++) { const x = 640 + i * 46, r = 34 + rnd(i) * 16; g.lineTo(x - r, 1080); g.arc(x, 1060 + rnd(i + 4) * 24 - Math.abs(Math.sin(t * 3 + i)) * 6, r, Math.PI, 0); } g.lineTo(W, H); g.fill();
-  glow(330, 900, 420, 'rgba(255,170,90,.8)', .35);
-  { const ch = E.io(seg(t, Wd(14, 'Drummers') - .2, Wd(14, 'Drummers') + .3)), bo = Math.abs(Math.sin(t * 6)) * 14 * ch, bsq = 1 + .05 * Math.sin(t * 12) * ch, up = mixPose(POSE.rest, [2.5 + Math.sin(t * 6) * .12, 2.9, 1], ch); tinted(() => { candyBack(640, 1120 - Math.abs(Math.sin(t * 3)) * 5, 320, t); sasha(330, 1420 - bo, 1000, t, { back: true, sq: bsq, armL: up, armR: up }); }, 'rgba(45,14,95,.42)'); }
-  const pk = Wd(13, 'Perahera') - .15;
+    const pk = Wd(13, 'Perahera') - .15;
   if (pop(t, pk) > 0) { at(960, 150, pop(t, pk, .5), -.02, () => { txt('Esala Perahera', 0, 0, 120, C.yellow, { w: 800, stroke: '#5a1040', sw: 34 }); txt('Esala Perahera', 0, 0, 120, C.yellow, { w: 800 }); }); sparkles(960, 150, 520, 12, t, '#fff3b0', 31); }
   pill('Kandy · Festival of lights', 960, 268, pop(t, pk + .6), { size: 40, bg: '#fff' });
-  return { capX: 1200 };
+  return { presenter: true, tint: 'rgba(60,20,110,.22)', candy: t > Wd(14, 'elephants') - .3 ? 'c_surprised' : 'c_curious' };
 };
 
 // ---------------- FOOD ----------------

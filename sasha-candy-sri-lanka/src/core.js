@@ -134,8 +134,11 @@ function presenter(t, sc, info) {
   const CJ = cex === 'surprised' ? hopS((t * 1.6) % 1, 26) : { y: 0, sq: 1 }, jump = CJ.y, gl = glance(t);
   // Sasha gestures toward the picture while she talks, and rests between sentences
   const g1 = .5 + .5 * Math.sin(t * 1.1 + sc.a), pose = mixPose(POSE.rest, mixPose(POSE.show, POSE.point, g1), k); pose[1] += Math.sin(t * 3.1) * .12 * k;
-  sasha(400, 1490 + off, 820, t, { talk: true, expr: l.expr === 'thinking' ? 'curious' : l.expr, head: .6 * gl, look: [.25 * gl, -.15 * gl], armR: pose, tilt: .03 * k });
-  candy(-50, 1372 + off + (1 - E.back(seg(s, .45, 1.05))) * 300 - jump, 560, t, { flip: true, sq: CJ.sq, head: cex === 'surprised' ? 0 : -.5 * gl, expr: cex, look: cex === 'surprised' ? [0, 0] : [-.5 * gl, -.3 * gl], tailAmp: 30 });
+  const draw = () => {
+  sasha(420, 1545 + off, 900, t, { talk: true, expr: l.expr === 'thinking' ? 'curious' : l.expr, head: .6 * gl, look: [.25 * gl, -.15 * gl], armR: pose, tilt: .03 * k });
+  candy(20, 1402 + off + (1 - E.back(seg(s, .45, 1.05))) * 300 - jump, 600, t, { flip: true, sq: CJ.sq, head: cex === 'surprised' ? 0 : -.5 * gl, expr: cex, look: cex === 'surprised' ? [0, 0] : [-.5 * gl, -.3 * gl], tailAmp: 30 });
+  };
+  if (info.tint) tinted(draw, info.tint); else draw();
 }
 function swipe(t) {
   for (const sc of T.scenes) {
