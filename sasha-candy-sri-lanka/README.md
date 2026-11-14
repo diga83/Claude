@@ -5,8 +5,8 @@ A 120-second 2D animated short (16:9, 1080p) made entirely in code.
 - `Sasha_and_Candy_Learn_About_Sri_Lanka.mp4` — the finished video
 - `SCRIPT.md` — full timed script: narration, picture, on-screen text, sound
 - `index.html`, `src/` — the animation (canvas); open through a local web server to preview
-- `src/puppet.js` — the Sasha and Candy cut-out puppets (joints, gestures, blink, per-sound mouth shapes, squash and stretch)
-- `tools/parts.py` — cuts the two character illustrations (`ref/`) into puppet parts (`assets/pp_*.png`)
+- `src/rig.js` — Sasha and Candy drawn in code as jointed characters (turns, walk cycle, gestures, blink, per-sound mouth shapes, squash and stretch)
+- `ref/` — the two character designs the rig is modelled on; `character_comparison.jpg` shows design vs. rig
 - `assets/` — fonts
 - `tools/` — `voice.py` (narration), `visemes.py` (mouth-shape track), `mix.py` (music + effects), `capture.mjs` (render)
 

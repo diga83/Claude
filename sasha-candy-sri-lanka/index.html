@@ -8,11 +8,11 @@
 html,body{margin:0;background:#1b1030;height:100%;display:flex;align-items:center;justify-content:center}
 canvas{width:100vw;max-height:100vh;aspect-ratio:16/9;object-fit:contain}
 </style></head><body><canvas id="c" width="1920" height="1080"></canvas>
-<script src="src/timing.js"></script><script src="src/core.js"></script><script src="src/parts.js"></script><script src="src/puppet.js"></script><script src="src/scenes_a.js"></script><script src="src/scenes_b.js"></script>
+<script src="src/timing.js"></script><script src="src/core.js"></script><script src="src/rig.js"></script><script src="src/scenes_a.js"></script><script src="src/scenes_b.js"></script>
 <script>
-const NAMES=Object.keys(window.PARTS).filter(k=>k!=='s_skin');
+const NAMES=(window.REFS||[]);
 window.READY=Promise.all([document.fonts.load('800 40px "Baloo 2"'),document.fonts.load('700 40px "Baloo 2"'),document.fonts.load('600 40px "Baloo 2"'),document.fonts.load('600 40px Fredoka'),document.fonts.load('700 40px "Noto Sans Sinhala"','ආ'),
- ...NAMES.map(n=>new Promise(r=>{const i=new Image();i.onload=()=>{PIMG[n]=i;r()};i.src='assets/pp_'+n+'.png'}))]).then(()=>{ if(window.afterLoad) afterLoad();
+ ...NAMES.map(n=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[n]=i;r()};i.src='ref/'+n+'.png'}))]).then(()=>{ if(window.afterLoad) afterLoad();
  if(!location.search.includes('capture')){const t0=performance.now();const a=new Audio('audio/mix.wav');a.play().catch(()=>{});(function f(){renderAt(a.currentTime>0?a.currentTime:((performance.now()-t0)/1000)%T.dur);requestAnimationFrame(f)})()}
  return true});
 </script></body></html>

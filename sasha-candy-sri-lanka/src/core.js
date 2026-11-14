@@ -163,7 +163,7 @@ function renderAt(t) {
   g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
   g.save(); const info = SCENES[sc.id](t, sc, t - sc.a) || {}; g.restore();
   g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
-  grain();
+  if (!window.NOGRAIN) grain();
   if (info.presenter) presenter(t, sc, info);
   caption(t, info.presenter ? 1200 : info.capX || 960);
   swipe(t);
