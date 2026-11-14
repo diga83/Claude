@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Sasha & Candy Learn About Sri Lanka</title>
+<style>
+@font-face{font-family:"Baloo 2";font-weight:600;src:url(assets/baloo-2-latin-600-normal.woff2)}
+@font-face{font-family:"Baloo 2";font-weight:700;src:url(assets/baloo-2-latin-700-normal.woff2)}
+@font-face{font-family:"Baloo 2";font-weight:800;src:url(assets/baloo-2-latin-800-normal.woff2)}
+@font-face{font-family:"Fredoka";font-weight:600;src:url(assets/fredoka-latin-600-normal.woff2)}
+@font-face{font-family:"Noto Sans Sinhala";font-weight:700;src:url(assets/noto-sans-sinhala-sinhala-700-normal.woff2)}
+html,body{margin:0;background:#1b1030;height:100%;display:flex;align-items:center;justify-content:center}
+canvas{width:100vw;max-height:100vh;aspect-ratio:16/9;object-fit:contain}
+</style></head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="src/timing.js"></script><script src="src/core.js"></script><script src="src/scenes_a.js"></script><script src="src/scenes_b.js"></script>
+<script>
+const NAMES=['c_front','c_34','c_side','c_back','c_playful','c_curious','c_content','c_surprised','c_sleepy','c_attentive','c_follow','c_stretch','c_play','s_front','s_34','s_side','s_back','s_happy','s_curious','s_thinking','s_surprised','s_concerned','s_laughing','s_walk','s_wave'];
+window.READY=Promise.all([document.fonts.load('800 40px "Baloo 2"'),document.fonts.load('700 40px "Baloo 2"'),document.fonts.load('600 40px "Baloo 2"'),document.fonts.load('600 40px Fredoka'),document.fonts.load('700 40px "Noto Sans Sinhala"','ආ'),
+ ...NAMES.map(n=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[n]=i;r()};i.src='assets/'+n+'.png'}))]).then(()=>{ if(window.afterLoad) afterLoad();
+ if(!location.search.includes('capture')){const t0=performance.now();const a=new Audio('audio/mix.wav');a.play().catch(()=>{});(function f(){renderAt(a.currentTime>0?a.currentTime:((performance.now()-t0)/1000)%T.dur);requestAnimationFrame(f)})()}
+ return true});
+</script></body></html>

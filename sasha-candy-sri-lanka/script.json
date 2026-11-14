@@ -1,0 +1,36 @@
+{
+ "title": "Sasha & Candy Learn About Sri Lanka",
+ "voice": {"blend": {"af_heart": 0.6, "af_nicole": 0.4}, "speed": 0.98, "pitch_semitones": 1.0},
+ "target": 120.0, "lead": 1.7, "tail": 3.0,
+ "scenes": [
+  {"id": "intro", "lines": [
+    {"say": "Hi friends! I'm Sasha, and this is my fluffy cat, Candy.", "expr": "happy"},
+    {"say": "Today, we're flying across the ocean to a sunny island shaped like a teardrop. Sri Lanka!", "expr": "laughing"}]},
+  {"id": "map", "lines": [
+    {"say": "Sri Lanka sits in the warm Indian Ocean, just below India.", "expr": "happy"},
+    {"say": "About twenty-two million people live here, and they greet you with a big smile and say, Ah-yoo-boh-wun!", "cap": "About twenty-two million people live here, and they greet you with a big smile and say, Ayubowan!", "expr": "curious"},
+    {"say": "That means, may you live a long life.", "expr": "happy"}]},
+  {"id": "sigiriya", "lines": [
+    {"say": "Whoa! This giant rock is See-gi-ri-ya, the Lion Rock.", "cap": "Whoa! This giant rock is Sigiriya, the Lion Rock.", "expr": "surprised"},
+    {"say": "Fifteen hundred years ago, a king built his palace right on the top, almost two hundred metres up in the sky!", "expr": "curious"}]},
+  {"id": "tea", "lines": [
+    {"say": "Next, a little blue train carries us into the misty green hills.", "expr": "happy"},
+    {"say": "These are tea gardens. The leaves picked here fill teacups all around the world.", "expr": "thinking"}]},
+  {"id": "wild", "lines": [
+    {"say": "Sri Lanka is full of amazing animals. Gentle elephants, dancing peacocks,", "expr": "happy"},
+    {"say": "and even leopards. Don't worry, Candy, they're just your big cousins!", "expr": "laughing"},
+    {"say": "And out in the deep blue sea swims the biggest animal on Earth, the blue whale.", "expr": "surprised"}]},
+  {"id": "beach", "lines": [
+    {"say": "On the golden beaches, fishermen balance on tall wooden stilts, and baby sea turtles scurry to the waves.", "expr": "happy"}]},
+  {"id": "perahera", "lines": [
+    {"say": "When night falls in the city of Kandy, the Peh-ra-heh-ra festival begins.", "cap": "When night falls in the city of Kandy, the Perahera festival begins.", "expr": "curious"},
+    {"say": "Drummers, dancers, and elephants dressed in sparkling lights parade through the streets.", "expr": "surprised"}]},
+  {"id": "food", "lines": [
+    {"say": "All this exploring makes us hungry! Let's try rice and curry, crispy bowl-shaped pancakes called hoppers, and sweet king coconut water.", "expr": "happy"},
+    {"say": "Mmm! And real cinnamon comes from right here, too.", "expr": "laughing"}]},
+  {"id": "outro", "lines": [
+    {"say": "Sri Lanka is a small island with a very big heart.", "expr": "happy"},
+    {"say": "Thank you for exploring with us. Or, as we say here, Bo-ho-ma stoo-thee!", "cap": "Thank you for exploring with us. Or, as we say here, Bohoma sthuthi!", "expr": "laughing"},
+    {"say": "See you on our next adventure. Bye bye!", "expr": "happy"}]}
+ ]
+}
