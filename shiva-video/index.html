@@ -1,0 +1,90 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Shiva in 10 Minutes</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;background:#0d0820;transform-origin:0 0}
+#shots{position:absolute;inset:0;isolation:isolate}
+.shot{position:absolute;inset:0;overflow:hidden;display:none}
+.L{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+.cam{position:absolute;inset:0;transform-origin:50% 50%}
+.abs{position:absolute}
+svg{overflow:visible}
+svg g, svg path, svg circle, svg ellipse, svg rect{transform-box:view-box}
+@keyframes sway{from{transform:rotate(var(--a0))}to{transform:rotate(var(--a1))}}
+.swing{animation:sway var(--d,3s) ease-in-out infinite alternate both}
+@keyframes breathe{from{transform:scale(1,1)}to{transform:scale(1.006,1.014)}}
+.breathe{animation:breathe 2.6s ease-in-out infinite alternate both}
+@keyframes pulse{from{opacity:.55;transform:scale(.9)}to{opacity:1;transform:scale(1.1)}}
+.pulse{animation:pulse var(--d,2s) ease-in-out infinite alternate both;transform-box:fill-box!important;transform-origin:center}
+@keyframes flick{0%{transform:scale(1,1) skewX(0)}30%{transform:scale(.92,1.1) skewX(4deg)}60%{transform:scale(1.06,.94) skewX(-5deg)}100%{transform:scale(.96,1.06) skewX(2deg)}}
+.flick{animation:flick .5s ease-in-out infinite alternate both;transform-box:fill-box!important;transform-origin:50% 100%}
+@keyframes flow{to{stroke-dashoffset:-96}}
+.flow{animation:flow var(--d,1s) linear infinite both}
+@keyframes drip{0%{transform:translateY(-20px);opacity:0}20%{opacity:1}100%{transform:translateY(120px);opacity:0}}
+.drip{animation:drip 1.3s ease-in infinite both}
+@keyframes tongue{0%,70%{opacity:0}75%,95%{opacity:1}100%{opacity:0}}
+.tongue{animation:tongue 2.2s linear infinite both}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{animation:spin var(--d,60s) linear infinite both}
+.spinr{animation:spin var(--d,60s) linear infinite reverse both}
+@keyframes twk{from{opacity:.15;transform:scale(.6)}to{opacity:1;transform:scale(1.15)}}
+.twk{animation:twk var(--d,2s) ease-in-out infinite alternate both}
+@keyframes fall{from{transform:translate(0,-140px) rotate(0)}to{transform:translate(var(--dx,80px),1260px) rotate(var(--r,360deg))}}
+.fall{animation:fall var(--d,9s) linear infinite both}
+@keyframes rise{0%{transform:translate(0,0) scale(1);opacity:0}12%{opacity:1}100%{transform:translate(var(--dx,40px),var(--dy,-700px)) scale(.3);opacity:0}}
+.rise{animation:rise var(--d,5s) ease-out infinite both}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(var(--dx,40px),var(--dy,-30px))}}
+.drift{animation:drift var(--d,9s) ease-in-out infinite alternate both}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(var(--dy,-16px))}}
+.bob{animation:bob var(--d,3s) ease-in-out infinite alternate both}
+@keyframes ring{0%{transform:scale(.2);opacity:0}15%{opacity:.9}100%{transform:scale(1);opacity:0}}
+.ring{animation:ring var(--d,2s) ease-out infinite both}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-400px)}}
+.wave{animation:wave var(--d,8s) linear infinite both}
+@keyframes bgy{to{background-position:0 400px}}
+.bgy{animation:bgy var(--d,1s) linear infinite both}
+@keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(-7px,5px)}50%{transform:translate(6px,-6px)}75%{transform:translate(-5px,-4px)}100%{transform:translate(5px,6px)}}
+.shake{animation:shake .22s linear infinite alternate both}
+@keyframes cam{from{transform:var(--c0)}to{transform:var(--c1)}}
+.bokeh{position:absolute;border-radius:50%;filter:blur(var(--b,10px))}
+.rays{position:absolute;background:center/100% 100% no-repeat}
+.glow{position:absolute;border-radius:50%}
+#grain{position:absolute;inset:0;background:url(build/grain.png);opacity:.8;pointer-events:none}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%,transparent 52%,rgba(8,2,26,.62) 100%),linear-gradient(to top,rgba(10,3,28,.72) 0%,rgba(10,3,28,.28) 20%,transparent 38%)}
+#hdr{position:absolute;left:72px;top:58px;color:#fff;font-family:Archivo,sans-serif;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+#hdr b{display:block;font-weight:800;font-size:25px;letter-spacing:.3em}
+#hdr span{display:flex;align-items:center;gap:12px;margin-top:9px;font-weight:600;font-size:14px;letter-spacing:.26em;opacity:.95}
+#hdr span:before{content:"";width:40px;height:2px;background:#ffc64a}
+#hdr em{font-style:normal;color:#ffd98a}
+#cap{position:absolute;left:210px;right:210px;bottom:84px;text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:74px;line-height:1.06;color:#fff;text-shadow:0 3px 6px rgba(20,6,40,.7),0 0 34px rgba(20,6,40,.75),0 0 70px rgba(20,6,40,.5);letter-spacing:.005em}
+#cap i{font-style:italic;color:#ffc4c9;font-weight:600}
+#cap span,#cap i{display:inline-block;white-space:pre}
+#chap{position:absolute;left:0;right:0;top:118px;text-align:center;color:#fff;opacity:0;font-family:'Cormorant Garamond',serif;text-shadow:0 3px 30px rgba(20,6,40,.85),0 0 80px rgba(20,6,40,.6)}
+#chap small{display:block;font-family:Archivo,sans-serif;font-weight:600;font-size:19px;letter-spacing:.5em;color:#ffd98a;margin-bottom:6px}
+#chap b{font-style:italic;font-weight:500;font-size:112px;line-height:1}
+#chap u{display:block;width:120px;height:2px;background:#ffc64a;margin:20px auto 0;text-decoration:none}
+.ttl{font-family:'Cormorant Garamond',serif;color:#fff;text-align:center;text-shadow:0 4px 40px rgba(20,6,40,.8)}
+</style></head><body>
+<div id="stage">
+ <svg width="0" height="0" style="position:absolute"><defs>
+  <radialGradient id="gGlow"><stop offset="0" stop-color="#fff3b0" stop-opacity=".95"/><stop offset=".4" stop-color="#ffc64a" stop-opacity=".5"/><stop offset="1" stop-color="#ffb02e" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gGlowW"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".45" stop-color="#cfe8ff" stop-opacity=".4"/><stop offset="1" stop-color="#cfe8ff" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gFire"><stop offset="0" stop-color="#fff6c9" stop-opacity="1"/><stop offset=".35" stop-color="#ff9a2e" stop-opacity=".75"/><stop offset="1" stop-color="#ff3d1f" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gBlue"><stop offset="0" stop-color="#5a7bff" stop-opacity=".9"/><stop offset=".5" stop-color="#3d4fe0" stop-opacity=".35"/><stop offset="1" stop-color="#3d4fe0" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gPoison"><stop offset="0" stop-color="#1a0b2e" stop-opacity="1"/><stop offset=".6" stop-color="#4a1d7a" stop-opacity=".8"/><stop offset="1" stop-color="#6a2aa8" stop-opacity="0"/></radialGradient>
+  <linearGradient id="gWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4fdff"/><stop offset="1" stop-color="#7fd4ff"/></linearGradient>
+ </defs></svg>
+ <div id="shots"></div>
+ <div id="vig"></div><div id="grain"></div>
+ <div id="chap"></div>
+ <div id="hdr"><b>MAHADEV</b><span>SHIVA &nbsp;·&nbsp; <em id="hch"></em></span></div>
+ <div id="cap"></div>
+</div>
+<style id="dyn"></style>
+<script src="build/timeline.js"></script>
+<script src="art.js"></script>
+<script src="shots.js"></script><script src="shots_b.js"></script><script src="shots_c.js"></script><script src="shots_d.js"></script>
+<script src="engine.js"></script>
+</body></html>

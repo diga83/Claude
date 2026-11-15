@@ -1,0 +1,154 @@
+{
+  "title": "Introduction to Lord Shiva in 10 Minutes",
+  "notes": "Each shot has narration lines. '|' splits a line into on-screen caption beats, *word* marks the highlighted word.",
+  "shots": [
+    {"id":"s01_cosmos","ch":"The First Sound","v":"Deep indigo cosmos, drifting stars, slow nebula.","lines":[
+      "Before the mountains rose, | before the rivers ran, | there was only a deep | and endless *silence.*"]},
+    {"id":"s02_damaru","ch":"The First Sound","v":"A golden damaru drum appears and beats; rings of light ripple outward.","lines":[
+      "And then… | a single *drumbeat.*",
+      "The universe woke up, | and began to *dance.*"]},
+    {"id":"s03_silhouette","ch":"The First Sound","v":"Silhouette of Shiva meditating against a huge glowing moon-disc.","lines":[
+      "At the heart of that dance | sits one who is perfectly *still.*"]},
+    {"id":"s04_title","ch":"The First Sound","v":"Shiva revealed in colour. Title card: Shiva — Introduction in 10 minutes.","lines":[
+      "This is *Shiva* —| Mahadeva, the *great* god.",
+      "He is one of the most beloved gods in Hinduism, | worshipped by hundreds of millions of people, | for thousands of *years.*",
+      "In the next ten minutes, | let us get to *know* him."]},
+
+    {"id":"s05_trimurti","ch":"The Three","v":"Brahma, Vishnu and Shiva side by side; each lights up in turn.","lines":[
+      "In Hindu tradition, | three great gods | care for the *universe.*",
+      "Brahma *creates* it.",
+      "Vishnu *protects* it.",
+      "And Shiva *transforms* it."]},
+    {"id":"s06_tree","ch":"The Three","v":"A tree sheds golden autumn leaves, then bursts into spring blossom.","lines":[
+      "He is often called the destroyer. | But this is not a destruction | to *fear.*",
+      "Like autumn leaves that fall | so that spring may come, | Shiva ends what is old, | so that something new can *begin.*"]},
+    {"id":"s07_gentle","ch":"The Three","v":"Warm close portrait of a smiling Shiva, petals drifting.","lines":[
+      "His very name means | the *auspicious* one —| the kind, the *gentle.*",
+      "And to those who love him, | he is the source, and the home, | of *everything.*"]},
+
+    {"id":"s08_look","ch":"Reading Shiva","v":"Full figure of Shiva with trident, sunburst behind.","lines":[
+      "Look closely at Shiva, | for everything about him | tells a *story.*"]},
+    {"id":"s09_hair","ch":"Reading Shiva","v":"Camera rises to the matted locks and topknot.","lines":[
+      "His long, matted hair | is the hair of a *yogi* —| one who has left every comfort behind | to search for the *truth.*"]},
+    {"id":"s10_moon","ch":"Reading Shiva","v":"The crescent moon in his hair glows; moon phases arc across the sky.","lines":[
+      "In it rests a crescent *moon,* | growing and fading, night after night —| a sign that he is the master of *time.*"]},
+    {"id":"s11_gangahair","ch":"Reading Shiva","v":"A sparkling stream springs from the topknot.","lines":[
+      "From his locks springs the river *Ganga,* | flowing from heaven down to *earth.*"]},
+    {"id":"s12_eye","ch":"Reading Shiva","v":"Extreme close-up of the forehead; the third eye opens in a flash of light.","lines":[
+      "On his forehead is a third *eye* —| the eye of wisdom, | which sees what ordinary eyes *cannot.*",
+      "When it opens, | all that is false burns *away.*"]},
+    {"id":"s13_snake","ch":"Reading Shiva","v":"The cobra Vasuki sways gently around his neck.","lines":[
+      "Around his neck coils a *serpent,* | Vasuki.",
+      "Fear itself, | worn calmly as an *ornament.*"]},
+    {"id":"s14_trishul","ch":"Reading Shiva","v":"Hero shot of the trident; its three points light one by one.","lines":[
+      "In his hand is the *trishula,* | a trident with three points —| said to stand for creation, protection, | and *dissolution.*"]},
+    {"id":"s15_drum","ch":"Reading Shiva","v":"The damaru swings and beats, sending out rings of sound.","lines":[
+      "Tied to it is the *damaru,* | a small drum whose beat | is the rhythm of the *cosmos.*"]},
+    {"id":"s16_ash","ch":"Reading Shiva","v":"Ash drifts across a calm Shiva; tiger skin and beads are highlighted.","lines":[
+      "His body is covered in *ash* —| a reminder that everything in this world | will one day *pass.*",
+      "He wears a tiger skin | and rudraksha beads, | owning nothing, and needing *nothing.*"]},
+
+    {"id":"s17_kailash","ch":"Kailash","v":"Mount Kailash at dawn, snow falling, prayer flags of light.","lines":[
+      "Shiva's home is Mount *Kailash,* | a snowy peak | high in the *Himalayas.*"]},
+    {"id":"s18_adiyogi","ch":"Kailash","v":"Shiva seated in meditation on the summit, aura breathing slowly.","lines":[
+      "There he sits in deep meditation —| the *Adiyogi,* the very first yogi, | and the teacher of yoga *itself.*"]},
+    {"id":"s19_sati","ch":"Kailash","v":"Sati in a golden palace turns toward the hermit; then Shiva alone, grieving, in falling snow.","lines":[
+      "But Shiva is not *alone.*",
+      "His first love was *Sati,* | a princess who chose the wandering hermit | over all the riches of her father's *palace.*",
+      "When she was lost to him, | Shiva's grief shook the three *worlds* —| and he withdrew into silence | for a very long *time.*"]},
+    {"id":"s19b_parvati","ch":"Kailash","v":"Parvati meditates in the snow as seasons pass; Shiva opens his eyes.","lines":[
+      "Then Sati was born again | as *Parvati,* | daughter of the mountain king.",
+      "For years she meditated in the snow, | until even the great hermit | opened his eyes, and *smiled.*"]},
+    {"id":"s20_together","ch":"Kailash","v":"Shiva and Parvati together beneath a shower of petals.","lines":[
+      "She became his wife, | his equal, | and his *strength* —| for Parvati is Shakti, | the energy that moves the *world.*"]},
+    {"id":"s21_sons","ch":"Kailash","v":"Ganesha with his sweet, then Kartikeya with his spear.","lines":[
+      "Their sons are *Ganesha,* | the elephant-headed remover of obstacles,",
+      "and *Kartikeya,* | the brave young commander of the gods."]},
+    {"id":"s22_nandi","ch":"Kailash","v":"Nandi the white bull waits by a temple doorway, bell swinging.","lines":[
+      "And waiting faithfully at the door | is *Nandi,* the gentle bull —| Shiva's mount, | and his most devoted *friend.*"]},
+    {"id":"s23_family","ch":"Kailash","v":"Family portrait on Kailash: Shiva, Parvati, Ganesha, Kartikeya, Nandi.","lines":[
+      "So Shiva is both a hermit | and a *husband,* | a wanderer and a *father.*",
+      "He shows that a spiritual life | and a loving family | can belong *together.*"]},
+
+    {"id":"s24_churn","ch":"The Blue Throat","v":"Gods and demons pull the serpent-rope around a mountain in a milky sea.","lines":[
+      "Long ago, the gods and the demons | churned the great ocean of milk, | searching for the nectar of *immortality.*"]},
+    {"id":"s25_poison","ch":"The Blue Throat","v":"A dark violet cloud of poison boils up from the waves.","lines":[
+      "But before the nectar | came a terrible *poison* —| Halahala, | dark enough to destroy every *world.*"]},
+    {"id":"s26_run","ch":"The Blue Throat","v":"Frightened gods fold their hands before calm Shiva.","lines":[
+      "Terrified, | everyone ran to *Shiva.*"]},
+    {"id":"s27_drink","ch":"The Blue Throat","v":"Shiva lifts the swirling poison in his palm and drinks.","lines":[
+      "Without a moment's doubt, | he gathered the poison in his palm… | and *drank* it."]},
+    {"id":"s28_throat","ch":"The Blue Throat","v":"Parvati's hand at his throat; the throat turns deep blue.","lines":[
+      "Parvati pressed her hand | against his throat, | and there the poison *stayed* —| turning it a deep, dark *blue.*"]},
+    {"id":"s29_neelkanth","ch":"The Blue Throat","v":"Serene Shiva with glowing blue throat; the sea calms, light returns.","lines":[
+      "From that day he was called *Neelakantha,* | the blue-throated one —| who takes in the world's bitterness | so that others may *live.*"]},
+
+    {"id":"s30_bhagiratha","ch":"Ganga","v":"King Bhagiratha prays on one leg beneath a starry sky.","lines":[
+      "Another story tells of King *Bhagiratha,* | who prayed for the heavenly river Ganga | to come down and bless the *earth.*"]},
+    {"id":"s31_fall","ch":"Ganga","v":"A colossal waterfall of light plunges from the heavens.","lines":[
+      "But her fall was so mighty | that it would have shattered the *ground.*"]},
+    {"id":"s32_catch","ch":"Ganga","v":"Shiva stands beneath the torrent and catches it in his hair.","lines":[
+      "So Shiva stood beneath her, | and caught the whole river | in his *hair.*"]},
+    {"id":"s33_river","ch":"Ganga","v":"A gentle river winds through green plains past lamps and temples.","lines":[
+      "Through his tangled locks | she slipped down in gentle streams,",
+      "and became the river | that millions still call *Mother* | today."]},
+
+    {"id":"s34_nataraja","ch":"The Dance","v":"Nataraja revealed inside a blazing ring of fire.","lines":[
+      "Shiva is also *Nataraja* —| the Lord of the *Dance.*"]},
+    {"id":"s35_tandava","ch":"The Dance","v":"The ring spins, sparks fly, the cosmos pulses in time.","lines":[
+      "Inside a ring of fire | he dances the *Tandava,* | and the whole universe | moves to his *rhythm.*"]},
+    {"id":"s36_hands","ch":"The Dance","v":"Each hand highlighted in turn: drum, flame, blessing.","lines":[
+      "One hand holds the drum of *creation.*",
+      "Another holds the flame of *ending.*",
+      "A third is raised to say: | do not be *afraid.*"]},
+    {"id":"s37_foot","ch":"The Dance","v":"Close on the dancing foot above a small crouching figure.","lines":[
+      "And beneath his foot | lies a small figure called *ignorance* —| for this dance sets the soul *free.*"]},
+    {"id":"s38_stars","ch":"The Dance","v":"Galaxies wheel; a tiny Nataraja silhouette at the centre.","lines":[
+      "Stars are born, and stars fade. | Seasons turn. | All of it, they say, | is Shiva's *dance.*"]},
+
+    {"id":"s39_linga","ch":"Light Without End","v":"A temple sanctum: the Linga, lamps, flowers, a slow drip of water.","lines":[
+      "In most temples, | Shiva is not shown as a person at all, | but as the *Linga* —| a simple, rounded stone."]},
+    {"id":"s40_pillar","ch":"Light Without End","v":"The stone becomes an endless column of light through the sky.","lines":[
+      "It stands for a pillar of light | with no beginning and no *end* —| the formless, the *infinite.*"]},
+    {"id":"s41_twelve","ch":"Light Without End","v":"Twelve lights ignite across a stylised map of India.","lines":[
+      "Twelve especially sacred shrines across India | are known as the *Jyotirlingas,* | the lingas of *light* —| from Kedarnath in the snows | to Rameswaram by the *sea.*"]},
+    {"id":"s42_ardha","ch":"Light Without End","v":"Shiva and Parvati slide together into one figure: Ardhanarishvara.","lines":[
+      "And sometimes Shiva appears as *Ardhanarishvara* —| half Shiva, half Parvati, | in a single *body.*",
+      "A beautiful way of saying | that stillness and energy | are never truly *apart.*"]},
+
+    {"id":"s43_rudra","ch":"Many Names","v":"Storm clouds and lightning; Shiva fierce, third eye glowing.","lines":[
+      "Shiva has many names, | and many *moods.*",
+      "In the oldest hymns, the Vedas, | he is *Rudra,* | the roaring *storm.*",
+      "As *Mahakala,* | he is the lord of time itself, | before whom even death must *bow.*"]},
+    {"id":"s44_bhole","ch":"Many Names","v":"Sunny meadow; a child offers a flower to a delighted Shiva.","lines":[
+      "As *Bholenath,* | he is the innocent lord —| so simple-hearted | that a little love is enough to *please* him.",
+      "He blesses gods, humans, | and even demons, | whenever they call on him with *devotion.*"]},
+    {"id":"s45_pashu","ch":"Many Names","v":"Forest glade; deer, birds and Nandi gather around him.","lines":[
+      "And as *Pashupati,* | he is the guardian | of every living *creature.*"]},
+
+    {"id":"s46_worship","ch":"The Great Night","v":"A devotee pours water over the Linga; bilva leaves, a lamp.","lines":[
+      "That is why his worship is so *simple.*",
+      "A little water. | A few bilva leaves. | A heart that is *sincere.*",
+      "Mondays are his special day, | and the ancient city of *Kashi,* | on the banks of the Ganga, | is loved as his very own *home.*"]},
+    {"id":"s47_ratri","ch":"The Great Night","v":"Maha Shivaratri: temple spires at night, hundreds of lamps, a full sky.","lines":[
+      "Once a year comes *Maha Shivaratri,* | the great night of Shiva,",
+      "when devotees stay awake until dawn —| fasting, singing, | and *praying.*"]},
+    {"id":"s48_mantra","ch":"The Great Night","v":"The five syllables light up one by one around a glowing Om.","lines":[
+      "And on their lips | is one mantra of five syllables: | *Om Namah Shivaya.*",
+      "I bow to Shiva. | I bow to the light *within.*"]},
+
+    {"id":"s49_who","ch":"Stillness","v":"Montage: dancer, protector, mountain, heart.","lines":[
+      "So, who is Shiva?",
+      "He is the dancer, | and the *stillness.*",
+      "The destroyer, | and the *protector.*",
+      "The lord of the snowy mountain, | and the quiet place | inside every *heart.*"]},
+    {"id":"s50_teach","ch":"Stillness","v":"Calm Shiva at sunrise; three soft symbols appear.","lines":[
+      "He teaches that endings | are not to be *feared,*",
+      "that even poison | can be held with *grace,*",
+      "and that true strength | is *gentle.*"]},
+    {"id":"s51_breath","ch":"Stillness","v":"A child sits quietly; Kailash glows in the distance, then within.","lines":[
+      "So the next time you sit quietly, | and take one slow breath… | you may find that Kailash | was never far *away.*"]},
+    {"id":"s52_outro","ch":"Stillness","v":"Shiva meditating in full glory; end title Har Har Mahadev.","lines":[
+      "Om Namah *Shivaya.*"]}
+  ]
+}

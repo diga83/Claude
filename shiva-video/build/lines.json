@@ -1,0 +1,7853 @@
+[
+{
+"shot": "s01_cosmos",
+"i": 0,
+"file": "audio/lines/s01_cosmos_0.wav",
+"dur": 6.283,
+"text": "Before the mountains rose, before the rivers ran, there was only a deep and endless silence.",
+"chunks": [
+"Before the mountains rose,",
+"before the rivers ran,",
+"there was only a deep",
+"and endless *silence.*"
+],
+"words": [
+{
+"w": "Before",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.464
+},
+{
+"w": "mountains",
+"c": 0,
+"em": false,
+"t": 0.724
+},
+{
+"w": "rose,",
+"c": 0,
+"em": false,
+"t": 1.332
+},
+{
+"w": "before",
+"c": 1,
+"em": false,
+"t": 1.853
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.286
+},
+{
+"w": "rivers",
+"c": 1,
+"em": false,
+"t": 2.547
+},
+{
+"w": "ran,",
+"c": 1,
+"em": false,
+"t": 2.981
+},
+{
+"w": "there",
+"c": 2,
+"em": false,
+"t": 3.444
+},
+{
+"w": "was",
+"c": 2,
+"em": false,
+"t": 3.82
+},
+{
+"w": "only",
+"c": 2,
+"em": false,
+"t": 4.08
+},
+{
+"w": "a",
+"c": 2,
+"em": false,
+"t": 4.398
+},
+{
+"w": "deep",
+"c": 2,
+"em": false,
+"t": 4.543
+},
+{
+"w": "and",
+"c": 3,
+"em": false,
+"t": 4.861
+},
+{
+"w": "endless",
+"c": 3,
+"em": false,
+"t": 5.121
+},
+{
+"w": "silence.",
+"c": 3,
+"em": true,
+"t": 5.613
+}
+]
+},
+{
+"shot": "s02_damaru",
+"i": 0,
+"file": "audio/lines/s02_damaru_0.wav",
+"dur": 2.081,
+"text": "And then… a single drumbeat.",
+"chunks": [
+"And then…",
+"a single *drumbeat.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "then…",
+"c": 0,
+"em": false,
+"t": 0.275
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 0.846
+},
+{
+"w": "single",
+"c": 1,
+"em": false,
+"t": 0.982
+},
+{
+"w": "drumbeat.",
+"c": 1,
+"em": true,
+"t": 1.39
+}
+]
+},
+{
+"shot": "s02_damaru",
+"i": 1,
+"file": "audio/lines/s02_damaru_1.wav",
+"dur": 2.834,
+"text": "The universe woke up, and began to dance.",
+"chunks": [
+"The universe woke up,",
+"and began to *dance.*"
+],
+"words": [
+{
+"w": "The",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "universe",
+"c": 0,
+"em": false,
+"t": 0.279
+},
+{
+"w": "woke",
+"c": 0,
+"em": false,
+"t": 0.805
+},
+{
+"w": "up,",
+"c": 0,
+"em": false,
+"t": 1.109
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.497
+},
+{
+"w": "began",
+"c": 1,
+"em": false,
+"t": 1.746
+},
+{
+"w": "to",
+"c": 1,
+"em": false,
+"t": 2.105
+},
+{
+"w": "dance.",
+"c": 1,
+"em": true,
+"t": 2.299
+}
+]
+},
+{
+"shot": "s03_silhouette",
+"i": 0,
+"file": "audio/lines/s03_silhouette_0.wav",
+"dur": 4.029,
+"text": "At the heart of that dance sits one who is perfectly still.",
+"chunks": [
+"At the heart of that dance",
+"sits one who is perfectly *still.*"
+],
+"words": [
+{
+"w": "At",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.236
+},
+{
+"w": "heart",
+"c": 0,
+"em": false,
+"t": 0.5
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 0.882
+},
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 1.088
+},
+{
+"w": "dance",
+"c": 0,
+"em": false,
+"t": 1.411
+},
+{
+"w": "sits",
+"c": 1,
+"em": false,
+"t": 1.793
+},
+{
+"w": "one",
+"c": 1,
+"em": false,
+"t": 2.116
+},
+{
+"w": "who",
+"c": 1,
+"em": false,
+"t": 2.381
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 2.645
+},
+{
+"w": "perfectly",
+"c": 1,
+"em": false,
+"t": 2.851
+},
+{
+"w": "still.",
+"c": 1,
+"em": true,
+"t": 3.468
+}
+]
+},
+{
+"shot": "s04_title",
+"i": 0,
+"file": "audio/lines/s04_title_0.wav",
+"dur": 2.982,
+"text": "This is Shiva — Mahadeva, the great god.",
+"chunks": [
+"This is *Shiva* —",
+"Mahadeva, the *great* god."
+],
+"words": [
+{
+"w": "This",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.332
+},
+{
+"w": "Shiva",
+"c": 0,
+"em": true,
+"t": 0.525
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 0.882
+},
+{
+"w": "Mahadeva,",
+"c": 1,
+"em": false,
+"t": 1.24
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.955
+},
+{
+"w": "great",
+"c": 1,
+"em": true,
+"t": 2.202
+},
+{
+"w": "god.",
+"c": 1,
+"em": false,
+"t": 2.559
+}
+]
+},
+{
+"shot": "s04_title",
+"i": 1,
+"file": "audio/lines/s04_title_1.wav",
+"dur": 8.64,
+"text": "He is one of the most beloved gods in Hinduism, worshipped by hundreds of millions of people, for thousands of years.",
+"chunks": [
+"He is one of the most beloved gods in Hinduism,",
+"worshipped by hundreds of millions of people,",
+"for thousands of *years.*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.253
+},
+{
+"w": "one",
+"c": 0,
+"em": false,
+"t": 0.475
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 0.761
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.984
+},
+{
+"w": "most",
+"c": 0,
+"em": false,
+"t": 1.27
+},
+{
+"w": "beloved",
+"c": 0,
+"em": false,
+"t": 1.62
+},
+{
+"w": "gods",
+"c": 0,
+"em": false,
+"t": 2.16
+},
+{
+"w": "in",
+"c": 0,
+"em": false,
+"t": 2.51
+},
+{
+"w": "Hinduism,",
+"c": 0,
+"em": false,
+"t": 2.733
+},
+{
+"w": "worshipped",
+"c": 1,
+"em": false,
+"t": 3.559
+},
+{
+"w": "by",
+"c": 1,
+"em": false,
+"t": 4.291
+},
+{
+"w": "hundreds",
+"c": 1,
+"em": false,
+"t": 4.513
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 5.117
+},
+{
+"w": "millions",
+"c": 1,
+"em": false,
+"t": 5.34
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 5.944
+},
+{
+"w": "people,",
+"c": 1,
+"em": false,
+"t": 6.167
+},
+{
+"w": "for",
+"c": 2,
+"em": false,
+"t": 6.866
+},
+{
+"w": "thousands",
+"c": 2,
+"em": false,
+"t": 7.152
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 7.82
+},
+{
+"w": "years.",
+"c": 2,
+"em": true,
+"t": 8.043
+}
+]
+},
+{
+"shot": "s04_title",
+"i": 2,
+"file": "audio/lines/s04_title_2.wav",
+"dur": 2.911,
+"text": "In the next ten minutes, let us get to know him.",
+"chunks": [
+"In the next ten minutes,",
+"let us get to *know* him."
+],
+"words": [
+{
+"w": "In",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.2
+},
+{
+"w": "next",
+"c": 0,
+"em": false,
+"t": 0.417
+},
+{
+"w": "ten",
+"c": 0,
+"em": false,
+"t": 0.684
+},
+{
+"w": "minutes,",
+"c": 0,
+"em": false,
+"t": 0.902
+},
+{
+"w": "let",
+"c": 1,
+"em": false,
+"t": 1.483
+},
+{
+"w": "us",
+"c": 1,
+"em": false,
+"t": 1.701
+},
+{
+"w": "get",
+"c": 1,
+"em": false,
+"t": 1.87
+},
+{
+"w": "to",
+"c": 1,
+"em": false,
+"t": 2.088
+},
+{
+"w": "know",
+"c": 1,
+"em": true,
+"t": 2.258
+},
+{
+"w": "him.",
+"c": 1,
+"em": false,
+"t": 2.524
+}
+]
+},
+{
+"shot": "s05_trimurti",
+"i": 0,
+"file": "audio/lines/s05_trimurti_0.wav",
+"dur": 4.107,
+"text": "In Hindu tradition, three great gods care for the universe.",
+"chunks": [
+"In Hindu tradition,",
+"three great gods",
+"care for the *universe.*"
+],
+"words": [
+{
+"w": "In",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Hindu",
+"c": 0,
+"em": false,
+"t": 0.235
+},
+{
+"w": "tradition,",
+"c": 0,
+"em": false,
+"t": 0.616
+},
+{
+"w": "three",
+"c": 1,
+"em": false,
+"t": 1.437
+},
+{
+"w": "great",
+"c": 1,
+"em": false,
+"t": 1.818
+},
+{
+"w": "gods",
+"c": 1,
+"em": false,
+"t": 2.199
+},
+{
+"w": "care",
+"c": 2,
+"em": false,
+"t": 2.521
+},
+{
+"w": "for",
+"c": 2,
+"em": false,
+"t": 2.844
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.108
+},
+{
+"w": "universe.",
+"c": 2,
+"em": true,
+"t": 3.372
+}
+]
+},
+{
+"shot": "s05_trimurti",
+"i": 1,
+"file": "audio/lines/s05_trimurti_1.wav",
+"dur": 1.393,
+"text": "Brahma creates it.",
+"chunks": [
+"Brahma *creates* it."
+],
+"words": [
+{
+"w": "Brahma",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "creates",
+"c": 0,
+"em": true,
+"t": 0.485
+},
+{
+"w": "it.",
+"c": 0,
+"em": false,
+"t": 1.0
+}
+]
+},
+{
+"shot": "s05_trimurti",
+"i": 2,
+"file": "audio/lines/s05_trimurti_2.wav",
+"dur": 1.509,
+"text": "Vishnu protects it.",
+"chunks": [
+"Vishnu *protects* it."
+],
+"words": [
+{
+"w": "Vishnu",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "protects",
+"c": 0,
+"em": true,
+"t": 0.504
+},
+{
+"w": "it.",
+"c": 0,
+"em": false,
+"t": 1.104
+}
+]
+},
+{
+"shot": "s05_trimurti",
+"i": 3,
+"file": "audio/lines/s05_trimurti_3.wav",
+"dur": 1.783,
+"text": "And Shiva transforms it.",
+"chunks": [
+"And Shiva *transforms* it."
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 0.302
+},
+{
+"w": "transforms",
+"c": 0,
+"em": true,
+"t": 0.695
+},
+{
+"w": "it.",
+"c": 0,
+"em": false,
+"t": 1.391
+}
+]
+},
+{
+"shot": "s06_tree",
+"i": 0,
+"file": "audio/lines/s06_tree_0.wav",
+"dur": 5.439,
+"text": "He is often called the destroyer. But this is not a destruction to fear.",
+"chunks": [
+"He is often called the destroyer.",
+"But this is not a destruction",
+"to *fear.*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.261
+},
+{
+"w": "often",
+"c": 0,
+"em": false,
+"t": 0.493
+},
+{
+"w": "called",
+"c": 0,
+"em": false,
+"t": 0.923
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.418
+},
+{
+"w": "destroyer.",
+"c": 0,
+"em": false,
+"t": 1.716
+},
+{
+"w": "But",
+"c": 1,
+"em": false,
+"t": 2.476
+},
+{
+"w": "this",
+"c": 1,
+"em": false,
+"t": 2.774
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 3.137
+},
+{
+"w": "not",
+"c": 1,
+"em": false,
+"t": 3.369
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 3.666
+},
+{
+"w": "destruction",
+"c": 1,
+"em": false,
+"t": 3.831
+},
+{
+"w": "to",
+"c": 2,
+"em": false,
+"t": 4.658
+},
+{
+"w": "fear.",
+"c": 2,
+"em": true,
+"t": 4.889
+}
+]
+},
+{
+"shot": "s06_tree",
+"i": 1,
+"file": "audio/lines/s06_tree_1.wav",
+"dur": 8.017,
+"text": "Like autumn leaves that fall so that spring may come, Shiva ends what is old, so that something new can begin.",
+"chunks": [
+"Like autumn leaves that fall",
+"so that spring may come,",
+"Shiva ends what is old,",
+"so that something new can *begin.*"
+],
+"words": [
+{
+"w": "Like",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "autumn",
+"c": 0,
+"em": false,
+"t": 0.372
+},
+{
+"w": "leaves",
+"c": 0,
+"em": false,
+"t": 0.838
+},
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 1.305
+},
+{
+"w": "fall",
+"c": 0,
+"em": false,
+"t": 1.647
+},
+{
+"w": "so",
+"c": 1,
+"em": false,
+"t": 1.989
+},
+{
+"w": "that",
+"c": 1,
+"em": false,
+"t": 2.207
+},
+{
+"w": "spring",
+"c": 1,
+"em": false,
+"t": 2.549
+},
+{
+"w": "may",
+"c": 1,
+"em": false,
+"t": 3.015
+},
+{
+"w": "come,",
+"c": 1,
+"em": false,
+"t": 3.295
+},
+{
+"w": "Shiva",
+"c": 2,
+"em": false,
+"t": 3.855
+},
+{
+"w": "ends",
+"c": 2,
+"em": false,
+"t": 4.259
+},
+{
+"w": "what",
+"c": 2,
+"em": false,
+"t": 4.601
+},
+{
+"w": "is",
+"c": 2,
+"em": false,
+"t": 4.943
+},
+{
+"w": "old,",
+"c": 2,
+"em": false,
+"t": 5.161
+},
+{
+"w": "so",
+"c": 3,
+"em": false,
+"t": 5.658
+},
+{
+"w": "that",
+"c": 3,
+"em": false,
+"t": 5.876
+},
+{
+"w": "something",
+"c": 3,
+"em": false,
+"t": 6.218
+},
+{
+"w": "new",
+"c": 3,
+"em": false,
+"t": 6.871
+},
+{
+"w": "can",
+"c": 3,
+"em": false,
+"t": 7.151
+},
+{
+"w": "begin.",
+"c": 3,
+"em": true,
+"t": 7.431
+}
+]
+},
+{
+"shot": "s07_gentle",
+"i": 0,
+"file": "audio/lines/s07_gentle_0.wav",
+"dur": 4.74,
+"text": "His very name means the auspicious one — the kind, the gentle.",
+"chunks": [
+"His very name means",
+"the *auspicious* one —",
+"the kind, the *gentle.*"
+],
+"words": [
+{
+"w": "His",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "very",
+"c": 0,
+"em": false,
+"t": 0.304
+},
+{
+"w": "name",
+"c": 0,
+"em": false,
+"t": 0.638
+},
+{
+"w": "means",
+"c": 0,
+"em": false,
+"t": 0.972
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.367
+},
+{
+"w": "auspicious",
+"c": 1,
+"em": true,
+"t": 1.641
+},
+{
+"w": "one",
+"c": 1,
+"em": false,
+"t": 2.34
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 2.614
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.009
+},
+{
+"w": "kind,",
+"c": 2,
+"em": false,
+"t": 3.282
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.829
+},
+{
+"w": "gentle.",
+"c": 2,
+"em": true,
+"t": 4.103
+}
+]
+},
+{
+"shot": "s07_gentle",
+"i": 1,
+"file": "audio/lines/s07_gentle_1.wav",
+"dur": 4.916,
+"text": "And to those who love him, he is the source, and the home, of everything.",
+"chunks": [
+"And to those who love him,",
+"he is the source, and the home,",
+"of *everything.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "to",
+"c": 0,
+"em": false,
+"t": 0.271
+},
+{
+"w": "those",
+"c": 0,
+"em": false,
+"t": 0.458
+},
+{
+"w": "who",
+"c": 0,
+"em": false,
+"t": 0.807
+},
+{
+"w": "love",
+"c": 0,
+"em": false,
+"t": 1.048
+},
+{
+"w": "him,",
+"c": 0,
+"em": false,
+"t": 1.342
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 1.771
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.958
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.145
+},
+{
+"w": "source,",
+"c": 1,
+"em": false,
+"t": 2.386
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.975
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.216
+},
+{
+"w": "home,",
+"c": 1,
+"em": false,
+"t": 3.457
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 3.939
+},
+{
+"w": "everything.",
+"c": 2,
+"em": true,
+"t": 4.127
+}
+]
+},
+{
+"shot": "s08_look",
+"i": 0,
+"file": "audio/lines/s08_look_0.wav",
+"dur": 4.344,
+"text": "Look closely at Shiva, for everything about him tells a story.",
+"chunks": [
+"Look closely at Shiva,",
+"for everything about him",
+"tells a *story.*"
+],
+"words": [
+{
+"w": "Look",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "closely",
+"c": 0,
+"em": false,
+"t": 0.355
+},
+{
+"w": "at",
+"c": 0,
+"em": false,
+"t": 0.857
+},
+{
+"w": "Shiva,",
+"c": 0,
+"em": false,
+"t": 1.064
+},
+{
+"w": "for",
+"c": 1,
+"em": false,
+"t": 1.654
+},
+{
+"w": "everything",
+"c": 1,
+"em": false,
+"t": 1.92
+},
+{
+"w": "about",
+"c": 1,
+"em": false,
+"t": 2.6
+},
+{
+"w": "him",
+"c": 1,
+"em": false,
+"t": 2.984
+},
+{
+"w": "tells",
+"c": 2,
+"em": false,
+"t": 3.249
+},
+{
+"w": "a",
+"c": 2,
+"em": false,
+"t": 3.633
+},
+{
+"w": "story.",
+"c": 2,
+"em": true,
+"t": 3.781
+}
+]
+},
+{
+"shot": "s09_hair",
+"i": 0,
+"file": "audio/lines/s09_hair_0.wav",
+"dur": 8.516,
+"text": "His long, matted hair is the hair of a yogi — one who has left every comfort behind to search for the truth.",
+"chunks": [
+"His long, matted hair",
+"is the hair of a *yogi* —",
+"one who has left every comfort behind",
+"to search for the *truth.*"
+],
+"words": [
+{
+"w": "His",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "long,",
+"c": 0,
+"em": false,
+"t": 0.326
+},
+{
+"w": "matted",
+"c": 0,
+"em": false,
+"t": 0.919
+},
+{
+"w": "hair",
+"c": 0,
+"em": false,
+"t": 1.413
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.776
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.006
+},
+{
+"w": "hair",
+"c": 1,
+"em": false,
+"t": 2.303
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 2.665
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.895
+},
+{
+"w": "yogi",
+"c": 1,
+"em": true,
+"t": 3.06
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 3.422
+},
+{
+"w": "one",
+"c": 2,
+"em": false,
+"t": 3.85
+},
+{
+"w": "who",
+"c": 2,
+"em": false,
+"t": 4.147
+},
+{
+"w": "has",
+"c": 2,
+"em": false,
+"t": 4.443
+},
+{
+"w": "left",
+"c": 2,
+"em": false,
+"t": 4.74
+},
+{
+"w": "every",
+"c": 2,
+"em": false,
+"t": 5.102
+},
+{
+"w": "comfort",
+"c": 2,
+"em": false,
+"t": 5.53
+},
+{
+"w": "behind",
+"c": 2,
+"em": false,
+"t": 6.09
+},
+{
+"w": "to",
+"c": 3,
+"em": false,
+"t": 6.584
+},
+{
+"w": "search",
+"c": 3,
+"em": false,
+"t": 6.815
+},
+{
+"w": "for",
+"c": 3,
+"em": false,
+"t": 7.309
+},
+{
+"w": "the",
+"c": 3,
+"em": false,
+"t": 7.605
+},
+{
+"w": "truth.",
+"c": 3,
+"em": true,
+"t": 7.902
+}
+]
+},
+{
+"shot": "s10_moon",
+"i": 0,
+"file": "audio/lines/s10_moon_0.wav",
+"dur": 8.201,
+"text": "In it rests a crescent moon, growing and fading, night after night — a sign that he is the master of time.",
+"chunks": [
+"In it rests a crescent *moon,*",
+"growing and fading, night after night —",
+"a sign that he is the master of *time.*"
+],
+"words": [
+{
+"w": "In",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "it",
+"c": 0,
+"em": false,
+"t": 0.252
+},
+{
+"w": "rests",
+"c": 0,
+"em": false,
+"t": 0.474
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 0.886
+},
+{
+"w": "crescent",
+"c": 0,
+"em": false,
+"t": 1.044
+},
+{
+"w": "moon,",
+"c": 0,
+"em": true,
+"t": 1.647
+},
+{
+"w": "growing",
+"c": 1,
+"em": false,
+"t": 2.217
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.756
+},
+{
+"w": "fading,",
+"c": 1,
+"em": false,
+"t": 3.041
+},
+{
+"w": "night",
+"c": 1,
+"em": false,
+"t": 3.739
+},
+{
+"w": "after",
+"c": 1,
+"em": false,
+"t": 4.151
+},
+{
+"w": "night",
+"c": 1,
+"em": false,
+"t": 4.563
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 4.975
+},
+{
+"w": "a",
+"c": 2,
+"em": false,
+"t": 5.387
+},
+{
+"w": "sign",
+"c": 2,
+"em": false,
+"t": 5.545
+},
+{
+"w": "that",
+"c": 2,
+"em": false,
+"t": 5.894
+},
+{
+"w": "he",
+"c": 2,
+"em": false,
+"t": 6.243
+},
+{
+"w": "is",
+"c": 2,
+"em": false,
+"t": 6.464
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 6.686
+},
+{
+"w": "master",
+"c": 2,
+"em": false,
+"t": 6.972
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 7.447
+},
+{
+"w": "time.",
+"c": 2,
+"em": true,
+"t": 7.669
+}
+]
+},
+{
+"shot": "s11_gangahair",
+"i": 0,
+"file": "audio/lines/s11_gangahair_0.wav",
+"dur": 5.015,
+"text": "From his locks springs the river Ganga, flowing from heaven down to earth.",
+"chunks": [
+"From his locks springs the river *Ganga,*",
+"flowing from heaven down to *earth.*"
+],
+"words": [
+{
+"w": "From",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.349
+},
+{
+"w": "locks",
+"c": 0,
+"em": false,
+"t": 0.609
+},
+{
+"w": "springs",
+"c": 0,
+"em": false,
+"t": 0.986
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.478
+},
+{
+"w": "river",
+"c": 0,
+"em": false,
+"t": 1.739
+},
+{
+"w": "Ganga,",
+"c": 0,
+"em": true,
+"t": 2.115
+},
+{
+"w": "flowing",
+"c": 1,
+"em": false,
+"t": 2.694
+},
+{
+"w": "from",
+"c": 1,
+"em": false,
+"t": 3.187
+},
+{
+"w": "heaven",
+"c": 1,
+"em": false,
+"t": 3.505
+},
+{
+"w": "down",
+"c": 1,
+"em": false,
+"t": 3.94
+},
+{
+"w": "to",
+"c": 1,
+"em": false,
+"t": 4.258
+},
+{
+"w": "earth.",
+"c": 1,
+"em": true,
+"t": 4.461
+}
+]
+},
+{
+"shot": "s12_eye",
+"i": 0,
+"file": "audio/lines/s12_eye_0.wav",
+"dur": 6.964,
+"text": "On his forehead is a third eye — the eye of wisdom, which sees what ordinary eyes cannot.",
+"chunks": [
+"On his forehead is a third *eye* —",
+"the eye of wisdom,",
+"which sees what ordinary eyes *cannot.*"
+],
+"words": [
+{
+"w": "On",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.256
+},
+{
+"w": "forehead",
+"c": 0,
+"em": false,
+"t": 0.547
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 1.16
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 1.386
+},
+{
+"w": "third",
+"c": 0,
+"em": false,
+"t": 1.548
+},
+{
+"w": "eye",
+"c": 0,
+"em": true,
+"t": 1.968
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 2.258
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.678
+},
+{
+"w": "eye",
+"c": 1,
+"em": false,
+"t": 2.969
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 3.259
+},
+{
+"w": "wisdom,",
+"c": 1,
+"em": false,
+"t": 3.485
+},
+{
+"w": "which",
+"c": 2,
+"em": false,
+"t": 4.196
+},
+{
+"w": "sees",
+"c": 2,
+"em": false,
+"t": 4.616
+},
+{
+"w": "what",
+"c": 2,
+"em": false,
+"t": 4.971
+},
+{
+"w": "ordinary",
+"c": 2,
+"em": false,
+"t": 5.326
+},
+{
+"w": "eyes",
+"c": 2,
+"em": false,
+"t": 5.94
+},
+{
+"w": "cannot.",
+"c": 2,
+"em": true,
+"t": 6.295
+}
+]
+},
+{
+"shot": "s12_eye",
+"i": 1,
+"file": "audio/lines/s12_eye_1.wav",
+"dur": 3.095,
+"text": "When it opens, all that is false burns away.",
+"chunks": [
+"When it opens,",
+"all that is false burns *away.*"
+],
+"words": [
+{
+"w": "When",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "it",
+"c": 0,
+"em": false,
+"t": 0.342
+},
+{
+"w": "opens,",
+"c": 0,
+"em": false,
+"t": 0.54
+},
+{
+"w": "all",
+"c": 1,
+"em": false,
+"t": 1.106
+},
+{
+"w": "that",
+"c": 1,
+"em": false,
+"t": 1.361
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.673
+},
+{
+"w": "false",
+"c": 1,
+"em": false,
+"t": 1.871
+},
+{
+"w": "burns",
+"c": 1,
+"em": false,
+"t": 2.239
+},
+{
+"w": "away.",
+"c": 1,
+"em": true,
+"t": 2.607
+}
+]
+},
+{
+"shot": "s13_snake",
+"i": 0,
+"file": "audio/lines/s13_snake_0.wav",
+"dur": 3.108,
+"text": "Around his neck coils a serpent, Vasuki.",
+"chunks": [
+"Around his neck coils a *serpent,*",
+"Vasuki."
+],
+"words": [
+{
+"w": "Around",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.502
+},
+{
+"w": "neck",
+"c": 0,
+"em": false,
+"t": 0.785
+},
+{
+"w": "coils",
+"c": 0,
+"em": false,
+"t": 1.131
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 1.54
+},
+{
+"w": "serpent,",
+"c": 0,
+"em": true,
+"t": 1.698
+},
+{
+"w": "Vasuki.",
+"c": 1,
+"em": false,
+"t": 2.453
+}
+]
+},
+{
+"shot": "s13_snake",
+"i": 1,
+"file": "audio/lines/s13_snake_1.wav",
+"dur": 3.209,
+"text": "Fear itself, worn calmly as an ornament.",
+"chunks": [
+"Fear itself,",
+"worn calmly as an *ornament.*"
+],
+"words": [
+{
+"w": "Fear",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "itself,",
+"c": 0,
+"em": false,
+"t": 0.388
+},
+{
+"w": "worn",
+"c": 1,
+"em": false,
+"t": 1.104
+},
+{
+"w": "calmly",
+"c": 1,
+"em": false,
+"t": 1.462
+},
+{
+"w": "as",
+"c": 1,
+"em": false,
+"t": 1.95
+},
+{
+"w": "an",
+"c": 1,
+"em": false,
+"t": 2.178
+},
+{
+"w": "ornament.",
+"c": 1,
+"em": true,
+"t": 2.406
+}
+]
+},
+{
+"shot": "s14_trishul",
+"i": 0,
+"file": "audio/lines/s14_trishul_0.wav",
+"dur": 8.96,
+"text": "In his hand is the trishula, a trident with three points — said to stand for creation, protection, and dissolution.",
+"chunks": [
+"In his hand is the *trishula,*",
+"a trident with three points —",
+"said to stand for creation, protection,",
+"and *dissolution.*"
+],
+"words": [
+{
+"w": "In",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.254
+},
+{
+"w": "hand",
+"c": 0,
+"em": false,
+"t": 0.543
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.895
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.119
+},
+{
+"w": "trishula,",
+"c": 0,
+"em": true,
+"t": 1.408
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.241
+},
+{
+"w": "trident",
+"c": 1,
+"em": false,
+"t": 2.401
+},
+{
+"w": "with",
+"c": 1,
+"em": false,
+"t": 2.945
+},
+{
+"w": "three",
+"c": 1,
+"em": false,
+"t": 3.298
+},
+{
+"w": "points",
+"c": 1,
+"em": false,
+"t": 3.714
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 4.195
+},
+{
+"w": "said",
+"c": 2,
+"em": false,
+"t": 4.611
+},
+{
+"w": "to",
+"c": 2,
+"em": false,
+"t": 4.964
+},
+{
+"w": "stand",
+"c": 2,
+"em": false,
+"t": 5.188
+},
+{
+"w": "for",
+"c": 2,
+"em": false,
+"t": 5.604
+},
+{
+"w": "creation,",
+"c": 2,
+"em": false,
+"t": 5.893
+},
+{
+"w": "protection,",
+"c": 2,
+"em": false,
+"t": 6.726
+},
+{
+"w": "and",
+"c": 3,
+"em": false,
+"t": 7.687
+},
+{
+"w": "dissolution.",
+"c": 3,
+"em": true,
+"t": 7.975
+}
+]
+},
+{
+"shot": "s15_drum",
+"i": 0,
+"file": "audio/lines/s15_drum_0.wav",
+"dur": 6.334,
+"text": "Tied to it is the damaru, a small drum whose beat is the rhythm of the cosmos.",
+"chunks": [
+"Tied to it is the *damaru,*",
+"a small drum whose beat",
+"is the rhythm of the *cosmos.*"
+],
+"words": [
+{
+"w": "Tied",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "to",
+"c": 0,
+"em": false,
+"t": 0.408
+},
+{
+"w": "it",
+"c": 0,
+"em": false,
+"t": 0.648
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.889
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.129
+},
+{
+"w": "damaru,",
+"c": 0,
+"em": true,
+"t": 1.439
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.195
+},
+{
+"w": "small",
+"c": 1,
+"em": false,
+"t": 2.366
+},
+{
+"w": "drum",
+"c": 1,
+"em": false,
+"t": 2.813
+},
+{
+"w": "whose",
+"c": 1,
+"em": false,
+"t": 3.191
+},
+{
+"w": "beat",
+"c": 1,
+"em": false,
+"t": 3.638
+},
+{
+"w": "is",
+"c": 2,
+"em": false,
+"t": 4.015
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 4.256
+},
+{
+"w": "rhythm",
+"c": 2,
+"em": false,
+"t": 4.565
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 5.081
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.321
+},
+{
+"w": "cosmos.",
+"c": 2,
+"em": true,
+"t": 5.63
+}
+]
+},
+{
+"shot": "s16_ash",
+"i": 0,
+"file": "audio/lines/s16_ash_0.wav",
+"dur": 6.454,
+"text": "His body is covered in ash — a reminder that everything in this world will one day pass.",
+"chunks": [
+"His body is covered in *ash* —",
+"a reminder that everything in this world",
+"will one day *pass.*"
+],
+"words": [
+{
+"w": "His",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "body",
+"c": 0,
+"em": false,
+"t": 0.308
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.648
+},
+{
+"w": "covered",
+"c": 0,
+"em": false,
+"t": 0.864
+},
+{
+"w": "in",
+"c": 0,
+"em": false,
+"t": 1.39
+},
+{
+"w": "ash",
+"c": 0,
+"em": true,
+"t": 1.606
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 1.884
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.286
+},
+{
+"w": "reminder",
+"c": 1,
+"em": false,
+"t": 2.44
+},
+{
+"w": "that",
+"c": 1,
+"em": false,
+"t": 3.027
+},
+{
+"w": "everything",
+"c": 1,
+"em": false,
+"t": 3.367
+},
+{
+"w": "in",
+"c": 1,
+"em": false,
+"t": 4.078
+},
+{
+"w": "this",
+"c": 1,
+"em": false,
+"t": 4.294
+},
+{
+"w": "world",
+"c": 1,
+"em": false,
+"t": 4.634
+},
+{
+"w": "will",
+"c": 2,
+"em": false,
+"t": 5.036
+},
+{
+"w": "one",
+"c": 2,
+"em": false,
+"t": 5.376
+},
+{
+"w": "day",
+"c": 2,
+"em": false,
+"t": 5.654
+},
+{
+"w": "pass.",
+"c": 2,
+"em": true,
+"t": 5.932
+}
+]
+},
+{
+"shot": "s16_ash",
+"i": 1,
+"file": "audio/lines/s16_ash_1.wav",
+"dur": 5.857,
+"text": "He wears a tiger skin and rudraksha beads, owning nothing, and needing nothing.",
+"chunks": [
+"He wears a tiger skin",
+"and rudraksha beads,",
+"owning nothing, and needing *nothing.*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "wears",
+"c": 0,
+"em": false,
+"t": 0.248
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 0.654
+},
+{
+"w": "tiger",
+"c": 0,
+"em": false,
+"t": 0.81
+},
+{
+"w": "skin",
+"c": 0,
+"em": false,
+"t": 1.215
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.558
+},
+{
+"w": "rudraksha",
+"c": 1,
+"em": false,
+"t": 1.839
+},
+{
+"w": "beads,",
+"c": 1,
+"em": false,
+"t": 2.493
+},
+{
+"w": "owning",
+"c": 2,
+"em": false,
+"t": 3.117
+},
+{
+"w": "nothing,",
+"c": 2,
+"em": false,
+"t": 3.585
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 4.333
+},
+{
+"w": "needing",
+"c": 2,
+"em": false,
+"t": 4.614
+},
+{
+"w": "nothing.",
+"c": 2,
+"em": true,
+"t": 5.144
+}
+]
+},
+{
+"shot": "s17_kailash",
+"i": 0,
+"file": "audio/lines/s17_kailash_0.wav",
+"dur": 5.543,
+"text": "Shiva's home is Mount Kailash, a snowy peak high in the Himalayas.",
+"chunks": [
+"Shiva's home is Mount *Kailash,*",
+"a snowy peak",
+"high in the *Himalayas.*"
+],
+"words": [
+{
+"w": "Shiva's",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "home",
+"c": 0,
+"em": false,
+"t": 0.573
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.971
+},
+{
+"w": "Mount",
+"c": 0,
+"em": false,
+"t": 1.224
+},
+{
+"w": "Kailash,",
+"c": 0,
+"em": true,
+"t": 1.695
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.564
+},
+{
+"w": "snowy",
+"c": 1,
+"em": false,
+"t": 2.745
+},
+{
+"w": "peak",
+"c": 1,
+"em": false,
+"t": 3.215
+},
+{
+"w": "high",
+"c": 2,
+"em": false,
+"t": 3.613
+},
+{
+"w": "in",
+"c": 2,
+"em": false,
+"t": 4.011
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 4.265
+},
+{
+"w": "Himalayas.",
+"c": 2,
+"em": true,
+"t": 4.59
+}
+]
+},
+{
+"shot": "s18_adiyogi",
+"i": 0,
+"file": "audio/lines/s18_adiyogi_0.wav",
+"dur": 7.947,
+"text": "There he sits in deep meditation — the Adiyogi, the very first yogi, and the teacher of yoga itself.",
+"chunks": [
+"There he sits in deep meditation —",
+"the *Adiyogi,* the very first yogi,",
+"and the teacher of yoga *itself.*"
+],
+"words": [
+{
+"w": "There",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "he",
+"c": 0,
+"em": false,
+"t": 0.454
+},
+{
+"w": "sits",
+"c": 0,
+"em": false,
+"t": 0.682
+},
+{
+"w": "in",
+"c": 0,
+"em": false,
+"t": 1.041
+},
+{
+"w": "deep",
+"c": 0,
+"em": false,
+"t": 1.27
+},
+{
+"w": "meditation",
+"c": 0,
+"em": false,
+"t": 1.628
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 2.379
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.803
+},
+{
+"w": "Adiyogi,",
+"c": 1,
+"em": true,
+"t": 3.097
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.879
+},
+{
+"w": "very",
+"c": 1,
+"em": false,
+"t": 4.173
+},
+{
+"w": "first",
+"c": 1,
+"em": false,
+"t": 4.532
+},
+{
+"w": "yogi,",
+"c": 1,
+"em": false,
+"t": 4.956
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 5.543
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.837
+},
+{
+"w": "teacher",
+"c": 2,
+"em": false,
+"t": 6.13
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 6.685
+},
+{
+"w": "yoga",
+"c": 2,
+"em": false,
+"t": 6.913
+},
+{
+"w": "itself.",
+"c": 2,
+"em": true,
+"t": 7.272
+}
+]
+},
+{
+"shot": "s19_sati",
+"i": 0,
+"file": "audio/lines/s19_sati_0.wav",
+"dur": 1.779,
+"text": "But Shiva is not alone.",
+"chunks": [
+"But Shiva is not *alone.*"
+],
+"words": [
+{
+"w": "But",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 0.307
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.706
+},
+{
+"w": "not",
+"c": 0,
+"em": false,
+"t": 0.921
+},
+{
+"w": "alone.",
+"c": 0,
+"em": true,
+"t": 1.198
+}
+]
+},
+{
+"shot": "s19_sati",
+"i": 1,
+"file": "audio/lines/s19_sati_1.wav",
+"dur": 8.296,
+"text": "His first love was Sati, a princess who chose the wandering hermit over all the riches of her father's palace.",
+"chunks": [
+"His first love was *Sati,*",
+"a princess who chose the wandering hermit",
+"over all the riches of her father's *palace.*"
+],
+"words": [
+{
+"w": "His",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "first",
+"c": 0,
+"em": false,
+"t": 0.329
+},
+{
+"w": "love",
+"c": 0,
+"em": false,
+"t": 0.761
+},
+{
+"w": "was",
+"c": 0,
+"em": false,
+"t": 1.127
+},
+{
+"w": "Sati,",
+"c": 0,
+"em": true,
+"t": 1.426
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.025
+},
+{
+"w": "princess",
+"c": 1,
+"em": false,
+"t": 2.191
+},
+{
+"w": "who",
+"c": 1,
+"em": false,
+"t": 2.823
+},
+{
+"w": "chose",
+"c": 1,
+"em": false,
+"t": 3.122
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.554
+},
+{
+"w": "wandering",
+"c": 1,
+"em": false,
+"t": 3.854
+},
+{
+"w": "hermit",
+"c": 1,
+"em": false,
+"t": 4.552
+},
+{
+"w": "over",
+"c": 2,
+"em": false,
+"t": 5.051
+},
+{
+"w": "all",
+"c": 2,
+"em": false,
+"t": 5.416
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.716
+},
+{
+"w": "riches",
+"c": 2,
+"em": false,
+"t": 6.015
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 6.514
+},
+{
+"w": "her",
+"c": 2,
+"em": false,
+"t": 6.746
+},
+{
+"w": "father's",
+"c": 2,
+"em": false,
+"t": 7.046
+},
+{
+"w": "palace.",
+"c": 2,
+"em": true,
+"t": 7.611
+}
+]
+},
+{
+"shot": "s19_sati",
+"i": 2,
+"file": "audio/lines/s19_sati_2.wav",
+"dur": 8.319,
+"text": "When she was lost to him, Shiva's grief shook the three worlds — and he withdrew into silence for a very long time.",
+"chunks": [
+"When she was lost to him,",
+"Shiva's grief shook the three *worlds* —",
+"and he withdrew into silence",
+"for a very long *time.*"
+],
+"words": [
+{
+"w": "When",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "she",
+"c": 0,
+"em": false,
+"t": 0.368
+},
+{
+"w": "was",
+"c": 0,
+"em": false,
+"t": 0.644
+},
+{
+"w": "lost",
+"c": 0,
+"em": false,
+"t": 0.921
+},
+{
+"w": "to",
+"c": 0,
+"em": false,
+"t": 1.258
+},
+{
+"w": "him,",
+"c": 0,
+"em": false,
+"t": 1.473
+},
+{
+"w": "Shiva's",
+"c": 1,
+"em": false,
+"t": 1.965
+},
+{
+"w": "grief",
+"c": 1,
+"em": false,
+"t": 2.426
+},
+{
+"w": "shook",
+"c": 1,
+"em": false,
+"t": 2.825
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.224
+},
+{
+"w": "three",
+"c": 1,
+"em": false,
+"t": 3.5
+},
+{
+"w": "worlds",
+"c": 1,
+"em": true,
+"t": 3.9
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 4.36
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 4.76
+},
+{
+"w": "he",
+"c": 2,
+"em": false,
+"t": 5.036
+},
+{
+"w": "withdrew",
+"c": 2,
+"em": false,
+"t": 5.251
+},
+{
+"w": "into",
+"c": 2,
+"em": false,
+"t": 5.835
+},
+{
+"w": "silence",
+"c": 2,
+"em": false,
+"t": 6.172
+},
+{
+"w": "for",
+"c": 3,
+"em": false,
+"t": 6.695
+},
+{
+"w": "a",
+"c": 3,
+"em": false,
+"t": 6.971
+},
+{
+"w": "very",
+"c": 3,
+"em": false,
+"t": 7.125
+},
+{
+"w": "long",
+"c": 3,
+"em": false,
+"t": 7.462
+},
+{
+"w": "time.",
+"c": 3,
+"em": true,
+"t": 7.8
+}
+]
+},
+{
+"shot": "s19b_parvati",
+"i": 0,
+"file": "audio/lines/s19b_parvati_0.wav",
+"dur": 4.916,
+"text": "Then Sati was born again as Parvati, daughter of the mountain king.",
+"chunks": [
+"Then Sati was born again",
+"as *Parvati,*",
+"daughter of the mountain king."
+],
+"words": [
+{
+"w": "Then",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Sati",
+"c": 0,
+"em": false,
+"t": 0.373
+},
+{
+"w": "was",
+"c": 0,
+"em": false,
+"t": 0.715
+},
+{
+"w": "born",
+"c": 0,
+"em": false,
+"t": 0.996
+},
+{
+"w": "again",
+"c": 0,
+"em": false,
+"t": 1.338
+},
+{
+"w": "as",
+"c": 1,
+"em": false,
+"t": 1.743
+},
+{
+"w": "Parvati,",
+"c": 1,
+"em": true,
+"t": 1.961
+},
+{
+"w": "daughter",
+"c": 2,
+"em": false,
+"t": 2.709
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 3.301
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.519
+},
+{
+"w": "mountain",
+"c": 2,
+"em": false,
+"t": 3.799
+},
+{
+"w": "king.",
+"c": 2,
+"em": false,
+"t": 4.391
+}
+]
+},
+{
+"shot": "s19b_parvati",
+"i": 1,
+"file": "audio/lines/s19b_parvati_1.wav",
+"dur": 7.364,
+"text": "For years she meditated in the snow, until even the great hermit opened his eyes, and smiled.",
+"chunks": [
+"For years she meditated in the snow,",
+"until even the great hermit",
+"opened his eyes, and *smiled.*"
+],
+"words": [
+{
+"w": "For",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "years",
+"c": 0,
+"em": false,
+"t": 0.332
+},
+{
+"w": "she",
+"c": 0,
+"em": false,
+"t": 0.768
+},
+{
+"w": "meditated",
+"c": 0,
+"em": false,
+"t": 1.07
+},
+{
+"w": "in",
+"c": 0,
+"em": false,
+"t": 1.775
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 2.01
+},
+{
+"w": "snow,",
+"c": 0,
+"em": false,
+"t": 2.312
+},
+{
+"w": "until",
+"c": 1,
+"em": false,
+"t": 2.916
+},
+{
+"w": "even",
+"c": 1,
+"em": false,
+"t": 3.352
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.721
+},
+{
+"w": "great",
+"c": 1,
+"em": false,
+"t": 4.023
+},
+{
+"w": "hermit",
+"c": 1,
+"em": false,
+"t": 4.459
+},
+{
+"w": "opened",
+"c": 2,
+"em": false,
+"t": 4.962
+},
+{
+"w": "his",
+"c": 2,
+"em": false,
+"t": 5.466
+},
+{
+"w": "eyes,",
+"c": 2,
+"em": false,
+"t": 5.768
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 6.372
+},
+{
+"w": "smiled.",
+"c": 2,
+"em": true,
+"t": 6.674
+}
+]
+},
+{
+"shot": "s20_together",
+"i": 0,
+"file": "audio/lines/s20_together_0.wav",
+"dur": 7.979,
+"text": "She became his wife, his equal, and his strength — for Parvati is Shakti, the energy that moves the world.",
+"chunks": [
+"She became his wife,",
+"his equal,",
+"and his *strength* —",
+"for Parvati is Shakti,",
+"the energy that moves the *world.*"
+],
+"words": [
+{
+"w": "She",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "became",
+"c": 0,
+"em": false,
+"t": 0.304
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.761
+},
+{
+"w": "wife,",
+"c": 0,
+"em": false,
+"t": 1.035
+},
+{
+"w": "his",
+"c": 1,
+"em": false,
+"t": 1.584
+},
+{
+"w": "equal,",
+"c": 1,
+"em": false,
+"t": 1.858
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 2.467
+},
+{
+"w": "his",
+"c": 2,
+"em": false,
+"t": 2.741
+},
+{
+"w": "strength",
+"c": 2,
+"em": true,
+"t": 3.015
+},
+{
+"w": "—",
+"c": 2,
+"em": false,
+"t": 3.594
+},
+{
+"w": "for",
+"c": 3,
+"em": false,
+"t": 3.99
+},
+{
+"w": "Parvati",
+"c": 3,
+"em": false,
+"t": 4.264
+},
+{
+"w": "is",
+"c": 3,
+"em": false,
+"t": 4.782
+},
+{
+"w": "Shakti,",
+"c": 3,
+"em": false,
+"t": 4.995
+},
+{
+"w": "the",
+"c": 4,
+"em": false,
+"t": 5.665
+},
+{
+"w": "energy",
+"c": 4,
+"em": false,
+"t": 5.94
+},
+{
+"w": "that",
+"c": 4,
+"em": false,
+"t": 6.396
+},
+{
+"w": "moves",
+"c": 4,
+"em": false,
+"t": 6.732
+},
+{
+"w": "the",
+"c": 4,
+"em": false,
+"t": 7.128
+},
+{
+"w": "world.",
+"c": 4,
+"em": true,
+"t": 7.402
+}
+]
+},
+{
+"shot": "s21_sons",
+"i": 0,
+"file": "audio/lines/s21_sons_0.wav",
+"dur": 5.161,
+"text": "Their sons are Ganesha, the elephant-headed remover of obstacles,",
+"chunks": [
+"Their sons are *Ganesha,*",
+"the elephant-headed remover of obstacles,"
+],
+"words": [
+{
+"w": "Their",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "sons",
+"c": 0,
+"em": false,
+"t": 0.467
+},
+{
+"w": "are",
+"c": 0,
+"em": false,
+"t": 0.837
+},
+{
+"w": "Ganesha,",
+"c": 0,
+"em": true,
+"t": 1.14
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.947
+},
+{
+"w": "elephant-headed",
+"c": 1,
+"em": false,
+"t": 2.25
+},
+{
+"w": "remover",
+"c": 1,
+"em": false,
+"t": 3.292
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 3.864
+},
+{
+"w": "obstacles,",
+"c": 1,
+"em": false,
+"t": 4.1
+}
+]
+},
+{
+"shot": "s21_sons",
+"i": 1,
+"file": "audio/lines/s21_sons_1.wav",
+"dur": 3.977,
+"text": "and Kartikeya, the brave young commander of the gods.",
+"chunks": [
+"and *Kartikeya,*",
+"the brave young commander of the gods."
+],
+"words": [
+{
+"w": "and",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Kartikeya,",
+"c": 0,
+"em": true,
+"t": 0.312
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.191
+},
+{
+"w": "brave",
+"c": 1,
+"em": false,
+"t": 1.473
+},
+{
+"w": "young",
+"c": 1,
+"em": false,
+"t": 1.881
+},
+{
+"w": "commander",
+"c": 1,
+"em": false,
+"t": 2.288
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 2.947
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.167
+},
+{
+"w": "gods.",
+"c": 1,
+"em": false,
+"t": 3.449
+}
+]
+},
+{
+"shot": "s22_nandi",
+"i": 0,
+"file": "audio/lines/s22_nandi_0.wav",
+"dur": 8.264,
+"text": "And waiting faithfully at the door is Nandi, the gentle bull — Shiva's mount, and his most devoted friend.",
+"chunks": [
+"And waiting faithfully at the door",
+"is *Nandi,* the gentle bull —",
+"Shiva's mount,",
+"and his most devoted *friend.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "waiting",
+"c": 0,
+"em": false,
+"t": 0.323
+},
+{
+"w": "faithfully",
+"c": 0,
+"em": false,
+"t": 0.877
+},
+{
+"w": "at",
+"c": 0,
+"em": false,
+"t": 1.627
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.855
+},
+{
+"w": "door",
+"c": 0,
+"em": false,
+"t": 2.148
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 2.507
+},
+{
+"w": "Nandi,",
+"c": 1,
+"em": true,
+"t": 2.735
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.387
+},
+{
+"w": "gentle",
+"c": 1,
+"em": false,
+"t": 3.68
+},
+{
+"w": "bull",
+"c": 1,
+"em": false,
+"t": 4.169
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 4.527
+},
+{
+"w": "Shiva's",
+"c": 2,
+"em": false,
+"t": 4.951
+},
+{
+"w": "mount,",
+"c": 2,
+"em": false,
+"t": 5.44
+},
+{
+"w": "and",
+"c": 3,
+"em": false,
+"t": 6.091
+},
+{
+"w": "his",
+"c": 3,
+"em": false,
+"t": 6.385
+},
+{
+"w": "most",
+"c": 3,
+"em": false,
+"t": 6.678
+},
+{
+"w": "devoted",
+"c": 3,
+"em": false,
+"t": 7.036
+},
+{
+"w": "friend.",
+"c": 3,
+"em": true,
+"t": 7.59
+}
+]
+},
+{
+"shot": "s23_family",
+"i": 0,
+"file": "audio/lines/s23_family_0.wav",
+"dur": 5.07,
+"text": "So Shiva is both a hermit and a husband, a wanderer and a father.",
+"chunks": [
+"So Shiva is both a hermit",
+"and a *husband,*",
+"a wanderer and a *father.*"
+],
+"words": [
+{
+"w": "So",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 0.258
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.682
+},
+{
+"w": "both",
+"c": 0,
+"em": false,
+"t": 0.91
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 1.268
+},
+{
+"w": "hermit",
+"c": 0,
+"em": false,
+"t": 1.431
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.92
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.213
+},
+{
+"w": "husband,",
+"c": 1,
+"em": true,
+"t": 2.376
+},
+{
+"w": "a",
+"c": 2,
+"em": false,
+"t": 3.158
+},
+{
+"w": "wanderer",
+"c": 2,
+"em": false,
+"t": 3.321
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 3.94
+},
+{
+"w": "a",
+"c": 2,
+"em": false,
+"t": 4.233
+},
+{
+"w": "father.",
+"c": 2,
+"em": true,
+"t": 4.396
+}
+]
+},
+{
+"shot": "s23_family",
+"i": 1,
+"file": "audio/lines/s23_family_1.wav",
+"dur": 5.333,
+"text": "He shows that a spiritual life and a loving family can belong together.",
+"chunks": [
+"He shows that a spiritual life",
+"and a loving family",
+"can belong *together.*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "shows",
+"c": 0,
+"em": false,
+"t": 0.261
+},
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 0.69
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 1.053
+},
+{
+"w": "spiritual",
+"c": 0,
+"em": false,
+"t": 1.219
+},
+{
+"w": "life",
+"c": 0,
+"em": false,
+"t": 1.912
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.275
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.572
+},
+{
+"w": "loving",
+"c": 1,
+"em": false,
+"t": 2.737
+},
+{
+"w": "family",
+"c": 1,
+"em": false,
+"t": 3.232
+},
+{
+"w": "can",
+"c": 2,
+"em": false,
+"t": 3.728
+},
+{
+"w": "belong",
+"c": 2,
+"em": false,
+"t": 4.025
+},
+{
+"w": "together.",
+"c": 2,
+"em": true,
+"t": 4.52
+}
+]
+},
+{
+"shot": "s24_churn",
+"i": 0,
+"file": "audio/lines/s24_churn_0.wav",
+"dur": 8.201,
+"text": "Long ago, the gods and the demons churned the great ocean of milk, searching for the nectar of immortality.",
+"chunks": [
+"Long ago, the gods and the demons",
+"churned the great ocean of milk,",
+"searching for the nectar of *immortality.*"
+],
+"words": [
+{
+"w": "Long",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "ago,",
+"c": 0,
+"em": false,
+"t": 0.391
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.917
+},
+{
+"w": "gods",
+"c": 0,
+"em": false,
+"t": 1.213
+},
+{
+"w": "and",
+"c": 0,
+"em": false,
+"t": 1.575
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.87
+},
+{
+"w": "demons",
+"c": 0,
+"em": false,
+"t": 2.166
+},
+{
+"w": "churned",
+"c": 1,
+"em": false,
+"t": 2.659
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.218
+},
+{
+"w": "great",
+"c": 1,
+"em": false,
+"t": 3.513
+},
+{
+"w": "ocean",
+"c": 1,
+"em": false,
+"t": 3.941
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 4.368
+},
+{
+"w": "milk,",
+"c": 1,
+"em": false,
+"t": 4.598
+},
+{
+"w": "searching",
+"c": 2,
+"em": false,
+"t": 5.189
+},
+{
+"w": "for",
+"c": 2,
+"em": false,
+"t": 5.879
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 6.175
+},
+{
+"w": "nectar",
+"c": 2,
+"em": false,
+"t": 6.471
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 6.964
+},
+{
+"w": "immortality.",
+"c": 2,
+"em": true,
+"t": 7.194
+}
+]
+},
+{
+"shot": "s25_poison",
+"i": 0,
+"file": "audio/lines/s25_poison_0.wav",
+"dur": 7.076,
+"text": "But before the nectar came a terrible poison — Halahala, dark enough to destroy every world.",
+"chunks": [
+"But before the nectar",
+"came a terrible *poison* —",
+"Halahala,",
+"dark enough to destroy every *world.*"
+],
+"words": [
+{
+"w": "But",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "before",
+"c": 0,
+"em": false,
+"t": 0.32
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.803
+},
+{
+"w": "nectar",
+"c": 0,
+"em": false,
+"t": 1.093
+},
+{
+"w": "came",
+"c": 1,
+"em": false,
+"t": 1.576
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 1.931
+},
+{
+"w": "terrible",
+"c": 1,
+"em": false,
+"t": 2.092
+},
+{
+"w": "poison",
+"c": 1,
+"em": true,
+"t": 2.704
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 3.187
+},
+{
+"w": "Halahala,",
+"c": 2,
+"em": false,
+"t": 3.606
+},
+{
+"w": "dark",
+"c": 3,
+"em": false,
+"t": 4.443
+},
+{
+"w": "enough",
+"c": 3,
+"em": false,
+"t": 4.798
+},
+{
+"w": "to",
+"c": 3,
+"em": false,
+"t": 5.281
+},
+{
+"w": "destroy",
+"c": 3,
+"em": false,
+"t": 5.507
+},
+{
+"w": "every",
+"c": 3,
+"em": false,
+"t": 6.054
+},
+{
+"w": "world.",
+"c": 3,
+"em": true,
+"t": 6.473
+}
+]
+},
+{
+"shot": "s26_run",
+"i": 0,
+"file": "audio/lines/s26_run_0.wav",
+"dur": 2.494,
+"text": "Terrified, everyone ran to Shiva.",
+"chunks": [
+"Terrified,",
+"everyone ran to *Shiva.*"
+],
+"words": [
+{
+"w": "Terrified,",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "everyone",
+"c": 1,
+"em": false,
+"t": 0.871
+},
+{
+"w": "ran",
+"c": 1,
+"em": false,
+"t": 1.442
+},
+{
+"w": "to",
+"c": 1,
+"em": false,
+"t": 1.713
+},
+{
+"w": "Shiva.",
+"c": 1,
+"em": true,
+"t": 1.923
+}
+]
+},
+{
+"shot": "s27_drink",
+"i": 0,
+"file": "audio/lines/s27_drink_0.wav",
+"dur": 5.154,
+"text": "Without a moment's doubt, he gathered the poison in his palm… and drank it.",
+"chunks": [
+"Without a moment's doubt,",
+"he gathered the poison in his palm…",
+"and *drank* it."
+],
+"words": [
+{
+"w": "Without",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 0.511
+},
+{
+"w": "moment's",
+"c": 0,
+"em": false,
+"t": 0.652
+},
+{
+"w": "doubt,",
+"c": 0,
+"em": false,
+"t": 1.133
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 1.698
+},
+{
+"w": "gathered",
+"c": 1,
+"em": false,
+"t": 1.896
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.433
+},
+{
+"w": "poison",
+"c": 1,
+"em": false,
+"t": 2.688
+},
+{
+"w": "in",
+"c": 1,
+"em": false,
+"t": 3.112
+},
+{
+"w": "his",
+"c": 1,
+"em": false,
+"t": 3.31
+},
+{
+"w": "palm…",
+"c": 1,
+"em": false,
+"t": 3.564
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 4.158
+},
+{
+"w": "drank",
+"c": 2,
+"em": true,
+"t": 4.412
+},
+{
+"w": "it.",
+"c": 2,
+"em": false,
+"t": 4.78
+}
+]
+},
+{
+"shot": "s28_throat",
+"i": 0,
+"file": "audio/lines/s28_throat_0.wav",
+"dur": 7.7,
+"text": "Parvati pressed her hand against his throat, and there the poison stayed — turning it a deep, dark blue.",
+"chunks": [
+"Parvati pressed her hand",
+"against his throat,",
+"and there the poison *stayed* —",
+"turning it a deep, dark *blue.*"
+],
+"words": [
+{
+"w": "Parvati",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "pressed",
+"c": 0,
+"em": false,
+"t": 0.55
+},
+{
+"w": "her",
+"c": 0,
+"em": false,
+"t": 1.069
+},
+{
+"w": "hand",
+"c": 0,
+"em": false,
+"t": 1.344
+},
+{
+"w": "against",
+"c": 1,
+"em": false,
+"t": 1.681
+},
+{
+"w": "his",
+"c": 1,
+"em": false,
+"t": 2.2
+},
+{
+"w": "throat,",
+"c": 1,
+"em": false,
+"t": 2.475
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 3.148
+},
+{
+"w": "there",
+"c": 2,
+"em": false,
+"t": 3.423
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.82
+},
+{
+"w": "poison",
+"c": 2,
+"em": false,
+"t": 4.095
+},
+{
+"w": "stayed",
+"c": 2,
+"em": true,
+"t": 4.554
+},
+{
+"w": "—",
+"c": 2,
+"em": false,
+"t": 5.012
+},
+{
+"w": "turning",
+"c": 3,
+"em": false,
+"t": 5.409
+},
+{
+"w": "it",
+"c": 3,
+"em": false,
+"t": 5.929
+},
+{
+"w": "a",
+"c": 3,
+"em": false,
+"t": 6.143
+},
+{
+"w": "deep,",
+"c": 3,
+"em": false,
+"t": 6.296
+},
+{
+"w": "dark",
+"c": 3,
+"em": false,
+"t": 6.846
+},
+{
+"w": "blue.",
+"c": 3,
+"em": true,
+"t": 7.182
+}
+]
+},
+{
+"shot": "s29_neelkanth",
+"i": 0,
+"file": "audio/lines/s29_neelkanth_0.wav",
+"dur": 8.388,
+"text": "From that day he was called Neelakantha, the blue-throated one — who takes in the world's bitterness so that others may live.",
+"chunks": [
+"From that day he was called *Neelakantha,*",
+"the blue-throated one —",
+"who takes in the world's bitterness",
+"so that others may *live.*"
+],
+"words": [
+{
+"w": "From",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 0.35
+},
+{
+"w": "day",
+"c": 0,
+"em": false,
+"t": 0.67
+},
+{
+"w": "he",
+"c": 0,
+"em": false,
+"t": 0.932
+},
+{
+"w": "was",
+"c": 0,
+"em": false,
+"t": 1.136
+},
+{
+"w": "called",
+"c": 0,
+"em": false,
+"t": 1.398
+},
+{
+"w": "Neelakantha,",
+"c": 0,
+"em": true,
+"t": 1.835
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.766
+},
+{
+"w": "blue-throated",
+"c": 1,
+"em": false,
+"t": 3.028
+},
+{
+"w": "one",
+"c": 1,
+"em": false,
+"t": 3.814
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 4.076
+},
+{
+"w": "who",
+"c": 2,
+"em": false,
+"t": 4.455
+},
+{
+"w": "takes",
+"c": 2,
+"em": false,
+"t": 4.717
+},
+{
+"w": "in",
+"c": 2,
+"em": false,
+"t": 5.095
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.299
+},
+{
+"w": "world's",
+"c": 2,
+"em": false,
+"t": 5.561
+},
+{
+"w": "bitterness",
+"c": 2,
+"em": false,
+"t": 5.998
+},
+{
+"w": "so",
+"c": 3,
+"em": false,
+"t": 6.667
+},
+{
+"w": "that",
+"c": 3,
+"em": false,
+"t": 6.871
+},
+{
+"w": "others",
+"c": 3,
+"em": false,
+"t": 7.191
+},
+{
+"w": "may",
+"c": 3,
+"em": false,
+"t": 7.628
+},
+{
+"w": "live.",
+"c": 3,
+"em": true,
+"t": 7.89
+}
+]
+},
+{
+"shot": "s30_bhagiratha",
+"i": 0,
+"file": "audio/lines/s30_bhagiratha_0.wav",
+"dur": 8.562,
+"text": "Another story tells of King Bhagiratha, who prayed for the heavenly river Ganga to come down and bless the earth.",
+"chunks": [
+"Another story tells of King *Bhagiratha,*",
+"who prayed for the heavenly river Ganga",
+"to come down and bless the *earth.*"
+],
+"words": [
+{
+"w": "Another",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "story",
+"c": 0,
+"em": false,
+"t": 0.595
+},
+{
+"w": "tells",
+"c": 0,
+"em": false,
+"t": 1.028
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 1.46
+},
+{
+"w": "King",
+"c": 0,
+"em": false,
+"t": 1.693
+},
+{
+"w": "Bhagiratha,",
+"c": 0,
+"em": true,
+"t": 2.058
+},
+{
+"w": "who",
+"c": 1,
+"em": false,
+"t": 3.056
+},
+{
+"w": "prayed",
+"c": 1,
+"em": false,
+"t": 3.355
+},
+{
+"w": "for",
+"c": 1,
+"em": false,
+"t": 3.854
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 4.153
+},
+{
+"w": "heavenly",
+"c": 1,
+"em": false,
+"t": 4.452
+},
+{
+"w": "river",
+"c": 1,
+"em": false,
+"t": 5.084
+},
+{
+"w": "Ganga",
+"c": 1,
+"em": false,
+"t": 5.516
+},
+{
+"w": "to",
+"c": 2,
+"em": false,
+"t": 5.949
+},
+{
+"w": "come",
+"c": 2,
+"em": false,
+"t": 6.181
+},
+{
+"w": "down",
+"c": 2,
+"em": false,
+"t": 6.547
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 6.913
+},
+{
+"w": "bless",
+"c": 2,
+"em": false,
+"t": 7.212
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 7.644
+},
+{
+"w": "earth.",
+"c": 2,
+"em": true,
+"t": 7.944
+}
+]
+},
+{
+"shot": "s31_fall",
+"i": 0,
+"file": "audio/lines/s31_fall_0.wav",
+"dur": 3.938,
+"text": "But her fall was so mighty that it would have shattered the ground.",
+"chunks": [
+"But her fall was so mighty",
+"that it would have shattered the *ground.*"
+],
+"words": [
+{
+"w": "But",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "her",
+"c": 0,
+"em": false,
+"t": 0.259
+},
+{
+"w": "fall",
+"c": 0,
+"em": false,
+"t": 0.488
+},
+{
+"w": "was",
+"c": 0,
+"em": false,
+"t": 0.767
+},
+{
+"w": "so",
+"c": 0,
+"em": false,
+"t": 0.996
+},
+{
+"w": "mighty",
+"c": 0,
+"em": false,
+"t": 1.174
+},
+{
+"w": "that",
+"c": 1,
+"em": false,
+"t": 1.555
+},
+{
+"w": "it",
+"c": 1,
+"em": false,
+"t": 1.835
+},
+{
+"w": "would",
+"c": 1,
+"em": false,
+"t": 2.013
+},
+{
+"w": "have",
+"c": 1,
+"em": false,
+"t": 2.343
+},
+{
+"w": "shattered",
+"c": 1,
+"em": false,
+"t": 2.623
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 3.157
+},
+{
+"w": "ground.",
+"c": 1,
+"em": true,
+"t": 3.385
+}
+]
+},
+{
+"shot": "s32_catch",
+"i": 0,
+"file": "audio/lines/s32_catch_0.wav",
+"dur": 4.238,
+"text": "So Shiva stood beneath her, and caught the whole river in his hair.",
+"chunks": [
+"So Shiva stood beneath her,",
+"and caught the whole river",
+"in his *hair.*"
+],
+"words": [
+{
+"w": "So",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 0.216
+},
+{
+"w": "stood",
+"c": 0,
+"em": false,
+"t": 0.561
+},
+{
+"w": "beneath",
+"c": 0,
+"em": false,
+"t": 0.906
+},
+{
+"w": "her,",
+"c": 0,
+"em": false,
+"t": 1.357
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.782
+},
+{
+"w": "caught",
+"c": 1,
+"em": false,
+"t": 2.021
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.419
+},
+{
+"w": "whole",
+"c": 1,
+"em": false,
+"t": 2.658
+},
+{
+"w": "river",
+"c": 1,
+"em": false,
+"t": 3.003
+},
+{
+"w": "in",
+"c": 2,
+"em": false,
+"t": 3.348
+},
+{
+"w": "his",
+"c": 2,
+"em": false,
+"t": 3.534
+},
+{
+"w": "hair.",
+"c": 2,
+"em": true,
+"t": 3.773
+}
+]
+},
+{
+"shot": "s33_river",
+"i": 0,
+"file": "audio/lines/s33_river_0.wav",
+"dur": 4.136,
+"text": "Through his tangled locks she slipped down in gentle streams,",
+"chunks": [
+"Through his tangled locks",
+"she slipped down in gentle streams,"
+],
+"words": [
+{
+"w": "Through",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.517
+},
+{
+"w": "tangled",
+"c": 0,
+"em": false,
+"t": 0.776
+},
+{
+"w": "locks",
+"c": 0,
+"em": false,
+"t": 1.263
+},
+{
+"w": "she",
+"c": 1,
+"em": false,
+"t": 1.636
+},
+{
+"w": "slipped",
+"c": 1,
+"em": false,
+"t": 1.894
+},
+{
+"w": "down",
+"c": 1,
+"em": false,
+"t": 2.381
+},
+{
+"w": "in",
+"c": 1,
+"em": false,
+"t": 2.697
+},
+{
+"w": "gentle",
+"c": 1,
+"em": false,
+"t": 2.897
+},
+{
+"w": "streams,",
+"c": 1,
+"em": false,
+"t": 3.327
+}
+]
+},
+{
+"shot": "s33_river",
+"i": 1,
+"file": "audio/lines/s33_river_1.wav",
+"dur": 3.913,
+"text": "and became the river that millions still call Mother today.",
+"chunks": [
+"and became the river",
+"that millions still call *Mother*",
+"today."
+],
+"words": [
+{
+"w": "and",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "became",
+"c": 0,
+"em": false,
+"t": 0.29
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.725
+},
+{
+"w": "river",
+"c": 0,
+"em": false,
+"t": 0.985
+},
+{
+"w": "that",
+"c": 1,
+"em": false,
+"t": 1.361
+},
+{
+"w": "millions",
+"c": 1,
+"em": false,
+"t": 1.68
+},
+{
+"w": "still",
+"c": 1,
+"em": false,
+"t": 2.23
+},
+{
+"w": "call",
+"c": 1,
+"em": false,
+"t": 2.606
+},
+{
+"w": "Mother",
+"c": 1,
+"em": true,
+"t": 2.924
+},
+{
+"w": "today.",
+"c": 2,
+"em": false,
+"t": 3.359
+}
+]
+},
+{
+"shot": "s34_nataraja",
+"i": 0,
+"file": "audio/lines/s34_nataraja_0.wav",
+"dur": 3.693,
+"text": "Shiva is also Nataraja — the Lord of the Dance.",
+"chunks": [
+"Shiva is also *Nataraja* —",
+"the Lord of the *Dance.*"
+],
+"words": [
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.434
+},
+{
+"w": "also",
+"c": 0,
+"em": false,
+"t": 0.652
+},
+{
+"w": "Nataraja",
+"c": 0,
+"em": true,
+"t": 0.993
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 1.584
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.988
+},
+{
+"w": "Lord",
+"c": 1,
+"em": false,
+"t": 2.268
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 2.609
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.827
+},
+{
+"w": "Dance.",
+"c": 1,
+"em": true,
+"t": 3.107
+}
+]
+},
+{
+"shot": "s35_tandava",
+"i": 0,
+"file": "audio/lines/s35_tandava_0.wav",
+"dur": 6.781,
+"text": "Inside a ring of fire he dances the Tandava, and the whole universe moves to his rhythm.",
+"chunks": [
+"Inside a ring of fire",
+"he dances the *Tandava,*",
+"and the whole universe",
+"moves to his *rhythm.*"
+],
+"words": [
+{
+"w": "Inside",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 0.527
+},
+{
+"w": "ring",
+"c": 0,
+"em": false,
+"t": 0.693
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 1.058
+},
+{
+"w": "fire",
+"c": 0,
+"em": false,
+"t": 1.29
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 1.655
+},
+{
+"w": "dances",
+"c": 1,
+"em": false,
+"t": 1.887
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.384
+},
+{
+"w": "Tandava,",
+"c": 1,
+"em": true,
+"t": 2.682
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 3.478
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.777
+},
+{
+"w": "whole",
+"c": 2,
+"em": false,
+"t": 4.075
+},
+{
+"w": "universe",
+"c": 2,
+"em": false,
+"t": 4.506
+},
+{
+"w": "moves",
+"c": 3,
+"em": false,
+"t": 5.136
+},
+{
+"w": "to",
+"c": 3,
+"em": false,
+"t": 5.567
+},
+{
+"w": "his",
+"c": 3,
+"em": false,
+"t": 5.799
+},
+{
+"w": "rhythm.",
+"c": 3,
+"em": true,
+"t": 6.097
+}
+]
+},
+{
+"shot": "s36_hands",
+"i": 0,
+"file": "audio/lines/s36_hands_0.wav",
+"dur": 2.81,
+"text": "One hand holds the drum of creation.",
+"chunks": [
+"One hand holds the drum of *creation.*"
+],
+"words": [
+{
+"w": "One",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "hand",
+"c": 0,
+"em": false,
+"t": 0.326
+},
+{
+"w": "holds",
+"c": 0,
+"em": false,
+"t": 0.687
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.114
+},
+{
+"w": "drum",
+"c": 0,
+"em": false,
+"t": 1.409
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 1.77
+},
+{
+"w": "creation.",
+"c": 0,
+"em": true,
+"t": 2.0
+}
+]
+},
+{
+"shot": "s36_hands",
+"i": 1,
+"file": "audio/lines/s36_hands_1.wav",
+"dur": 2.382,
+"text": "Another holds the flame of ending.",
+"chunks": [
+"Another holds the flame of *ending.*"
+],
+"words": [
+{
+"w": "Another",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "holds",
+"c": 0,
+"em": false,
+"t": 0.529
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.911
+},
+{
+"w": "flame",
+"c": 0,
+"em": false,
+"t": 1.176
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 1.557
+},
+{
+"w": "ending.",
+"c": 0,
+"em": true,
+"t": 1.763
+}
+]
+},
+{
+"shot": "s36_hands",
+"i": 2,
+"file": "audio/lines/s36_hands_2.wav",
+"dur": 3.41,
+"text": "A third is raised to say: do not be afraid.",
+"chunks": [
+"A third is raised to say:",
+"do not be *afraid.*"
+],
+"words": [
+{
+"w": "A",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "third",
+"c": 0,
+"em": false,
+"t": 0.188
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.6
+},
+{
+"w": "raised",
+"c": 0,
+"em": false,
+"t": 0.821
+},
+{
+"w": "to",
+"c": 0,
+"em": false,
+"t": 1.296
+},
+{
+"w": "say:",
+"c": 0,
+"em": false,
+"t": 1.518
+},
+{
+"w": "do",
+"c": 1,
+"em": false,
+"t": 2.024
+},
+{
+"w": "not",
+"c": 1,
+"em": false,
+"t": 2.246
+},
+{
+"w": "be",
+"c": 1,
+"em": false,
+"t": 2.53
+},
+{
+"w": "afraid.",
+"c": 1,
+"em": true,
+"t": 2.752
+}
+]
+},
+{
+"shot": "s37_foot",
+"i": 0,
+"file": "audio/lines/s37_foot_0.wav",
+"dur": 7.14,
+"text": "And beneath his foot lies a small figure called ignorance — for this dance sets the soul free.",
+"chunks": [
+"And beneath his foot",
+"lies a small figure called *ignorance* —",
+"for this dance sets the soul *free.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "beneath",
+"c": 0,
+"em": false,
+"t": 0.321
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.871
+},
+{
+"w": "foot",
+"c": 0,
+"em": false,
+"t": 1.163
+},
+{
+"w": "lies",
+"c": 1,
+"em": false,
+"t": 1.519
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 1.874
+},
+{
+"w": "small",
+"c": 1,
+"em": false,
+"t": 2.036
+},
+{
+"w": "figure",
+"c": 1,
+"em": false,
+"t": 2.457
+},
+{
+"w": "called",
+"c": 1,
+"em": false,
+"t": 2.942
+},
+{
+"w": "ignorance",
+"c": 1,
+"em": true,
+"t": 3.428
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 4.107
+},
+{
+"w": "for",
+"c": 2,
+"em": false,
+"t": 4.528
+},
+{
+"w": "this",
+"c": 2,
+"em": false,
+"t": 4.819
+},
+{
+"w": "dance",
+"c": 2,
+"em": false,
+"t": 5.175
+},
+{
+"w": "sets",
+"c": 2,
+"em": false,
+"t": 5.596
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.952
+},
+{
+"w": "soul",
+"c": 2,
+"em": false,
+"t": 6.243
+},
+{
+"w": "free.",
+"c": 2,
+"em": true,
+"t": 6.599
+}
+]
+},
+{
+"shot": "s38_stars",
+"i": 0,
+"file": "audio/lines/s38_stars_0.wav",
+"dur": 7.185,
+"text": "Stars are born, and stars fade. Seasons turn. All of it, they say, is Shiva's dance.",
+"chunks": [
+"Stars are born, and stars fade.",
+"Seasons turn.",
+"All of it, they say,",
+"is Shiva's *dance.*"
+],
+"words": [
+{
+"w": "Stars",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "are",
+"c": 0,
+"em": false,
+"t": 0.49
+},
+{
+"w": "born,",
+"c": 0,
+"em": false,
+"t": 0.808
+},
+{
+"w": "and",
+"c": 0,
+"em": false,
+"t": 1.444
+},
+{
+"w": "stars",
+"c": 0,
+"em": false,
+"t": 1.762
+},
+{
+"w": "fade.",
+"c": 0,
+"em": false,
+"t": 2.222
+},
+{
+"w": "Seasons",
+"c": 1,
+"em": false,
+"t": 2.682
+},
+{
+"w": "turn.",
+"c": 1,
+"em": false,
+"t": 3.283
+},
+{
+"w": "All",
+"c": 2,
+"em": false,
+"t": 3.742
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 4.06
+},
+{
+"w": "it,",
+"c": 2,
+"em": false,
+"t": 4.308
+},
+{
+"w": "they",
+"c": 2,
+"em": false,
+"t": 4.803
+},
+{
+"w": "say,",
+"c": 2,
+"em": false,
+"t": 5.192
+},
+{
+"w": "is",
+"c": 3,
+"em": false,
+"t": 5.757
+},
+{
+"w": "Shiva's",
+"c": 3,
+"em": false,
+"t": 6.005
+},
+{
+"w": "dance.",
+"c": 3,
+"em": true,
+"t": 6.535
+}
+]
+},
+{
+"shot": "s39_linga",
+"i": 0,
+"file": "audio/lines/s39_linga_0.wav",
+"dur": 7.859,
+"text": "In most temples, Shiva is not shown as a person at all, but as the Linga — a simple, rounded stone.",
+"chunks": [
+"In most temples,",
+"Shiva is not shown as a person at all,",
+"but as the *Linga* —",
+"a simple, rounded stone."
+],
+"words": [
+{
+"w": "In",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "most",
+"c": 0,
+"em": false,
+"t": 0.251
+},
+{
+"w": "temples,",
+"c": 0,
+"em": false,
+"t": 0.599
+},
+{
+"w": "Shiva",
+"c": 1,
+"em": false,
+"t": 1.357
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.768
+},
+{
+"w": "not",
+"c": 1,
+"em": false,
+"t": 1.989
+},
+{
+"w": "shown",
+"c": 1,
+"em": false,
+"t": 2.273
+},
+{
+"w": "as",
+"c": 1,
+"em": false,
+"t": 2.684
+},
+{
+"w": "a",
+"c": 1,
+"em": false,
+"t": 2.905
+},
+{
+"w": "person",
+"c": 1,
+"em": false,
+"t": 3.063
+},
+{
+"w": "at",
+"c": 1,
+"em": false,
+"t": 3.537
+},
+{
+"w": "all,",
+"c": 1,
+"em": false,
+"t": 3.758
+},
+{
+"w": "but",
+"c": 2,
+"em": false,
+"t": 4.264
+},
+{
+"w": "as",
+"c": 2,
+"em": false,
+"t": 4.548
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 4.769
+},
+{
+"w": "Linga",
+"c": 2,
+"em": true,
+"t": 5.054
+},
+{
+"w": "—",
+"c": 2,
+"em": false,
+"t": 5.464
+},
+{
+"w": "a",
+"c": 3,
+"em": false,
+"t": 5.875
+},
+{
+"w": "simple,",
+"c": 3,
+"em": false,
+"t": 6.033
+},
+{
+"w": "rounded",
+"c": 3,
+"em": false,
+"t": 6.728
+},
+{
+"w": "stone.",
+"c": 3,
+"em": false,
+"t": 7.265
+}
+]
+},
+{
+"shot": "s40_pillar",
+"i": 0,
+"file": "audio/lines/s40_pillar_0.wav",
+"dur": 6.366,
+"text": "It stands for a pillar of light with no beginning and no end — the formless, the infinite.",
+"chunks": [
+"It stands for a pillar of light",
+"with no beginning and no *end* —",
+"the formless, the *infinite.*"
+],
+"words": [
+{
+"w": "It",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "stands",
+"c": 0,
+"em": false,
+"t": 0.234
+},
+{
+"w": "for",
+"c": 0,
+"em": false,
+"t": 0.672
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 0.935
+},
+{
+"w": "pillar",
+"c": 0,
+"em": false,
+"t": 1.081
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 1.518
+},
+{
+"w": "light",
+"c": 0,
+"em": false,
+"t": 1.723
+},
+{
+"w": "with",
+"c": 1,
+"em": false,
+"t": 2.102
+},
+{
+"w": "no",
+"c": 1,
+"em": false,
+"t": 2.423
+},
+{
+"w": "beginning",
+"c": 1,
+"em": false,
+"t": 2.627
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 3.24
+},
+{
+"w": "no",
+"c": 1,
+"em": false,
+"t": 3.503
+},
+{
+"w": "end",
+"c": 1,
+"em": true,
+"t": 3.707
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 3.97
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 4.349
+},
+{
+"w": "formless,",
+"c": 2,
+"em": false,
+"t": 4.612
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.371
+},
+{
+"w": "infinite.",
+"c": 2,
+"em": true,
+"t": 5.634
+}
+]
+},
+{
+"shot": "s41_twelve",
+"i": 0,
+"file": "audio/lines/s41_twelve_0.wav",
+"dur": 13.113,
+"text": "Twelve especially sacred shrines across India are known as the Jyotirlingas, the lingas of light — from Kedarnath in the snows to Rameswaram by the sea.",
+"chunks": [
+"Twelve especially sacred shrines across India",
+"are known as the *Jyotirlingas,*",
+"the lingas of *light* —",
+"from Kedarnath in the snows",
+"to Rameswaram by the *sea.*"
+],
+"words": [
+{
+"w": "Twelve",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "especially",
+"c": 0,
+"em": false,
+"t": 0.594
+},
+{
+"w": "sacred",
+"c": 0,
+"em": false,
+"t": 1.458
+},
+{
+"w": "shrines",
+"c": 0,
+"em": false,
+"t": 2.021
+},
+{
+"w": "across",
+"c": 0,
+"em": false,
+"t": 2.66
+},
+{
+"w": "India",
+"c": 0,
+"em": false,
+"t": 3.224
+},
+{
+"w": "are",
+"c": 1,
+"em": false,
+"t": 3.712
+},
+{
+"w": "known",
+"c": 1,
+"em": false,
+"t": 4.051
+},
+{
+"w": "as",
+"c": 1,
+"em": false,
+"t": 4.539
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 4.802
+},
+{
+"w": "Jyotirlingas,",
+"c": 1,
+"em": true,
+"t": 5.14
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 6.418
+},
+{
+"w": "lingas",
+"c": 2,
+"em": false,
+"t": 6.756
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 7.32
+},
+{
+"w": "light",
+"c": 2,
+"em": true,
+"t": 7.583
+},
+{
+"w": "—",
+"c": 2,
+"em": false,
+"t": 8.071
+},
+{
+"w": "from",
+"c": 3,
+"em": false,
+"t": 8.56
+},
+{
+"w": "Kedarnath",
+"c": 3,
+"em": false,
+"t": 8.973
+},
+{
+"w": "in",
+"c": 3,
+"em": false,
+"t": 9.762
+},
+{
+"w": "the",
+"c": 3,
+"em": false,
+"t": 10.025
+},
+{
+"w": "snows",
+"c": 3,
+"em": false,
+"t": 10.363
+},
+{
+"w": "to",
+"c": 4,
+"em": false,
+"t": 10.852
+},
+{
+"w": "Rameswaram",
+"c": 4,
+"em": false,
+"t": 11.115
+},
+{
+"w": "by",
+"c": 4,
+"em": false,
+"t": 11.979
+},
+{
+"w": "the",
+"c": 4,
+"em": false,
+"t": 12.242
+},
+{
+"w": "sea.",
+"c": 4,
+"em": true,
+"t": 12.58
+}
+]
+},
+{
+"shot": "s42_ardha",
+"i": 0,
+"file": "audio/lines/s42_ardha_0.wav",
+"dur": 7.668,
+"text": "And sometimes Shiva appears as Ardhanarishvara — half Shiva, half Parvati, in a single body.",
+"chunks": [
+"And sometimes Shiva appears as *Ardhanarishvara* —",
+"half Shiva, half Parvati,",
+"in a single *body.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "sometimes",
+"c": 0,
+"em": false,
+"t": 0.339
+},
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 1.06
+},
+{
+"w": "appears",
+"c": 0,
+"em": false,
+"t": 1.506
+},
+{
+"w": "as",
+"c": 0,
+"em": false,
+"t": 2.09
+},
+{
+"w": "Ardhanarishvara",
+"c": 0,
+"em": true,
+"t": 2.33
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 3.463
+},
+{
+"w": "half",
+"c": 1,
+"em": false,
+"t": 3.909
+},
+{
+"w": "Shiva,",
+"c": 1,
+"em": false,
+"t": 4.287
+},
+{
+"w": "half",
+"c": 1,
+"em": false,
+"t": 4.973
+},
+{
+"w": "Parvati,",
+"c": 1,
+"em": false,
+"t": 5.351
+},
+{
+"w": "in",
+"c": 2,
+"em": false,
+"t": 6.175
+},
+{
+"w": "a",
+"c": 2,
+"em": false,
+"t": 6.415
+},
+{
+"w": "single",
+"c": 2,
+"em": false,
+"t": 6.587
+},
+{
+"w": "body.",
+"c": 2,
+"em": true,
+"t": 7.101
+}
+]
+},
+{
+"shot": "s42_ardha",
+"i": 1,
+"file": "audio/lines/s42_ardha_1.wav",
+"dur": 5.958,
+"text": "A beautiful way of saying that stillness and energy are never truly apart.",
+"chunks": [
+"A beautiful way of saying",
+"that stillness and energy",
+"are never truly *apart.*"
+],
+"words": [
+{
+"w": "A",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "beautiful",
+"c": 0,
+"em": false,
+"t": 0.208
+},
+{
+"w": "way",
+"c": 0,
+"em": false,
+"t": 0.956
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 1.277
+},
+{
+"w": "saying",
+"c": 0,
+"em": false,
+"t": 1.527
+},
+{
+"w": "that",
+"c": 1,
+"em": false,
+"t": 2.061
+},
+{
+"w": "stillness",
+"c": 1,
+"em": false,
+"t": 2.453
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 3.201
+},
+{
+"w": "energy",
+"c": 1,
+"em": false,
+"t": 3.522
+},
+{
+"w": "are",
+"c": 2,
+"em": false,
+"t": 4.057
+},
+{
+"w": "never",
+"c": 2,
+"em": false,
+"t": 4.377
+},
+{
+"w": "truly",
+"c": 2,
+"em": false,
+"t": 4.84
+},
+{
+"w": "apart.",
+"c": 2,
+"em": true,
+"t": 5.304
+}
+]
+},
+{
+"shot": "s43_rudra",
+"i": 0,
+"file": "audio/lines/s43_rudra_0.wav",
+"dur": 2.797,
+"text": "Shiva has many names, and many moods.",
+"chunks": [
+"Shiva has many names,",
+"and many *moods.*"
+],
+"words": [
+{
+"w": "Shiva",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "has",
+"c": 0,
+"em": false,
+"t": 0.421
+},
+{
+"w": "many",
+"c": 0,
+"em": false,
+"t": 0.692
+},
+{
+"w": "names,",
+"c": 0,
+"em": false,
+"t": 1.023
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.624
+},
+{
+"w": "many",
+"c": 1,
+"em": false,
+"t": 1.895
+},
+{
+"w": "moods.",
+"c": 1,
+"em": true,
+"t": 2.226
+}
+]
+},
+{
+"shot": "s43_rudra",
+"i": 1,
+"file": "audio/lines/s43_rudra_1.wav",
+"dur": 4.459,
+"text": "In the oldest hymns, the Vedas, he is Rudra, the roaring storm.",
+"chunks": [
+"In the oldest hymns, the Vedas,",
+"he is *Rudra,*",
+"the roaring *storm.*"
+],
+"words": [
+{
+"w": "In",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.225
+},
+{
+"w": "oldest",
+"c": 0,
+"em": false,
+"t": 0.475
+},
+{
+"w": "hymns,",
+"c": 0,
+"em": false,
+"t": 0.892
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 1.448
+},
+{
+"w": "Vedas,",
+"c": 0,
+"em": false,
+"t": 1.698
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 2.254
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 2.448
+},
+{
+"w": "Rudra,",
+"c": 1,
+"em": true,
+"t": 2.643
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 3.199
+},
+{
+"w": "roaring",
+"c": 2,
+"em": false,
+"t": 3.449
+},
+{
+"w": "storm.",
+"c": 2,
+"em": true,
+"t": 3.922
+}
+]
+},
+{
+"shot": "s43_rudra",
+"i": 2,
+"file": "audio/lines/s43_rudra_2.wav",
+"dur": 6.308,
+"text": "As Mahakala, he is the lord of time itself, before whom even death must bow.",
+"chunks": [
+"As *Mahakala,*",
+"he is the lord of time itself,",
+"before whom even death must *bow.*"
+],
+"words": [
+{
+"w": "As",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Mahakala,",
+"c": 0,
+"em": true,
+"t": 0.271
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 1.165
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.406
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.647
+},
+{
+"w": "lord",
+"c": 1,
+"em": false,
+"t": 1.956
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 2.335
+},
+{
+"w": "time",
+"c": 1,
+"em": false,
+"t": 2.576
+},
+{
+"w": "itself,",
+"c": 1,
+"em": false,
+"t": 2.954
+},
+{
+"w": "before",
+"c": 2,
+"em": false,
+"t": 3.711
+},
+{
+"w": "whom",
+"c": 2,
+"em": false,
+"t": 4.227
+},
+{
+"w": "even",
+"c": 2,
+"em": false,
+"t": 4.605
+},
+{
+"w": "death",
+"c": 2,
+"em": false,
+"t": 4.984
+},
+{
+"w": "must",
+"c": 2,
+"em": false,
+"t": 5.431
+},
+{
+"w": "bow.",
+"c": 2,
+"em": true,
+"t": 5.809
+}
+]
+},
+{
+"shot": "s44_bhole",
+"i": 0,
+"file": "audio/lines/s44_bhole_0.wav",
+"dur": 7.466,
+"text": "As Bholenath, he is the innocent lord — so simple-hearted that a little love is enough to please him.",
+"chunks": [
+"As *Bholenath,*",
+"he is the innocent lord —",
+"so simple-hearted",
+"that a little love is enough to *please* him."
+],
+"words": [
+{
+"w": "As",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Bholenath,",
+"c": 0,
+"em": true,
+"t": 0.249
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 1.124
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.343
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.562
+},
+{
+"w": "innocent",
+"c": 1,
+"em": false,
+"t": 1.843
+},
+{
+"w": "lord",
+"c": 1,
+"em": false,
+"t": 2.437
+},
+{
+"w": "—",
+"c": 1,
+"em": false,
+"t": 2.781
+},
+{
+"w": "so",
+"c": 2,
+"em": false,
+"t": 3.188
+},
+{
+"w": "simple-hearted",
+"c": 2,
+"em": false,
+"t": 3.406
+},
+{
+"w": "that",
+"c": 3,
+"em": false,
+"t": 4.313
+},
+{
+"w": "a",
+"c": 3,
+"em": false,
+"t": 4.657
+},
+{
+"w": "little",
+"c": 3,
+"em": false,
+"t": 4.813
+},
+{
+"w": "love",
+"c": 3,
+"em": false,
+"t": 5.282
+},
+{
+"w": "is",
+"c": 3,
+"em": false,
+"t": 5.626
+},
+{
+"w": "enough",
+"c": 3,
+"em": false,
+"t": 5.845
+},
+{
+"w": "to",
+"c": 3,
+"em": false,
+"t": 6.314
+},
+{
+"w": "please",
+"c": 3,
+"em": true,
+"t": 6.533
+},
+{
+"w": "him.",
+"c": 3,
+"em": false,
+"t": 7.002
+}
+]
+},
+{
+"shot": "s44_bhole",
+"i": 1,
+"file": "audio/lines/s44_bhole_1.wav",
+"dur": 6.625,
+"text": "He blesses gods, humans, and even demons, whenever they call on him with devotion.",
+"chunks": [
+"He blesses gods, humans,",
+"and even demons,",
+"whenever they call on him with *devotion.*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "blesses",
+"c": 0,
+"em": false,
+"t": 0.262
+},
+{
+"w": "gods,",
+"c": 0,
+"em": false,
+"t": 0.827
+},
+{
+"w": "humans,",
+"c": 0,
+"em": false,
+"t": 1.425
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.155
+},
+{
+"w": "even",
+"c": 1,
+"em": false,
+"t": 2.454
+},
+{
+"w": "demons,",
+"c": 1,
+"em": false,
+"t": 2.819
+},
+{
+"w": "whenever",
+"c": 2,
+"em": false,
+"t": 3.549
+},
+{
+"w": "they",
+"c": 2,
+"em": false,
+"t": 4.18
+},
+{
+"w": "call",
+"c": 2,
+"em": false,
+"t": 4.546
+},
+{
+"w": "on",
+"c": 2,
+"em": false,
+"t": 4.911
+},
+{
+"w": "him",
+"c": 2,
+"em": false,
+"t": 5.143
+},
+{
+"w": "with",
+"c": 2,
+"em": false,
+"t": 5.442
+},
+{
+"w": "devotion.",
+"c": 2,
+"em": true,
+"t": 5.807
+}
+]
+},
+{
+"shot": "s45_pashu",
+"i": 0,
+"file": "audio/lines/s45_pashu_0.wav",
+"dur": 4.639,
+"text": "And as Pashupati, he is the guardian of every living creature.",
+"chunks": [
+"And as *Pashupati,*",
+"he is the guardian",
+"of every living *creature.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "as",
+"c": 0,
+"em": false,
+"t": 0.314
+},
+{
+"w": "Pashupati,",
+"c": 0,
+"em": true,
+"t": 0.536
+},
+{
+"w": "he",
+"c": 1,
+"em": false,
+"t": 1.421
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.642
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.863
+},
+{
+"w": "guardian",
+"c": 1,
+"em": false,
+"t": 2.148
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 2.748
+},
+{
+"w": "every",
+"c": 2,
+"em": false,
+"t": 2.97
+},
+{
+"w": "living",
+"c": 2,
+"em": false,
+"t": 3.381
+},
+{
+"w": "creature.",
+"c": 2,
+"em": true,
+"t": 3.855
+}
+]
+},
+{
+"shot": "s46_worship",
+"i": 0,
+"file": "audio/lines/s46_worship_0.wav",
+"dur": 2.534,
+"text": "That is why his worship is so simple.",
+"chunks": [
+"That is why his worship is so *simple.*"
+],
+"words": [
+{
+"w": "That",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.342
+},
+{
+"w": "why",
+"c": 0,
+"em": false,
+"t": 0.541
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.796
+},
+{
+"w": "worship",
+"c": 0,
+"em": false,
+"t": 1.052
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 1.534
+},
+{
+"w": "so",
+"c": 0,
+"em": false,
+"t": 1.733
+},
+{
+"w": "simple.",
+"c": 0,
+"em": true,
+"t": 1.932
+}
+]
+},
+{
+"shot": "s46_worship",
+"i": 1,
+"file": "audio/lines/s46_worship_1.wav",
+"dur": 4.36,
+"text": "A little water. A few bilva leaves. A heart that is sincere.",
+"chunks": [
+"A little water.",
+"A few bilva leaves.",
+"A heart that is *sincere.*"
+],
+"words": [
+{
+"w": "A",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "little",
+"c": 0,
+"em": false,
+"t": 0.187
+},
+{
+"w": "water.",
+"c": 0,
+"em": false,
+"t": 0.658
+},
+{
+"w": "A",
+"c": 1,
+"em": false,
+"t": 1.13
+},
+{
+"w": "few",
+"c": 1,
+"em": false,
+"t": 1.287
+},
+{
+"w": "bilva",
+"c": 1,
+"em": false,
+"t": 1.57
+},
+{
+"w": "leaves.",
+"c": 1,
+"em": false,
+"t": 1.978
+},
+{
+"w": "A",
+"c": 2,
+"em": false,
+"t": 2.512
+},
+{
+"w": "heart",
+"c": 2,
+"em": false,
+"t": 2.669
+},
+{
+"w": "that",
+"c": 2,
+"em": false,
+"t": 3.078
+},
+{
+"w": "is",
+"c": 2,
+"em": false,
+"t": 3.423
+},
+{
+"w": "sincere.",
+"c": 2,
+"em": true,
+"t": 3.643
+}
+]
+},
+{
+"shot": "s46_worship",
+"i": 2,
+"file": "audio/lines/s46_worship_2.wav",
+"dur": 9.353,
+"text": "Mondays are his special day, and the ancient city of Kashi, on the banks of the Ganga, is loved as his very own home.",
+"chunks": [
+"Mondays are his special day,",
+"and the ancient city of *Kashi,*",
+"on the banks of the Ganga,",
+"is loved as his very own *home.*"
+],
+"words": [
+{
+"w": "Mondays",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "are",
+"c": 0,
+"em": false,
+"t": 0.599
+},
+{
+"w": "his",
+"c": 0,
+"em": false,
+"t": 0.9
+},
+{
+"w": "special",
+"c": 0,
+"em": false,
+"t": 1.201
+},
+{
+"w": "day,",
+"c": 0,
+"em": false,
+"t": 1.77
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.306
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.607
+},
+{
+"w": "ancient",
+"c": 1,
+"em": false,
+"t": 2.908
+},
+{
+"w": "city",
+"c": 1,
+"em": false,
+"t": 3.477
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 3.845
+},
+{
+"w": "Kashi,",
+"c": 1,
+"em": true,
+"t": 4.079
+},
+{
+"w": "on",
+"c": 2,
+"em": false,
+"t": 4.749
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 4.983
+},
+{
+"w": "banks",
+"c": 2,
+"em": false,
+"t": 5.284
+},
+{
+"w": "of",
+"c": 2,
+"em": false,
+"t": 5.719
+},
+{
+"w": "the",
+"c": 2,
+"em": false,
+"t": 5.954
+},
+{
+"w": "Ganga,",
+"c": 2,
+"em": false,
+"t": 6.255
+},
+{
+"w": "is",
+"c": 3,
+"em": false,
+"t": 6.924
+},
+{
+"w": "loved",
+"c": 3,
+"em": false,
+"t": 7.158
+},
+{
+"w": "as",
+"c": 3,
+"em": false,
+"t": 7.593
+},
+{
+"w": "his",
+"c": 3,
+"em": false,
+"t": 7.828
+},
+{
+"w": "very",
+"c": 3,
+"em": false,
+"t": 8.129
+},
+{
+"w": "own",
+"c": 3,
+"em": false,
+"t": 8.497
+},
+{
+"w": "home.",
+"c": 3,
+"em": true,
+"t": 8.798
+}
+]
+},
+{
+"shot": "s47_ratri",
+"i": 0,
+"file": "audio/lines/s47_ratri_0.wav",
+"dur": 4.196,
+"text": "Once a year comes Maha Shivaratri, the great night of Shiva,",
+"chunks": [
+"Once a year comes *Maha Shivaratri,*",
+"the great night of Shiva,"
+],
+"words": [
+{
+"w": "Once",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "a",
+"c": 0,
+"em": false,
+"t": 0.341
+},
+{
+"w": "year",
+"c": 0,
+"em": false,
+"t": 0.483
+},
+{
+"w": "comes",
+"c": 0,
+"em": false,
+"t": 0.794
+},
+{
+"w": "Maha",
+"c": 0,
+"em": true,
+"t": 1.162
+},
+{
+"w": "Shivaratri,",
+"c": 0,
+"em": true,
+"t": 1.473
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.322
+},
+{
+"w": "great",
+"c": 1,
+"em": false,
+"t": 2.576
+},
+{
+"w": "night",
+"c": 1,
+"em": false,
+"t": 2.944
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 3.312
+},
+{
+"w": "Shiva,",
+"c": 1,
+"em": false,
+"t": 3.51
+}
+]
+},
+{
+"shot": "s47_ratri",
+"i": 1,
+"file": "audio/lines/s47_ratri_1.wav",
+"dur": 5.205,
+"text": "when devotees stay awake until dawn — fasting, singing, and praying.",
+"chunks": [
+"when devotees stay awake until dawn —",
+"fasting, singing,",
+"and *praying.*"
+],
+"words": [
+{
+"w": "when",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "devotees",
+"c": 0,
+"em": false,
+"t": 0.363
+},
+{
+"w": "stay",
+"c": 0,
+"em": false,
+"t": 0.938
+},
+{
+"w": "awake",
+"c": 0,
+"em": false,
+"t": 1.271
+},
+{
+"w": "until",
+"c": 0,
+"em": false,
+"t": 1.665
+},
+{
+"w": "dawn",
+"c": 0,
+"em": false,
+"t": 2.058
+},
+{
+"w": "—",
+"c": 0,
+"em": false,
+"t": 2.391
+},
+{
+"w": "fasting,",
+"c": 1,
+"em": false,
+"t": 2.785
+},
+{
+"w": "singing,",
+"c": 1,
+"em": false,
+"t": 3.511
+},
+{
+"w": "and",
+"c": 2,
+"em": false,
+"t": 4.238
+},
+{
+"w": "praying.",
+"c": 2,
+"em": true,
+"t": 4.51
+}
+]
+},
+{
+"shot": "s48_mantra",
+"i": 0,
+"file": "audio/lines/s48_mantra_0.wav",
+"dur": 5.436,
+"text": "And on their lips is one mantra of five syllables: Om Namah Shivaya.",
+"chunks": [
+"And on their lips",
+"is one mantra of five syllables:",
+"*Om Namah Shivaya.*"
+],
+"words": [
+{
+"w": "And",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "on",
+"c": 0,
+"em": false,
+"t": 0.335
+},
+{
+"w": "their",
+"c": 0,
+"em": false,
+"t": 0.572
+},
+{
+"w": "lips",
+"c": 0,
+"em": false,
+"t": 1.013
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.385
+},
+{
+"w": "one",
+"c": 1,
+"em": false,
+"t": 1.623
+},
+{
+"w": "mantra",
+"c": 1,
+"em": false,
+"t": 1.928
+},
+{
+"w": "of",
+"c": 1,
+"em": false,
+"t": 2.436
+},
+{
+"w": "five",
+"c": 1,
+"em": false,
+"t": 2.673
+},
+{
+"w": "syllables:",
+"c": 1,
+"em": false,
+"t": 3.046
+},
+{
+"w": "Om",
+"c": 2,
+"em": true,
+"t": 3.995
+},
+{
+"w": "Namah",
+"c": 2,
+"em": true,
+"t": 4.232
+},
+{
+"w": "Shivaya.",
+"c": 2,
+"em": true,
+"t": 4.673
+}
+]
+},
+{
+"shot": "s48_mantra",
+"i": 1,
+"file": "audio/lines/s48_mantra_1.wav",
+"dur": 3.28,
+"text": "I bow to Shiva. I bow to the light within.",
+"chunks": [
+"I bow to Shiva.",
+"I bow to the light *within.*"
+],
+"words": [
+{
+"w": "I",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "bow",
+"c": 0,
+"em": false,
+"t": 0.193
+},
+{
+"w": "to",
+"c": 0,
+"em": false,
+"t": 0.486
+},
+{
+"w": "Shiva.",
+"c": 0,
+"em": false,
+"t": 0.715
+},
+{
+"w": "I",
+"c": 1,
+"em": false,
+"t": 1.204
+},
+{
+"w": "bow",
+"c": 1,
+"em": false,
+"t": 1.367
+},
+{
+"w": "to",
+"c": 1,
+"em": false,
+"t": 1.66
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.888
+},
+{
+"w": "light",
+"c": 1,
+"em": false,
+"t": 2.182
+},
+{
+"w": "within.",
+"c": 1,
+"em": true,
+"t": 2.606
+}
+]
+},
+{
+"shot": "s49_who",
+"i": 0,
+"file": "audio/lines/s49_who_0.wav",
+"dur": 1.331,
+"text": "So, who is Shiva?",
+"chunks": [
+"So, who is Shiva?"
+],
+"words": [
+{
+"w": "So,",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "who",
+"c": 0,
+"em": false,
+"t": 0.398
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.634
+},
+{
+"w": "Shiva?",
+"c": 0,
+"em": false,
+"t": 0.818
+}
+]
+},
+{
+"shot": "s49_who",
+"i": 1,
+"file": "audio/lines/s49_who_1.wav",
+"dur": 2.345,
+"text": "He is the dancer, and the stillness.",
+"chunks": [
+"He is the dancer,",
+"and the *stillness.*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "is",
+"c": 0,
+"em": false,
+"t": 0.209
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.387
+},
+{
+"w": "dancer,",
+"c": 0,
+"em": false,
+"t": 0.617
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.178
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.408
+},
+{
+"w": "stillness.",
+"c": 1,
+"em": true,
+"t": 1.638
+}
+]
+},
+{
+"shot": "s49_who",
+"i": 2,
+"file": "audio/lines/s49_who_2.wav",
+"dur": 2.209,
+"text": "The destroyer, and the protector.",
+"chunks": [
+"The destroyer,",
+"and the *protector.*"
+],
+"words": [
+{
+"w": "The",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "destroyer,",
+"c": 0,
+"em": false,
+"t": 0.268
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 1.007
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 1.244
+},
+{
+"w": "protector.",
+"c": 1,
+"em": true,
+"t": 1.482
+}
+]
+},
+{
+"shot": "s49_who",
+"i": 3,
+"file": "audio/lines/s49_who_3.wav",
+"dur": 5.215,
+"text": "The lord of the snowy mountain, and the quiet place inside every heart.",
+"chunks": [
+"The lord of the snowy mountain,",
+"and the quiet place",
+"inside every *heart.*"
+],
+"words": [
+{
+"w": "The",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "lord",
+"c": 0,
+"em": false,
+"t": 0.311
+},
+{
+"w": "of",
+"c": 0,
+"em": false,
+"t": 0.655
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.874
+},
+{
+"w": "snowy",
+"c": 0,
+"em": false,
+"t": 1.155
+},
+{
+"w": "mountain,",
+"c": 0,
+"em": false,
+"t": 1.562
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.375
+},
+{
+"w": "the",
+"c": 1,
+"em": false,
+"t": 2.656
+},
+{
+"w": "quiet",
+"c": 1,
+"em": false,
+"t": 2.938
+},
+{
+"w": "place",
+"c": 1,
+"em": false,
+"t": 3.344
+},
+{
+"w": "inside",
+"c": 2,
+"em": false,
+"t": 3.75
+},
+{
+"w": "every",
+"c": 2,
+"em": false,
+"t": 4.219
+},
+{
+"w": "heart.",
+"c": 2,
+"em": true,
+"t": 4.626
+}
+]
+},
+{
+"shot": "s50_teach",
+"i": 0,
+"file": "audio/lines/s50_teach_0.wav",
+"dur": 2.936,
+"text": "He teaches that endings are not to be feared,",
+"chunks": [
+"He teaches that endings",
+"are not to be *feared,*"
+],
+"words": [
+{
+"w": "He",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "teaches",
+"c": 0,
+"em": false,
+"t": 0.214
+},
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 0.661
+},
+{
+"w": "endings",
+"c": 0,
+"em": false,
+"t": 0.95
+},
+{
+"w": "are",
+"c": 1,
+"em": false,
+"t": 1.397
+},
+{
+"w": "not",
+"c": 1,
+"em": false,
+"t": 1.633
+},
+{
+"w": "to",
+"c": 1,
+"em": false,
+"t": 1.87
+},
+{
+"w": "be",
+"c": 1,
+"em": false,
+"t": 2.054
+},
+{
+"w": "feared,",
+"c": 1,
+"em": true,
+"t": 2.238
+}
+]
+},
+{
+"shot": "s50_teach",
+"i": 1,
+"file": "audio/lines/s50_teach_1.wav",
+"dur": 2.773,
+"text": "that even poison can be held with grace,",
+"chunks": [
+"that even poison",
+"can be held with *grace,*"
+],
+"words": [
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "even",
+"c": 0,
+"em": false,
+"t": 0.334
+},
+{
+"w": "poison",
+"c": 0,
+"em": false,
+"t": 0.637
+},
+{
+"w": "can",
+"c": 1,
+"em": false,
+"t": 1.052
+},
+{
+"w": "be",
+"c": 1,
+"em": false,
+"t": 1.3
+},
+{
+"w": "held",
+"c": 1,
+"em": false,
+"t": 1.493
+},
+{
+"w": "with",
+"c": 1,
+"em": false,
+"t": 1.797
+},
+{
+"w": "grace,",
+"c": 1,
+"em": true,
+"t": 2.101
+}
+]
+},
+{
+"shot": "s50_teach",
+"i": 2,
+"file": "audio/lines/s50_teach_2.wav",
+"dur": 2.103,
+"text": "and that true strength is gentle.",
+"chunks": [
+"and that true strength",
+"is *gentle.*"
+],
+"words": [
+{
+"w": "and",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "that",
+"c": 0,
+"em": false,
+"t": 0.268
+},
+{
+"w": "true",
+"c": 0,
+"em": false,
+"t": 0.558
+},
+{
+"w": "strength",
+"c": 0,
+"em": false,
+"t": 0.848
+},
+{
+"w": "is",
+"c": 1,
+"em": false,
+"t": 1.35
+},
+{
+"w": "gentle.",
+"c": 1,
+"em": true,
+"t": 1.534
+}
+]
+},
+{
+"shot": "s51_breath",
+"i": 0,
+"file": "audio/lines/s51_breath_0.wav",
+"dur": 8.437,
+"text": "So the next time you sit quietly, and take one slow breath… you may find that Kailash was never far away.",
+"chunks": [
+"So the next time you sit quietly,",
+"and take one slow breath…",
+"you may find that Kailash",
+"was never far *away.*"
+],
+"words": [
+{
+"w": "So",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "the",
+"c": 0,
+"em": false,
+"t": 0.266
+},
+{
+"w": "next",
+"c": 0,
+"em": false,
+"t": 0.569
+},
+{
+"w": "time",
+"c": 0,
+"em": false,
+"t": 0.94
+},
+{
+"w": "you",
+"c": 0,
+"em": false,
+"t": 1.31
+},
+{
+"w": "sit",
+"c": 0,
+"em": false,
+"t": 1.613
+},
+{
+"w": "quietly,",
+"c": 0,
+"em": false,
+"t": 1.917
+},
+{
+"w": "and",
+"c": 1,
+"em": false,
+"t": 2.725
+},
+{
+"w": "take",
+"c": 1,
+"em": false,
+"t": 3.028
+},
+{
+"w": "one",
+"c": 1,
+"em": false,
+"t": 3.399
+},
+{
+"w": "slow",
+"c": 1,
+"em": false,
+"t": 3.702
+},
+{
+"w": "breath…",
+"c": 1,
+"em": false,
+"t": 4.073
+},
+{
+"w": "you",
+"c": 2,
+"em": false,
+"t": 4.915
+},
+{
+"w": "may",
+"c": 2,
+"em": false,
+"t": 5.218
+},
+{
+"w": "find",
+"c": 2,
+"em": false,
+"t": 5.521
+},
+{
+"w": "that",
+"c": 2,
+"em": false,
+"t": 5.892
+},
+{
+"w": "Kailash",
+"c": 2,
+"em": false,
+"t": 6.262
+},
+{
+"w": "was",
+"c": 3,
+"em": false,
+"t": 6.835
+},
+{
+"w": "never",
+"c": 3,
+"em": false,
+"t": 7.138
+},
+{
+"w": "far",
+"c": 3,
+"em": false,
+"t": 7.576
+},
+{
+"w": "away.",
+"c": 3,
+"em": true,
+"t": 7.879
+}
+]
+},
+{
+"shot": "s52_outro",
+"i": 0,
+"file": "audio/lines/s52_outro_0.wav",
+"dur": 1.475,
+"text": "Om Namah Shivaya.",
+"chunks": [
+"Om Namah *Shivaya.*"
+],
+"words": [
+{
+"w": "Om",
+"c": 0,
+"em": false,
+"t": 0.03
+},
+{
+"w": "Namah",
+"c": 0,
+"em": false,
+"t": 0.268
+},
+{
+"w": "Shivaya.",
+"c": 0,
+"em": true,
+"t": 0.71
+}
+]
+}
+]
