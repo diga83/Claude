@@ -1,0 +1,145 @@
+{
+ "title": "Parashurama Avatar (Storybook): The Sage Who Carried an Axe",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 1.6,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    4,
+    5
+   ],
+   [
+    7,
+    8
+   ],
+   [
+    10,
+    12
+   ]
+  ],
+  "storm": [
+   [
+    8,
+    10
+   ],
+   [
+    12,
+    14
+   ]
+  ],
+  "dawn": 14
+ },
+ "sources": [
+  "Bhagavata Purana, Canto 9, chapters 15-16 (Jamadagni, Kartavirya Arjuna and the theft of Kamadhenu, the king's defeat, the revenge of his sons, the twenty-one campaigns, the gift of the earth, Mount Mahendra)",
+  "Mahabharata, Vana Parva and Shanti Parva (Parashurama and the Kshatriyas); later tradition for Shiva's gift of the axe and the land reclaimed from the sea on the western coast"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, a boy was born to the sage Jamadagni,",
+   "say": "Long ago, a boy was born to the sage Jumma-dugnee,"
+  },
+  {
+   "text": "with the calm of a priest, and the fire of a warrior."
+  },
+  {
+   "text": "He prayed to Shiva for years, and Shiva gave him a blazing axe."
+  },
+  {
+   "text": "From that day, he was called Parashurama, Rama with the axe.",
+   "say": "From that day, he was called Puh-rushoo-rahma, Rahma with the axe."
+  },
+  {
+   "text": "In those days, a king with a thousand arms ruled without mercy."
+  },
+  {
+   "text": "One day he visited the sage's quiet home, and saw their wish granting cow."
+  },
+  {
+   "text": "She could conjure a feast for a whole army, out of thin air."
+  },
+  {
+   "text": "He wanted her, so he simply took her by force."
+  },
+  {
+   "text": "When Parashurama returned, he stormed the palace alone,",
+   "say": "When Puh-rushoo-rahma returned, he stormed the palace alone,"
+  },
+  {
+   "text": "defeated the thousand armed king, and brought the cow home."
+  },
+  {
+   "text": "But the king's sons took a cruel revenge, and his father was lost."
+  },
+  {
+   "text": "Heartbroken, Parashurama made a vow, to free the earth from every tyrant.",
+   "say": "Heartbroken, Puh-rushoo-rahma made a vow, to free the earth from every tyrant."
+  },
+  {
+   "text": "Twenty one times he crossed the land, and no cruel king could stand before his axe."
+  },
+  {
+   "text": "His anger burned like a forest fire."
+  },
+  {
+   "text": "But when it was over, he laid his anger down, and gave away everything he had won,"
+  },
+  {
+   "text": "and cast his axe into the sea, where the waters drew back, and new land rose."
+  },
+  {
+   "text": "Then he climbed a mountain to meditate, where it is said he lives to this day,"
+  },
+  {
+   "text": "waiting to teach the heroes yet to come."
+  },
+  {
+   "text": "This is Parashurama, the sixth avatar of Vishnu,",
+   "say": "This is Puh-rushoo-rahma, the sixth avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that true strength protects the weak, and knows when to lay its weapon down."
+  }
+ ],
+ "label": "PARASHURAMA  ·  THE SIXTH AVATAR",
+ "keywords": [
+  "jamadagni",
+  "priest",
+  "warrior",
+  "shiva",
+  "axe",
+  "parashurama",
+  "thousand",
+  "mercy",
+  "home",
+  "cow",
+  "feast",
+  "army",
+  "force",
+  "alone",
+  "king",
+  "revenge",
+  "lost",
+  "vow",
+  "tyrant",
+  "times",
+  "fire",
+  "down",
+  "won",
+  "sea",
+  "rose",
+  "mountain",
+  "day",
+  "heroes",
+  "sixth",
+  "weak",
+  "anger",
+  "earth",
+  "land",
+  "palace",
+  "father"
+ ]
+}
