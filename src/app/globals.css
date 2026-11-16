@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-heading), ui-serif, Georgia, serif;
+
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #475569;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-primary: #1e293b;
+  --color-accent: #1d4ed8;
+  --color-accent-hover: #1e40af;
+  --color-accent-soft: #eff6ff;
+
+  /* Result bands */
+  --color-human: #15803d;
+  --color-human-soft: #dcfce7;
+  --color-mixed: #b45309;
+  --color-mixed-soft: #fef3c7;
+  --color-ai: #b91c1c;
+  --color-ai-soft: #fee2e2;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:not(:disabled),
+[role="tab"],
+label[for] {
+  cursor: pointer;
+}
+
+/* Sentence highlights: colour plus a distinct underline so bands survive greyscale printing. */
+.s-mixed {
+  background: var(--color-mixed-soft);
+  text-decoration: underline dotted var(--color-mixed) 2px;
+  text-underline-offset: 4px;
+}
+.s-ai {
+  background: var(--color-ai-soft);
+  text-decoration: underline solid var(--color-ai) 2px;
+  text-underline-offset: 4px;
+}
+.s-mixed,
+.s-ai {
+  color: inherit;
+  border-radius: 2px;
+  padding: 1px 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  @page {
+    margin: 16mm;
+  }
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-plain {
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .s-mixed,
+  .s-ai {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  section {
+    break-inside: avoid-page;
+  }
+  section.allow-break {
+    break-inside: auto;
+  }
+}
