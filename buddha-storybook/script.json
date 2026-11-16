@@ -1,0 +1,132 @@
+{
+ "title": "Buddha Avatar (Storybook): The Prince Who Woke Up",
+ "label": "BUDDHA  \u00b7  THE NINTH AVATAR",
+ "voice": "af_heart:0.55+af_nicole:0.45",
+ "speed": 1.03,
+ "lead": 0.9,
+ "outro": 1.8,
+ "gap": 0.3,
+ "music": "myth",
+ "sections": {
+  "dark": [
+   [
+    5,
+    7
+   ],
+   [
+    10,
+    12
+   ]
+  ],
+  "storm": [
+   [
+    14,
+    15
+   ]
+  ],
+  "dawn": 15
+ },
+ "keywords": [
+  "lumbini",
+  "siddhartha",
+  "king",
+  "teacher",
+  "sorrow",
+  "walls",
+  "spring",
+  "gates",
+  "old",
+  "sick",
+  "wake",
+  "monk",
+  "peace",
+  "palace",
+  "hair",
+  "robe",
+  "six",
+  "reed",
+  "mind",
+  "rice",
+  "middle",
+  "tree",
+  "understood",
+  "mara",
+  "fear",
+  "earth",
+  "star",
+  "awoke",
+  "buddha",
+  "awakened",
+  "kindness",
+  "calm",
+  "ninth",
+  "within"
+ ],
+ "sources": [
+  "Traditional life of the Buddha (Buddhacarita of Ashvaghosha; Nidanakatha): birth at Lumbini, Asita's prophecy, the four sights, the great departure, six years of austerity, Sujata's offering, Mara, awakening under the Bodhi tree, forty-five years of teaching",
+  "Bhagavata Purana 1.3.24 and Gita Govinda (Dashavatara stotra) for the Buddha among the avatars of Vishnu"
+ ],
+ "lines": [
+  {
+   "text": "Long ago, in a garden called Lumbini, a prince was born, named Siddhartha.",
+   "say": "Long ago, in a garden called Loombinee, a prince was born, named Sid-dartha."
+  },
+  {
+   "text": "A wise man foretold, he would become a great king, or a great teacher."
+  },
+  {
+   "text": "His father wanted a king, so he hid every sorrow behind the palace walls."
+  },
+  {
+   "text": "Siddhartha grew up among music, gardens, and endless spring.",
+   "say": "Sid-dartha grew up among music, gardens, and endless spring."
+  },
+  {
+   "text": "But one day, he rode out beyond the gates."
+  },
+  {
+   "text": "He saw an old man, bent with age. A sick man, shaking with fever."
+  },
+  {
+   "text": "And a silent procession, carrying someone who would never wake."
+  },
+  {
+   "text": "Then he saw a wandering monk, who owned nothing, and yet was at peace."
+  },
+  {
+   "text": "That night, he looked once at his sleeping wife and son, and quietly left the palace."
+  },
+  {
+   "text": "He cut off his long hair, and traded his silks for a simple robe."
+  },
+  {
+   "text": "For six years he searched, fasting until he was thin as a reed."
+  },
+  {
+   "text": "But starving the body did not free the mind."
+  },
+  {
+   "text": "So he accepted a bowl of rice milk from a village girl, and chose the middle path."
+  },
+  {
+   "text": "He sat beneath a great fig tree, and vowed not to rise until he understood."
+  },
+  {
+   "text": "Mara, lord of illusion, sent storms, and armies, and fear. He simply touched the earth.",
+   "say": "Mahra, lord of illusion, sent storms, and armies, and fear. He simply touched the earth."
+  },
+  {
+   "text": "And as the morning star rose, he awoke. He was the Buddha, the awakened one.",
+   "say": "And as the morning star rose, he awoke. He was the Boodha, the awakened one."
+  },
+  {
+   "text": "For forty five years he walked from village to village, teaching kindness, and a calm mind."
+  },
+  {
+   "text": "In many traditions, he is honoured as the ninth avatar of Vishnu,"
+  },
+  {
+   "text": "a reminder that peace is not found in palaces, but within."
+  }
+ ]
+}
