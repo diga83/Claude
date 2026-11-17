@@ -1,0 +1,7 @@
+build/seg/
+build/t*.jpg
+build/test*.mp4
+build/*.wav
+build/video.mp4
+audio/
+vishnu-in-10-minutes.mp4

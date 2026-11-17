@@ -1,0 +1,409 @@
+{
+ "title": "Introduction to Vishnu in 10 Minutes",
+ "notes": "Each shot has narration lines. '|' splits a line into on-screen caption beats, *word* marks the highlighted word.",
+ "shots": [
+  {
+   "id": "v01_ocean",
+   "ch": "The Endless Ocean",
+   "v": "A moonlit cosmic ocean, slow waves, stars reflected in the water.",
+   "lines": [
+    "Imagine an ocean with no shore, | no beginning, | and no *end.*"
+   ]
+  },
+  {
+   "id": "v02_shesha",
+   "ch": "The Endless Ocean",
+   "v": "The many-hooded serpent Shesha rises from the waves; Vishnu rests on its coils in silhouette, then glows.",
+   "lines": [
+    "On its gentle waves floats a great serpent, | with a thousand *heads.*",
+    "And resting upon it, | calm as the deep sea, | is the one who holds the universe *together.*"
+   ]
+  },
+  {
+   "id": "v03_title",
+   "ch": "The Endless Ocean",
+   "v": "Vishnu revealed in full colour with conch, chakra, mace and lotus. Title card.",
+   "lines": [
+    "This is *Vishnu* —| the preserver, the *protector.*",
+    "He is one of the most beloved gods in Hinduism, | worshipped by hundreds of millions | around the *world.*",
+    "In the next ten minutes, | let us get to *know* him."
+   ]
+  },
+  {
+   "id": "v04_trimurti",
+   "ch": "The Preserver",
+   "v": "Brahma, Shiva and Vishnu side by side; each lights up in turn.",
+   "lines": [
+    "In Hindu tradition, | three great gods | care for the *universe.*",
+    "Brahma *creates* it.",
+    "Shiva *transforms* it.",
+    "And Vishnu *preserves* it."
+   ]
+  },
+  {
+   "id": "v05_balance",
+   "ch": "The Preserver",
+   "v": "A golden scale balances a glowing world; Vishnu's hand steadies it.",
+   "lines": [
+    "Brahma begins each world, | and Shiva brings it to a close. | But through all the long ages in between, | it is Vishnu who watches over *life.*",
+    "His task is to keep the world in *balance* —| to protect what is good, | and to guard *dharma,* | the way of truth and *kindness.*"
+   ]
+  },
+  {
+   "id": "v06_name",
+   "ch": "The Preserver",
+   "v": "Vishnu's outline filled with stars, rivers and hearts; then a warm portrait.",
+   "lines": [
+    "His name means the one who is *everywhere* —| in every star, every river, | and every living *heart.*",
+    "He is also called *Narayana,* | the shelter of all *beings.*",
+    "And to his devotees, | he is the Supreme himself, | the source of *everything.*"
+   ]
+  },
+  {
+   "id": "v07_look",
+   "ch": "Reading Vishnu",
+   "v": "Full four-armed figure of Vishnu against a sunburst.",
+   "lines": [
+    "Look closely at Vishnu, | for everything about him | has a *meaning.*"
+   ]
+  },
+  {
+   "id": "v08_blue",
+   "ch": "Reading Vishnu",
+   "v": "Close on his serene blue face; sky and ocean blend behind him.",
+   "lines": [
+    "His skin is the deep blue | of the sky and the *ocean* —| vast, calm, and without *limit.*"
+   ]
+  },
+  {
+   "id": "v09_arms",
+   "ch": "Reading Vishnu",
+   "v": "The four arms open outward, each trailing light to a corner of the frame.",
+   "lines": [
+    "He has four *arms,* | reaching out in every direction, | to care for the whole *world.*"
+   ]
+  },
+  {
+   "id": "v10_conch",
+   "ch": "Reading Vishnu",
+   "v": "Hero shot of the white conch; rings of sound and a glowing Om.",
+   "lines": [
+    "In one hand is the *conch,* | the shankha.",
+    "Its deep note is the first sound of creation —| the sacred *Om.*"
+   ]
+  },
+  {
+   "id": "v11_chakra",
+   "ch": "Reading Vishnu",
+   "v": "The Sudarshana chakra spins, throwing sparks and slicing through dark clouds.",
+   "lines": [
+    "In another spins the *chakra,* | a blazing wheel called Sudarshana —| which cuts through darkness | and *evil.*"
+   ]
+  },
+  {
+   "id": "v12_gada",
+   "ch": "Reading Vishnu",
+   "v": "The golden mace gleams against a royal crimson sunburst.",
+   "lines": [
+    "The third holds a golden *mace,* | a sign of strength, | and the power of *knowledge.*"
+   ]
+  },
+  {
+   "id": "v13_lotus",
+   "ch": "Reading Vishnu",
+   "v": "A lotus rises from a dark pond and opens in light.",
+   "lines": [
+    "And the fourth holds a *lotus* —| a flower that rises pure and bright, | even from muddy *water.*"
+   ]
+  },
+  {
+   "id": "v14_dress",
+   "ch": "Reading Vishnu",
+   "v": "Camera travels over yellow garments, flower garland and the jewel on his chest.",
+   "lines": [
+    "He wears garments of golden *yellow,* | a garland of forest flowers, | and on his chest, a shining *jewel.*",
+    "On his head is a tall golden *crown,* | for he is the king and guardian | of all the *worlds.*"
+   ]
+  },
+  {
+   "id": "v15_vaikuntha",
+   "ch": "Vaikuntha",
+   "v": "Golden gates and domes above the clouds, radiant sky.",
+   "lines": [
+    "Vishnu's home is *Vaikuntha* —| a realm of light, | where there is no sorrow | and no *fear.*"
+   ]
+  },
+  {
+   "id": "v16_lakshmi",
+   "ch": "Vaikuntha",
+   "v": "Lakshmi on a pink lotus showering golden coins; then Vishnu and Lakshmi together.",
+   "lines": [
+    "Beside him is the goddess *Lakshmi,* | giver of fortune, beauty, and *grace.*",
+    "Wherever Vishnu goes, | she goes with him —| for protection and prosperity | belong *together.*"
+   ]
+  },
+  {
+   "id": "v17_sheshabed",
+   "ch": "Vaikuntha",
+   "v": "Vishnu reclines on Shesha's coils under the canopy of hoods; Lakshmi at his feet.",
+   "lines": [
+    "His bed is the serpent *Shesha,* | whose name means | that which *remains* —| when everything else is *gone.*"
+   ]
+  },
+  {
+   "id": "v18_garuda",
+   "ch": "Vaikuntha",
+   "v": "Garuda, the golden eagle, soars through clouds with Vishnu on his back.",
+   "lines": [
+    "And when he travels, | he rides *Garuda,* | the mighty king of birds, | swifter than the *wind.*"
+   ]
+  },
+  {
+   "id": "v19_navel",
+   "ch": "Vaikuntha",
+   "v": "A lotus stem rises from the resting Vishnu; Brahma sits in the bloom and worlds appear.",
+   "lines": [
+    "They say that from Vishnu's navel | grew a single *lotus,* | and from that lotus | Brahma was born, | to create the *worlds.*"
+   ]
+  },
+  {
+   "id": "v20_dark",
+   "ch": "The Promise",
+   "v": "The balanced scale tips; storm clouds swallow a bright village.",
+   "lines": [
+    "But sometimes, | the world loses its *balance.*",
+    "Cruelty grows strong, | and goodness is in *danger.*"
+   ]
+  },
+  {
+   "id": "v21_promise",
+   "ch": "The Promise",
+   "v": "Vishnu rises, hand lifted in blessing; a beam of light descends through the clouds.",
+   "lines": [
+    "For those times, | Vishnu made a *promise.*",
+    "Whenever dharma fades, | and darkness rises, | I will come *down* —| age after *age.*"
+   ]
+  },
+  {
+   "id": "v22_ten",
+   "ch": "The Promise",
+   "v": "Ten glowing medallions appear in an arc around Vishnu.",
+   "lines": [
+    "Each time he comes, | he takes a new *form.*",
+    "These are his *avatars.* | The ten most famous | are called the *Dashavatara.*"
+   ]
+  },
+  {
+   "id": "v23_matsya",
+   "ch": "The Ten Avatars",
+   "v": "Matsya, the golden fish, tows a small boat through towering waves.",
+   "lines": [
+    "First came *Matsya,* the fish, | who guided a boat of life | safely through a great *flood.*",
+    "He saved the wise king Manu, | the seeds of every plant, | and the sacred *Vedas.*"
+   ]
+  },
+  {
+   "id": "v24_kurma",
+   "ch": "The Ten Avatars",
+   "v": "Kurma the tortoise beneath a mountain wrapped by a serpent rope.",
+   "lines": [
+    "Then *Kurma,* the tortoise, | who carried a mountain on his back, | as gods and demons churned the *ocean.*"
+   ]
+  },
+  {
+   "id": "v25_varaha",
+   "ch": "The Ten Avatars",
+   "v": "Varaha the boar rises from dark water lifting the Earth on his tusks.",
+   "lines": [
+    "As *Varaha,* the mighty boar, | he dived into the deep, | and lifted the Earth | back into the *light.*"
+   ]
+  },
+  {
+   "id": "v26_narasimha",
+   "ch": "The Ten Avatars",
+   "v": "A palace pillar splits; Narasimha roars out as little Prahlada prays.",
+   "lines": [
+    "As *Narasimha,* half man, half lion, | he burst from a pillar | to save a child named *Prahlada* | from a cruel *king.*"
+   ]
+  },
+  {
+   "id": "v27_vamana",
+   "ch": "The Ten Avatars",
+   "v": "Small Vamana with umbrella; then a giant foot covering the Earth.",
+   "lines": [
+    "As *Vamana,* a small boy, | he asked a proud king for just three steps of *land* —| then grew so vast | that he covered earth and sky | in *two.*"
+   ]
+  },
+  {
+   "id": "v28_parashurama",
+   "ch": "The Ten Avatars",
+   "v": "Parashurama the warrior sage with his axe on a mountain ridge.",
+   "lines": [
+    "As *Parashurama,* the warrior sage, | he humbled rulers | who had forgotten *justice.*"
+   ]
+  },
+  {
+   "id": "v29_rama",
+   "ch": "The Ten Avatars",
+   "v": "Rama with his bow before a golden city; Sita joins him.",
+   "lines": [
+    "As *Rama,* prince of Ayodhya, | he showed what it means to be *good* —| a loyal son, a faithful husband, | and a just *king.*",
+    "His story, the *Ramayana,* | tells how he crossed the sea | to rescue his wife Sita | from the demon king *Ravana.*"
+   ]
+  },
+  {
+   "id": "v30_krishna",
+   "ch": "The Ten Avatars",
+   "v": "Krishna plays the flute under a full moon; cows and peacock feathers; then the chariot.",
+   "lines": [
+    "As *Krishna,* | he played his flute, | danced with his friends, | and taught the wisdom | of the Bhagavad *Gita.*",
+    "On a great battlefield, | he told the warrior Arjuna: | do what is right, | and let go of the *reward.*"
+   ]
+  },
+  {
+   "id": "v31_buddha",
+   "ch": "The Ten Avatars",
+   "v": "The Buddha meditating beneath the Bodhi tree, soft dawn light.",
+   "lines": [
+    "In many traditions, | the ninth is the *Buddha,* | teacher of compassion and *peace.*",
+    "Some traditions name Krishna's brother, | *Balarama,* instead."
+   ]
+  },
+  {
+   "id": "v32_kalki",
+   "ch": "The Ten Avatars",
+   "v": "Kalki on a white horse, sword raised, against a comet-streaked sky.",
+   "lines": [
+    "And the tenth, *Kalki,* | is yet to *come* —| riding a white horse, | at the end of this *age.*"
+   ]
+  },
+  {
+   "id": "v33_all",
+   "ch": "The Ten Avatars",
+   "v": "All ten avatar medallions circle Vishnu.",
+   "lines": [
+    "Ten forms. | One *purpose.* | To protect the good, | and bring the world back into *balance.*",
+    "From fish, to beast, to human —| some see in these ten forms | the long story of life *itself.*"
+   ]
+  },
+  {
+   "id": "v34_gajendra",
+   "ch": "Stories of Grace",
+   "v": "A lotus lake; the elephant king is caught by a crocodile.",
+   "lines": [
+    "One story shows his heart | better than any *other.*",
+    "An elephant king named *Gajendra* | was seized by a crocodile, | and no one could set him *free.*"
+   ]
+  },
+  {
+   "id": "v35_pray",
+   "ch": "Stories of Grace",
+   "v": "The elephant lifts a lotus in his trunk toward the sky.",
+   "lines": [
+    "With his last strength, | he lifted a lotus to the sky, | and called out to *Vishnu.*"
+   ]
+  },
+  {
+   "id": "v36_rescue",
+   "ch": "Stories of Grace",
+   "v": "Vishnu dives on Garuda; the chakra flashes across the lake.",
+   "lines": [
+    "At once, Vishnu came flying on Garuda —| and with his spinning chakra, | he *saved* him."
+   ]
+  },
+  {
+   "id": "v36b_dhruva",
+   "ch": "Stories of Grace",
+   "v": "A small prince meditates in a forest; Vishnu appears and lifts him into the sky as the Pole Star.",
+   "lines": [
+    "Another story tells of a little prince named *Dhruva,* | who prayed to Vishnu | with all his *heart.*",
+    "Vishnu was so moved | that he made him the *Pole Star* —| steady and bright, | for all of *time.*"
+   ]
+  },
+  {
+   "id": "v37_lesson",
+   "ch": "Stories of Grace",
+   "v": "Vishnu blesses the bowing elephant; lotus petals fall.",
+   "lines": [
+    "Vishnu does not ask who you *are.*",
+    "He comes to anyone | who calls with a sincere *heart.*"
+   ]
+  },
+  {
+   "id": "v38_names",
+   "ch": "A Thousand Names",
+   "v": "Names drift like lanterns; three portraits: Hari, Govinda, Jagannath.",
+   "lines": [
+    "Vishnu has a thousand *names.*",
+    "*Hari,* | the one who takes away *sorrow.*",
+    "*Govinda,* | the friend of the *gentle.*",
+    "*Jagannath,* | the lord of the *universe.*"
+   ]
+  },
+  {
+   "id": "v39_temples",
+   "ch": "A Thousand Names",
+   "v": "A stylised map of India; three temples light up south, north and east.",
+   "lines": [
+    "Great temples rise in his honour —| Tirupati in the south, | Badrinath in the Himalayas, | and Puri by the *sea.*"
+   ]
+  },
+  {
+   "id": "v40_worship",
+   "ch": "A Thousand Names",
+   "v": "A devotee offers tulsi leaves at a shrine; singers with raised hands and lamps.",
+   "lines": [
+    "His followers are called *Vaishnavas,* | and theirs is one of the largest traditions | in all of *Hinduism.*",
+    "His devotees offer leaves of *tulsi,* | the holy basil he *loves.*",
+    "They fast on the day of *Ekadashi,* | and they sing his names with *joy.*",
+    "Festivals like *Diwali,* | Janmashtami, | and Rama Navami | all celebrate his *avatars.*"
+   ]
+  },
+  {
+   "id": "v41_mantra",
+   "ch": "A Thousand Names",
+   "v": "A glowing Om; the eight syllables of the mantra light one by one.",
+   "lines": [
+    "And on their lips is one mantra: | *Om Namo Narayanaya.*",
+    "I bow to the one | who lives in *all.*"
+   ]
+  },
+  {
+   "id": "v42_who",
+   "ch": "The Preserver Within",
+   "v": "Montage: the calm ocean, the protector with chakra, the avatars returning.",
+   "lines": [
+    "So, who is Vishnu?",
+    "He is the calm | of the deep *ocean.*",
+    "The protector, | who never looks *away.*",
+    "The friend | who returns, again and again, | whenever he is *needed.*"
+   ]
+  },
+  {
+   "id": "v43_teach",
+   "ch": "The Preserver Within",
+   "v": "Serene Vishnu at sunrise; three soft symbols appear.",
+   "lines": [
+    "He teaches that goodness | is worth *protecting,*",
+    "that power should always | serve *kindness,*",
+    "and that no one who asks for help | is ever truly *alone.*"
+   ]
+  },
+  {
+   "id": "v44_you",
+   "ch": "The Preserver Within",
+   "v": "A child shelters a small bird; a faint blue glow of Vishnu stands behind.",
+   "lines": [
+    "So whenever you protect something good —| a friend, a promise, a living *thing* —| a little of Vishnu's work | is done through *you.*"
+   ]
+  },
+  {
+   "id": "v45_outro",
+   "ch": "The Preserver Within",
+   "v": "Vishnu and Lakshmi in full glory; end title.",
+   "lines": [
+    "Om Namo *Narayanaya.*"
+   ]
+  }
+ ]
+}
